@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#0A0A0B">
 <meta name="description" content="GMSTUDIO® é um estúdio de branding e direção visual. Construímos sistemas de marca para empresas que tratam imagem como decisão estratégica.">
 <title>GMSTUDIO® — Estúdio de Branding & Direção Visual</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
 
 <style>
 @font-face {
@@ -1108,6 +1110,9 @@ body { padding-right: 36px; }
 body.theme-light #cursor-ring { border-color: rgba(10,10,11,0.4); }
 body.theme-light #cursor-dot  { background: var(--magenta,#E50046); }
 a:hover ~ #cursor-ring, button:hover ~ #cursor-ring { transform:translate(-50%,-50%) scale(1.5); }
+@media (pointer: coarse) {
+  #cursor-ring, #cursor-dot { display: none !important; }
+}
 
 /* ── Section card stacking (position:sticky) ────────── */
 .stack-context {
@@ -1578,10 +1583,10 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         </div>
         <div class="sobre__ctas rv d4">
           <a class="sobre__cta sobre__cta--magenta" href="https://www.behance.net/gmstudio-br" target="_blank" rel="noopener">
-            Ver perfil no Behance ↗
+            Ver perfil no Behance ↗︎
           </a>
           <a class="sobre__cta" href="https://www.linkedin.com/in/gustavomachado-dg/" target="_blank" rel="noopener">
-            Ver perfil no LinkedIn ↗
+            Ver perfil no LinkedIn ↗︎
           </a>
         </div>
       </div>
@@ -2580,7 +2585,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         <button class="acc__btn" aria-expanded="false">
           <span class="acc__num">0${i+1}</span>
           <span class="acc__title">${s.n}</span>
-          <span class="acc__icon">↗</span>
+          <span class="acc__icon">↗︎</span>
         </button>
         <div class="acc__body" hidden>
           <div class="acc__content">
@@ -2593,7 +2598,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         list.querySelectorAll('.acc__btn').forEach(b => {
           b.setAttribute('aria-expanded','false');
           b.closest('.acc__item').querySelector('.acc__body').hidden = true;
-          b.querySelector('.acc__icon').textContent = '↗';
+          b.querySelector('.acc__icon').textContent = '↗︎';
         });
         if(!open){
           this.setAttribute('aria-expanded','true');
@@ -2612,7 +2617,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     grid.innerHTML = PROJETOS.map((p,i) => `
       <a class="pf-card ${p.span} ${p.ratio} rv d${Math.min(i+1,4)}" href="javascript:void(0)" data-idx="${i}">
         <div class="pf-card__bg ${p.bg}" style="${p.cover ? 'background-image:url('+p.cover+');background-size:cover;background-position:center;' : ''}"></div>
-        <div class="pf-card__arrow">↗</div>
+        <div class="pf-card__arrow">↗︎</div>
         <div class="pf-card__meta">
           <div>
             <div class="pf-card__cat">${p.cat}</div>
@@ -2876,6 +2881,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 
   // ── CUSTOM CURSOR ─────────────────────────────────────────────
   (function(){
+    if(window.matchMedia('(pointer:coarse)').matches) return;
     const ring = document.getElementById('cursor-ring');
     const dot  = document.getElementById('cursor-dot');
     if(!ring||!dot) return;
@@ -2957,15 +2963,4 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   (function(){
     const lightSec = document.querySelector('.theme-section-light');
     if(!lightSec) return;
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        document.body.classList.toggle('on-light', e.isIntersecting);
-      });
-    }, { threshold: 0.2 });
-    io.observe(lightSec);
-  })();
-
-})();
-</script>
-</body>
-</html>
+   
