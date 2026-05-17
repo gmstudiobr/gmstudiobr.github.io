@@ -5,11 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0A0A0B">
 <meta name="description" content="GMSTUDIO® é um estúdio de branding e direção visual. Construímos sistemas de marca para empresas que tratam imagem como decisão estratégica.">
-<<<<<<< HEAD
 <title>GMSTUDIO® — Estúdio de Branding & Direção Visual</title>
-=======
-<title>GMSTUDIO®</title>
->>>>>>> f5c0e3838f79be1e05b231c7714bdf9d241664d3
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 
@@ -2886,100 +2882,4 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   // ── CUSTOM CURSOR ─────────────────────────────────────────────
   (function(){
     if(window.matchMedia('(pointer:coarse)').matches) return;
-    const ring = document.getElementById('cursor-ring');
-    const dot  = document.getElementById('cursor-dot');
-    if(!ring||!dot) return;
-
-    let mx=window.innerWidth/2, my=window.innerHeight/2;
-    let rx=mx, ry=my, dx=mx, dy=my;
-
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-
-    function loop(){
-      // ring: slow lerp (trails cursor)
-      rx += (mx - rx) * 0.10;
-      ry += (my - ry) * 0.10;
-      // dot: fast lerp (closer to real cursor)
-      dx += (mx - dx) * 0.35;
-      dy += (my - dy) * 0.35;
-
-      ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
-      dot.style.transform  = `translate(calc(${dx}px - 50%), calc(${dy}px - 50%))`;
-      requestAnimationFrame(loop);
-    }
-    loop();
-
-    // Grow ring on interactive elements
-    document.querySelectorAll('a,button,input,textarea').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width='56px'; ring.style.height='56px';
-        ring.style.borderColor='rgba(229,0,70,0.6)';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width=''; ring.style.height='';
-        ring.style.borderColor='';
-      });
-    });
-  })();
-
-  // ── SIDEBAR: mouse-proximity driven relevo ─────────────────────
-  (function(){
-    const sb    = document.getElementById('sidebarLat');
-    if(!sb) return;
-    const spans = Array.from(sb.querySelectorAll('span'));
-
-    // Show/hide based on scroll
-    function syncVisibility(){
-      const v = window.scrollY < 120;
-      sb.classList.toggle('sb-visible', v);
-      sb.classList.toggle('sb-hidden', !v);
-    }
-    window.addEventListener('scroll', syncVisibility, {passive:true});
-    setTimeout(() => sb.classList.add('sb-visible'), 400);
-
-    // Mouse proximity → relevo per word
-    document.addEventListener('mousemove', e => {
-      spans.forEach(span => {
-        const r   = span.getBoundingClientRect();
-        const cx  = r.left + r.width/2;
-        const cy  = r.top  + r.height/2;
-        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-        const intensity = dist < 80 ? 'high' : dist < 180 ? 'mid' : 'none';
-        span.dataset.intensity = intensity;
-      });
-    });
-  })();
-
-  // ── SECTION CARD STACKING: sticky + shadow on scroll ──────────
-  (function(){
-    const cards = document.querySelectorAll('.card-sticky');
-    if(!cards.length) return;
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        // stacked = not fully in view at top (scrolled past)
-        e.target.classList.toggle('is-stacked', e.boundingClientRect.top < 10);
-      });
-    }, { threshold: [0, 0.05] });
-    cards.forEach(c => io.observe(c));
-  })();
-
-  // ── LIGHT/DARK THEME DETECTION for header ─────────────────────
-  (function(){
-    const lightSec = document.querySelector('.theme-section-light');
-    if(!lightSec) return;
-<<<<<<< HEAD
-   
-=======
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        document.body.classList.toggle('on-light', e.isIntersecting);
-      });
-    }, { threshold: 0.2 });
-    io.observe(lightSec);
-  })();
-
-})();
-</script>
-</body>
-</html>
->>>>>>> f5c0e3838f79be1e05b231c7714bdf9d241664d3
+    const ring = document.getEleme
