@@ -336,8 +336,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   overflow:hidden;
   padding:22px 0;
 }
-.mq__track{display:flex;gap:0;animation:mq 18s linear infinite;will-change:transform;white-space:nowrap}
-.mq:hover .mq__track{animation-duration:54s}
+.mq__track{display:flex;gap:0;animation:mq 10s linear infinite;will-change:transform;white-space:nowrap}
+.mq:hover .mq__track{animation-duration:30s}
 .mq__item{
   display:inline-flex;align-items:center;gap:36px;
   padding:0 36px;
@@ -720,7 +720,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .rv.d6{transition-delay:.48s}
 .rv-x{opacity:0;transform:translateX(-20px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
 .rv-x.on{opacity:1;transform:none}
-@media (max-width:768px){ .mq__track{animation-duration:12s} }
+@media (max-width:768px){ .mq__track{animation-duration:7s} }
 @media (prefers-reduced-motion: reduce){
   .rv,.rv-x{opacity:1;transform:none;transition:none}
   .mq__track{animation:none}
@@ -1279,9 +1279,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 @keyframes clients-rtl {
   0%   { transform: translateX(-50%); }
 /* ── Carousel hover: slow down ──────────────────────────── */
-.clients__track-wrap:hover .clients__track {
-  animation-duration: 90s !important;
-}
+
 
   100% { transform: translateX(0); }
 }
@@ -2573,52 +2571,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     t.innerHTML = build() + build();
   })();
 
-  // ── MARQUEE DRAG (mouse + touch) ─────────────────────────────
-  (function(){
-    const track = document.getElementById('mqT');
-    if(!track) return;
-    const DURATION = window.innerWidth < 768 ? 12 : 18;
-    let dragging = false, startX = 0, startTX = 0, curTX = 0;
-
-    function getTX() {
-      const m = new DOMMatrix(getComputedStyle(track).transform);
-      return m.m41;
-    }
-    function beginDrag(clientX) {
-      dragging = true;
-      startX   = clientX;
-      startTX  = getTX();
-      track.style.animationPlayState = 'paused';
-      track.style.transform = 'translateX(' + startTX + 'px)';
-      track.style.cursor = 'grabbing';
-    }
-    function moveDrag(clientX) {
-      if(!dragging) return;
-      curTX = startTX + (clientX - startX);
-      track.style.transform = 'translateX(' + curTX + 'px)';
-    }
-    function endDrag() {
-      if(!dragging) return;
-      dragging = false;
-      track.style.cursor = 'grab';
-      // Calculate where in the cycle we are and resume seamlessly
-      const half = track.scrollWidth / 2;
-      let pos = curTX % (-half);
-      if(pos > 0) pos -= half;
-      const delay = -(Math.abs(pos) / half) * DURATION;
-      track.style.transform = '';
-      track.style.animation  = 'mq ' + DURATION + 's linear ' + delay + 's infinite';
-    }
-
-    track.style.cursor = 'grab';
-    track.addEventListener('mousedown',  e => { e.preventDefault(); beginDrag(e.clientX); });
-    document.addEventListener('mousemove', e => moveDrag(e.clientX));
-    document.addEventListener('mouseup',   endDrag);
-    track.addEventListener('touchstart', e => beginDrag(e.touches[0].clientX), {passive:true});
-    document.addEventListener('touchmove', e => { if(dragging) moveDrag(e.touches[0].clientX); }, {passive:true});
-    document.addEventListener('touchend',  endDrag);
-  })();
-
 
   // ── DISCIPLINAS → ACCORDION ───────────────────────────────────
   (function(){
@@ -3017,6 +2969,54 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       });
     }, { threshold: 0.2 });
     io.observe(lightSec);
+  })();
+
+
+  // ── CAROUSEL DRAG (mouse + touch) ────────────────────────────
+  (function(){
+    document.querySelectorAll('.clients__track-wrap').forEach(function(wrap){
+      const track = wrap.querySelector('.clients__track');
+      if(!track) return;
+      const isRtl = track.classList.contains('clients__track--rtl');
+      const dur   = isRtl ? 28 : 32;
+      let dragging = false, startX = 0, startTX = 0, curTX = 0;
+
+      function getTX(){
+        return new DOMMatrix(getComputedStyle(track).transform).m41;
+      }
+      function begin(clientX){
+        dragging = true;
+        startX   = clientX;
+        startTX  = getTX();
+        track.style.animationPlayState = 'paused';
+        track.style.transform = 'translateX(' + startTX + 'px)';
+        wrap.style.cursor = 'grabbing';
+      }
+      function move(clientX){
+        if(!dragging) return;
+        curTX = startTX + (clientX - startX);
+        track.style.transform = 'translateX(' + curTX + 'px)';
+      }
+      function end(){
+        if(!dragging) return;
+        dragging = false;
+        wrap.style.cursor = 'grab';
+        const half  = track.scrollWidth / 2;
+        let   pos   = ((curTX % (-half)) + (-half)) % (-half);
+        const delay = (pos / half) * dur;
+        track.style.transform = '';
+        const anim  = isRtl ? 'clients-rtl' : 'clients-ltr';
+        track.style.animation = anim + ' ' + dur + 's linear -' + Math.abs(delay) + 's infinite';
+      }
+
+      wrap.style.cursor = 'grab';
+      wrap.addEventListener('mousedown',  function(e){ e.preventDefault(); begin(e.clientX); });
+      document.addEventListener('mousemove', function(e){ move(e.clientX); });
+      document.addEventListener('mouseup',   end);
+      wrap.addEventListener('touchstart', function(e){ begin(e.touches[0].clientX); }, {passive:true});
+      document.addEventListener('touchmove', function(e){ if(dragging) move(e.touches[0].clientX); }, {passive:true});
+      document.addEventListener('touchend',  end);
+    });
   })();
 
 })();
