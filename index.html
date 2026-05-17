@@ -1227,7 +1227,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   overflow: hidden;
   margin-bottom: 28px;
   cursor: grab;
-  touch-action: pan-y;
+  touch-action: none;
   user-select: none;
 }
 .clients__track-wrap:last-child { margin-bottom: 0; }
@@ -2973,11 +2973,11 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     io.observe(lightSec);
   })();
 
-  // ── CAROUSEL DRAG (mouse + touch) ────────────────────────────
+  // ── CAROUSEL DRAG (Pointer Events API) ───────────────────────
   (function(){
     document.querySelectorAll('.clients__track-wrap').forEach(function(wrap){
-      var track  = wrap.querySelector('.clients__track');
-      if(!track) return;
+      var track = wrap.querySelector('.clients__track');
+      if (!track) return;
 
       var isRtl  = track.classList.contains('clients__track--rtl');
       var DUR    = isRtl ? 28 : 32;
@@ -2989,62 +2989,41 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       var curTX    = 0;
 
       function getCurrentTX() {
-        var matrix = new DOMMatrix(getComputedStyle(track).transform);
-        return matrix.m41;
+        return new DOMMatrix(getComputedStyle(track).transform).m41;
       }
 
-      function onStart(clientX) {
+      wrap.addEventListener('pointerdown', function(e) {
         dragging = true;
-        startX   = clientX;
+        startX   = e.clientX;
         startTX  = getCurrentTX();
         curTX    = startTX;
         track.style.animation = 'none';
         track.style.transform = 'translateX(' + startTX + 'px)';
         wrap.style.cursor     = 'grabbing';
-      }
+        wrap.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
 
-      function onMove(clientX) {
+      wrap.addEventListener('pointermove', function(e) {
         if (!dragging) return;
-        curTX = startTX + (clientX - startX);
+        curTX = startTX + (e.clientX - startX);
         track.style.transform = 'translateX(' + curTX + 'px)';
-      }
+      });
 
-      function onEnd() {
+      function endDrag() {
         if (!dragging) return;
         dragging = false;
         wrap.style.cursor = 'grab';
-
-        // Normalise curTX into one animation cycle
-        var half = track.scrollWidth / 2;
-        var pos  = curTX % half;           // value in [0, half) or negative
-        // For ltr the cycle is 0 → -half; for rtl it's -half → 0
-        // We just need a valid negative-delay so CSS knows where to start
-        var progress = Math.abs(pos) / half;   // 0..1
-        var delay    = -(progress * DUR);       // negative = start mid-cycle
-
+        var half     = track.scrollWidth / 2;
+        var pos      = ((curTX % half) + half) % half;
+        var progress = pos / half;
+        var delay    = -(progress * DUR);
         track.style.transform = '';
         track.style.animation = ANIM + ' ' + DUR + 's linear ' + delay + 's infinite';
       }
 
-      // Mouse
-      wrap.addEventListener('mousedown', function(e) {
-        e.preventDefault();
-        onStart(e.clientX);
-      });
-      document.addEventListener('mousemove', function(e) { onMove(e.clientX); });
-      document.addEventListener('mouseup',   onEnd);
-
-      // Touch
-      wrap.addEventListener('touchstart', function(e) {
-        onStart(e.touches[0].clientX);
-      }, { passive: true });
-      document.addEventListener('touchmove', function(e) {
-        if (dragging) {
-          e.preventDefault();
-          onMove(e.touches[0].clientX);
-        }
-      }, { passive: false });
-      document.addEventListener('touchend', onEnd);
+      wrap.addEventListener('pointerup',     endDrag);
+      wrap.addEventListener('pointercancel', endDrag);
     });
   })();
 
