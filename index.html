@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0A0A0B">
 <meta name="description" content="GMSTUDIO® é um estúdio de branding e direção visual. Construímos sistemas de marca para empresas que tratam imagem como decisão estratégica.">
+<<<<<<< HEAD
 <title>GMSTUDIO® — Estúdio de Branding & Direção Visual</title>
+=======
+<title>GMSTUDIO®</title>
+>>>>>>> f5c0e3838f79be1e05b231c7714bdf9d241664d3
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 
@@ -2963,4 +2967,19 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   (function(){
     const lightSec = document.querySelector('.theme-section-light');
     if(!lightSec) return;
+<<<<<<< HEAD
    
+=======
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        document.body.classList.toggle('on-light', e.isIntersecting);
+      });
+    }, { threshold: 0.2 });
+    io.observe(lightSec);
+  })();
+
+})();
+</script>
+</body>
+</html>
+>>>>>>> f5c0e3838f79be1e05b231c7714bdf9d241664d3
