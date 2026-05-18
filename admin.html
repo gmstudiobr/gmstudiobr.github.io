@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GMSTUDIO® — Admin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0A0B;--graphite:#141416;--graphite2:#1C1C1F;--t1:#F2F0EB;--t2:#B0ADA6;--t3:#6B6963;
+  --magenta:#E50046;--border:rgba(255,255,255,.08);
+  --ff:'Segoe UI',system-ui,sans-serif;
+  --radius:12px;
+}
+body{background:var(--ink);color:var(--t1);font-family:var(--ff);font-size:14px;line-height:1.6;min-height:100vh}
+
+/* ── LOGIN ── */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+.login-box{background:var(--graphite);border:1px solid var(--border);border-radius:20px;padding:48px;width:100%;max-width:420px}
+.login-box h1{font-size:22px;font-weight:600;margin-bottom:6px}
+.login-box p{color:var(--t3);font-size:13px;margin-bottom:32px}
+.login-box label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.login-box input{width:100%;background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--t1);font-size:14px;outline:none;font-family:inherit}
+.login-box input:focus{border-color:var(--magenta)}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;width:100%;justify-content:center;font-family:inherit;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.login-err{color:var(--magenta);font-size:12px;margin-top:10px;display:none}
+
+/* ── LAYOUT ── */
+#app{display:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--ink);z-index:100}
+.topbar-logo{font-size:13px;font-weight:700;letter-spacing:.15em}
+.topbar-logo span{color:var(--magenta)}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.btn-ghost{background:none;border:1px solid var(--border);border-radius:8px;color:var(--t2);padding:8px 16px;font-size:13px;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--t3);color:var(--t1)}
+.btn-small{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.btn-small:hover{opacity:.85}
+
+/* ── VIEWS ── */
+.view{padding:32px;max-width:1400px;margin:0 auto}
+
+/* ── LIST VIEW ── */
+.list-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.list-header h2{font-size:20px;font-weight:600}
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.case-card{background:var(--graphite);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+.case-card:hover{border-color:rgba(255,255,255,.18);transform:translateY(-2px)}
+.case-card__cover{width:100%;height:160px;object-fit:cover;background:var(--graphite2);display:block}
+.case-card__cover-placeholder{width:100%;height:160px;background:var(--graphite2);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.case-card__body{padding:16px}
+.case-card__num{font-size:10px;color:var(--magenta);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.case-card__name{font-size:15px;font-weight:600;margin-bottom:4px}
+.case-card__cat{font-size:11px;color:var(--t3)}
+.case-card__actions{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.btn-edit{flex:1;background:none;border:1px solid var(--border);border-radius:6px;color:var(--t2);padding:7px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-edit:hover{border-color:var(--t1);color:var(--t1)}
+.btn-delete{background:none;border:1px solid var(--border);border-radius:6px;color:var(--t3);padding:7px 10px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-delete:hover{border-color:#ff3366;color:#ff3366}
+.empty-state{text-align:center;padding:80px 20px;color:var(--t3)}
+.empty-state p{margin-bottom:20px;font-size:15px}
+
+/* ── EDIT VIEW ── */
+.edit-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+@media(max-width:960px){.edit-layout{grid-template-columns:1fr}}
+.edit-form{background:var(--graphite);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.edit-form h3{font-size:16px;font-weight:600;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit;resize:vertical}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--magenta)}
+.form-group textarea{min-height:80px}
+.section-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin:24px 0 14px;padding-top:20px;border-top:1px solid var(--border)}
+.stats-row{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin-bottom:10px}
+.img-upload-area{border:2px dashed var(--border);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:border-color .2s;position:relative}
+.img-upload-area:hover{border-color:var(--t3)}
+.img-upload-area.has-img{padding:0;border:none}
+.img-upload-area img{width:100%;border-radius:6px;display:block}
+.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-upload-text{font-size:12px;color:var(--t3)}
+.img-upload-text strong{display:block;color:var(--t2);margin-bottom:4px}
+.pages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.page-thumb{position:relative;aspect-ratio:3/4;background:var(--graphite2);border-radius:6px;overflow:hidden}
+.page-thumb img{width:100%;height:100%;object-fit:cover}
+.page-thumb__remove{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;border:none;border-radius:4px;width:20px;height:20px;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pages-add{aspect-ratio:3/4;background:var(--graphite2);border:2px dashed var(--border);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;position:relative;font-size:11px;color:var(--t3);gap:6px}
+.pages-add:hover{border-color:var(--t3)}
+.pages-add input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.form-actions{display:flex;gap:12px;margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
+.btn-save{flex:1;background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.btn-save:hover{opacity:.85}
+.btn-cancel{background:none;border:1px solid var(--border);border-radius:8px;color:var(--t2);padding:13px 20px;font-size:14px;cursor:pointer;font-family:inherit}
+.saving-msg{font-size:12px;color:var(--t3);text-align:center;margin-top:10px;display:none}
+
+/* ── PREVIEW PANEL ── */
+.preview-panel{position:sticky;top:80px}
+.preview-panel h3{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:16px}
+.preview-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.preview-card__cover{width:100%;height:200px;object-fit:cover;background:#e8e6e1;display:block}
+.preview-card__cover-ph{width:100%;height:200px;background:#e8e6e1;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999;letter-spacing:.1em;text-transform:uppercase}
+.preview-card__body{padding:20px 24px 24px;background:#fff}
+.preview-card__num{font-size:10px;color:var(--magenta);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+.preview-card__name{font-size:18px;font-weight:700;color:#0A0A0B;margin-bottom:4px;line-height:1.2}
+.preview-card__cat{font-size:11px;color:#888;letter-spacing:.05em;margin-bottom:16px}
+.preview-card__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px 0;border-top:1px solid #f0ede8;border-bottom:1px solid #f0ede8;margin-bottom:16px}
+.preview-stat__val{font-size:20px;font-weight:700;color:#0A0A0B;line-height:1}
+.preview-stat__lbl{font-size:10px;color:#999;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.preview-card__body-txt{font-size:12px;color:#555;line-height:1.6;margin-bottom:8px}
+.preview-modal-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin:20px 0 10px}
+.preview-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.preview-page{aspect-ratio:3/4;background:var(--graphite2);border-radius:4px;overflow:hidden}
+.preview-page img{width:100%;height:100%;object-fit:cover}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--graphite);border:1px solid var(--border);border-radius:10px;padding:14px 20px;font-size:13px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{border-color:rgba(0,200,100,.3);color:#4ade80}
+.toast.error{border-color:rgba(229,0,70,.3);color:#ff6b8a}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h1>GMSTUDIO® Admin</h1>
+    <p>Entre com seu token do GitHub para gerenciar o portfólio.</p>
+    <label for="tokenInput">GitHub Personal Access Token</label>
+    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <button class="btn-primary" onclick="login()">Entrar</button>
+    <div class="login-err" id="loginErr">Token inválido ou sem permissão. Verifique e tente novamente.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-logo">GM<span>STUDIO</span>® Admin</div>
+    <div class="topbar-right">
+      <a href="/" target="_blank" class="btn-ghost">Ver site ↗︎</a>
+      <button class="btn-ghost" onclick="logout()">Sair</button>
+    </div>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div id="viewList" class="view">
+    <div class="list-header">
+      <h2>Portfólio</h2>
+      <button class="btn-small" onclick="showEdit(null)">+ Novo case</button>
+    </div>
+    <div class="cases-grid" id="casesGrid"></div>
+  </div>
+
+  <!-- EDIT VIEW -->
+  <div id="viewEdit" class="view" style="display:none">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
+      <button class="btn-ghost" onclick="showList()">← Voltar</button>
+      <h2 id="editTitle" style="font-size:20px;font-weight:600">Novo case</h2>
+    </div>
+    <div class="edit-layout">
+      <!-- FORM -->
+      <div>
+        <div class="edit-form">
+          <h3>Informações do case</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome do projeto</label>
+              <input type="text" id="f-name" placeholder="Ex: Bas Telecom" oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+              <label>Ano</label>
+              <input type="text" id="f-year" placeholder="2024" maxlength="4" oninput="updatePreview()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Categoria / Tipo de trabalho</label>
+            <input type="text" id="f-cat" placeholder="Identidade Visual · Manual de Marca" oninput="updatePreview()">
+          </div>
+
+          <div class="section-title">Estatísticas (aparecem no modal)</div>
+          <div id="statsContainer">
+            <div class="stats-row">
+              <input type="text" placeholder="Valor (ex: 20)" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+              <input type="text" placeholder="Label (ex: Semanas)" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+            </div>
+            <div class="stats-row">
+              <input type="text" placeholder="Valor" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+              <input type="text" placeholder="Label" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+            </div>
+            <div class="stats-row">
+              <input type="text" placeholder="Valor" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+              <input type="text" placeholder="Label" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
+            </div>
+          </div>
+
+          <div class="section-title">Texto descritivo (até 3 parágrafos)</div>
+          <div class="form-group">
+            <label>Parágrafo 1</label>
+            <textarea id="f-body0" placeholder="Descreva o contexto e o desafio do projeto..." oninput="updatePreview()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Parágrafo 2</label>
+            <textarea id="f-body1" placeholder="Descreva a solução e o processo criativo..." oninput="updatePreview()"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Parágrafo 3</label>
+            <textarea id="f-body2" placeholder="Resultado final e entregas..." oninput="updatePreview()"></textarea>
+          </div>
+        </div>
+
+        <div class="edit-form" style="margin-top:16px">
+          <h3>Imagens</h3>
+
+          <div class="form-group">
+            <label>Imagem de capa</label>
+            <div class="img-upload-area" id="coverUploadArea">
+              <input type="file" accept="image/*" onchange="handleCoverUpload(event)">
+              <div class="img-upload-text">
+                <strong>Clique para selecionar</strong>
+                JPG ou PNG · aparece no card do portfólio
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Páginas do case (slides do modal)</label>
+            <div class="pages-grid" id="pagesGrid">
+              <div class="pages-add">
+                <input type="file" accept="image/*" multiple onchange="handlePagesUpload(event)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Adicionar
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showList()">Cancelar</button>
+          <button class="btn-save" onclick="saveCase()">Salvar e publicar</button>
+        </div>
+        <div class="saving-msg" id="savingMsg">Salvando e publicando... aguarde.</div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="preview-panel">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:16px">Preview — como vai aparecer no site</div>
+        <div class="preview-card">
+          <div id="prevCoverWrap">
+            <div class="preview-card__cover-ph" id="prevCoverPh">Capa do case</div>
+          </div>
+          <div class="preview-card__body">
+            <div class="preview-card__num" id="prevNum">—</div>
+            <div class="preview-card__name" id="prevName">Nome do projeto</div>
+            <div class="preview-card__cat" id="prevCat">Categoria · Tipo</div>
+            <div class="preview-card__stats" id="prevStats">
+              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
+              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
+              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
+            </div>
+            <div id="prevBody"></div>
+          </div>
+        </div>
+
+        <div class="preview-modal-label">Páginas no modal</div>
+        <div class="preview-pages" id="prevPages">
+          <div class="preview-page"></div>
+          <div class="preview-page"></div>
+          <div class="preview-page"></div>
+          <div class="preview-page"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const OWNER = 'gmstudiobr';
+const REPO  = 'gmstudiobr.github.io';
+const API   = 'https://api.github.com';
+
+let TOKEN     = '';
+let projects  = [];
+let editIdx   = null; // null = new
+let coverData = null; // {dataUrl, file}
+let pagesData = [];   // [{dataUrl, file}]
+
+// ── AUTH ──────────────────────────────────────────────────────
+async function login() {
+  const t = document.getElementById('tokenInput').value.trim();
+  if (!t) return;
+  try {
+    const r = await fetch(API + '/repos/' + OWNER + '/' + REPO, {
+      headers: { Authorization: 'token ' + t }
+    });
+    if (!r.ok) throw new Error();
+    TOKEN = t;
+    sessionStorage.setItem('gm_token', t);
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    await loadPortfolio();
+    showList();
+  } catch(e) {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('gm_token');
+  TOKEN = '';
+  location.reload();
+}
+
+// ── GITHUB API ────────────────────────────────────────────────
+async function ghGet(path) {
+  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+    headers: { Authorization: 'token ' + TOKEN }
+  });
+  return r.json();
+}
+
+async function ghPut(path, content, sha, message) {
+  const body = {
+    message,
+    content: btoa(unescape(encodeURIComponent(content))),
+    ...(sha ? { sha } : {})
+  };
+  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: { Authorization: 'token ' + TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function ghUploadImage(path, dataUrl, sha) {
+  const base64 = dataUrl.split(',')[1];
+  const body = {
+    message: 'Upload image: ' + path,
+    content: base64,
+    ...(sha ? { sha } : {})
+  };
+  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: { Authorization: 'token ' + TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+// ── PORTFOLIO ─────────────────────────────────────────────────
+async function loadPortfolio() {
+  try {
+    const f = await ghGet('portfolio.json');
+    const json = JSON.parse(atob(f.content.replace(/\n/g,'')));
+    projects = json.projects || [];
+  } catch(e) {
+    projects = [];
+  }
+}
+
+async function savePortfolio() {
+  const f = await ghGet('portfolio.json');
+  const sha = f.sha;
+  const content = JSON.stringify({ projects }, null, 2);
+  await ghPut('portfolio.json', content, sha, 'Admin: update portfolio');
+}
+
+// ── VIEWS ─────────────────────────────────────────────────────
+function showList() {
+  document.getElementById('viewList').style.display = 'block';
+  document.getElementById('viewEdit').style.display = 'none';
+  renderList();
+}
+
+function renderList() {
+  const grid = document.getElementById('casesGrid');
+  if (!projects.length) {
+    grid.innerHTML = '<div class="empty-state"><p>Nenhum case ainda.</p><button class="btn-small" onclick="showEdit(null)">+ Adicionar primeiro case</button></div>';
+    return;
+  }
+  grid.innerHTML = projects.map((p, i) => `
+    <div class="case-card">
+      ${p.cover
+        ? `<img class="case-card__cover" src="${p.cover}?t=${Date.now()}" onerror="this.style.display='none'" alt="">`
+        : `<div class="case-card__cover-placeholder">Sem capa</div>`}
+      <div class="case-card__body">
+        <div class="case-card__num">${p.id || String(i+1).padStart(2,'0')}</div>
+        <div class="case-card__name">${p.name || '—'}</div>
+        <div class="case-card__cat">${p.cat || ''}</div>
+      </div>
+      <div class="case-card__actions">
+        <button class="btn-edit" onclick="showEdit(${i})">Editar</button>
+        <button class="btn-delete" onclick="deleteCase(${i})" title="Excluir">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showEdit(idx) {
+  editIdx   = idx;
+  coverData = null;
+  pagesData = [];
+  document.getElementById('viewList').style.display = 'none';
+  document.getElementById('viewEdit').style.display = 'block';
+  document.getElementById('editTitle').textContent = idx === null ? 'Novo case' : 'Editar case';
+
+  const p = idx !== null ? projects[idx] : {};
+
+  document.getElementById('f-name').value  = p.name  || '';
+  document.getElementById('f-year').value  = p.year  || '';
+  document.getElementById('f-cat').value   = p.cat   || '';
+  document.getElementById('f-body0').value = (p.body && p.body[0]) || '';
+  document.getElementById('f-body1').value = (p.body && p.body[1]) || '';
+  document.getElementById('f-body2').value = (p.body && p.body[2]) || '';
+
+  // Stats
+  const vals = document.querySelectorAll('.stat-val');
+  const lbls = document.querySelectorAll('.stat-lbl');
+  vals.forEach((v,i) => v.value = (p.stats && p.stats[i]) ? p.stats[i].v : '');
+  lbls.forEach((l,i) => l.value = (p.stats && p.stats[i]) ? p.stats[i].l : '');
+
+  // Cover
+  const area = document.getElementById('coverUploadArea');
+  if (p.cover) {
+    area.classList.add('has-img');
+    area.innerHTML = `<img src="${p.cover}?t=${Date.now()}" alt=""><input type="file" accept="image/*" onchange="handleCoverUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">`;
+  } else {
+    area.classList.remove('has-img');
+    area.innerHTML = `<input type="file" accept="image/*" onchange="handleCoverUpload(event)"><div class="img-upload-text"><strong>Clique para selecionar</strong>JPG ou PNG · aparece no card do portfólio</div>`;
+  }
+
+  // Pages
+  renderPagesGrid(p.pages || []);
+  updatePreview();
+  window.scrollTo(0,0);
+}
+
+function renderPagesGrid(existingPages) {
+  const grid = document.getElementById('pagesGrid');
+  const existingHtml = existingPages.map((pg, i) => `
+    <div class="page-thumb">
+      <img src="${pg}?t=${Date.now()}" alt="">
+      <button class="page-thumb__remove" onclick="removeExistingPage(${i})" title="Remover">✕</button>
+    </div>
+  `).join('');
+  const newHtml = pagesData.map((pd, i) => `
+    <div class="page-thumb">
+      <img src="${pd.dataUrl}" alt="">
+      <button class="page-thumb__remove" onclick="removeNewPage(${i})" title="Remover">✕</button>
+    </div>
+  `).join('');
+  grid.innerHTML = existingHtml + newHtml + `
+    <div class="pages-add">
+      <input type="file" accept="image/*" multiple onchange="handlePagesUpload(event)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Adicionar
+    </div>`;
+  updatePreview();
+}
+
+// Track existing pages for current edit
+let _existingPages = [];
+function showEdit_withPages(idx) {
+  _existingPages = idx !== null ? (projects[idx].pages || []) : [];
+  showEdit(idx);
+}
+
+function removeExistingPage(i) {
+  _existingPages.splice(i,1);
+  renderPagesGrid(_existingPages);
+}
+function removeNewPage(i) {
+  pagesData.splice(i,1);
+  renderPagesGrid(_existingPages);
+}
+
+// Override showEdit to capture existing pages
+const _showEditOrig = showEdit;
+window.showEdit = function(idx) {
+  _existingPages = idx !== null ? (projects[idx] ? projects[idx].pages || [] : []) : [];
+  _showEditOrig(idx);
+};
+
+// ── IMAGE UPLOAD ─────────────────────────────────────────────
+function handleCoverUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    coverData = { dataUrl: ev.target.result, file };
+    const area = document.getElementById('coverUploadArea');
+    area.classList.add('has-img');
+    area.innerHTML = `<img src="${ev.target.result}" alt=""><input type="file" accept="image/*" onchange="handleCoverUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">`;
+    updatePreview();
+  };
+  reader.readAsDataURL(file);
+}
+
+function handlePagesUpload(e) {
+  const files = Array.from(e.target.files);
+  let loaded = 0;
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      pagesData.push({ dataUrl: ev.target.result, file });
+      loaded++;
+      if (loaded === files.length) renderPagesGrid(_existingPages);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── PREVIEW ──────────────────────────────────────────────────
+function updatePreview() {
+  const name = document.getElementById('f-name').value || 'Nome do projeto';
+  const year = document.getElementById('f-year').value || '—';
+  const cat  = document.getElementById('f-cat').value  || 'Categoria · Tipo';
+
+  const idx  = editIdx !== null ? editIdx : projects.length;
+  document.getElementById('prevNum').textContent  = String(idx+1).padStart(2,'0');
+  document.getElementById('prevName').textContent = name;
+  document.getElementById('prevCat').textContent  = cat + ' · ' + year;
+
+  // Stats
+  const vals = document.querySelectorAll('.stat-val');
+  const lbls = document.querySelectorAll('.stat-lbl');
+  let statsHtml = '';
+  vals.forEach((v,i) => {
+    statsHtml += `<div><div class="preview-stat__val">${v.value||'—'}</div><div class="preview-stat__lbl">${lbls[i].value||'—'}</div></div>`;
+  });
+  document.getElementById('prevStats').innerHTML = statsHtml;
+
+  // Body
+  let bodyHtml = '';
+  ['f-body0','f-body1','f-body2'].forEach(id => {
+    const v = document.getElementById(id).value;
+    if(v) bodyHtml += `<p class="preview-card__body-txt">${v}</p>`;
+  });
+  document.getElementById('prevBody').innerHTML = bodyHtml;
+
+  // Cover
+  const wrap = document.getElementById('prevCoverWrap');
+  if (coverData) {
+    wrap.innerHTML = `<img class="preview-card__cover" src="${coverData.dataUrl}" alt="">`;
+  } else if (editIdx !== null && projects[editIdx] && projects[editIdx].cover) {
+    wrap.innerHTML = `<img class="preview-card__cover" src="${projects[editIdx].cover}?t=${Date.now()}" alt="">`;
+  } else {
+    wrap.innerHTML = `<div class="preview-card__cover-ph" id="prevCoverPh">Capa do case</div>`;
+  }
+
+  // Pages preview
+  const allPages = [
+    ..._existingPages.map(p => p),
+    ...pagesData.map(p => p.dataUrl)
+  ];
+  const prevPages = document.getElementById('prevPages');
+  prevPages.innerHTML = allPages.slice(0,8).map(src =>
+    `<div class="preview-page"><img src="${src}?cb=${Date.now()}" onerror="this.src='${src}'" alt=""></div>`
+  ).join('') + (allPages.length === 0 ? '<div class="preview-page"></div><div class="preview-page"></div><div class="preview-page"></div><div class="preview-page"></div>' : '');
+}
+
+// ── SAVE ─────────────────────────────────────────────────────
+async function saveCase() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { showToast('Preencha o nome do projeto.', 'error'); return; }
+
+  document.getElementById('savingMsg').style.display = 'block';
+
+  try {
+    const slug = name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+    const idx  = editIdx !== null ? editIdx : projects.length;
+    const id   = String(idx+1).padStart(2,'0');
+
+    // Collect stats
+    const vals = document.querySelectorAll('.stat-val');
+    const lbls = document.querySelectorAll('.stat-lbl');
+    const stats = [];
+    vals.forEach((v,i) => { if(v.value) stats.push({v:v.value, l:lbls[i].value}); });
+
+    // Collect body
+    const body = ['f-body0','f-body1','f-body2'].map(id => document.getElementById(id).value.trim()).filter(Boolean);
+
+    // Upload cover if new
+    let coverPath = editIdx !== null && projects[editIdx] ? (projects[editIdx].cover || '') : '';
+    if (coverData) {
+      const ext  = coverData.file.name.split('.').pop().toLowerCase();
+      coverPath  = `assets/images/cover-${slug}.${ext}`;
+      let existSha = null;
+      try { const ex = await ghGet(coverPath); existSha = ex.sha; } catch(e){}
+      await ghUploadImage(coverPath, coverData.dataUrl, existSha);
+    }
+
+    // Upload new pages
+    const existingPagePaths = [..._existingPages];
+    let newPagePaths = [];
+    for (let i = 0; i < pagesData.length; i++) {
+      const pd  = pagesData[i];
+      const ext = pd.file.name.split('.').pop().toLowerCase();
+      const num = existingPagePaths.length + i + 1;
+      const pagePath = `assets/modal-pages/${slug}-${String(num).padStart(2,'0')}.${ext}`;
+      let existSha = null;
+      try { const ex = await ghGet(pagePath); existSha = ex.sha; } catch(e){}
+      await ghUploadImage(pagePath, pd.dataUrl, existSha);
+      newPagePaths.push(pagePath);
+    }
+
+    const project = {
+      id, slug, name,
+      cat:   document.getElementById('f-cat').value.trim(),
+      year:  document.getElementById('f-year').value.trim(),
+      bg:    editIdx !== null && projects[editIdx] ? (projects[editIdx].bg || 'bg-1') : 'bg-1',
+      span:  editIdx !== null && projects[editIdx] ? (projects[editIdx].span || 'span-7') : 'span-7',
+      ratio: 'ratio-43',
+      cover: coverPath,
+      stats, body,
+      pages: [...existingPagePaths, ...newPagePaths]
+    };
+
+    if (editIdx !== null) {
+      projects[editIdx] = project;
+    } else {
+      projects.push(project);
+    }
+
+    await savePortfolio();
+
+    showToast('Publicado com sucesso! O site atualiza em ~2 min.', 'success');
+    document.getElementById('savingMsg').style.display = 'none';
+    coverData = null;
+    pagesData = [];
+    showList();
+  } catch(err) {
+    console.error(err);
+    showToast('Erro ao salvar. Verifique o token e tente novamente.', 'error');
+    document.getElementById('savingMsg').style.display = 'none';
+  }
+}
+
+async function deleteCase(i) {
+  if (!confirm('Excluir "' + projects[i].name + '"? Esta ação não pode ser desfeita.')) return;
+  projects.splice(i,1);
+  // Re-number IDs
+  projects.forEach((p,idx) => p.id = String(idx+1).padStart(2,'0'));
+  await savePortfolio();
+  showToast('Case excluído.', 'success');
+  renderList();
+}
+
+// ── TOAST ────────────────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className   = 'toast show ' + (type||'');
+  setTimeout(() => t.className = 'toast', 3500);
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+(function(){
+  const saved = sessionStorage.getItem('gm_token');
+  if (saved) {
+    TOKEN = saved;
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadPortfolio().then(showList);
+  }
+
+  document.getElementById('tokenInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') login();
+  });
+})();
+</script>
+</body>
+</html>

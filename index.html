@@ -2542,26 +2542,128 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     { n:'Comunicação Visual',             d:'Sistemas editoriais, layouts, social design e materiais institucionais. Cada peça mantém unidade rigorosa com o universo construído na identidade.', tags:['Editorial','Social Design','Print','Apresentações'] }
   ];
 
-  const COVERS = {
-    bas:  'assets/images/cover-bas.jpg',
-    citti:  'assets/images/cover-citti.jpg',
-    tree:  'assets/images/cover-tree.jpg',
-    bora:  'assets/images/cover-bora.jpg'
-  };
-  const PROJETOS = [
-    { id:'01', name:'Bas Telecom', cover:COVERS.bas,     cat:'Identidade Visual · Manual de Marca',  year:'2024', bg:'bg-1', span:'span-7', ratio:'ratio-43',
-      stats:[{v:'20',l:'Semanas'},{v:'8+',l:'Aplicações'},{v:'100%',l:'Autoral'}],
-      body:['Sistema completo de identidade visual para uma operadora de telecomunicações em crescimento acelerado. O desafio: criar uma marca com energia contemporânea, sem abrir mão da solidez que o setor exige.','Logotipo com forma orgânica e dinâmica, paleta em azul elétrico com gradiente verde-ciano, tipografia tecnológica e sistema de ícones proprietário. Manual de marca com mais de 80 páginas de aplicações.','Resultado: uma identidade que comunica modernidade e confiança simultaneamente — pronta para escalar junto com a empresa.'] },
-    { id:'02', name:'CITTI', cover:COVERS.citti,           cat:'Brandbook · Direção Criativa',         year:'2023', bg:'bg-2', span:'span-5', ratio:'ratio-43',
-      stats:[{v:'14',l:'Semanas'},{v:'60+',l:'Páginas'},{v:'3',l:'Variações'}],
-      body:['Brandbook completo para uma marca no nicho de empreendedorismo digital, posicionada no segmento de luxo e sofisticação. O briefing era claro: criar uma identidade que transmite exclusividade, autoridade e transformação.','Sistema visual construído sobre a tensão entre o escuro e o dourado — dramatismo que convida e elegância que posiciona. Cada elemento do brandbook reflete a filosofia da marca: elevar vidas e transformar destinos.','Entrega com brandbook editorial completo, sistema de aplicações digitais e diretrizes de tom de voz.'] },
-    { id:'03', name:'Tree Digital', cover:COVERS.tree,    cat:'Identidade Visual · Manual de Marca',  year:'2024', bg:'bg-3', span:'span-5', ratio:'ratio-43',
-      stats:[{v:'16',l:'Semanas'},{v:'70+',l:'Páginas'},{v:'3',l:'Valores'}],
-      body:['Sistema de identidade para uma agência digital orientada por propósito — cujos pilares são Confiança, Crescimento e Compromisso. O desafio: criar uma marca que pareça humana e tecnológica ao mesmo tempo.','Símbolo tridimensional em verde elétrico — uma seta/cursor que sugere movimento, direção e presença digital. Tipografia técnica sobre fundo absoluto criando máximo contraste e legibilidade.','Manual com mais de 70 páginas. Uma identidade que funciona tão bem em um app quanto em uma apresentação executiva.'] },
-    { id:'04', name:'Bora Trip', cover:COVERS.bora,       cat:'Identidade Visual · Logotipo',         year:'2023', bg:'bg-4', span:'span-7', ratio:'ratio-43',
-      stats:[{v:'10',l:'Semanas'},{v:'5+',l:'Versões'},{v:'100%',l:'Vetorial'}],
-      body:['Identidade visual para uma marca de turismo com propósito de impacto — conectar pessoas a experiências que transformam a forma como enxergam o mundo.','Logotipo com símbolo solar que remete a destinos, aventura e calor humano. Paleta vermelha vibrante com tipografia roudned que equilibra energia e acessibilidade. Sistema de ícones desenhado para aplicações digitais e materiais de viagem.','Entrega com todas as variações de logotipo, manual de aplicações e sistema de cores para ambientes digitais e físicos.'] }
-  ];
+  let PROJETOS = [];
+
+  // ── PORTFOLIO: load from portfolio.json ─────────────────
+  fetch('portfolio.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      PROJETOS = data.projects || [];
+      initPortfolio();
+    })
+    .catch(function(){ PROJETOS = []; initPortfolio(); });
+
+  function initPortfolio() {
+    // ── PORTFOLIO GRID ────────────────────────────────────────────
+    (function(){
+      const grid = document.getElementById('pfGrid');
+      if(!grid) return;
+      grid.innerHTML = PROJETOS.map((p,i) => `
+        <a class="pf-card ${p.span} ${p.ratio} rv d${Math.min(i+1,4)}" href="javascript:void(0)" data-idx="${i}">
+          <div class="pf-card__bg ${p.bg}" style="${p.cover ? 'background-image:url('+p.cover+');background-size:cover;background-position:center;' : ''}"></div>
+          <div class="pf-card__arrow">↗︎</div>
+          <div class="pf-card__meta">
+            <div>
+              <div class="pf-card__cat">${p.cat}</div>
+              <h3 class="pf-card__name">${p.name}</h3>
+            </div>
+            <div class="pf-card__yr">${p.id} / ${p.year}</div>
+          </div>
+        </a>`).join('');
+      grid.querySelectorAll('.pf-card').forEach(card => {
+        card.addEventListener('click', e => { e.preventDefault(); openModal(+card.dataset.idx); });
+      });
+    })();
+
+    function openModal(idx){
+      const p = PROJETOS[idx];
+      const tags = p.cat.split(' · ').map(t=>`<span class="pf-modal__tag">${t}</span>`).join('');
+      const coverHtml = p.cover
+        ? `<div class="pf-modal__img" style="background:#0c0c0e;border-radius:16px 16px 0 0;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:220px;"><img src="${p.cover}" alt="${p.name}" style="display:block;max-width:100%;width:auto;height:auto;max-height:520px;object-fit:contain;"></div>`
+        : `<div class="pf-modal__img ${p.bg}" style="height:200px;"></div>`;
+      const stats = p.stats.map(s=>`<div class="pf-modal__stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
+      const body  = p.body.map(t=>`<p>${t}</p>`).join('');
+      const pageKey = ['bas','citti','tree','bora'][idx];
+      const projPages = PDF_PAGES[pageKey] || [];
+      const pagesHtml = projPages.length
+        ? `<div class="pf-modal__pages">
+            <div class="pf-modal__pages-label">Páginas do Projeto</div>
+            ${projPages.map((src,i)=>`<img class="pf-modal__page" src="${src}" alt="Página ${i+1}" loading="lazy">`).join('')}
+          </div>`
+        : '';
+      pfContent.innerHTML = `
+        ${coverHtml}
+        <div class="pf-modal__body">
+          <div class="pf-modal__badge">Case ${p.id} · ${p.year}</div>
+          <h2 class="pf-modal__title" id="pfModalTitle">${p.name}</h2>
+          <div class="pf-modal__tags">${tags}<span class="pf-modal__year">${p.year}</span></div>
+          <div class="pf-modal__stats">${stats}</div>
+          <div class="pf-modal__text">${body}</div>
+        </div>
+        ${pagesHtml}`;
+      pfModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      pfModal.scrollTop = 0;
+    }
+    function closeModal(){
+      pfModal.classList.add('is-closing');
+      setTimeout(() => {
+        pfModal.setAttribute('hidden','');
+        pfModal.classList.remove('is-closing');
+        document.body.style.overflow = '';
+      }, 280);
+    }
+    if(pfClose) pfClose.addEventListener('click', closeModal);
+    if(pfModal){
+      pfModal.querySelector('.pf-modal__backdrop').addEventListener('click', closeModal);
+      /* Also close when clicking the scroll container itself (outside the box) */
+      pfModal.addEventListener('click', e => {
+        if(e.target === pfModal) closeModal();
+      });
+      document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+    }
+
+    // ── HEADER SCROLL ─────────────────────────────────────────────
+    (function(){
+      const hdr = document.getElementById('hdr');
+      if(!hdr) return;
+      window.addEventListener('scroll', () => {
+        hdr.classList.toggle('stuck', window.scrollY > 12);
+      }, {passive:true});
+    })();
+
+    // ── SIDEBAR: visible at top, relevo word sequence ──────────────
+    (function(){
+      const sb    = document.getElementById('sidebarLat');
+      if(!sb) return;
+      const spans = sb.querySelectorAll('span');
+      let wordIdx = 0, wordTimer, ticking = false;
+
+      function setVisible(v){
+        sb.classList.toggle('sb-visible', v);
+        sb.classList.toggle('sb-hidden',  !v);
+      }
+
+      function cycleWord(){
+        spans.forEach(s => s.classList.remove('sb-active'));
+        spans[wordIdx % spans.length].classList.add('sb-active');
+        wordIdx++;
+      }
+
+      function onScroll(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          setVisible(window.scrollY < 120);
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, {passive:true});
+      setTimeout(() => { setVisible(true); cycleWord(); wordTimer = setInterval(cycleWord, 1400); }, 400);
+    })();
+
+  } // end initPortfolio
 
   const MARQUEE = ['Branding','Identidade Visual','Posicionamento','Direção Criativa','Sistemas Visuais','Tom de Voz','Naming','Websites Autorais','UX/UI','Estratégia de Marca','Comunicação Visual','Direção de Arte'];
 
@@ -2612,26 +2714,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     });
   })();
 
-  // ── PORTFOLIO GRID ────────────────────────────────────────────
-  (function(){
-    const grid = document.getElementById('pfGrid');
-    if(!grid) return;
-    grid.innerHTML = PROJETOS.map((p,i) => `
-      <a class="pf-card ${p.span} ${p.ratio} rv d${Math.min(i+1,4)}" href="javascript:void(0)" data-idx="${i}">
-        <div class="pf-card__bg ${p.bg}" style="${p.cover ? 'background-image:url('+p.cover+');background-size:cover;background-position:center;' : ''}"></div>
-        <div class="pf-card__arrow">↗︎</div>
-        <div class="pf-card__meta">
-          <div>
-            <div class="pf-card__cat">${p.cat}</div>
-            <h3 class="pf-card__name">${p.name}</h3>
-          </div>
-          <div class="pf-card__yr">${p.id} / ${p.year}</div>
-        </div>
-      </a>`).join('');
-    grid.querySelectorAll('.pf-card').forEach(card => {
-      card.addEventListener('click', e => { e.preventDefault(); openModal(+card.dataset.idx); });
-    });
-  })();
 
   // ── MODAL ─────────────────────────────────────────────────────
   const PDF_PAGES = {
@@ -2702,94 +2784,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   const pfModal    = document.getElementById('pfModal');
   const pfContent  = document.getElementById('pfModalContent');
   const pfClose    = document.getElementById('pfModalClose');
-
-  function openModal(idx){
-    const p = PROJETOS[idx];
-    const tags = p.cat.split(' · ').map(t=>`<span class="pf-modal__tag">${t}</span>`).join('');
-    const coverHtml = p.cover
-      ? `<div class="pf-modal__img" style="background:#0c0c0e;border-radius:16px 16px 0 0;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:220px;"><img src="${p.cover}" alt="${p.name}" style="display:block;max-width:100%;width:auto;height:auto;max-height:520px;object-fit:contain;"></div>`
-      : `<div class="pf-modal__img ${p.bg}" style="height:200px;"></div>`;
-    const stats = p.stats.map(s=>`<div class="pf-modal__stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
-    const body  = p.body.map(t=>`<p>${t}</p>`).join('');
-    const pageKey = ['bas','citti','tree','bora'][idx];
-    const projPages = PDF_PAGES[pageKey] || [];
-    const pagesHtml = projPages.length
-      ? `<div class="pf-modal__pages">
-          <div class="pf-modal__pages-label">Páginas do Projeto</div>
-          ${projPages.map((src,i)=>`<img class="pf-modal__page" src="${src}" alt="Página ${i+1}" loading="lazy">`).join('')}
-        </div>`
-      : '';
-    pfContent.innerHTML = `
-      ${coverHtml}
-      <div class="pf-modal__body">
-        <div class="pf-modal__badge">Case ${p.id} · ${p.year}</div>
-        <h2 class="pf-modal__title" id="pfModalTitle">${p.name}</h2>
-        <div class="pf-modal__tags">${tags}<span class="pf-modal__year">${p.year}</span></div>
-        <div class="pf-modal__stats">${stats}</div>
-        <div class="pf-modal__text">${body}</div>
-      </div>
-      ${pagesHtml}`;
-    pfModal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    pfModal.scrollTop = 0;
-  }
-  function closeModal(){
-    pfModal.classList.add('is-closing');
-    setTimeout(() => {
-      pfModal.setAttribute('hidden','');
-      pfModal.classList.remove('is-closing');
-      document.body.style.overflow = '';
-    }, 280);
-  }
-  if(pfClose) pfClose.addEventListener('click', closeModal);
-  if(pfModal){
-    pfModal.querySelector('.pf-modal__backdrop').addEventListener('click', closeModal);
-    /* Also close when clicking the scroll container itself (outside the box) */
-    pfModal.addEventListener('click', e => {
-      if(e.target === pfModal) closeModal();
-    });
-    document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-  }
-
-  // ── HEADER SCROLL ─────────────────────────────────────────────
-  (function(){
-    const hdr = document.getElementById('hdr');
-    if(!hdr) return;
-    window.addEventListener('scroll', () => {
-      hdr.classList.toggle('stuck', window.scrollY > 12);
-    }, {passive:true});
-  })();
-
-  // ── SIDEBAR: visible at top, relevo word sequence ──────────────
-  (function(){
-    const sb    = document.getElementById('sidebarLat');
-    if(!sb) return;
-    const spans = sb.querySelectorAll('span');
-    let wordIdx = 0, wordTimer, ticking = false;
-
-    function setVisible(v){
-      sb.classList.toggle('sb-visible', v);
-      sb.classList.toggle('sb-hidden',  !v);
-    }
-
-    function cycleWord(){
-      spans.forEach(s => s.classList.remove('sb-active'));
-      spans[wordIdx % spans.length].classList.add('sb-active');
-      wordIdx++;
-    }
-
-    function onScroll(){
-      if(ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        setVisible(window.scrollY < 120);
-        ticking = false;
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, {passive:true});
-    setTimeout(() => { setVisible(true); cycleWord(); wordTimer = setInterval(cycleWord, 1400); }, 400);
-  })();
 
   // ── REVEAL (IntersectionObserver) ─────────────────────────────
   (function(){

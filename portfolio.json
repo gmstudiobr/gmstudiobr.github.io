@@ -1,0 +1,187 @@
+{
+  "projects": [
+    {
+      "id": "01",
+      "slug": "bas",
+      "name": "Bas Telecom",
+      "cat": "Identidade Visual · Manual de Marca",
+      "year": "2024",
+      "bg": "bg-1",
+      "span": "span-7",
+      "ratio": "ratio-43",
+      "cover": "assets/images/cover-bas.jpg",
+      "stats": [
+        {
+          "v": "20",
+          "l": "Semanas"
+        },
+        {
+          "v": "8+",
+          "l": "Aplicações"
+        },
+        {
+          "v": "100%",
+          "l": "Autoral"
+        }
+      ],
+      "body": [
+        "Sistema completo de identidade visual para uma operadora de telecomunicações em crescimento acelerado. O desafio: criar uma marca com energia contemporânea, sem abrir mão da solidez que o setor exige.",
+        "Logotipo com forma orgânica e dinâmica, paleta em azul elétrico com gradiente verde-ciano, tipografia tecnológica e sistema de ícones proprietário. Manual de marca com mais de 80 páginas de aplicações.",
+        "Resultado: uma identidade que comunica modernidade e confiança simultaneamente — pronta para escalar junto com a empresa."
+      ],
+      "pages": [
+        "assets/modal-pages/bas-01.jpg",
+        "assets/modal-pages/bas-02.jpg",
+        "assets/modal-pages/bas-03.jpg",
+        "assets/modal-pages/bas-04.jpg",
+        "assets/modal-pages/bas-05.jpg",
+        "assets/modal-pages/bas-06.jpg",
+        "assets/modal-pages/bas-07.jpg",
+        "assets/modal-pages/bas-08.jpg",
+        "assets/modal-pages/bas-09.jpg",
+        "assets/modal-pages/bas-10.jpg"
+      ]
+    },
+    {
+      "id": "02",
+      "slug": "citti",
+      "name": "CITTI",
+      "cat": "Brandbook · Direção Criativa",
+      "year": "2023",
+      "bg": "bg-2",
+      "span": "span-5",
+      "ratio": "ratio-43",
+      "cover": "assets/images/cover-citti.jpg",
+      "stats": [
+        {
+          "v": "14",
+          "l": "Semanas"
+        },
+        {
+          "v": "60+",
+          "l": "Páginas"
+        },
+        {
+          "v": "3",
+          "l": "Variações"
+        }
+      ],
+      "body": [
+        "Brandbook completo para uma marca no nicho de empreendedorismo digital, posicionada no segmento de luxo e sofisticação. O briefing era claro: criar uma identidade que transmite exclusividade, autoridade e transformação.",
+        "Sistema visual construído sobre a tensão entre o escuro e o dourado — dramatismo que convida e elegância que posiciona. Cada elemento do brandbook reflete a filosofia da marca: elevar vidas e transformar destinos.",
+        "Entrega com brandbook editorial completo, sistema de aplicações digitais e diretrizes de tom de voz."
+      ],
+      "pages": [
+        "assets/modal-pages/citti-01.jpg",
+        "assets/modal-pages/citti-02.jpg",
+        "assets/modal-pages/citti-03.jpg",
+        "assets/modal-pages/citti-04.jpg",
+        "assets/modal-pages/citti-05.jpg",
+        "assets/modal-pages/citti-06.jpg",
+        "assets/modal-pages/citti-07.jpg",
+        "assets/modal-pages/citti-08.jpg",
+        "assets/modal-pages/citti-09.jpg",
+        "assets/modal-pages/citti-10.jpg",
+        "assets/modal-pages/citti-11.jpg",
+        "assets/modal-pages/citti-12.jpg",
+        "assets/modal-pages/citti-13.jpg",
+        "assets/modal-pages/citti-14.jpg",
+        "assets/modal-pages/citti-15.jpg"
+      ]
+    },
+    {
+      "id": "03",
+      "slug": "tree",
+      "name": "Tree Digital",
+      "cat": "Identidade Visual · Manual de Marca",
+      "year": "2024",
+      "bg": "bg-3",
+      "span": "span-5",
+      "ratio": "ratio-43",
+      "cover": "assets/images/cover-tree.jpg",
+      "stats": [
+        {
+          "v": "16",
+          "l": "Semanas"
+        },
+        {
+          "v": "70+",
+          "l": "Páginas"
+        },
+        {
+          "v": "3",
+          "l": "Valores"
+        }
+      ],
+      "body": [
+        "Sistema de identidade para uma agência digital orientada por propósito — cujos pilares são Confiança, Crescimento e Compromisso. O desafio: criar uma marca que pareça humana e tecnológica ao mesmo tempo.",
+        "Símbolo tridimensional em verde elétrico — uma seta/cursor que sugere movimento, direção e presença digital. Tipografia técnica sobre fundo absoluto criando máximo contraste e legibilidade.",
+        "Manual com mais de 70 páginas. Uma identidade que funciona tão bem em um app quanto em uma apresentação executiva."
+      ],
+      "pages": [
+        "assets/modal-pages/tree-01.jpg",
+        "assets/modal-pages/tree-02.jpg",
+        "assets/modal-pages/tree-03.jpg",
+        "assets/modal-pages/tree-04.jpg",
+        "assets/modal-pages/tree-05.jpg",
+        "assets/modal-pages/tree-06.jpg",
+        "assets/modal-pages/tree-07.jpg",
+        "assets/modal-pages/tree-08.jpg",
+        "assets/modal-pages/tree-09.jpg",
+        "assets/modal-pages/tree-10.jpg",
+        "assets/modal-pages/tree-11.jpg",
+        "assets/modal-pages/tree-12.jpg",
+        "assets/modal-pages/tree-13.jpg",
+        "assets/modal-pages/tree-14.jpg",
+        "assets/modal-pages/tree-15.jpg",
+        "assets/modal-pages/tree-16.jpg",
+        "assets/modal-pages/tree-17.jpg",
+        "assets/modal-pages/tree-18.jpg",
+        "assets/modal-pages/tree-19.jpg",
+        "assets/modal-pages/tree-20.jpg"
+      ]
+    },
+    {
+      "id": "04",
+      "slug": "bora",
+      "name": "Bora Trip",
+      "cat": "Identidade Visual · Logotipo",
+      "year": "2023",
+      "bg": "bg-4",
+      "span": "span-7",
+      "ratio": "ratio-43",
+      "cover": "assets/images/cover-bora.jpg",
+      "stats": [
+        {
+          "v": "10",
+          "l": "Semanas"
+        },
+        {
+          "v": "5+",
+          "l": "Versões"
+        },
+        {
+          "v": "100%",
+          "l": "Vetorial"
+        }
+      ],
+      "body": [
+        "Identidade visual para uma marca de turismo com propósito de impacto — conectar pessoas a experiências que transformam a forma como enxergam o mundo.",
+        "Logotipo com símbolo solar que remete a destinos, aventura e calor humano. Paleta vermelha vibrante com tipografia rounded que equilibra energia e acessibilidade. Sistema de ícones desenhado para aplicações digitais e materiais de viagem.",
+        "Entrega com todas as variações de logotipo, manual de aplicações e sistema de cores para ambientes digitais e físicos."
+      ],
+      "pages": [
+        "assets/modal-pages/bora-01.jpg",
+        "assets/modal-pages/bora-02.jpg",
+        "assets/modal-pages/bora-03.jpg",
+        "assets/modal-pages/bora-04.jpg",
+        "assets/modal-pages/bora-05.jpg",
+        "assets/modal-pages/bora-06.jpg",
+        "assets/modal-pages/bora-07.jpg",
+        "assets/modal-pages/bora-08.jpg",
+        "assets/modal-pages/bora-09.jpg",
+        "assets/modal-pages/bora-10.jpg"
+      ]
+    }
+  ]
+}
