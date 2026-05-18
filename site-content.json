@@ -58,7 +58,16 @@
   ],
   "clientes": {
     "label": "Marcas que confiam no studio",
-    "row_ltr": [],
+    "row_ltr": [
+      {
+        "name": "minúcias",
+        "src": "assets/clients/min-cias.png"
+      },
+      {
+        "name": "BAS",
+        "src": "assets/clients/bas.png"
+      }
+    ],
     "row_rtl": []
   },
   "servicos": {
