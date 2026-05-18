@@ -64,7 +64,7 @@
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-html,body{margin:0;padding:0;background:var(--ink);color:var(--t1);font-family:var(--ff);font-weight:400;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--t1);font-family:var(--ff);font-weight:400;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hiddenuser-select:none;-webkit-user-select:none}
 body{font-feature-settings:"ss01","cv11","cv02";min-height:100vh}
 ::selection{background:var(--magenta);color:var(--bone)}
 img{display:block;max-width:100%}
@@ -2430,6 +2430,30 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   };
   // Run once for any tracks already in the DOM
   window.initCarouselDrag();
+
+
+  // ── COPYRIGHT PROTECTION ──────────────────────────────────────
+  (function(){
+    // Block right-click
+    document.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      return false;
+    });
+    // Block drag on images and links
+    document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    // Block print screen, Ctrl+S, Ctrl+U, Ctrl+A, F12
+    document.addEventListener('keydown', function(e){
+      const k = e.key, ctrl = e.ctrlKey || e.metaKey;
+      if(
+        (ctrl && (k==='s'||k==='S'||k==='u'||k==='U'||k==='a'||k==='A'||k==='p'||k==='P')) ||
+        k==='F12' || k==='PrintScreen'
+      ){ e.preventDefault(); return false; }
+    });
+    // pointer-events:none on img elements
+    const style = document.createElement('style');
+    style.textContent = 'img{pointer-events:none!important;-webkit-user-drag:none;user-drag:none} ::selection{background:transparent}';
+    document.head.appendChild(style);
+  })();
 
 })();
 </script>
