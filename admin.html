@@ -216,6 +216,21 @@ label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
       <!-- SOBRE -->
       <div class="section-panel" id="panel-sobre">
         <div class="panel-header"><h2>◉ Sobre</h2><p>Seção de apresentação pessoal.</p></div>
+        <div class="form-card" style="margin-bottom:20px">
+          <div class="form-card-title">Foto de perfil</div>
+          <div style="display:flex;align-items:center;gap:20px">
+            <div id="s-photo-preview" style="width:96px;height:128px;border-radius:10px;overflow:hidden;background:var(--g2);flex-shrink:0;display:flex;align-items:center;justify-content:center">
+              <img id="s-photo-img" src="" alt="Foto" style="width:100%;height:100%;object-fit:cover;display:none">
+              <span id="s-photo-ph" style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">Sem foto</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="pickSobrePhoto()">Trocar foto</button>
+              <input type="file" id="s-photo-file" accept="image/*" style="display:none" onchange="onSobrePhotoChosen(this)">
+              <span id="s-photo-filename" style="font-size:11px;color:var(--t3)"></span>
+              <p class="hint" style="margin:0">JPG ou PNG. Aspecto 3:4 recomendado.</p>
+            </div>
+          </div>
+        </div>
         <div class="field-row">
           <div class="field-group"><label>Badge (ex: +800 marcas)</label><input type="text" id="s-badge"></div>
           <div class="field-group"><label>Eyebrow</label><input type="text" id="s-eyebrow"></div>
@@ -401,6 +416,8 @@ let GH_TOKEN='', SC={}, PF={};
 let clLtr=[], clRtl=[], pendingLogoFile=null;
 // State for portfolio
 let editingIdx=-1, pfCoverDataUrl=null, pfPagesDataUrls=[];
+// State for sobre photo
+let sobrePhotoDataUrl=null;
 
 // ── AUTH ──────────────────────────────────────────────────
 async function hashPw(pw){
@@ -487,6 +504,14 @@ function populateForms(){
   setValue('s-skills',(s.skills||[]).join(', '));
   setValue('s-behance',s.behance_url||'');
   setValue('s-linkedin',s.linkedin_url||'');
+  // Sobre photo preview
+  sobrePhotoDataUrl=null;
+  const photoUrl=s.photo_url||'assets/images/gustavo.jpg';
+  const photoImg=document.getElementById('s-photo-img');
+  const photoPh=document.getElementById('s-photo-ph');
+  if(photoImg){photoImg.src=photoUrl+'?t='+Date.now();photoImg.style.display='block';}
+  if(photoPh)photoPh.style.display='none';
+  document.getElementById('s-photo-filename').textContent='';
   setValue('mq-items',(SC.marquee||[]).join('\n'));
   const cl=SC.clientes||{};
   setValue('cl-label',cl.label||'Marcas que confiam no studio');
@@ -768,10 +793,21 @@ async function saveSection(sec){
         meta:[0,1,2].map(i=>({strong:gv('h-meta'+i+'-s'),span:gv('h-meta'+i+'-l')}))
       };
     }else if(sec==='sobre'){
+      // Upload sobre photo if changed
+      let sobrePhotoPath=(SC.sobre||{}).photo_url||'assets/images/gustavo.jpg';
+      if(sobrePhotoDataUrl){
+        const photoExt='jpg';
+        const pp='assets/images/gustavo.'+photoExt;
+        const ex=await ghGet(pp);
+        await ghUploadImage(pp,sobrePhotoDataUrl,ex.sha||'');
+        sobrePhotoPath=pp;
+        sobrePhotoDataUrl=null;
+      }
       SC.sobre={
         badge:gv('s-badge'),eyebrow:gv('s-eyebrow'),headline:gv('s-headline'),bio:gv('s-bio'),
         skills:gv('s-skills').split(',').map(s=>s.trim()).filter(Boolean),
-        behance_url:gv('s-behance'),linkedin_url:gv('s-linkedin')
+        behance_url:gv('s-behance'),linkedin_url:gv('s-linkedin'),
+        photo_url:sobrePhotoPath
       };
     }else if(sec==='marquee'){
       SC.marquee=gv('mq-items').split('\n').map(s=>s.trim()).filter(Boolean);
@@ -812,6 +848,22 @@ function gv(id){const e=document.getElementById(id);return e?e.value:'';}
 function setValue(id,v){const e=document.getElementById(id);if(e)e.value=v;}
 function setStatus(id,msg){const e=document.getElementById(id);if(e){e.textContent=msg;setTimeout(()=>{e.textContent='';},4000);}}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ── SOBRE PHOTO ──────────────────────────────────────────
+function pickSobrePhoto(){document.getElementById('s-photo-file').click();}
+function onSobrePhotoChosen(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    sobrePhotoDataUrl=e.target.result;
+    const img=document.getElementById('s-photo-img');
+    const ph=document.getElementById('s-photo-ph');
+    img.src=e.target.result;img.style.display='block';
+    ph.style.display='none';
+    document.getElementById('s-photo-filename').textContent=f.name;
+  };
+  r.readAsDataURL(f);
+}
 function showLoading(v){document.getElementById('loadingOverlay').classList.toggle('show',v);}
 function toast(msg,type){
   const w=document.getElementById('toastWrap');

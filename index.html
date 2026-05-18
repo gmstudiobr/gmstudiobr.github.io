@@ -1553,7 +1553,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 
       <div class="sobre__photo-wrap rv">
         <div class="sobre__photo">
-          <img src="assets/images/gustavo.jpg" alt="Gustavo Machado — Designer e Diretor Criativo" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <img id="sc-sobre-photo" src="assets/images/gustavo.jpg" alt="Gustavo Machado — Designer e Diretor Criativo" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
         </div>
         <div class="sobre__badge" id="sc-sobre-badge">+800 marcas</div>
       </div>
@@ -1863,6 +1863,11 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     }
     setHref('sc-sobre-behance', s.behance_url);
     setHref('sc-sobre-linkedin', s.linkedin_url);
+    // Sobre photo
+    if (s.photo_url) {
+      var photoEl = document.getElementById('sc-sobre-photo');
+      if (photoEl) photoEl.src = s.photo_url;
+    }
 
     // CLIENTES CAROUSEL
     var cl = sc.clientes || {};
@@ -1989,8 +1994,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         : `<div class="pf-modal__img ${p.bg}" style="height:200px;"></div>`;
       const stats = p.stats.map(s=>`<div class="pf-modal__stat"><strong>${s.v}</strong><span>${s.l}</span></div>`).join('');
       const body  = p.body.map(t=>`<p>${t}</p>`).join('');
-      const pageKey = ['bas','citti','tree','bora'][idx];
-      const projPages = PDF_PAGES[pageKey] || [];
+      const projPages = p.pages || [];
       const pagesHtml = projPages.length
         ? `<div class="pf-modal__pages">
             <div class="pf-modal__pages-label">Páginas do Projeto</div>
