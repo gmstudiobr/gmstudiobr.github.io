@@ -2378,8 +2378,13 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
   })();
 
   // ── CAROUSEL DRAG (Pointer Events API) ───────────────────────
-  (function(){
+  // Exposed globally so applySiteContent can re-attach after rebuilding tracks
+  window.initCarouselDrag = function(){
     document.querySelectorAll('.clients__track-wrap').forEach(function(wrap){
+      // Skip if already initialized
+      if (wrap._dragInit) return;
+      wrap._dragInit = true;
+
       var track = wrap.querySelector('.clients__track');
       if (!track) return;
 
@@ -2429,7 +2434,9 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       wrap.addEventListener('pointerup',     endDrag);
       wrap.addEventListener('pointercancel', endDrag);
     });
-  })();
+  };
+  // Run once for any tracks already in the DOM
+  window.initCarouselDrag();
 
 })();
 </script>
