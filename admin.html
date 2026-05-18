@@ -7,116 +7,117 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0A0A0B;--graphite:#141416;--graphite2:#1C1C1F;--t1:#F2F0EB;--t2:#B0ADA6;--t3:#6B6963;
-  --magenta:#E50046;--border:rgba(255,255,255,.08);
-  --ff:'Segoe UI',system-ui,sans-serif;
-  --radius:12px;
+  --ink:#0A0A0B;--g1:#141416;--g2:#1C1C1F;--g3:#252528;
+  --t1:#F2F0EB;--t2:#B0ADA6;--t3:#6B6963;
+  --mg:#E50046;--bd:rgba(255,255,255,.08);--bdhi:rgba(255,255,255,.18);
+  --r:10px;--ff:'Segoe UI',system-ui,sans-serif;
 }
 body{background:var(--ink);color:var(--t1);font-family:var(--ff);font-size:14px;line-height:1.6;min-height:100vh}
-
+a{color:inherit;text-decoration:none}
+input,textarea,select{font:inherit;color:inherit;background:var(--g2);border:1px solid var(--bd);border-radius:var(--r);padding:10px 13px;width:100%;outline:none;transition:border-color .2s;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--mg)}
+label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.hint{font-size:11px;color:var(--t3);margin-top:5px}
 /* ── LOGIN ── */
 #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.login-box{background:var(--graphite);border:1px solid var(--border);border-radius:20px;padding:48px;width:100%;max-width:420px}
-.login-box h1{font-size:22px;font-weight:600;margin-bottom:6px}
+.login-box{background:var(--g1);border:1px solid var(--bd);border-radius:20px;padding:48px;width:100%;max-width:420px;text-align:center}
+.login-box svg{margin:0 auto 28px;display:block}
+.login-box h2{font-size:18px;font-weight:600;margin-bottom:6px}
 .login-box p{color:var(--t3);font-size:13px;margin-bottom:32px}
-.login-box label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
-.login-box input{width:100%;background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--t1);font-size:14px;outline:none;font-family:inherit}
-.login-box input:focus{border-color:var(--magenta)}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;width:100%;justify-content:center;font-family:inherit;transition:opacity .2s}
-.btn-primary:hover{opacity:.85}
-.login-err{color:var(--magenta);font-size:12px;margin-top:10px;display:none}
-
+.login-field{margin-bottom:16px;text-align:left}
+.login-err{color:var(--mg);font-size:12px;margin-top:10px;display:none}
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:var(--r);padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s}
+.btn:hover{opacity:.85}.btn:active{transform:scale(.97)}
+.btn-mg{background:var(--mg);color:#fff;width:100%;justify-content:center;margin-top:8px}
+.btn-ghost{background:none;border:1px solid var(--bd);color:var(--t2);padding:8px 16px}
+.btn-ghost:hover{border-color:var(--bdhi);color:var(--t1)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-danger{background:#3d0010;color:#ff6b8a;border:1px solid rgba(229,0,70,.2)}
+.btn-danger:hover{background:#5a0018;opacity:1}
 /* ── LAYOUT ── */
-#app{display:none}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--ink);z-index:100}
-.topbar-logo{font-size:13px;font-weight:700;letter-spacing:.15em}
-.topbar-logo span{color:var(--magenta)}
+#app{display:none;height:100vh;overflow:hidden}
+.topbar{height:56px;background:var(--g1);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:fixed;top:0;left:0;right:0;z-index:100}
 .topbar-right{display:flex;align-items:center;gap:12px}
-.btn-ghost{background:none;border:1px solid var(--border);border-radius:8px;color:var(--t2);padding:8px 16px;font-size:13px;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s}
-.btn-ghost:hover{border-color:var(--t3);color:var(--t1)}
-.btn-small{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s}
-.btn-small:hover{opacity:.85}
-
-/* ── VIEWS ── */
-.view{padding:32px;max-width:1400px;margin:0 auto}
-
-/* ── LIST VIEW ── */
-.list-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-.list-header h2{font-size:20px;font-weight:600}
-.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.case-card{background:var(--graphite);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
-.case-card:hover{border-color:rgba(255,255,255,.18);transform:translateY(-2px)}
-.case-card__cover{width:100%;height:160px;object-fit:cover;background:var(--graphite2);display:block}
-.case-card__cover-placeholder{width:100%;height:160px;background:var(--graphite2);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.case-card__body{padding:16px}
-.case-card__num{font-size:10px;color:var(--magenta);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
-.case-card__name{font-size:15px;font-weight:600;margin-bottom:4px}
-.case-card__cat{font-size:11px;color:var(--t3)}
-.case-card__actions{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
-.btn-edit{flex:1;background:none;border:1px solid var(--border);border-radius:6px;color:var(--t2);padding:7px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
-.btn-edit:hover{border-color:var(--t1);color:var(--t1)}
-.btn-delete{background:none;border:1px solid var(--border);border-radius:6px;color:var(--t3);padding:7px 10px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
-.btn-delete:hover{border-color:#ff3366;color:#ff3366}
-.empty-state{text-align:center;padding:80px 20px;color:var(--t3)}
-.empty-state p{margin-bottom:20px;font-size:15px}
-
-/* ── EDIT VIEW ── */
-.edit-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-@media(max-width:960px){.edit-layout{grid-template-columns:1fr}}
-.edit-form{background:var(--graphite);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
-.edit-form h3{font-size:16px;font-weight:600;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
-.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit;resize:vertical}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--magenta)}
-.form-group textarea{min-height:80px}
-.section-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin:24px 0 14px;padding-top:20px;border-top:1px solid var(--border)}
-.stats-row{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin-bottom:10px}
-.img-upload-area{border:2px dashed var(--border);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:border-color .2s;position:relative}
-.img-upload-area:hover{border-color:var(--t3)}
-.img-upload-area.has-img{padding:0;border:none}
-.img-upload-area img{width:100%;border-radius:6px;display:block}
-.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.img-upload-text{font-size:12px;color:var(--t3)}
-.img-upload-text strong{display:block;color:var(--t2);margin-bottom:4px}
-.pages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
-.page-thumb{position:relative;aspect-ratio:3/4;background:var(--graphite2);border-radius:6px;overflow:hidden}
-.page-thumb img{width:100%;height:100%;object-fit:cover}
-.page-thumb__remove{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;border:none;border-radius:4px;width:20px;height:20px;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.pages-add{aspect-ratio:3/4;background:var(--graphite2);border:2px dashed var(--border);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;position:relative;font-size:11px;color:var(--t3);gap:6px}
-.pages-add:hover{border-color:var(--t3)}
-.pages-add input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.form-actions{display:flex;gap:12px;margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
-.btn-save{flex:1;background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s}
-.btn-save:hover{opacity:.85}
-.btn-cancel{background:none;border:1px solid var(--border);border-radius:8px;color:var(--t2);padding:13px 20px;font-size:14px;cursor:pointer;font-family:inherit}
-.saving-msg{font-size:12px;color:var(--t3);text-align:center;margin-top:10px;display:none}
-
-/* ── PREVIEW PANEL ── */
-.preview-panel{position:sticky;top:80px}
-.preview-panel h3{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:16px}
-.preview-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.preview-card__cover{width:100%;height:200px;object-fit:cover;background:#e8e6e1;display:block}
-.preview-card__cover-ph{width:100%;height:200px;background:#e8e6e1;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999;letter-spacing:.1em;text-transform:uppercase}
-.preview-card__body{padding:20px 24px 24px;background:#fff}
-.preview-card__num{font-size:10px;color:var(--magenta);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
-.preview-card__name{font-size:18px;font-weight:700;color:#0A0A0B;margin-bottom:4px;line-height:1.2}
-.preview-card__cat{font-size:11px;color:#888;letter-spacing:.05em;margin-bottom:16px}
-.preview-card__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px 0;border-top:1px solid #f0ede8;border-bottom:1px solid #f0ede8;margin-bottom:16px}
-.preview-stat__val{font-size:20px;font-weight:700;color:#0A0A0B;line-height:1}
-.preview-stat__lbl{font-size:10px;color:#999;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
-.preview-card__body-txt{font-size:12px;color:#555;line-height:1.6;margin-bottom:8px}
-.preview-modal-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin:20px 0 10px}
-.preview-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.preview-page{aspect-ratio:3/4;background:var(--graphite2);border-radius:4px;overflow:hidden}
-.preview-page img{width:100%;height:100%;object-fit:cover}
-
+.main-layout{display:flex;padding-top:56px;height:100vh}
+/* ── SIDEBAR ── */
+.sidebar{width:220px;flex-shrink:0;background:var(--g1);border-right:1px solid var(--bd);padding:16px 0;overflow-y:auto;height:calc(100vh - 56px);position:sticky;top:56px}
+.sidebar-section{padding:6px 16px 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-top:12px}
+.sidebar-section:first-child{margin-top:0}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:var(--t2);font-size:13px;font-weight:500;border-left:2px solid transparent;transition:color .15s,background .15s,border-color .15s}
+.nav-item:hover{color:var(--t1);background:rgba(255,255,255,.04)}
+.nav-item.active{color:var(--t1);background:rgba(229,0,70,.08);border-left-color:var(--mg)}
+.nav-item .ni{font-size:15px;width:18px;text-align:center}
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;padding:32px;background:var(--ink)}
+.section-panel{display:none}
+.section-panel.active{display:block}
+.panel-header{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--bd)}
+.panel-header h2{font-size:20px;font-weight:700;margin-bottom:4px}
+.panel-header p{color:var(--t3);font-size:13px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.field-row.cols-3{grid-template-columns:1fr 1fr 1fr}
+.field-group{margin-bottom:16px}
+.form-card{background:var(--g1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;margin-bottom:20px}
+.form-card-title{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+/* ── CLIENTES ── */
+.clients-row-label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin:20px 0 12px;display:flex;align-items:center;gap:10px}
+.clients-row-label span{background:var(--g2);padding:3px 10px;border-radius:20px;font-size:10px}
+.logos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:24px}
+.logo-card{background:var(--g2);border:1px solid var(--bd);border-radius:var(--r);padding:12px;text-align:center;position:relative}
+.logo-card-preview{height:56px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;background:var(--g3);border-radius:6px;overflow:hidden}
+.logo-card-preview img,.logo-card-preview svg{max-height:40px;max-width:100%;object-fit:contain;filter:brightness(0) invert(1)}
+.logo-card-name{font-size:11px;color:var(--t2);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo-card-actions{display:flex;gap:6px;justify-content:center}
+.logo-card-actions .btn{padding:4px 8px;font-size:10px}
+.add-logo-box{background:var(--g2);border:1px dashed var(--bd);border-radius:var(--r);padding:20px;margin-bottom:24px}
+.add-logo-box h4{font-size:13px;font-weight:600;margin-bottom:16px}
+.add-logo-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end}
+/* ── PORTFÓLIO ── */
+.pf-split{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:start}
+.pf-list-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+.pf-mini-card{background:var(--g1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+.pf-mini-card:hover{border-color:var(--bdhi);transform:translateY(-2px)}
+.pf-mini-cover{width:100%;height:100px;object-fit:cover;background:var(--g2);display:block}
+.pf-mini-info{padding:10px 12px}
+.pf-mini-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.pf-mini-cat{font-size:10px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.pf-mini-actions{display:flex;gap:6px;padding:8px 12px 12px}
+/* ── PREVIEW ── */
+.preview-wrap{background:var(--g1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;position:sticky;top:24px}
+.preview-wrap h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);margin-bottom:14px}
+.prev-card{background:#15151A;border-radius:12px;overflow:hidden;cursor:pointer}
+.prev-cover{width:100%;aspect-ratio:16/9;background:#1F1F25;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#565451;position:relative;overflow:hidden}
+.prev-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.prev-meta{padding:14px 16px 16px;display:flex;align-items:flex-end;justify-content:space-between}
+.prev-left{flex:1}
+.prev-cat{font-size:9px;letter-spacing:.16em;color:rgba(242,240,235,.4);text-transform:uppercase;margin-bottom:4px}
+.prev-name{font-size:16px;font-weight:800;text-transform:uppercase;color:#F2F0EB;letter-spacing:.02em}
+.prev-yr{font-size:9px;color:#565451;letter-spacing:.1em}
+/* ── SERVIÇOS ITEMS ── */
+.svc-item{background:var(--g2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-bottom:10px}
+.svc-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.svc-item-num{font-size:10px;color:var(--t3);font-weight:600}
 /* ── TOAST ── */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--graphite);border:1px solid var(--border);border-radius:10px;padding:14px 20px;font-size:13px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:9999}
-.toast.show{opacity:1;transform:translateY(0)}
-.toast.success{border-color:rgba(0,200,100,.3);color:#4ade80}
-.toast.error{border-color:rgba(229,0,70,.3);color:#ff6b8a}
+.toast-wrap{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--g1);border:1px solid var(--bd);border-radius:var(--r);padding:13px 18px;font-size:13px;display:flex;align-items:center;gap:10px;pointer-events:auto;animation:toastIn .3s ease;min-width:220px}
+.toast.ok{border-color:rgba(0,180,80,.3);color:#4dda80}
+.toast.err{border-color:rgba(229,0,70,.3);color:#ff6b8a}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* ── MISC ── */
+.save-bar{margin-top:24px;padding-top:20px;border-top:1px solid var(--bd);display:flex;gap:12px;align-items:center}
+.save-bar .btn{width:auto}
+.divider{border:none;border-top:1px solid var(--bd);margin:20px 0}
+.tag-list-edit{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag-item{background:var(--g2);border:1px solid var(--bd);border-radius:20px;padding:4px 10px;font-size:11px;display:flex;align-items:center;gap:6px}
+.tag-item button{background:none;border:none;cursor:pointer;color:var(--t3);font-size:12px;padding:0;line-height:1}
+.tag-item button:hover{color:var(--mg)}
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(10,10,11,.6);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.loading-overlay.show{display:flex}
+.spinner{width:36px;height:36px;border:2px solid var(--bd);border-top-color:var(--mg);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.badge-new{background:var(--mg);color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:20px}
+@media(max-width:900px){.pf-split{grid-template-columns:1fr}.preview-wrap{position:static}.main-layout{flex-direction:column}.sidebar{width:100%;height:auto;position:static}.content{padding:20px}}
 </style>
 </head>
 <body>
@@ -124,555 +125,700 @@ body{background:var(--ink);color:var(--t1);font-family:var(--ff);font-size:14px;
 <!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
-    <h1>GMSTUDIO® Admin</h1>
-    <p>Entre com seu token do GitHub para gerenciar o portfólio.</p>
-    <label for="tokenInput">GitHub Personal Access Token</label>
-    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
-    <button class="btn-primary" onclick="login()">Entrar</button>
-    <div class="login-err" id="loginErr">Token inválido ou sem permissão. Verifique e tente novamente.</div>
+    <svg viewBox="0 0 1630.53 292.9" style="height:30px;width:auto" aria-label="GMSTUDIO">
+      <defs><style>.lg{fill:#F2F0EB}</style></defs>
+      <g><g>
+        <path class="lg" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/>
+        <path class="lg" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/>
+        <path class="lg" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/>
+        <path class="lg" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/>
+        <path class="lg" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36-.21-.07-.45-.11-.71-.11s-.49-.04-.71-.11l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69.29.07.56.13.82.16.25.04.52.1.82.17.36.07.76.15,1.2.22.44.07.84.15,1.2.22,9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/>
+        <path class="lg" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/>
+        <path class="lg" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/>
+        <path class="lg" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/>
+        <path class="lg" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/>
+        <path class="lg" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/>
+      </g></g>
+    </svg>
+    <h2 id="loginTitle">Área Restrita</h2>
+    <p id="loginSubtitle">Digite sua senha para acessar o painel.</p>
+    <div class="login-field" id="fieldPw">
+      <label for="inPw">Senha</label>
+      <input type="password" id="inPw" placeholder="••••••••••" autocomplete="current-password">
+    </div>
+    <div class="login-field" id="fieldToken" style="display:none">
+      <label for="inToken">GitHub Token</label>
+      <input type="password" id="inToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      <p class="hint" style="margin-top:6px">Token com escopo <strong>repo</strong>. Necessário apenas na primeira vez.</p>
+    </div>
+    <div class="login-err" id="loginErr">Senha incorreta.</div>
+    <button class="btn btn-mg" onclick="doLogin()">Entrar</button>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app">
+  <!-- Topbar -->
   <div class="topbar">
-    <div class="topbar-logo">GM<span>STUDIO</span>® Admin</div>
+    <svg viewBox="0 0 1630.53 292.9" style="height:20px;width:auto" aria-label="GMSTUDIO">
+      <defs><style>.tg{fill:#F2F0EB}</style></defs>
+      <g><g>
+        <path class="tg" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/>
+        <path class="tg" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/>
+        <path class="tg" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/>
+        <path class="tg" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/>
+        <path class="tg" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36-.21-.07-.45-.11-.71-.11s-.49-.04-.71-.11l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69.29.07.56.13.82.16.25.04.52.1.82.17.36.07.76.15,1.2.22.44.07.84.15,1.2.22,9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/>
+        <path class="tg" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/>
+        <path class="tg" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/>
+        <path class="tg" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/>
+        <path class="tg" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/>
+        <path class="tg" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/>
+      </g></g>
+    </svg>
     <div class="topbar-right">
-      <a href="/" target="_blank" class="btn-ghost">Ver site ↗︎</a>
-      <button class="btn-ghost" onclick="logout()">Sair</button>
+      <a href="/" target="_blank" class="btn btn-ghost btn-sm">Ver site ↗</a>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Sair</button>
     </div>
   </div>
+  <div class="main-layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-section">Conteúdo</div>
+      <div class="nav-item active" onclick="showSection('hero')"><span class="ni">◈</span> Hero</div>
+      <div class="nav-item" onclick="showSection('sobre')"><span class="ni">◉</span> Sobre</div>
+      <div class="nav-item" onclick="showSection('marquee')"><span class="ni">↔</span> Marquee</div>
+      <div class="nav-item" onclick="showSection('clientes')"><span class="ni">◎</span> Clientes <span class="badge-new">Logos</span></div>
+      <div class="nav-item" onclick="showSection('servicos')"><span class="ni">◫</span> Serviços</div>
+      <div class="nav-item" onclick="showSection('portfolio')"><span class="ni">▦</span> Portfólio</div>
+      <div class="nav-item" onclick="showSection('contato')"><span class="ni">◷</span> Contato</div>
+      <div class="nav-item" onclick="showSection('footer')"><span class="ni">▭</span> Footer</div>
+      <div class="sidebar-section">Meta</div>
+      <div class="nav-item" onclick="showSection('seo')"><span class="ni">⌖</span> SEO</div>
+    </nav>
+    <!-- Content -->
+    <main class="content">
 
-  <!-- LIST VIEW -->
-  <div id="viewList" class="view">
-    <div class="list-header">
-      <h2>Portfólio</h2>
-      <button class="btn-small" onclick="showEdit(null)">+ Novo case</button>
-    </div>
-    <div class="cases-grid" id="casesGrid"></div>
-  </div>
-
-  <!-- EDIT VIEW -->
-  <div id="viewEdit" class="view" style="display:none">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
-      <button class="btn-ghost" onclick="showList()">← Voltar</button>
-      <h2 id="editTitle" style="font-size:20px;font-weight:600">Novo case</h2>
-    </div>
-    <div class="edit-layout">
-      <!-- FORM -->
-      <div>
-        <div class="edit-form">
-          <h3>Informações do case</h3>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nome do projeto</label>
-              <input type="text" id="f-name" placeholder="Ex: Bas Telecom" oninput="updatePreview()">
-            </div>
-            <div class="form-group">
-              <label>Ano</label>
-              <input type="text" id="f-year" placeholder="2024" maxlength="4" oninput="updatePreview()">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Categoria / Tipo de trabalho</label>
-            <input type="text" id="f-cat" placeholder="Identidade Visual · Manual de Marca" oninput="updatePreview()">
-          </div>
-
-          <div class="section-title">Estatísticas (aparecem no modal)</div>
-          <div id="statsContainer">
-            <div class="stats-row">
-              <input type="text" placeholder="Valor (ex: 20)" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-              <input type="text" placeholder="Label (ex: Semanas)" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-            </div>
-            <div class="stats-row">
-              <input type="text" placeholder="Valor" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-              <input type="text" placeholder="Label" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-            </div>
-            <div class="stats-row">
-              <input type="text" placeholder="Valor" oninput="updatePreview()" class="stat-val" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-              <input type="text" placeholder="Label" oninput="updatePreview()" class="stat-lbl" style="background:var(--graphite2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--t1);font-size:13px;outline:none;font-family:inherit">
-            </div>
-          </div>
-
-          <div class="section-title">Texto descritivo (até 3 parágrafos)</div>
-          <div class="form-group">
-            <label>Parágrafo 1</label>
-            <textarea id="f-body0" placeholder="Descreva o contexto e o desafio do projeto..." oninput="updatePreview()"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Parágrafo 2</label>
-            <textarea id="f-body1" placeholder="Descreva a solução e o processo criativo..." oninput="updatePreview()"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Parágrafo 3</label>
-            <textarea id="f-body2" placeholder="Resultado final e entregas..." oninput="updatePreview()"></textarea>
-          </div>
+      <!-- HERO -->
+      <div class="section-panel active" id="panel-hero">
+        <div class="panel-header"><h2>◈ Hero</h2><p>Seção principal do site, primeira coisa que o visitante vê.</p></div>
+        <div class="field-group"><label>Eyebrow (texto pequeno acima do título)</label><input type="text" id="h-eyebrow"></div>
+        <div class="field-group"><label>Título principal</label><textarea id="h-headline" rows="4"></textarea><p class="hint">Suporta HTML: &lt;em&gt;, &lt;b&gt;, &lt;br&gt;</p></div>
+        <div class="field-group"><label>Subtítulo</label><textarea id="h-subtitle" rows="3"></textarea><p class="hint">Suporta HTML: &lt;b&gt;</p></div>
+        <div class="field-row">
+          <div class="field-group"><label>Botão primário</label><input type="text" id="h-cta1"></div>
+          <div class="field-group"><label>Botão secundário</label><input type="text" id="h-cta2"></div>
         </div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em">Meta (rodapé da hero)</p>
+        <div id="h-meta-list"></div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:160px" onclick="saveSection('hero')">Salvar Hero</button><span id="hero-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
 
-        <div class="edit-form" style="margin-top:16px">
-          <h3>Imagens</h3>
+      <!-- SOBRE -->
+      <div class="section-panel" id="panel-sobre">
+        <div class="panel-header"><h2>◉ Sobre</h2><p>Seção de apresentação pessoal.</p></div>
+        <div class="field-row">
+          <div class="field-group"><label>Badge (ex: +800 marcas)</label><input type="text" id="s-badge"></div>
+          <div class="field-group"><label>Eyebrow</label><input type="text" id="s-eyebrow"></div>
+        </div>
+        <div class="field-group"><label>Título / Nome</label><textarea id="s-headline" rows="3"></textarea><p class="hint">Suporta HTML: &lt;em&gt;, &lt;br&gt;</p></div>
+        <div class="field-group"><label>Bio (texto)</label><textarea id="s-bio" rows="8"></textarea><p class="hint">Use &lt;p&gt;...&lt;/p&gt; para parágrafos separados.</p></div>
+        <div class="field-group"><label>Skills (separadas por vírgula)</label><input type="text" id="s-skills" placeholder="Branding, Identidade Visual, ..."></div>
+        <div class="field-row">
+          <div class="field-group"><label>URL Behance</label><input type="url" id="s-behance"></div>
+          <div class="field-group"><label>URL LinkedIn</label><input type="url" id="s-linkedin"></div>
+        </div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:160px" onclick="saveSection('sobre')">Salvar Sobre</button><span id="sobre-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
 
-          <div class="form-group">
-            <label>Imagem de capa</label>
-            <div class="img-upload-area" id="coverUploadArea">
-              <input type="file" accept="image/*" onchange="handleCoverUpload(event)">
-              <div class="img-upload-text">
-                <strong>Clique para selecionar</strong>
-                JPG ou PNG · aparece no card do portfólio
+      <!-- MARQUEE -->
+      <div class="section-panel" id="panel-marquee">
+        <div class="panel-header"><h2>↔ Marquee</h2><p>Barra animada com palavras-chave do estúdio.</p></div>
+        <div class="field-group"><label>Itens (um por linha)</label><textarea id="mq-items" rows="14"></textarea><p class="hint">Cada linha vira um item na barra animada.</p></div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:180px" onclick="saveSection('marquee')">Salvar Marquee</button><span id="marquee-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div class="section-panel" id="panel-clientes">
+        <div class="panel-header"><h2>◎ Clientes — Logos</h2><p>Gerencie os logos que aparecem no carrossel da seção branca.</p></div>
+        <div class="field-group"><label>Título da seção</label><input type="text" id="cl-label"></div>
+        <div class="clients-row-label">Fileira 1 — esquerda para direita <span>LTR</span></div>
+        <div class="logos-grid" id="cl-ltr-grid"></div>
+        <div class="clients-row-label">Fileira 2 — direita para esquerda <span>RTL</span></div>
+        <div class="logos-grid" id="cl-rtl-grid"></div>
+        <div class="add-logo-box">
+          <h4>+ Adicionar logo</h4>
+          <div class="add-logo-fields">
+            <div class="field-group" style="margin:0"><label>Nome da marca</label><input type="text" id="cl-new-name" placeholder="Ex: Nike"></div>
+            <div class="field-group" style="margin:0"><label>Fileira</label><select id="cl-new-row"><option value="ltr">Fileira 1 (LTR)</option><option value="rtl">Fileira 2 (RTL)</option></select></div>
+            <button class="btn btn-ghost" onclick="pickLogoFile()" style="height:41px;white-space:nowrap">Escolher imagem</button>
+          </div>
+          <input type="file" id="cl-file-input" accept="image/*,.svg" style="display:none" onchange="onLogoFileChosen(this)">
+          <div id="cl-new-preview" style="margin-top:12px;display:none">
+            <img id="cl-new-img" style="max-height:48px;background:var(--g3);padding:8px;border-radius:6px">
+            <span id="cl-new-filename" style="font-size:11px;color:var(--t3);margin-left:10px"></span>
+          </div>
+          <button class="btn btn-mg" style="width:auto;margin-top:14px" onclick="addLogo()">Adicionar ao carrossel</button>
+        </div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:200px" onclick="saveSection('clientes')">Salvar carrossel</button><span id="clientes-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+      <!-- SERVIÇOS -->
+      <div class="section-panel" id="panel-servicos">
+        <div class="panel-header"><h2>◫ Serviços</h2><p>Acordeão de disciplinas do estúdio.</p></div>
+        <div class="field-row">
+          <div class="field-group"><label>Eyebrow</label><input type="text" id="sv-eyebrow"></div>
+          <div class="field-group"><label>Intro</label><input type="text" id="sv-intro"></div>
+        </div>
+        <div class="field-group"><label>Título</label><textarea id="sv-headline" rows="3"></textarea><p class="hint">Suporta HTML: &lt;em&gt;, &lt;br&gt;</p></div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em">Itens de serviço</p>
+        <div id="sv-items-list"></div>
+        <button class="btn btn-ghost btn-sm" onclick="addServiceItem()" style="margin-bottom:16px">+ Adicionar serviço</button>
+        <div class="save-bar"><button class="btn btn-mg" style="width:180px" onclick="saveSection('servicos')">Salvar Serviços</button><span id="servicos-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+      <!-- PORTFÓLIO -->
+      <div class="section-panel" id="panel-portfolio">
+        <div class="panel-header"><h2>▦ Portfólio</h2><p>Gerencie os casos do portfólio.</p></div>
+        <div style="margin-bottom:16px;display:flex;gap:12px;align-items:center">
+          <button class="btn btn-mg btn-sm" onclick="newProject()">+ Novo projeto</button>
+          <span id="pf-count" style="font-size:12px;color:var(--t3)"></span>
+        </div>
+        <div class="pf-list-grid" id="pf-grid"></div>
+        <!-- Edit form (hidden until card clicked) -->
+        <div id="pf-edit" style="display:none">
+          <hr class="divider">
+          <div class="pf-split">
+            <div>
+              <p style="font-size:13px;font-weight:600;margin-bottom:20px" id="pf-edit-title">Editar projeto</p>
+              <div class="field-row">
+                <div class="field-group"><label>Nome *</label><input type="text" id="pf-name" oninput="updatePreview()"></div>
+                <div class="field-group"><label>Slug *</label><input type="text" id="pf-slug" oninput="updatePreview()"></div>
+              </div>
+              <div class="field-row">
+                <div class="field-group"><label>Categoria</label><input type="text" id="pf-cat" oninput="updatePreview()"></div>
+                <div class="field-group"><label>Ano</label><input type="text" id="pf-year" oninput="updatePreview()"></div>
+              </div>
+              <div class="field-row">
+                <div class="field-group"><label>Cor de fundo (ex: #0A0A0B)</label><input type="text" id="pf-bg" oninput="updatePreview()"></div>
+                <div class="field-group"><label>Largura (span-7 ou span-5)</label><select id="pf-span" oninput="updatePreview()"><option value="span-7">span-7 (grande)</option><option value="span-5">span-5 (pequeno)</option></select></div>
+              </div>
+              <div class="field-group"><label>Capa do card</label>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <input type="text" id="pf-cover" oninput="updatePreview()" style="flex:1" placeholder="assets/images/cover-slug.jpg">
+                  <button class="btn btn-ghost btn-sm" onclick="pickCoverFile()">Upload</button>
+                </div>
+                <input type="file" id="pf-cover-file" accept="image/*" style="display:none" onchange="onCoverFileChosen(this)">
+                <div id="pf-cover-preview" style="margin-top:8px;display:none"><img id="pf-cover-img" style="height:60px;border-radius:6px;object-fit:cover"></div>
+              </div>
+              <div class="field-group"><label>Stats (formato: valor|legenda, uma por linha)</label><textarea id="pf-stats" rows="4" placeholder="30+|Marcas criadas&#10;12|Anos de estúdio"></textarea></div>
+              <div class="field-group"><label>Descrição (parágrafos separados por linha em branco)</label><textarea id="pf-body" rows="5"></textarea></div>
+              <div class="field-group"><label>Páginas do projeto (imagens do modal)</label>
+                <button class="btn btn-ghost btn-sm" onclick="pickPagesFiles()" style="margin-bottom:8px">Adicionar imagens</button>
+                <input type="file" id="pf-pages-files" accept="image/*" multiple style="display:none" onchange="onPagesFilesChosen(this)">
+                <div id="pf-pages-preview" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+              </div>
+              <div class="save-bar">
+                <button class="btn btn-mg" style="width:auto" onclick="saveProject()">Salvar projeto</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteProject()">Excluir</button>
+                <button class="btn btn-ghost btn-sm" onclick="cancelEdit()">Cancelar</button>
+              </div>
+            </div>
+            <!-- Preview -->
+            <div class="preview-wrap">
+              <h4>Preview do card</h4>
+              <div class="prev-card" onclick="">
+                <div class="prev-cover" id="prev-cover-bg"><img id="prev-cover-img" style="display:none"><span id="prev-cover-ph">Sem capa</span></div>
+                <div class="prev-meta">
+                  <div class="prev-left"><div class="prev-cat" id="prev-cat"></div><div class="prev-name" id="prev-name">NOME</div></div>
+                  <div class="prev-yr" id="prev-yr"></div>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="form-group">
-            <label>Páginas do case (slides do modal)</label>
-            <div class="pages-grid" id="pagesGrid">
-              <div class="pages-add">
-                <input type="file" accept="image/*" multiple onchange="handlePagesUpload(event)">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Adicionar
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button class="btn-cancel" onclick="showList()">Cancelar</button>
-          <button class="btn-save" onclick="saveCase()">Salvar e publicar</button>
-        </div>
-        <div class="saving-msg" id="savingMsg">Salvando e publicando... aguarde.</div>
-      </div>
-
-      <!-- PREVIEW -->
-      <div class="preview-panel">
-        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:16px">Preview — como vai aparecer no site</div>
-        <div class="preview-card">
-          <div id="prevCoverWrap">
-            <div class="preview-card__cover-ph" id="prevCoverPh">Capa do case</div>
-          </div>
-          <div class="preview-card__body">
-            <div class="preview-card__num" id="prevNum">—</div>
-            <div class="preview-card__name" id="prevName">Nome do projeto</div>
-            <div class="preview-card__cat" id="prevCat">Categoria · Tipo</div>
-            <div class="preview-card__stats" id="prevStats">
-              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
-              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
-              <div><div class="preview-stat__val">—</div><div class="preview-stat__lbl">—</div></div>
-            </div>
-            <div id="prevBody"></div>
-          </div>
-        </div>
-
-        <div class="preview-modal-label">Páginas no modal</div>
-        <div class="preview-pages" id="prevPages">
-          <div class="preview-page"></div>
-          <div class="preview-page"></div>
-          <div class="preview-page"></div>
-          <div class="preview-page"></div>
         </div>
       </div>
-    </div>
+
+      <!-- CONTATO -->
+      <div class="section-panel" id="panel-contato">
+        <div class="panel-header"><h2>◷ Contato</h2><p>Seção de formulário e informações de contato.</p></div>
+        <div class="field-row">
+          <div class="field-group"><label>Eyebrow</label><input type="text" id="ct-eyebrow"></div>
+          <div class="field-group"><label>Subtítulo</label><input type="text" id="ct-sub"></div>
+        </div>
+        <div class="field-group"><label>Título</label><textarea id="ct-headline" rows="3"></textarea><p class="hint">Suporta HTML: &lt;em&gt;, &lt;br&gt;</p></div>
+        <div class="field-row">
+          <div class="field-group"><label>Telefone (exibição)</label><input type="text" id="ct-phone" placeholder="(35) 99718-3251"></div>
+          <div class="field-group"><label>Telefone completo (link tel:)</label><input type="text" id="ct-phone-full" placeholder="+5535997183251"></div>
+        </div>
+        <div class="field-row">
+          <div class="field-group"><label>E-mail</label><input type="email" id="ct-email"></div>
+          <div class="field-group"><label>Cidade</label><input type="text" id="ct-city"></div>
+        </div>
+        <div class="field-group"><label>Número WhatsApp (só números)</label><input type="text" id="ct-wa" placeholder="5535997183251"></div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:180px" onclick="saveSection('contato')">Salvar Contato</button><span id="contato-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="section-panel" id="panel-footer">
+        <div class="panel-header"><h2>▭ Footer</h2><p>Rodapé do site.</p></div>
+        <div class="field-group"><label>Tagline</label><textarea id="ft-tagline" rows="3"></textarea><p class="hint">Suporta HTML: &lt;em&gt;</p></div>
+        <div class="field-group"><label>Copyright</label><input type="text" id="ft-copy"></div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:12px;text-transform:uppercase;letter-spacing:.1em">Redes sociais</p>
+        <div class="field-row">
+          <div class="field-group"><label>Instagram URL</label><input type="url" id="ft-ig"></div>
+          <div class="field-group"><label>Behance URL</label><input type="url" id="ft-bh"></div>
+        </div>
+        <div class="field-row">
+          <div class="field-group"><label>LinkedIn URL</label><input type="url" id="ft-li"></div>
+          <div class="field-group"><label>WhatsApp (só números)</label><input type="text" id="ft-wa"></div>
+        </div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:160px" onclick="saveSection('footer')">Salvar Footer</button><span id="footer-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+      <!-- SEO -->
+      <div class="section-panel" id="panel-seo">
+        <div class="panel-header"><h2>⌖ SEO</h2><p>Título e descrição exibidos nos mecanismos de busca.</p></div>
+        <div class="field-group"><label>Título da página</label><input type="text" id="seo-title"></div>
+        <div class="field-group"><label>Meta descrição</label><textarea id="seo-desc" rows="3"></textarea><p class="hint">Ideal entre 140–160 caracteres.</p></div>
+        <div class="save-bar"><button class="btn btn-mg" style="width:160px" onclick="saveSection('seo')">Salvar SEO</button><span id="seo-status" style="font-size:12px;color:var(--t3)"></span></div>
+      </div>
+
+    </main>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
+<!-- Toasts -->
+<div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-const OWNER = 'gmstudiobr';
-const REPO  = 'gmstudiobr.github.io';
-const API   = 'https://api.github.com';
+'use strict';
+const OWNER='gmstudiobr', REPO='gmstudiobr.github.io';
+const PW_HASH='fc097e51b08042da690c15e4228f0d8e579186b4891b6f618e6bc0aa372d1e77';
+let GH_TOKEN='', SC={}, PF={};
+// State for clientes
+let clLtr=[], clRtl=[], pendingLogoFile=null;
+// State for portfolio
+let editingIdx=-1, pfCoverDataUrl=null, pfPagesDataUrls=[];
 
-let TOKEN     = '';
-let projects  = [];
-let editIdx   = null; // null = new
-let coverData = null; // {dataUrl, file}
-let pagesData = [];   // [{dataUrl, file}]
-
-// ── AUTH ──────────────────────────────────────────────────────
-async function login() {
-  const t = document.getElementById('tokenInput').value.trim();
-  if (!t) return;
-  try {
-    const r = await fetch(API + '/repos/' + OWNER + '/' + REPO, {
-      headers: { Authorization: 'token ' + t }
-    });
-    if (!r.ok) throw new Error();
-    TOKEN = t;
-    sessionStorage.setItem('gm_token', t);
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    await loadPortfolio();
-    showList();
-  } catch(e) {
-    document.getElementById('loginErr').style.display = 'block';
+// ── AUTH ──────────────────────────────────────────────────
+async function hashPw(pw){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function hasToken(){return !!localStorage.getItem('gm_gh_token');}
+window.onload=function(){
+  if(!hasToken()){
+    document.getElementById('loginTitle').textContent='Configuração inicial';
+    document.getElementById('loginSubtitle').textContent='Defina sua senha e cole seu token do GitHub.';
+    document.getElementById('fieldToken').style.display='block';
   }
-}
-
-function logout() {
-  sessionStorage.removeItem('gm_token');
-  TOKEN = '';
-  location.reload();
-}
-
-// ── GITHUB API ────────────────────────────────────────────────
-async function ghGet(path) {
-  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
-    headers: { Authorization: 'token ' + TOKEN }
-  });
-  return r.json();
-}
-
-async function ghPut(path, content, sha, message) {
-  const body = {
-    message,
-    content: btoa(unescape(encodeURIComponent(content))),
-    ...(sha ? { sha } : {})
-  };
-  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
-    method: 'PUT',
-    headers: { Authorization: 'token ' + TOKEN, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  return r.json();
-}
-
-async function ghUploadImage(path, dataUrl, sha) {
-  const base64 = dataUrl.split(',')[1];
-  const body = {
-    message: 'Upload image: ' + path,
-    content: base64,
-    ...(sha ? { sha } : {})
-  };
-  const r = await fetch(API + '/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
-    method: 'PUT',
-    headers: { Authorization: 'token ' + TOKEN, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  return r.json();
-}
-
-// ── PORTFOLIO ─────────────────────────────────────────────────
-async function loadPortfolio() {
-  try {
-    const f = await ghGet('portfolio.json');
-    const json = JSON.parse(atob(f.content.replace(/\n/g,'')));
-    projects = json.projects || [];
-  } catch(e) {
-    projects = [];
-  }
-}
-
-async function savePortfolio() {
-  const f = await ghGet('portfolio.json');
-  const sha = f.sha;
-  const content = JSON.stringify({ projects }, null, 2);
-  await ghPut('portfolio.json', content, sha, 'Admin: update portfolio');
-}
-
-// ── VIEWS ─────────────────────────────────────────────────────
-function showList() {
-  document.getElementById('viewList').style.display = 'block';
-  document.getElementById('viewEdit').style.display = 'none';
-  renderList();
-}
-
-function renderList() {
-  const grid = document.getElementById('casesGrid');
-  if (!projects.length) {
-    grid.innerHTML = '<div class="empty-state"><p>Nenhum case ainda.</p><button class="btn-small" onclick="showEdit(null)">+ Adicionar primeiro case</button></div>';
-    return;
-  }
-  grid.innerHTML = projects.map((p, i) => `
-    <div class="case-card">
-      ${p.cover
-        ? `<img class="case-card__cover" src="${p.cover}?t=${Date.now()}" onerror="this.style.display='none'" alt="">`
-        : `<div class="case-card__cover-placeholder">Sem capa</div>`}
-      <div class="case-card__body">
-        <div class="case-card__num">${p.id || String(i+1).padStart(2,'0')}</div>
-        <div class="case-card__name">${p.name || '—'}</div>
-        <div class="case-card__cat">${p.cat || ''}</div>
-      </div>
-      <div class="case-card__actions">
-        <button class="btn-edit" onclick="showEdit(${i})">Editar</button>
-        <button class="btn-delete" onclick="deleteCase(${i})" title="Excluir">✕</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-function showEdit(idx) {
-  editIdx   = idx;
-  coverData = null;
-  pagesData = [];
-  document.getElementById('viewList').style.display = 'none';
-  document.getElementById('viewEdit').style.display = 'block';
-  document.getElementById('editTitle').textContent = idx === null ? 'Novo case' : 'Editar case';
-
-  const p = idx !== null ? projects[idx] : {};
-
-  document.getElementById('f-name').value  = p.name  || '';
-  document.getElementById('f-year').value  = p.year  || '';
-  document.getElementById('f-cat').value   = p.cat   || '';
-  document.getElementById('f-body0').value = (p.body && p.body[0]) || '';
-  document.getElementById('f-body1').value = (p.body && p.body[1]) || '';
-  document.getElementById('f-body2').value = (p.body && p.body[2]) || '';
-
-  // Stats
-  const vals = document.querySelectorAll('.stat-val');
-  const lbls = document.querySelectorAll('.stat-lbl');
-  vals.forEach((v,i) => v.value = (p.stats && p.stats[i]) ? p.stats[i].v : '');
-  lbls.forEach((l,i) => l.value = (p.stats && p.stats[i]) ? p.stats[i].l : '');
-
-  // Cover
-  const area = document.getElementById('coverUploadArea');
-  if (p.cover) {
-    area.classList.add('has-img');
-    area.innerHTML = `<img src="${p.cover}?t=${Date.now()}" alt=""><input type="file" accept="image/*" onchange="handleCoverUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">`;
-  } else {
-    area.classList.remove('has-img');
-    area.innerHTML = `<input type="file" accept="image/*" onchange="handleCoverUpload(event)"><div class="img-upload-text"><strong>Clique para selecionar</strong>JPG ou PNG · aparece no card do portfólio</div>`;
-  }
-
-  // Pages
-  renderPagesGrid(p.pages || []);
-  updatePreview();
-  window.scrollTo(0,0);
-}
-
-function renderPagesGrid(existingPages) {
-  const grid = document.getElementById('pagesGrid');
-  const existingHtml = existingPages.map((pg, i) => `
-    <div class="page-thumb">
-      <img src="${pg}?t=${Date.now()}" alt="">
-      <button class="page-thumb__remove" onclick="removeExistingPage(${i})" title="Remover">✕</button>
-    </div>
-  `).join('');
-  const newHtml = pagesData.map((pd, i) => `
-    <div class="page-thumb">
-      <img src="${pd.dataUrl}" alt="">
-      <button class="page-thumb__remove" onclick="removeNewPage(${i})" title="Remover">✕</button>
-    </div>
-  `).join('');
-  grid.innerHTML = existingHtml + newHtml + `
-    <div class="pages-add">
-      <input type="file" accept="image/*" multiple onchange="handlePagesUpload(event)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Adicionar
-    </div>`;
-  updatePreview();
-}
-
-// Track existing pages for current edit
-let _existingPages = [];
-function showEdit_withPages(idx) {
-  _existingPages = idx !== null ? (projects[idx].pages || []) : [];
-  showEdit(idx);
-}
-
-function removeExistingPage(i) {
-  _existingPages.splice(i,1);
-  renderPagesGrid(_existingPages);
-}
-function removeNewPage(i) {
-  pagesData.splice(i,1);
-  renderPagesGrid(_existingPages);
-}
-
-// Override showEdit to capture existing pages
-const _showEditOrig = showEdit;
-window.showEdit = function(idx) {
-  _existingPages = idx !== null ? (projects[idx] ? projects[idx].pages || [] : []) : [];
-  _showEditOrig(idx);
+  document.getElementById('inPw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 };
+async function doLogin(){
+  const pw=document.getElementById('inPw').value;
+  if(!pw){showErr('Digite sua senha.');return;}
+  const h=await hashPw(pw);
+  if(h!==PW_HASH){showErr('Senha incorreta.');return;}
+  if(!hasToken()){
+    const tok=document.getElementById('inToken').value.trim();
+    if(!tok){showErr('Cole o token do GitHub.');return;}
+    localStorage.setItem('gm_gh_token',tok);
+  }
+  GH_TOKEN=localStorage.getItem('gm_gh_token');
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').style.display='block';
+  loadAllData();
+}
+function doLogout(){GH_TOKEN='';document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('inPw').value='';}
+function showErr(msg){const e=document.getElementById('loginErr');e.textContent=msg;e.style.display='block';}
 
-// ── IMAGE UPLOAD ─────────────────────────────────────────────
-function handleCoverUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    coverData = { dataUrl: ev.target.result, file };
-    const area = document.getElementById('coverUploadArea');
-    area.classList.add('has-img');
-    area.innerHTML = `<img src="${ev.target.result}" alt=""><input type="file" accept="image/*" onchange="handleCoverUpload(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">`;
-    updatePreview();
+// ── GITHUB API ────────────────────────────────────────────
+async function ghGet(path){
+  const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,{headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json'}});
+  if(!r.ok)return{content_b64:'',sha:''};
+  const d=await r.json();
+  return{content_b64:d.content,sha:d.sha};
+}
+async function ghPut(path,contentB64,sha,msg){
+  const body={message:msg,content:contentB64.replace(/\n/g,'')};
+  if(sha)body.sha=sha;
+  const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,{method:'PUT',headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const e=await r.json();throw new Error(e.message||'GitHub API error');}
+  return r.json();
+}
+async function ghUploadImage(path,dataUrl,sha){
+  const b64=dataUrl.split(',')[1];
+  return ghPut(path,b64,sha,'Upload imagem: '+path);
+}
+function b64enc(str){return btoa(unescape(encodeURIComponent(str)));}
+
+// ── LOAD DATA ─────────────────────────────────────────────
+async function loadAllData(){
+  showLoading(true);
+  try{
+    const [scRes,pfRes]=await Promise.all([ghGet('site-content.json'),ghGet('portfolio.json')]);
+    if(scRes.content_b64){SC=JSON.parse(decodeURIComponent(escape(atob(scRes.content_b64.replace(/\n/g,'')))));SC._sha=scRes.sha;}
+    else SC={_sha:''};
+    if(pfRes.content_b64){PF=JSON.parse(decodeURIComponent(escape(atob(pfRes.content_b64.replace(/\n/g,'')))));PF._sha=pfRes.sha;}
+    else PF={projects:[],_sha:''};
+    populateForms();
+    renderPortfolioGrid();
+    showLoading(false);
+    toast('Dados carregados.','ok');
+  }catch(e){showLoading(false);toast('Erro ao carregar dados: '+e.message,'err');}
+}
+
+// ── POPULATE FORMS ────────────────────────────────────────
+function populateForms(){
+  const h=SC.hero||{};
+  setValue('h-eyebrow',h.eyebrow||'');
+  setValue('h-headline',h.headline||'');
+  setValue('h-subtitle',h.subtitle||'');
+  setValue('h-cta1',h.cta_primary||'');
+  setValue('h-cta2',h.cta_secondary||'');
+  renderMetaFields(h.meta||[]);
+  const s=SC.sobre||{};
+  setValue('s-badge',s.badge||'');
+  setValue('s-eyebrow',s.eyebrow||'');
+  setValue('s-headline',s.headline||'');
+  setValue('s-bio',s.bio||'');
+  setValue('s-skills',(s.skills||[]).join(', '));
+  setValue('s-behance',s.behance_url||'');
+  setValue('s-linkedin',s.linkedin_url||'');
+  setValue('mq-items',(SC.marquee||[]).join('\n'));
+  const cl=SC.clientes||{};
+  setValue('cl-label',cl.label||'Marcas que confiam no studio');
+  clLtr=[...(cl.row_ltr||[])];
+  clRtl=[...(cl.row_rtl||[])];
+  renderLogosGrid();
+  const sv=SC.servicos||{};
+  setValue('sv-eyebrow',sv.eyebrow||'');
+  setValue('sv-headline',sv.headline||'');
+  setValue('sv-intro',sv.intro||'');
+  renderServiceItems(sv.items||[]);
+  const ct=SC.contato||{};
+  setValue('ct-eyebrow',ct.eyebrow||'');
+  setValue('ct-headline',ct.headline||'');
+  setValue('ct-sub',ct.subtitle||'');
+  setValue('ct-phone',ct.phone||'');
+  setValue('ct-phone-full',ct.phone_full||'');
+  setValue('ct-email',ct.email||'');
+  setValue('ct-city',ct.city||'');
+  setValue('ct-wa',ct.whatsapp||'');
+  const ft=SC.footer||{};
+  setValue('ft-tagline',ft.tagline||'');
+  setValue('ft-copy',ft.copyright||'');
+  setValue('ft-ig',ft.instagram||'');
+  setValue('ft-bh',ft.behance||'');
+  setValue('ft-li',ft.linkedin||'');
+  setValue('ft-wa',ft.whatsapp||'');
+  const se=SC.seo||{};
+  setValue('seo-title',se.title||'');
+  setValue('seo-desc',se.description||'');
+}
+
+// ── META FIELDS (hero) ────────────────────────────────────
+function renderMetaFields(meta){
+  const c=document.getElementById('h-meta-list');
+  c.innerHTML='';
+  for(let i=0;i<3;i++){
+    const m=meta[i]||{};
+    c.innerHTML+=`<div class="field-row" style="margin-bottom:8px">
+      <div class="field-group" style="margin:0"><label>Meta ${i+1} — destaque</label><input type="text" id="h-meta${i}-s" value="${esc(m.strong||'')}"></div>
+      <div class="field-group" style="margin:0"><label>Meta ${i+1} — legenda</label><input type="text" id="h-meta${i}-l" value="${esc(m.span||'')}"></div>
+    </div>`;
+  }
+}
+
+// ── LOGOS GRID ────────────────────────────────────────────
+function renderLogosGrid(){
+  renderRow('cl-ltr-grid',clLtr,'ltr');
+  renderRow('cl-rtl-grid',clRtl,'rtl');
+}
+function renderRow(gridId,arr,row){
+  const g=document.getElementById(gridId);
+  if(!g)return;
+  if(arr.length===0){g.innerHTML='<p style="color:var(--t3);font-size:12px;grid-column:1/-1">Nenhum logo ainda.</p>';return;}
+  g.innerHTML=arr.map((it,i)=>{
+    const src=it.src||'';
+    const img=src?`<img src="${src}" onerror="this.style.display='none'" alt="${esc(it.name||'')}">`:'<span style="font-size:10px;color:var(--t3)">SVG</span>';
+    const otherRow=row==='ltr'?'RTL':'LTR';
+    return `<div class="logo-card">
+      <div class="logo-card-preview">${img}</div>
+      <div class="logo-card-name">${esc(it.name||'Logo')}</div>
+      <div class="logo-card-actions">
+        <button class="btn btn-ghost btn-sm" onclick="moveLogo('${row}',${i})" title="Mover para fileira ${otherRow}">↕</button>
+        <button class="btn btn-danger btn-sm" onclick="removeLogo('${row}',${i})" title="Remover">×</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+function moveLogo(row,idx){
+  if(row==='ltr'){clRtl.push(clLtr.splice(idx,1)[0]);}
+  else{clLtr.push(clRtl.splice(idx,1)[0]);}
+  renderLogosGrid();
+}
+function removeLogo(row,idx){
+  if(!confirm('Remover este logo?'))return;
+  if(row==='ltr')clLtr.splice(idx,1);
+  else clRtl.splice(idx,1);
+  renderLogosGrid();
+}
+function pickLogoFile(){document.getElementById('cl-file-input').click();}
+function onLogoFileChosen(input){
+  const f=input.files[0];
+  if(!f)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    pendingLogoFile={file:f,dataUrl:e.target.result};
+    document.getElementById('cl-new-preview').style.display='block';
+    document.getElementById('cl-new-img').src=e.target.result;
+    document.getElementById('cl-new-filename').textContent=f.name;
   };
-  reader.readAsDataURL(file);
+  reader.readAsDataURL(f);
+}
+async function addLogo(){
+  const name=document.getElementById('cl-new-name').value.trim();
+  const row=document.getElementById('cl-new-row').value;
+  if(!name){toast('Digite o nome da marca.','err');return;}
+  if(!pendingLogoFile){toast('Escolha uma imagem.','err');return;}
+  const slug=name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  const ext=pendingLogoFile.file.name.split('.').pop().toLowerCase();
+  const path='assets/clients/'+slug+'.'+ext;
+  showLoading(true);
+  try{
+    const existing=await ghGet(path);
+    await ghUploadImage(path,pendingLogoFile.dataUrl,existing.sha||'');
+    const entry={name:name,src:path};
+    if(row==='ltr')clLtr.push(entry);else clRtl.push(entry);
+    renderLogosGrid();
+    document.getElementById('cl-new-name').value='';
+    document.getElementById('cl-new-preview').style.display='none';
+    document.getElementById('cl-file-input').value='';
+    pendingLogoFile=null;
+    toast('Logo adicionado! Clique em "Salvar carrossel" para publicar.','ok');
+  }catch(e){toast('Erro ao fazer upload: '+e.message,'err');}
+  showLoading(false);
 }
 
-function handlePagesUpload(e) {
-  const files = Array.from(e.target.files);
-  let loaded = 0;
-  files.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      pagesData.push({ dataUrl: ev.target.result, file });
-      loaded++;
-      if (loaded === files.length) renderPagesGrid(_existingPages);
+// ── SERVICE ITEMS ─────────────────────────────────────────
+let svItems=[];
+function renderServiceItems(items){
+  svItems=[...items];
+  const c=document.getElementById('sv-items-list');
+  c.innerHTML=svItems.map((it,i)=>`
+    <div class="svc-item">
+      <div class="svc-item-header">
+        <span class="svc-item-num">Serviço ${i+1}</span>
+        <div style="display:flex;gap:6px">
+          ${i>0?`<button class="btn btn-ghost btn-sm" onclick="moveSvc(${i},-1)">↑</button>`:''}
+          ${i<svItems.length-1?`<button class="btn btn-ghost btn-sm" onclick="moveSvc(${i},1)">↓</button>`:''}
+          <button class="btn btn-danger btn-sm" onclick="removeSvc(${i})">×</button>
+        </div>
+      </div>
+      <div class="field-group"><label>Nome</label><input type="text" id="sv-n-${i}" value="${esc(it.n||'')}"></div>
+      <div class="field-group"><label>Descrição</label><textarea id="sv-d-${i}" rows="2">${esc(it.d||'')}</textarea></div>
+      <div class="field-group"><label>Tags (separadas por vírgula)</label><input type="text" id="sv-t-${i}" value="${esc((it.tags||[]).join(', '))}"></div>
+    </div>`).join('');
+}
+function addServiceItem(){svItems.push({n:'Novo Serviço',d:'',tags:[]});renderServiceItems(svItems);}
+function removeSvc(i){if(!confirm('Remover?'))return;svItems.splice(i,1);renderServiceItems(svItems);}
+function moveSvc(i,dir){const t=svItems[i];svItems[i]=svItems[i+dir];svItems[i+dir]=t;renderServiceItems(svItems);}
+function collectSvcItems(){
+  return svItems.map((_,i)=>({
+    n:gv('sv-n-'+i),
+    d:gv('sv-d-'+i),
+    tags:gv('sv-t-'+i).split(',').map(t=>t.trim()).filter(Boolean)
+  }));
+}
+
+// ── PORTFOLIO ─────────────────────────────────────────────
+function renderPortfolioGrid(){
+  const projects=(PF.projects||[]);
+  document.getElementById('pf-count').textContent=projects.length+' projeto(s)';
+  const g=document.getElementById('pf-grid');
+  if(projects.length===0){g.innerHTML='<p style="color:var(--t3);font-size:13px">Nenhum projeto ainda.</p>';return;}
+  g.innerHTML=projects.map((p,i)=>`
+    <div class="pf-mini-card" onclick="editProject(${i})">
+      <img class="pf-mini-cover" src="${p.cover||''}" onerror="this.style.background='var(--g3)';this.src=''" alt="${esc(p.name||'')}">
+      <div class="pf-mini-info">
+        <div class="pf-mini-name">${esc(p.name||'Sem nome')}</div>
+        <div class="pf-mini-cat">${esc(p.cat||'')} · ${esc(p.year||'')}</div>
+      </div>
+      <div class="pf-mini-actions">
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();editProject(${i})">Editar</button>
+      </div>
+    </div>`).join('');
+}
+function newProject(){editProject(-1);}
+function editProject(idx){
+  editingIdx=idx;
+  pfCoverDataUrl=null;pfPagesDataUrls=[];
+  const p=idx>=0?(PF.projects||[])[idx]||{}:{};
+  document.getElementById('pf-edit-title').textContent=idx>=0?'Editando: '+(p.name||'Projeto'):'Novo projeto';
+  setValue('pf-name',p.name||'');setValue('pf-slug',p.slug||'');
+  setValue('pf-cat',p.cat||'');setValue('pf-year',p.year||'');
+  setValue('pf-bg',p.bg||'#15151A');setValue('pf-span',p.span||'span-7');
+  setValue('pf-cover',p.cover||'');
+  setValue('pf-stats',(p.stats||[]).map(s=>s.v+'|'+s.l).join('\n'));
+  setValue('pf-body',(p.body||[]).join('\n\n'));
+  document.getElementById('pf-cover-preview').style.display='none';
+  document.getElementById('pf-pages-preview').innerHTML='';
+  document.getElementById('pf-edit').style.display='block';
+  document.getElementById('pf-edit').scrollIntoView({behavior:'smooth'});
+  updatePreview();
+}
+function cancelEdit(){document.getElementById('pf-edit').style.display='none';editingIdx=-1;}
+function updatePreview(){
+  const name=gv('pf-name'),cat=gv('pf-cat'),yr=gv('pf-year'),cover=gv('pf-cover'),bg=gv('pf-bg');
+  document.getElementById('prev-name').textContent=name||'NOME';
+  document.getElementById('prev-cat').textContent=cat;
+  document.getElementById('prev-yr').textContent=yr;
+  document.getElementById('prev-cover-bg').style.background=bg||'#15151A';
+  const img=document.getElementById('prev-cover-img');
+  const ph=document.getElementById('prev-cover-ph');
+  const src=pfCoverDataUrl||cover;
+  if(src){img.src=src;img.style.display='block';ph.style.display='none';}
+  else{img.style.display='none';ph.style.display='block';}
+}
+function pickCoverFile(){document.getElementById('pf-cover-file').click();}
+function onCoverFileChosen(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();r.onload=e=>{pfCoverDataUrl=e.target.result;document.getElementById('pf-cover-preview').style.display='block';document.getElementById('pf-cover-img').src=e.target.result;updatePreview();};r.readAsDataURL(f);
+}
+function pickPagesFiles(){document.getElementById('pf-pages-files').click();}
+function onPagesFilesChosen(input){
+  pfPagesDataUrls=[];
+  const pp=document.getElementById('pf-pages-preview');pp.innerHTML='';
+  Array.from(input.files).forEach(f=>{
+    const r=new FileReader();r.onload=e=>{pfPagesDataUrls.push(e.target.result);const img=document.createElement('img');img.src=e.target.result;img.style.cssText='height:56px;border-radius:4px;object-fit:cover';pp.appendChild(img);};r.readAsDataURL(f);
+  });
+}
+async function saveProject(){
+  const slug=gv('pf-slug')||gv('pf-name').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  if(!gv('pf-name')){toast('Nome obrigatório.','err');return;}
+  showLoading(true);
+  try{
+    let coverPath=gv('pf-cover');
+    if(pfCoverDataUrl){
+      const cp='assets/images/cover-'+slug+'.jpg';
+      const ex=await ghGet(cp);
+      await ghUploadImage(cp,pfCoverDataUrl,ex.sha||'');
+      coverPath=cp;
+    }
+    const pages=(PF.projects||[])[editingIdx>=0?editingIdx:0]?.pages||[];
+    let newPages=[...pages];
+    if(pfPagesDataUrls.length>0){
+      newPages=[];
+      for(let i=0;i<pfPagesDataUrls.length;i++){
+        const pp='assets/modal-pages/'+slug+'-'+(String(i+1).padStart(2,'0'))+'.jpg';
+        const ex=await ghGet(pp);
+        await ghUploadImage(pp,pfPagesDataUrls[i],ex.sha||'');
+        newPages.push(pp);
+      }
+    }
+    const proj={
+      id:gv('pf-slug')||slug,slug:slug,
+      name:gv('pf-name'),cat:gv('pf-cat'),year:gv('pf-year'),
+      bg:gv('pf-bg'),span:gv('pf-span'),ratio:'ratio-43',
+      cover:coverPath,
+      stats:gv('pf-stats').split('\n').filter(Boolean).map(l=>{const[v,...r]=l.split('|');return{v:v.trim(),l:r.join('|').trim()};}),
+      body:gv('pf-body').split(/\n\n+/).filter(Boolean),
+      pages:newPages
     };
-    reader.readAsDataURL(file);
-  });
+    if(!PF.projects)PF.projects=[];
+    if(editingIdx>=0)PF.projects[editingIdx]=proj;else PF.projects.push(proj);
+    const sha=PF._sha||'';
+    const content=b64enc(JSON.stringify({projects:PF.projects},null,2));
+    const res=await ghPut('portfolio.json',content,sha,'Update portfolio: '+proj.name);
+    PF._sha=res.content.sha;
+    renderPortfolioGrid();
+    cancelEdit();
+    toast('Projeto salvo com sucesso!','ok');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  showLoading(false);
+}
+async function deleteProject(){
+  if(editingIdx<0)return;
+  if(!confirm('Excluir este projeto definitivamente?'))return;
+  showLoading(true);
+  try{
+    PF.projects.splice(editingIdx,1);
+    const sha=PF._sha||'';
+    const content=b64enc(JSON.stringify({projects:PF.projects},null,2));
+    const res=await ghPut('portfolio.json',content,sha,'Delete project');
+    PF._sha=res.content.sha;
+    renderPortfolioGrid();cancelEdit();
+    toast('Projeto excluído.','ok');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  showLoading(false);
 }
 
-// ── PREVIEW ──────────────────────────────────────────────────
-function updatePreview() {
-  const name = document.getElementById('f-name').value || 'Nome do projeto';
-  const year = document.getElementById('f-year').value || '—';
-  const cat  = document.getElementById('f-cat').value  || 'Categoria · Tipo';
-
-  const idx  = editIdx !== null ? editIdx : projects.length;
-  document.getElementById('prevNum').textContent  = String(idx+1).padStart(2,'0');
-  document.getElementById('prevName').textContent = name;
-  document.getElementById('prevCat').textContent  = cat + ' · ' + year;
-
-  // Stats
-  const vals = document.querySelectorAll('.stat-val');
-  const lbls = document.querySelectorAll('.stat-lbl');
-  let statsHtml = '';
-  vals.forEach((v,i) => {
-    statsHtml += `<div><div class="preview-stat__val">${v.value||'—'}</div><div class="preview-stat__lbl">${lbls[i].value||'—'}</div></div>`;
-  });
-  document.getElementById('prevStats').innerHTML = statsHtml;
-
-  // Body
-  let bodyHtml = '';
-  ['f-body0','f-body1','f-body2'].forEach(id => {
-    const v = document.getElementById(id).value;
-    if(v) bodyHtml += `<p class="preview-card__body-txt">${v}</p>`;
-  });
-  document.getElementById('prevBody').innerHTML = bodyHtml;
-
-  // Cover
-  const wrap = document.getElementById('prevCoverWrap');
-  if (coverData) {
-    wrap.innerHTML = `<img class="preview-card__cover" src="${coverData.dataUrl}" alt="">`;
-  } else if (editIdx !== null && projects[editIdx] && projects[editIdx].cover) {
-    wrap.innerHTML = `<img class="preview-card__cover" src="${projects[editIdx].cover}?t=${Date.now()}" alt="">`;
-  } else {
-    wrap.innerHTML = `<div class="preview-card__cover-ph" id="prevCoverPh">Capa do case</div>`;
-  }
-
-  // Pages preview
-  const allPages = [
-    ..._existingPages.map(p => p),
-    ...pagesData.map(p => p.dataUrl)
-  ];
-  const prevPages = document.getElementById('prevPages');
-  prevPages.innerHTML = allPages.slice(0,8).map(src =>
-    `<div class="preview-page"><img src="${src}?cb=${Date.now()}" onerror="this.src='${src}'" alt=""></div>`
-  ).join('') + (allPages.length === 0 ? '<div class="preview-page"></div><div class="preview-page"></div><div class="preview-page"></div><div class="preview-page"></div>' : '');
-}
-
-// ── SAVE ─────────────────────────────────────────────────────
-async function saveCase() {
-  const name = document.getElementById('f-name').value.trim();
-  if (!name) { showToast('Preencha o nome do projeto.', 'error'); return; }
-
-  document.getElementById('savingMsg').style.display = 'block';
-
-  try {
-    const slug = name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-    const idx  = editIdx !== null ? editIdx : projects.length;
-    const id   = String(idx+1).padStart(2,'0');
-
-    // Collect stats
-    const vals = document.querySelectorAll('.stat-val');
-    const lbls = document.querySelectorAll('.stat-lbl');
-    const stats = [];
-    vals.forEach((v,i) => { if(v.value) stats.push({v:v.value, l:lbls[i].value}); });
-
-    // Collect body
-    const body = ['f-body0','f-body1','f-body2'].map(id => document.getElementById(id).value.trim()).filter(Boolean);
-
-    // Upload cover if new
-    let coverPath = editIdx !== null && projects[editIdx] ? (projects[editIdx].cover || '') : '';
-    if (coverData) {
-      const ext  = coverData.file.name.split('.').pop().toLowerCase();
-      coverPath  = `assets/images/cover-${slug}.${ext}`;
-      let existSha = null;
-      try { const ex = await ghGet(coverPath); existSha = ex.sha; } catch(e){}
-      await ghUploadImage(coverPath, coverData.dataUrl, existSha);
+// ── SAVE SECTIONS ─────────────────────────────────────────
+async function saveSection(sec){
+  showLoading(true);
+  try{
+    // Collect values
+    if(sec==='hero'){
+      SC.hero={
+        eyebrow:gv('h-eyebrow'),headline:gv('h-headline'),subtitle:gv('h-subtitle'),
+        cta_primary:gv('h-cta1'),cta_secondary:gv('h-cta2'),
+        meta:[0,1,2].map(i=>({strong:gv('h-meta'+i+'-s'),span:gv('h-meta'+i+'-l')}))
+      };
+    }else if(sec==='sobre'){
+      SC.sobre={
+        badge:gv('s-badge'),eyebrow:gv('s-eyebrow'),headline:gv('s-headline'),bio:gv('s-bio'),
+        skills:gv('s-skills').split(',').map(s=>s.trim()).filter(Boolean),
+        behance_url:gv('s-behance'),linkedin_url:gv('s-linkedin')
+      };
+    }else if(sec==='marquee'){
+      SC.marquee=gv('mq-items').split('\n').map(s=>s.trim()).filter(Boolean);
+    }else if(sec==='clientes'){
+      SC.clientes={label:gv('cl-label'),row_ltr:clLtr,row_rtl:clRtl};
+    }else if(sec==='servicos'){
+      SC.servicos={eyebrow:gv('sv-eyebrow'),headline:gv('sv-headline'),intro:gv('sv-intro'),items:collectSvcItems()};
+    }else if(sec==='contato'){
+      SC.contato={eyebrow:gv('ct-eyebrow'),headline:gv('ct-headline'),subtitle:gv('ct-sub'),phone:gv('ct-phone'),phone_full:gv('ct-phone-full'),email:gv('ct-email'),city:gv('ct-city'),whatsapp:gv('ct-wa')};
+    }else if(sec==='footer'){
+      SC.footer={tagline:gv('ft-tagline'),copyright:gv('ft-copy'),instagram:gv('ft-ig'),behance:gv('ft-bh'),linkedin:gv('ft-li'),whatsapp:gv('ft-wa')};
+    }else if(sec==='seo'){
+      SC.seo={title:gv('seo-title'),description:gv('seo-desc')};
     }
-
-    // Upload new pages
-    const existingPagePaths = [..._existingPages];
-    let newPagePaths = [];
-    for (let i = 0; i < pagesData.length; i++) {
-      const pd  = pagesData[i];
-      const ext = pd.file.name.split('.').pop().toLowerCase();
-      const num = existingPagePaths.length + i + 1;
-      const pagePath = `assets/modal-pages/${slug}-${String(num).padStart(2,'0')}.${ext}`;
-      let existSha = null;
-      try { const ex = await ghGet(pagePath); existSha = ex.sha; } catch(e){}
-      await ghUploadImage(pagePath, pd.dataUrl, existSha);
-      newPagePaths.push(pagePath);
-    }
-
-    const project = {
-      id, slug, name,
-      cat:   document.getElementById('f-cat').value.trim(),
-      year:  document.getElementById('f-year').value.trim(),
-      bg:    editIdx !== null && projects[editIdx] ? (projects[editIdx].bg || 'bg-1') : 'bg-1',
-      span:  editIdx !== null && projects[editIdx] ? (projects[editIdx].span || 'span-7') : 'span-7',
-      ratio: 'ratio-43',
-      cover: coverPath,
-      stats, body,
-      pages: [...existingPagePaths, ...newPagePaths]
-    };
-
-    if (editIdx !== null) {
-      projects[editIdx] = project;
-    } else {
-      projects.push(project);
-    }
-
-    await savePortfolio();
-
-    showToast('Publicado com sucesso! O site atualiza em ~2 min.', 'success');
-    document.getElementById('savingMsg').style.display = 'none';
-    coverData = null;
-    pagesData = [];
-    showList();
-  } catch(err) {
-    console.error(err);
-    showToast('Erro ao salvar. Verifique o token e tente novamente.', 'error');
-    document.getElementById('savingMsg').style.display = 'none';
-  }
+    // Write to GitHub
+    const sha=SC._sha||'';
+    const {_sha,...scClean}=SC;
+    const content=b64enc(JSON.stringify(scClean,null,2));
+    const res=await ghPut('site-content.json',content,sha,'Update '+sec);
+    SC._sha=res.content.sha;
+    setStatus(sec+'-status','✓ Salvo');
+    toast('Seção "'+sec+'" publicada!','ok');
+  }catch(e){toast('Erro ao salvar: '+e.message,'err');}
+  showLoading(false);
 }
 
-async function deleteCase(i) {
-  if (!confirm('Excluir "' + projects[i].name + '"? Esta ação não pode ser desfeita.')) return;
-  projects.splice(i,1);
-  // Re-number IDs
-  projects.forEach((p,idx) => p.id = String(idx+1).padStart(2,'0'));
-  await savePortfolio();
-  showToast('Case excluído.', 'success');
-  renderList();
+// ── NAVIGATION ────────────────────────────────────────────
+function showSection(id){
+  document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.querySelector('.content').scrollTop=0;
 }
 
-// ── TOAST ────────────────────────────────────────────────────
-function showToast(msg, type) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className   = 'toast show ' + (type||'');
-  setTimeout(() => t.className = 'toast', 3500);
+// ── HELPERS ──────────────────────────────────────────────
+function gv(id){const e=document.getElementById(id);return e?e.value:'';}
+function setValue(id,v){const e=document.getElementById(id);if(e)e.value=v;}
+function setStatus(id,msg){const e=document.getElementById(id);if(e){e.textContent=msg;setTimeout(()=>{e.textContent='';},4000);}}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function showLoading(v){document.getElementById('loadingOverlay').classList.toggle('show',v);}
+function toast(msg,type){
+  const w=document.getElementById('toastWrap');
+  const t=document.createElement('div');t.className='toast '+(type||'ok');
+  t.innerHTML=(type==='ok'?'✓ ':'⚠ ')+msg;
+  w.appendChild(t);setTimeout(()=>t.remove(),3500);
 }
-
-// ── INIT ─────────────────────────────────────────────────────
-(function(){
-  const saved = sessionStorage.getItem('gm_token');
-  if (saved) {
-    TOKEN = saved;
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    loadPortfolio().then(showList);
-  }
-
-  document.getElementById('tokenInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') login();
-  });
-})();
 </script>
 </body>
 </html>

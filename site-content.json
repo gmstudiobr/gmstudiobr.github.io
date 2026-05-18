@@ -1,0 +1,64 @@
+{
+  "seo": {
+    "title": "GMSTUDIO® — Estúdio de Branding & Direção Visual",
+    "description": "GMSTUDIO® é um estúdio de branding e direção visual. Construímos sistemas de marca para empresas que tratam imagem como decisão estratégica."
+  },
+  "hero": {
+    "eyebrow": "Studio de Branding & Direção Visual",
+    "headline": "Marcas que<br>ocupam o<br><em>lugar certo</em><br>na percepção.",
+    "subtitle": "Construímos sistemas de marca para empresas que tratam imagem como decisão estratégica. <b>Branding, identidade visual, posicionamento e direção criativa</b> — com método, autoria e sensibilidade contemporânea.",
+    "cta_primary": "Ver trabalho selecionado",
+    "cta_secondary": "Iniciar projeto",
+    "meta": [
+      { "strong": "2014—2026", "span": "Doze anos de studio" },
+      { "strong": "Branding · Identidade", "span": "Disciplinas centrais" },
+      { "strong": "Sob demanda", "span": "Projetos selecionados" }
+    ]
+  },
+  "sobre": {
+    "badge": "+800 marcas",
+    "eyebrow": "Designer & Diretor Criativo",
+    "headline": "Gustavo<br>Machado<em>.</em>",
+    "bio": "<p>Designer com mais de uma década construindo marcas que ocupam lugar na memória das pessoas. Fundador do GMSTUDIO®, estúdio especializado em branding e direção visual com sede em Pouso Alegre, MG.</p><p>Meu trabalho parte de uma premissa simples: marcas relevantes não são feitas de estética — são feitas de coerência. Cada decisão visual é uma decisão estratégica. Cada elemento comunica antes que qualquer palavra seja lida.</p><p>Já atuei em projetos para startups, empresas consolidadas e marcas em reposicionamento, sempre com o mesmo método: escuta profunda, análise de contexto e construção de sistemas visuais que escalam sem perder identidade.</p>",
+    "skills": ["Branding", "Identidade Visual", "Direção Criativa", "Posicionamento", "UX/UI", "Naming", "Tom de Voz"],
+    "behance_url": "https://www.behance.net/gmstudio-br",
+    "linkedin_url": "https://www.linkedin.com/in/gustavomachado-dg/"
+  },
+  "marquee": ["Branding", "Identidade Visual", "Posicionamento", "Direção Criativa", "Sistemas Visuais", "Tom de Voz", "Naming", "Websites Autorais", "UX/UI", "Estratégia de Marca", "Comunicação Visual", "Direção de Arte"],
+  "clientes": {
+    "label": "Marcas que confiam no studio",
+    "row_ltr": [],
+    "row_rtl": []
+  },
+  "servicos": {
+    "eyebrow": "Serviços",
+    "headline": "Design<br>como <em>decisão</em><br>estratégica.",
+    "intro": "Cada disciplina é um instrumento de posicionamento. Não vendemos entregáveis — construímos sistemas de percepção que permanecem coerentes em todos os pontos de contato da marca.",
+    "items": [
+      { "n": "Branding & Estratégia de Marca", "d": "Posicionamento, propósito e território verbal. Trabalhamos o que existe antes do design existir — a tese estratégica que sustenta a marca por décadas.", "tags": ["Posicionamento", "Naming", "Arquitetura", "Brand Strategy"] },
+      { "n": "Identidade Visual & Sistemas",   "d": "Logotipo, paleta, tipografia, grids e regras de uso. Um sistema coerente, completo e infinitamente reaplicável — feito para sobreviver ao tempo e à escala.", "tags": ["Logotipo", "Sistema Visual", "Tipografia", "Manual"] },
+      { "n": "Naming & Tom de Voz",            "d": "Construção do nome, da arquitetura verbal e da personalidade da marca. A maneira como a marca fala — em cada ponto de contato, do anúncio ao rodapé.", "tags": ["Naming", "Tagline", "Tom de Voz", "Copy Editorial"] },
+      { "n": "Direção Criativa",               "d": "Curadoria estética e direção autoral em campanhas, lançamentos e materiais de marca. A coerência visual que separa marcas relevantes de marcas presentes.", "tags": ["Art Direction", "Campanha", "Editorial", "Curadoria"] },
+      { "n": "Websites Autorais & UX/UI",      "d": "Experiências digitais desenhadas com a mesma precisão de uma identidade. Interfaces autorais, performance técnica e narrativa que prolonga o sistema da marca.", "tags": ["UX/UI", "Website", "Interface", "Motion"] },
+      { "n": "Comunicação Visual",             "d": "Sistemas editoriais, layouts, social design e materiais institucionais. Cada peça mantém unidade rigorosa com o universo construído na identidade.", "tags": ["Editorial", "Social Design", "Print", "Apresentações"] }
+    ]
+  },
+  "contato": {
+    "eyebrow": "Contato",
+    "headline": "Toda marca<br>começa em uma<br><em>conversa</em>.",
+    "subtitle": "Marcas relevantes não nascem de briefings. Nascem de uma conversa honesta sobre onde a marca está, onde precisa chegar e o que precisa parecer ser para isso.",
+    "phone": "(35) 99718-3251",
+    "phone_full": "+5535997183251",
+    "email": "gmstudio@outlook.pt",
+    "city": "Pouso Alegre — MG, Brasil",
+    "whatsapp": "5535997183251"
+  },
+  "footer": {
+    "tagline": "Studio de branding e direção visual. Construímos marcas para empresas que recusam o lugar-comum e tratam <em>identidade</em> como ferramenta de posicionamento.",
+    "copyright": "© 2026 GMSTUDIO®. Todos os direitos reservados.",
+    "instagram": "https://www.instagram.com/gmstudio.br/",
+    "behance": "https://www.behance.net/gmstudio-br",
+    "linkedin": "https://www.linkedin.com/in/gustavomachado-dg/",
+    "whatsapp": "5535997183251"
+  }
+}
