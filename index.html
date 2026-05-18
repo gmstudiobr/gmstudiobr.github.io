@@ -709,16 +709,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ============================================================
    REVEAL ANIMATIONS — refined, subtle
 ============================================================ */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
-.rv.on{opacity:1;transform:none}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);animation:rv-safe 0s 2.5s forwards}
+@keyframes rv-safe{to{opacity:1;transform:none}}
+.rv.on{opacity:1;transform:none;animation:none}
 .rv.d1{transition-delay:.08s}
 .rv.d2{transition-delay:.16s}
 .rv.d3{transition-delay:.24s}
 .rv.d4{transition-delay:.32s}
 .rv.d5{transition-delay:.40s}
 .rv.d6{transition-delay:.48s}
-.rv-x{opacity:0;transform:translateX(-20px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
-.rv-x.on{opacity:1;transform:none}
+.rv-x{opacity:0;transform:translateX(-20px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out);animation:rv-safe 0s 2.5s forwards}
+.rv-x.on{opacity:1;transform:none;animation:none}
 @media (max-width:768px){ .mq__track{animation-duration:7s} }
 @media (prefers-reduced-motion: reduce){
   .rv,.rv-x{opacity:1;transform:none;transition:none}
