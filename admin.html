@@ -796,12 +796,17 @@ async function saveSection(sec){
       // Upload sobre photo if changed
       let sobrePhotoPath=(SC.sobre||{}).photo_url||'assets/images/gustavo.jpg';
       if(sobrePhotoDataUrl){
-        const photoExt='jpg';
-        const pp='assets/images/gustavo.'+photoExt;
-        const ex=await ghGet(pp);
-        await ghUploadImage(pp,sobrePhotoDataUrl,ex.sha||'');
-        sobrePhotoPath=pp;
-        sobrePhotoDataUrl=null;
+        try{
+          const pp='assets/images/gustavo.jpg';
+          const ex=await ghGet(pp);
+          await ghUploadImage(pp,sobrePhotoDataUrl,ex.sha||'');
+          sobrePhotoPath=pp;
+          sobrePhotoDataUrl=null;
+        }catch(imgErr){
+          showLoading(false);
+          toast('Erro ao enviar foto: '+imgErr.message,'err');
+          return;
+        }
       }
       SC.sobre={
         badge:gv('s-badge'),eyebrow:gv('s-eyebrow'),headline:gv('s-headline'),bio:gv('s-bio'),
@@ -851,16 +856,44 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 
 // ── SOBRE PHOTO ──────────────────────────────────────────
 function pickSobrePhoto(){document.getElementById('s-photo-file').click();}
-function onSobrePhotoChosen(input){
+function resizeAndCompress(dataUrl, maxW, maxH, quality){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width, h=img.height;
+      if(w>maxW||h>maxH){
+        const ratio=Math.min(maxW/w, maxH/h);
+        w=Math.round(w*ratio); h=Math.round(h*ratio);
+      }
+      const c=document.createElement('canvas');
+      c.width=w; c.height=h;
+      const ctx=c.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      resolve(c.toDataURL('image/jpeg', quality));
+    };
+    img.onerror=()=>reject(new Error('Erro ao processar imagem'));
+    img.src=dataUrl;
+  });
+}
+async function onSobrePhotoChosen(input){
   const f=input.files[0];if(!f)return;
+  const fnEl=document.getElementById('s-photo-filename');
+  fnEl.textContent='Processando...';
   const r=new FileReader();
-  r.onload=e=>{
-    sobrePhotoDataUrl=e.target.result;
-    const img=document.getElementById('s-photo-img');
-    const ph=document.getElementById('s-photo-ph');
-    img.src=e.target.result;img.style.display='block';
-    ph.style.display='none';
-    document.getElementById('s-photo-filename').textContent=f.name;
+  r.onload=async e=>{
+    try{
+      const compressed=await resizeAndCompress(e.target.result, 1200, 1600, 0.85);
+      sobrePhotoDataUrl=compressed;
+      const img=document.getElementById('s-photo-img');
+      const ph=document.getElementById('s-photo-ph');
+      img.src=compressed; img.style.display='block';
+      ph.style.display='none';
+      const sizeKB=Math.round((compressed.length - compressed.indexOf(',')-1)*3/4/1024);
+      fnEl.textContent=f.name+' ('+sizeKB+'KB)';
+    }catch(err){
+      fnEl.textContent='Erro ao processar: '+err.message;
+      sobrePhotoDataUrl=null;
+    }
   };
   r.readAsDataURL(f);
 }
