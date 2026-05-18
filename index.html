@@ -2414,4 +2414,17 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         var half     = track.scrollWidth / 2;
         var pos      = ((curTX % half) + half) % half;
         var progress = pos / half;
-        var d
+        var delay    = -(progress * DUR);
+        track.style.transform = '';
+        track.style.animation = ANIM + ' ' + DUR + 's linear ' + delay + 's infinite';
+      }
+
+      wrap.addEventListener('pointerup',     endDrag);
+      wrap.addEventListener('pointercancel', endDrag);
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
