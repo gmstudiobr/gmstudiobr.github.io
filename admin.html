@@ -184,16 +184,16 @@ label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
     <!-- Sidebar -->
     <nav class="sidebar">
       <div class="sidebar-section">Conteúdo</div>
-      <div class="nav-item active" onclick="showSection('hero')"><span class="ni">◈</span> Hero</div>
-      <div class="nav-item" onclick="showSection('sobre')"><span class="ni">◉</span> Sobre</div>
-      <div class="nav-item" onclick="showSection('marquee')"><span class="ni">↔</span> Marquee</div>
-      <div class="nav-item" onclick="showSection('clientes')"><span class="ni">◎</span> Clientes <span class="badge-new">Logos</span></div>
-      <div class="nav-item" onclick="showSection('servicos')"><span class="ni">◫</span> Serviços</div>
-      <div class="nav-item" onclick="showSection('portfolio')"><span class="ni">▦</span> Portfólio</div>
-      <div class="nav-item" onclick="showSection('contato')"><span class="ni">◷</span> Contato</div>
-      <div class="nav-item" onclick="showSection('footer')"><span class="ni">▭</span> Footer</div>
+      <div class="nav-item active" onclick="showSection('hero', this)"><span class="ni">◈</span> Hero</div>
+      <div class="nav-item" onclick="showSection('sobre', this)"><span class="ni">◉</span> Sobre</div>
+      <div class="nav-item" onclick="showSection('marquee', this)"><span class="ni">↔</span> Marquee</div>
+      <div class="nav-item" onclick="showSection('clientes', this)"><span class="ni">◎</span> Clientes <span class="badge-new">Logos</span></div>
+      <div class="nav-item" onclick="showSection('servicos', this)"><span class="ni">◫</span> Serviços</div>
+      <div class="nav-item" onclick="showSection('portfolio', this)"><span class="ni">▦</span> Portfólio</div>
+      <div class="nav-item" onclick="showSection('contato', this)"><span class="ni">◷</span> Contato</div>
+      <div class="nav-item" onclick="showSection('footer', this)"><span class="ni">▭</span> Footer</div>
       <div class="sidebar-section">Meta</div>
-      <div class="nav-item" onclick="showSection('seo')"><span class="ni">⌖</span> SEO</div>
+      <div class="nav-item" onclick="showSection('seo', this)"><span class="ni">⌖</span> SEO</div>
     </nav>
     <!-- Content -->
     <main class="content">
@@ -457,15 +457,24 @@ function showErr(msg){const e=document.getElementById('loginErr');e.textContent=
 // ── GITHUB API ────────────────────────────────────────────
 async function ghGet(path){
   const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,{headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json'}});
-  if(!r.ok)return{content_b64:'',sha:''};
+  if(r.status===404)return{content_b64:'',sha:''};
+  if(!r.ok){const e=await readGhError(r);throw new Error(e);}
   const d=await r.json();
   return{content_b64:d.content,sha:d.sha};
+}
+async function readGhError(response){
+  try{
+    const e=await response.json();
+    return e.message||response.statusText||'GitHub API error';
+  }catch(_){
+    return response.statusText||'GitHub API error';
+  }
 }
 async function ghPut(path,contentB64,sha,msg){
   const body={message:msg,content:contentB64.replace(/\n/g,'')};
   if(sha)body.sha=sha;
   const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,{method:'PUT',headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-  if(!r.ok){const e=await r.json();throw new Error(e.message||'GitHub API error');}
+  if(!r.ok){const e=await readGhError(r);throw new Error(e);}
   return r.json();
 }
 async function ghUploadImage(path,dataUrl,sha){
@@ -886,11 +895,11 @@ async function saveSection(sec){
 }
 
 // ── NAVIGATION ────────────────────────────────────────────
-function showSection(id){
+function showSection(id,navItem){
   document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
-  event.currentTarget.classList.add('active');
+  if(navItem)navItem.classList.add('active');
   document.querySelector('.content').scrollTop=0;
 }
 

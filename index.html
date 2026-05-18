@@ -600,7 +600,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transition:background .45s var(--ease), transform .45s var(--ease);
 }
 .ct-wa:hover{background:var(--magenta-hi);transform:translateY(-2px)}
-.ct-wa{ transition: background .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1) !important; }
 .ct-wa svg{width:18px;height:18px;fill:currentColor}
 
 .form{display:flex;flex-direction:column;gap:22px;padding:clamp(28px,3vw,42px);background:var(--graphite);border:1px solid var(--bd)}
@@ -1282,9 +1281,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 }
 @keyframes clients-rtl {
   0%   { transform: translateX(-50%); }
-/* ── Carousel hover: slow down ──────────────────────────── */
-
-
   100% { transform: translateX(0); }
 }
 
@@ -1465,9 +1461,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
-
-</head>
-<body>
 
 <div class="sidebar-lateral" id="sidebarLat" aria-hidden="true">
   <span>IDENTIDADE</span>
@@ -1815,9 +1808,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 (function(){
   'use strict';
 
-(function(){
-  'use strict';
-
   // ── SITE-CONTENT.JSON LOADER ──────────────────────────────────
   function applySiteContent(sc) {
     function set(id, val, html) {
@@ -1900,10 +1890,12 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     set('sc-serv-headline', sv.headline, true);
     set('sc-serv-intro', sv.intro);
     if (sv.items && Array.isArray(sv.items)) {
-      window._SC_DISCIPLINAS = sv.items;
+      DISCIPLINAS = sv.items;
+      renderDisciplinas();
     }
     if (sc.marquee && Array.isArray(sc.marquee)) {
-      window._SC_MARQUEE = sc.marquee;
+      MARQUEE = sc.marquee;
+      renderMarquee();
     }
 
     // CONTATO
@@ -1943,14 +1935,14 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
     .catch(function(e){ console.warn('site-content.json not found, using defaults', e); });
 
   // ── DATA ─────────────────────────────────────────────────────
-  const DISCIPLINAS = (window._SC_DISCIPLINAS && window._SC_DISCIPLINAS.length ? window._SC_DISCIPLINAS : [
+  let DISCIPLINAS = [
     { n:'Branding & Estratégia de Marca', d:'Posicionamento, propósito e território verbal. Trabalhamos o que existe antes do design existir — a tese estratégica que sustenta a marca por décadas.', tags:['Posicionamento','Naming','Arquitetura','Brand Strategy'] },
     { n:'Identidade Visual & Sistemas',   d:'Logotipo, paleta, tipografia, grids e regras de uso. Um sistema coerente, completo e infinitamente reaplicável — feito para sobreviver ao tempo e à escala.', tags:['Logotipo','Sistema Visual','Tipografia','Manual'] },
     { n:'Naming & Tom de Voz',            d:'Construção do nome, da arquitetura verbal e da personalidade da marca. A maneira como a marca fala — em cada ponto de contato, do anúncio ao rodapé.', tags:['Naming','Tagline','Tom de Voz','Copy Editorial'] },
     { n:'Direção Criativa',               d:'Curadoria estética e direção autoral em campanhas, lançamentos e materiais de marca. A coerência visual que separa marcas relevantes de marcas presentes.', tags:['Art Direction','Campanha','Editorial','Curadoria'] },
     { n:'Websites Autorais & UX/UI',      d:'Experiências digitais desenhadas com a mesma precisão de uma identidade. Interfaces autorais, performance técnica e narrativa que prolonga o sistema da marca.', tags:['UX/UI','Website','Interface','Motion'] },
     { n:'Comunicação Visual',             d:'Sistemas editoriais, layouts, social design e materiais institucionais. Cada peça mantém unidade rigorosa com o universo construído na identidade.', tags:['Editorial','Social Design','Print','Apresentações'] }
-  ]);
+  ];
 
   let PROJETOS = [];
 
@@ -2075,22 +2067,24 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
 
   } // end initPortfolio
 
-  const MARQUEE = (window._SC_MARQUEE && window._SC_MARQUEE.length ? window._SC_MARQUEE : ['Branding','Identidade Visual','Posicionamento','Direção Criativa','Sistemas Visuais','Tom de Voz','Naming','Websites Autorais','UX/UI','Estratégia de Marca','Comunicação Visual','Direção de Arte']);
+  let MARQUEE = ['Branding','Identidade Visual','Posicionamento','Direção Criativa','Sistemas Visuais','Tom de Voz','Naming','Websites Autorais','UX/UI','Estratégia de Marca','Comunicação Visual','Direção de Arte'];
 
   // ── MARQUEE ──────────────────────────────────────────────────
-  (function(){
+  function renderMarquee(){
     const t = document.getElementById('mqT');
     if(!t) return;
     const build = () => MARQUEE.map(w => `<span class="mq__item">${w}<span class="mq__sep"></span></span>`).join('');
     t.innerHTML = build() + build();
-  })();
+  }
+  renderMarquee();
 
 
   // ── DISCIPLINAS → ACCORDION ───────────────────────────────────
-  (function(){
+  function renderDisciplinas(){
     const list = document.getElementById('dscList');
     if(!list) return;
     list.className = 'dsc acc';
+    list.innerHTML = '';
     DISCIPLINAS.forEach((s,i) => {
       const item = document.createElement('div');
       item.className = 'acc__item rv d' + Math.min(i+1,6);
@@ -2122,7 +2116,8 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       });
       list.appendChild(item);
     });
-  })();
+  }
+  renderDisciplinas();
 
 
   // ── MODAL ─────────────────────────────────────────────────────
@@ -2281,8 +2276,6 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       }, 900);
     });
   })();
-
-})();
 
 
   // ── CUSTOM CURSOR ─────────────────────────────────────────────
