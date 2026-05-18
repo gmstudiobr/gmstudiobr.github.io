@@ -462,8 +462,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:block;overflow:hidden;
   background:var(--graphite);
   isolation:isolate;
-  transition:transform .8s var(--ease);
+  transition:transform .8s var(--ease),opacity .6s var(--ease),translate .6s var(--ease);
 }
+.pf-card--hidden{opacity:0;translate:0 18px;pointer-events:none}
 .pf-card.span-7{grid-column:span 7}
 .pf-card.span-5{grid-column:span 5}
 .pf-card.span-12{grid-column:span 12}
@@ -1963,7 +1964,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
       const grid = document.getElementById('pfGrid');
       if(!grid) return;
       grid.innerHTML = PROJETOS.map((p,i) => `
-        <a class="pf-card ${p.span} ${p.ratio} rv d${Math.min(i+1,4)}" href="javascript:void(0)" data-idx="${i}">
+        <a class="pf-card ${p.span} ${p.ratio} pf-card--hidden" href="javascript:void(0)" data-idx="${i}">
           <div class="pf-card__bg ${p.bg}" style="${p.cover ? 'background-image:url('+p.cover+');background-size:cover;background-position:center;' : ''}"></div>
           <div class="pf-card__arrow">↗︎</div>
           <div class="pf-card__meta">
@@ -1976,8 +1977,7 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
         </a>`).join('');
       grid.querySelectorAll('.pf-card').forEach((card, i) => {
         card.addEventListener('click', e => { e.preventDefault(); openModal(+card.dataset.idx); });
-        // Cards são inseridos depois do IntersectionObserver — revelar com stagger manual
-        setTimeout(() => card.classList.add('on'), 120 + i * 100);
+        setTimeout(() => card.classList.remove('pf-card--hidden'), 80 + i * 120);
       });
     })();
 
