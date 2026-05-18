@@ -1974,8 +1974,10 @@ body.on-light #cursor-ring { border-color: rgba(10,10,11,0.45); }
             <div class="pf-card__yr">${p.id} / ${p.year}</div>
           </div>
         </a>`).join('');
-      grid.querySelectorAll('.pf-card').forEach(card => {
+      grid.querySelectorAll('.pf-card').forEach((card, i) => {
         card.addEventListener('click', e => { e.preventDefault(); openModal(+card.dataset.idx); });
+        // Cards são inseridos depois do IntersectionObserver — revelar com stagger manual
+        setTimeout(() => card.classList.add('on'), 120 + i * 100);
       });
     })();
 
