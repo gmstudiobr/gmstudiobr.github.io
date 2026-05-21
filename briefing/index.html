@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Briefing Estratégico — GMSTUDIO®</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+@font-face{
+  font-family:'Bahnschrift';
+  src:url('../assets/fonts/bahnschrift.woff') format('woff'),
+      url('../assets/fonts/bahnschrift.ttf') format('truetype');
+  font-weight:100 900;font-stretch:75% 100%;font-style:normal;font-display:block;
+}
+:root{
+  --ink:#0A0A0B;
+  --magenta:#E50046;--magenta-hi:#FF1A5C;
+  --ice:#F2F0EB;
+  --ff:'Bahnschrift','DIN Alternate','Arial Narrow','Helvetica Neue',Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-out:cubic-bezier(.16,1,.3,1);
+  --hh:76px;--cw:min(1440px,92vw);
+  --bg:#ffffff;
+  --t1:#0A0A0B;
+  --t2:#4A4845;
+  --t3:#7A7775;
+  --t4:#B5B2AE;
+  --bd:rgba(10,10,11,.10);
+  --bdhi:rgba(10,10,11,.28);
+  --surface:#F7F6F4;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--t1);font-family:var(--ff);font-weight:400;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-feature-settings:"ss01","cv11","cv02";min-height:100vh}
+em{font-style:normal!important}
+::selection{background:var(--magenta);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f0efed}::-webkit-scrollbar-thumb{background:#ccc}::-webkit-scrollbar-thumb:hover{background:var(--magenta)}
+.wrap{width:var(--cw);margin:0 auto}
+.hidden{display:none!important}
+
+/* ── HEADER ─────────────────────────────────────────── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hh);display:flex;align-items:center;background:#fff;border-bottom:1px solid var(--bd)}
+.hdr__row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%;gap:24px}
+.hdr__brand{display:flex;align-items:center;min-width:0;justify-self:start}
+.hdr__logo-svg{height:22px;width:auto;display:block}
+.hdr__nav{display:flex;align-items:center;gap:36px;justify-self:center}
+.hdr__nav button{position:relative;font-size:13.5px;font-weight:500;letter-spacing:.005em;color:var(--ink);padding:6px 0;font-family:var(--ff);background:none;border:0;cursor:pointer;transition:color .35s var(--ease)}
+.hdr__nav button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--magenta);transform:scaleX(0);transform-origin:left center;transition:transform .55s var(--ease-out)}
+.hdr__nav button:hover{color:var(--magenta)}.hdr__nav button:hover::after{transform:scaleX(1)}
+.hdr__cta{justify-self:end;display:flex;align-items:center;gap:18px}
+.hdr__cta a.contact{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:10px;padding:11px 18px 11px 20px;border:1px solid var(--magenta);background:var(--magenta);border-radius:999px;transition:background .4s var(--ease),transform .4s var(--ease)}
+.hdr__cta a.contact:hover{background:var(--magenta-hi);transform:translateY(-1px)}
+.hdr__cta a.contact::after{content:"";display:inline-block;width:6px;height:6px;background:#fff;border-radius:50%}
+.hbg{display:none;width:44px;height:44px;position:relative;border:1px solid var(--bd);border-radius:999px;flex-shrink:0;align-items:center;justify-content:center;background:none;cursor:pointer}
+.hbg span{position:absolute;left:13px;width:18px;height:1.5px;background:var(--ink);transition:transform .45s var(--ease),top .35s var(--ease),opacity .25s var(--ease)}
+.hbg span:nth-child(1){top:17px}.hbg span:nth-child(2){top:21.5px}.hbg span:nth-child(3){top:26px}
+.hbg.open span:nth-child(1){top:21px;transform:rotate(45deg)}.hbg.open span:nth-child(2){opacity:0}.hbg.open span:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+/* mobile nav */
+.mnav{position:fixed;inset:0;z-index:90;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:120px clamp(28px,7vw,64px) 48px;transform:translateY(-101%);transition:transform .65s var(--ease);gap:6px}
+.mnav.open{transform:translateY(0)}
+.mnav button{font-family:var(--ff);font-weight:700;font-size:clamp(40px,9vw,76px);letter-spacing:-.02em;line-height:1.05;color:var(--ink);padding:10px 0;display:block;width:100%;border-bottom:1px solid var(--bd);text-align:left;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer}
+
+/* ── SEÇÃO BRAND TOP ──────────────────────────────── */
+.b-brand-top{background:var(--magenta);padding:calc(var(--hh) + clamp(32px,4vw,56px)) 0 0}
+.b-brand-top__logo{display:block;width:100%;height:auto;max-height:clamp(50px,14vw,200px);color:#0A0A0B}
+.b-brand-top__legal{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid rgba(0,0,0,.20);font-size:12px;color:#0A0A0B;letter-spacing:.08em;margin-top:clamp(24px,3vw,48px)}
+
+/* ── MODAIS ─────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:#fff;display:none;flex-direction:column}
+.modal-overlay.open{display:flex}
+.modal-topbar{height:var(--hh);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(24px,4vw,56px);border-bottom:1px solid var(--bd);flex-shrink:0;background:#fff}
+.modal-title{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.modal-close{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border:1px solid var(--bd);border-radius:999px;font-size:13px;font-weight:500;color:var(--t2);transition:all .3s var(--ease);cursor:pointer;font-family:var(--ff);background:none}
+.modal-close:hover{border-color:var(--ink);color:var(--ink)}
+.modal-body{flex:1;overflow-y:auto;background:#fff}
+.modal-intro{padding:clamp(32px,4vw,56px) clamp(24px,4vw,56px) clamp(24px,3vw,40px);border-bottom:1px solid var(--bd)}
+.modal-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.modal-eyebrow::before{content:"";display:inline-block;width:20px;height:1px;background:var(--magenta)}
+.modal-h{font-family:var(--ff);font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-.04em;color:var(--ink);margin:0 0 16px;line-height:.95}
+.modal-sub{font-size:15px;line-height:1.6;color:var(--t2);max-width:64ch;margin:0}
+/* Portfolio grid */
+.m-pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--bd);padding:1px}
+.m-pf-card{background:#fff;overflow:hidden;position:relative;cursor:pointer}
+.m-pf-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.m-pf-card:hover .m-pf-img{transform:scale(1.04)}
+.m-pf-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,.72) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;opacity:0;transition:opacity .3s}
+.m-pf-card:hover .m-pf-over{opacity:1}
+.m-pf-name{font-size:16px;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:4px}
+.m-pf-cat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.m-pf-meta{padding:16px 20px;border-top:1px solid var(--bd)}
+.m-pf-meta-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.m-pf-meta-cat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:3px}
+/* Services accordion */
+.m-svc-list{display:flex;flex-direction:column}
+.m-svc-item{border-bottom:1px solid var(--bd);overflow:hidden}
+.m-svc-hd{display:flex;align-items:center;justify-content:space-between;padding:22px clamp(24px,4vw,56px);cursor:pointer;transition:background .2s;user-select:none}
+.m-svc-hd:hover{background:var(--surface)}
+.m-svc-name{font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.m-svc-arrow{font-size:20px;color:var(--t3);transition:transform .35s var(--ease);line-height:1;flex-shrink:0}
+.m-svc-item.open .m-svc-arrow{transform:rotate(45deg);color:var(--magenta)}
+.m-svc-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.m-svc-item.open .m-svc-body{max-height:300px}
+.m-svc-desc{padding:0 clamp(24px,4vw,56px) 20px;font-size:14.5px;line-height:1.65;color:var(--t2)}
+.m-svc-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 clamp(24px,4vw,56px) 24px}
+.m-svc-tag{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--bd);color:var(--t3)}
+
+/* ── PROGRESS BAR ──────────────────────────────────── */
+#prog-wrap{position:fixed;top:var(--hh);left:0;right:0;z-index:99;height:2px;background:var(--bd)}
+#prog-fill{height:100%;background:var(--magenta);transition:width .5s var(--ease);width:0%}
+
+/* ── HERO (dark) ───────────────────────────────────── */
+#hero-screen{background:#0A0A0B;min-height:100vh}
+.b-hero{padding-top:calc(var(--hh) + clamp(60px,8vw,120px));padding-bottom:clamp(60px,9vw,120px);background:#0A0A0B;position:relative;min-height:100vh}
+.b-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(540px 420px at 90% 20%,rgba(229,0,70,.10),transparent 60%),radial-gradient(480px 360px at 5% 90%,rgba(0,87,230,.07),transparent 60%)}
+.b-hero__inner{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.45)}
+.eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--magenta)}
+.b-hero__h1{
+  font-family:var(--ff);
+  font-size:clamp(40px,5.5vw,72px);
+  font-weight:600;line-height:.95;letter-spacing:-.035em;
+  color:#F2F0EB;margin:clamp(20px,2.5vw,32px) 0 0;max-width:22ch;
+}
+.b-hero__h1 em{color:var(--magenta)}
+.b-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:end;margin-top:clamp(36px,5vw,72px);padding-top:clamp(28px,3vw,44px);border-top:1px solid rgba(242,240,235,.08)}
+.b-hero__sub{font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:rgba(242,240,235,.65);max-width:52ch}
+.b-hero__sub b{color:#F2F0EB;font-weight:500}
+.b-hero__right{display:flex;flex-direction:column;align-items:flex-start;gap:32px}
+.b-hero__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(242,240,235,.08)}
+.b-hero__stat{padding:16px 20px;border-right:1px solid rgba(242,240,235,.08)}
+.b-hero__stat:last-child{border-right:none}
+.b-hero__stat strong{display:block;font-size:clamp(24px,2.8vw,36px);font-weight:600;letter-spacing:-.03em;color:#F2F0EB;line-height:1}
+.b-hero__stat span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,235,.4);margin-top:6px}
+.b-hero__ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-prim{position:relative;display:inline-flex;align-items:center;gap:14px;height:54px;padding:0 24px 0 26px;font-size:14px;font-weight:500;letter-spacing:.01em;border-radius:999px;background:var(--magenta);color:#fff;border:1px solid var(--magenta);transition:background .4s var(--ease),transform .4s var(--ease);font-family:var(--ff);cursor:pointer}
+.btn-prim::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff;transition:transform .45s var(--ease)}
+.btn-prim:hover{background:var(--magenta-hi);transform:translateY(-2px)}.btn-prim:hover::after{transform:translateX(4px)}
+.btn-ghost{position:relative;display:inline-flex;align-items:center;gap:14px;height:54px;padding:0 24px 0 26px;font-size:14px;font-weight:500;letter-spacing:.01em;border-radius:999px;border:1px solid rgba(242,240,235,.18);color:rgba(242,240,235,.7);transition:border-color .4s,background .4s,color .4s,transform .4s;font-family:var(--ff);cursor:pointer}
+.btn-ghost::after{content:"→";font-size:14px;transition:transform .45s var(--ease)}
+.btn-ghost:hover{border-color:#F2F0EB;background:#F2F0EB;color:#0A0A0B;transform:translateY(-2px)}.btn-ghost:hover::after{transform:translateX(4px)}
+.resume-note{font-size:13px;color:rgba(242,240,235,.4)}.resume-note a{color:var(--magenta);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* ── BRIEFING APP ──────────────────────────────────── */
+#app-screen{padding-top:calc(var(--hh) + 2px);background:#fff}
+
+.step-topbar{padding:clamp(40px,5vw,72px) 0 0;border-bottom:1px solid var(--bd)}
+.step-topbar__inner{padding-bottom:clamp(32px,4vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:end}
+.step-meta{display:flex;flex-direction:column;gap:10px}
+.step-counter{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--t3)}
+.step-h1{font-family:var(--ff);font-size:clamp(36px,5vw,72px);font-weight:600;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin:0}
+.step-h1 em{color:var(--magenta)}
+.step-nav-pills{display:flex;gap:6px;flex-wrap:wrap}
+.step-pill{width:28px;height:4px;background:var(--bd);border-radius:0;transition:background .3s var(--ease);cursor:pointer}
+.step-pill.done{background:var(--t3)}.step-pill.active{background:var(--magenta)}
+.step-sub{font-size:clamp(14px,1.2vw,16px);line-height:1.6;color:var(--t2);max-width:48ch}
+.step-sub b{color:var(--ink);font-weight:500}
+
+/* Form layout */
+.step-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(40px,6vw,100px);padding:clamp(48px,6vw,80px) 0 clamp(40px,5vw,64px);border-bottom:1px solid var(--bd)}
+.step-info{position:sticky;top:calc(var(--hh) + 40px);height:fit-content;display:flex;flex-direction:column;gap:16px}
+.step-info__num{font-size:clamp(80px,10vw,140px);font-weight:700;letter-spacing:-.05em;line-height:1;color:rgba(10,10,11,.06);font-variant-numeric:tabular-nums;user-select:none}
+.step-info__title{font-family:var(--ff);font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.025em;color:var(--ink);margin:0}
+.step-info__desc{font-size:14px;line-height:1.65;color:var(--t2)}
+.step-info__req{font-size:11px;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;padding-top:14px;border-top:1px solid var(--bd)}
+.step-info__dash{font-size:12px;color:var(--t4);line-height:1.55;padding-top:6px;font-style:italic}
+
+/* FORM FIELDS — idêntico ao site */
+.form{display:flex;flex-direction:column;gap:28px}
+.form-section{display:flex;flex-direction:column;gap:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,32px)}
+.form-grp{display:flex;flex-direction:column;gap:8px}
+.form-grp label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);font-weight:500;display:flex;align-items:center;gap:6px}
+.form-grp label .req{color:var(--magenta);font-size:9px}
+.form-grp .hint{font-size:12px;color:var(--t3);line-height:1.55;margin-top:2px}
+.form-grp .ferr{font-size:12px;color:var(--magenta);display:none;margin-top:4px}
+.form-grp.has-err .ferr{display:block}
+.form-grp.has-err input,.form-grp.has-err textarea{border-bottom-color:var(--magenta)!important}
+.form-grp input,.form-grp textarea,.form-grp select{
+  background:transparent;border:0;border-bottom:1px solid var(--bd);
+  padding:8px 0 12px;color:var(--ink);
+  font:inherit;font-family:var(--ff);font-size:15px;font-weight:400;
+  transition:border-color .35s var(--ease);width:100%;
+}
+.form-grp input::placeholder,.form-grp textarea::placeholder{color:var(--t4)}
+.form-grp input:focus,.form-grp textarea:focus{outline:0;border-bottom-color:var(--magenta)}
+.form-grp textarea{resize:vertical;min-height:108px;line-height:1.55}
+.char-count{font-size:11px;color:var(--t4);text-align:right;margin-top:4px;letter-spacing:.04em}
+
+/* Links grid */
+.links-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--bd)}
+.link-row{display:flex;align-items:center;border-bottom:1px solid var(--bd)}
+.link-row:last-child{border-bottom:none}
+.link-prefix{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);padding:10px 14px;min-width:90px;border-right:1px solid var(--bd)}
+.link-input{flex:1;background:transparent;border:none;padding:10px 14px;color:var(--ink);font:inherit;font-size:14px;outline:none}
+.link-input::placeholder{color:var(--t4)}
+.link-input:focus{background:rgba(229,0,70,.03)}
+.links-grid .link-row:nth-child(odd){border-right:1px solid var(--bd)}
+
+/* Radio cards */
+.radio-group{display:flex;flex-direction:column;gap:0;border:1px solid var(--bd)}
+.radio-opt{display:flex;align-items:center;gap:16px;padding:16px 20px;cursor:pointer;transition:background .2s var(--ease);border-bottom:1px solid var(--bd);user-select:none}
+.radio-opt:last-child{border-bottom:none}
+.radio-opt:hover{background:rgba(10,10,11,.03)}
+.radio-opt.sel{background:rgba(229,0,70,.06)}
+.radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--bdhi);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.radio-opt.sel .radio-dot{border-color:var(--magenta);background:var(--magenta)}
+.radio-opt.sel .radio-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:#fff}
+.radio-opt-label{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3}
+.radio-opt-desc{font-size:12px;color:var(--t3);margin-top:2px}
+
+/* Radio horizontal */
+.radio-h-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0;border:1px solid var(--bd)}
+.radio-h-opt{padding:14px 16px;cursor:pointer;transition:background .2s;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd);user-select:none;text-align:left}
+.radio-h-opt:hover{background:rgba(10,10,11,.03)}
+.radio-h-opt.sel{background:rgba(229,0,70,.06)}
+.radio-h-opt .rl{font-size:13px;font-weight:500;color:var(--t2);transition:color .2s}
+.radio-h-opt.sel .rl{color:var(--ink)}
+
+/* Pills */
+.pill-group{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:7px 14px;border:1px solid var(--bd);font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;transition:all .2s var(--ease);user-select:none;border-radius:999px}
+.pill:hover{border-color:var(--bdhi);color:var(--ink)}
+.pill.sel{border-color:var(--magenta);background:rgba(229,0,70,.08);color:var(--ink)}
+.pill.off{opacity:.3;pointer-events:none}
+
+/* Analog associations */
+.analog-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--bd)}
+.analog-row{display:flex;flex-direction:column;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd)}
+.analog-row:nth-child(even){border-right:none}
+.analog-row:nth-last-child(-n+2){border-bottom:none}
+.analog-lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);padding:12px 14px 0;font-weight:500}
+.analog-row input{background:transparent;border:none;padding:6px 14px 12px;color:var(--ink);font:inherit;font-size:14px;outline:none;width:100%}
+.analog-row input::placeholder{color:var(--t4)}
+.analog-row input:focus{background:rgba(229,0,70,.03)}
+
+/* Divider */
+.form-divider{border:none;border-top:1px solid var(--bd);margin:8px 0}
+.form-section-title{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);font-weight:500;padding:4px 0}
+
+/* Conditional */
+.cond{display:none}.cond.show{display:flex;flex-direction:column;gap:8px}
+
+/* ── DROPZONE ──────────────────────────────────────── */
+.dropzone{border:1px solid var(--bd);padding:40px 32px;text-align:center;cursor:pointer;transition:all .3s var(--ease);background:var(--surface);position:relative}
+.dropzone:hover,.dropzone.drag{border-color:var(--magenta);background:rgba(229,0,70,.04)}
+.dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.dropzone-icon{font-size:28px;margin-bottom:12px;display:block;color:var(--t3)}
+.dropzone-title{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:6px}
+.dropzone-sub{font-size:13px;color:var(--t2)}
+.dropzone-types{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:8px}
+.file-list{display:flex;flex-direction:column;gap:0;margin-top:16px;border:1px solid var(--bd)}
+.file-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--bd)}
+.file-item:last-child{border-bottom:none}
+.file-icon-el{font-size:18px;flex-shrink:0}
+.file-info{flex:1;min-width:0}
+.file-name{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-size-el{font-size:11px;color:var(--t3);margin-top:2px;letter-spacing:.06em}
+.file-remove{padding:4px 8px;color:var(--t3);transition:color .2s;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.file-remove:hover{color:var(--magenta)}
+
+/* ── STEP NAVIGATION ───────────────────────────────── */
+.step-nav-bar{
+  padding:clamp(20px,2.5vw,32px) 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  position:sticky;bottom:0;z-index:50;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--bd);
+}
+.btn-nav-back{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px;border:1px solid var(--bd);border-radius:999px;font-size:13.5px;font-weight:500;color:var(--t2);transition:all .35s var(--ease);font-family:var(--ff)}
+.btn-nav-back:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+.btn-nav-next{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 28px;border-radius:999px;font-size:13.5px;font-weight:500;background:var(--magenta);color:#fff;border:1px solid var(--magenta);transition:all .35s var(--ease);font-family:var(--ff)}
+.btn-nav-next:hover{background:var(--magenta-hi);transform:translateY(-1px)}
+.btn-nav-next::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff;transition:transform .45s var(--ease)}
+.btn-nav-next:hover::after{transform:translateX(4px)}
+.btn-nav-next:disabled{opacity:.4;pointer-events:none}
+.nav-save-status{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t4);display:flex;align-items:center;gap:6px}
+.nav-save-dot{width:5px;height:5px;border-radius:50%;background:var(--t4)}
+.nav-save-status.saved .nav-save-dot{background:#4CAF50}.nav-save-status.saved{color:var(--t3)}
+
+/* ── REVIEW STEP ───────────────────────────────────── */
+.rev-grid{display:flex;flex-direction:column;gap:0;border:1px solid var(--bd)}
+.rev-section{border-bottom:1px solid var(--bd)}.rev-section:last-child{border-bottom:none}
+.rev-section-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--bd);background:var(--surface)}
+.rev-section-title{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);font-weight:500}
+.rev-edit{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);font-weight:500;cursor:pointer;transition:opacity .2s}
+.rev-edit:hover{opacity:.7}
+.rev-fields{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.rev-field{padding:16px 20px;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.rev-field:nth-child(even){border-right:none}
+.rev-field-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:5px}
+.rev-field-val{font-size:13.5px;color:var(--ink);line-height:1.55}
+.rev-field-val.empty{color:var(--t4);font-style:italic}
+.rev-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.rev-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--bd);color:var(--t2)}
+.send-area{padding:clamp(40px,5vw,64px) 0}
+.send-h2{font-family:var(--ff);font-size:clamp(28px,3.5vw,48px);font-weight:600;letter-spacing:-.03em;color:var(--ink);margin:0 0 12px}
+.send-sub{font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:36px;max-width:52ch}
+.btn-send{display:inline-flex;align-items:center;gap:16px;height:60px;padding:0 36px;background:var(--magenta);color:#fff;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:.01em;transition:all .4s var(--ease);border:1px solid var(--magenta);font-family:var(--ff);cursor:pointer}
+.btn-send:hover{background:var(--magenta-hi);transform:translateY(-2px)}
+.btn-send::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;transition:transform .45s var(--ease)}
+.btn-send:hover::after{transform:translateX(4px)}
+.btn-send:disabled{opacity:.5;pointer-events:none}
+.send-note{font-size:12px;color:var(--t3);letter-spacing:.06em;margin-top:14px}
+
+/* ── SUCCESS (dark) ────────────────────────────────── */
+#success-screen{padding:calc(var(--hh) + 80px) 0 80px;background:#0A0A0B;min-height:100vh}
+.succ-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.45);margin-bottom:24px}
+.succ-eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--magenta)}
+.succ-h1{font-family:var(--ff);font-size:clamp(56px,9vw,120px);font-weight:600;line-height:.92;letter-spacing:-.045em;color:#F2F0EB;margin:0 0 clamp(24px,3vw,40px)}
+.succ-h1 em{color:var(--magenta)}
+.succ-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(40px,6vw,80px);margin-top:clamp(40px,5vw,72px);padding-top:28px;border-top:1px solid rgba(242,240,235,.08)}
+.succ-p{font-size:clamp(15px,1.3vw,17px);line-height:1.65;color:rgba(242,240,235,.65);max-width:52ch;margin-bottom:28px}
+.succ-info{background:#15151A;border:1px solid rgba(242,240,235,.08);padding:clamp(24px,3vw,36px)}
+.succ-info p{font-size:14px;line-height:1.65;color:rgba(242,240,235,.6);margin:0 0 10px}
+.succ-info p:last-child{margin:0}
+.succ-info strong{color:#F2F0EB;font-weight:500}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+.b-ftr{background:var(--magenta);padding:clamp(40px,5vw,72px) 0 0}
+.b-ftr__sig{padding:clamp(32px,4vw,56px) 0 clamp(16px,2vw,28px);overflow:hidden}
+.b-ftr__logo-svg{display:block;width:100%;height:auto;max-height:clamp(60px,16vw,240px);color:#0A0A0B}
+.b-ftr__legal{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid rgba(0,0,0,.20);font-size:12px;color:#0A0A0B;letter-spacing:.08em}
+
+/* ── LOADING ───────────────────────────────────────── */
+#loading{position:fixed;inset:0;background:rgba(10,10,11,.96);z-index:999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;backdrop-filter:blur(16px)}
+#loading.show{display:flex}
+.loader{width:32px;height:32px;border:2px solid rgba(242,240,235,.12);border-top-color:var(--magenta);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── TOASTS ────────────────────────────────────────── */
+#toasts{position:fixed;bottom:24px;right:24px;z-index:2000;display:flex;flex-direction:column;gap:8px}
+.toast{padding:12px 18px;font-size:13px;font-weight:500;border:1px solid var(--bd);background:#fff;display:flex;align-items:center;gap:8px;animation:tIn .22s ease;max-width:320px;font-family:var(--ff);letter-spacing:.02em;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+@keyframes tIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+.toast.ok{color:#2E7D32;border-color:rgba(46,125,50,.2)}
+.toast.err{color:#C62828;border-color:rgba(198,40,40,.2)}
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media(max-width:1024px){
+  :root{--hh:68px}
+  .hdr__nav{display:none}.hdr__cta a.contact{display:none}
+  .hbg{display:flex}
+  .hdr__row{grid-template-columns:1fr auto}
+  .b-hero__grid{grid-template-columns:1fr;gap:32px}
+  .b-hero__stats{grid-template-columns:repeat(4,1fr)}
+  .step-topbar__inner{grid-template-columns:1fr;gap:20px}
+  .step-body{grid-template-columns:1fr;gap:32px}
+  .step-info{position:static;padding-bottom:0}
+  .step-info__num{display:none}
+  .form-row{grid-template-columns:1fr}
+  .analog-grid{grid-template-columns:1fr}
+  .analog-row{border-right:none!important}
+  .links-grid{grid-template-columns:1fr}
+  .link-row{border-right:none!important}
+  .rev-fields{grid-template-columns:1fr}
+  .rev-field{border-right:none!important}
+  .succ-grid{grid-template-columns:1fr}
+  .b-hero__stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .b-hero__stats{grid-template-columns:1fr 1fr}
+  .b-hero__right{align-items:flex-start}
+  .step-nav-pills{display:none}
+  .radio-h-group{grid-template-columns:1fr 1fr}
+}
+
+/* ── HEADER DARK (landing page) ─────────────────────── */
+.hdr{transition:background .5s ease,border-color .5s ease}
+.hdr__row{grid-template-columns:1fr auto}
+.hdr.dark{background:#0A0A0B;border-bottom-color:rgba(242,240,235,.08)}
+.hdr.dark .hdr__brand div{color:#F2F0EB!important}
+.hdr.dark .hbg{border-color:rgba(242,240,235,.18)}
+.hdr.dark .hbg span{background:#F2F0EB}
+
+/* ── PAGE VEIL TRANSITION ────────────────────────────── */
+#pg-veil{position:fixed;inset:0;z-index:500;background:#0A0A0B;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+#pg-veil.show{opacity:1;pointer-events:all}
+
+/* ── APP SCREEN BG TRANSITION ────────────────────────── */
+#app-screen{transition:background-color .6s ease}
+
+/* ── STEP 11 DARK MODE ───────────────────────────────── */
+#app-screen.dark-step{
+  background:#0A0A0B;
+  --ink:#F2F0EB;
+  --t1:#F2F0EB;
+  --t2:rgba(242,240,235,.70);
+  --t3:rgba(242,240,235,.45);
+  --t4:rgba(242,240,235,.25);
+  --bd:rgba(242,240,235,.08);
+  --bdhi:rgba(242,240,235,.20);
+  --surface:#15151A;
+}
+#app-screen.dark-step .step-topbar{border-bottom-color:rgba(242,240,235,.08)}
+#app-screen.dark-step .step-h1{color:#F2F0EB}
+#app-screen.dark-step .step-nav-bar{background:rgba(10,10,11,.95);border-top-color:rgba(242,240,235,.08)}
+#app-screen.dark-step .rev-grid{border-color:rgba(242,240,235,.08)}
+#app-screen.dark-step .rev-section-hd{background:#15151A}
+#app-screen.dark-step .send-h2{color:#F2F0EB}
+#app-screen.dark-step .step-info__num{color:rgba(242,240,235,.05)}
+#app-screen.dark-step .step-info__title{color:#F2F0EB}
+
+/* ── FORM TEXT SIZE (+2pt) ───────────────────────────── */
+.form-grp label{font-size:13px}
+.form-grp input,.form-grp textarea,.form-grp select{font-size:17px}
+.form-grp .hint{font-size:14px}
+.radio-opt-label{font-size:16px}
+.radio-opt-desc{font-size:14px}
+.radio-h-opt .rl{font-size:15px}
+.pill{font-size:15px}
+.link-input{font-size:16px}
+.analog-row input{font-size:16px}
+.analog-lbl{font-size:12px}
+.form-section-title{font-size:13px}
+.step-sub{font-size:clamp(16px,1.4vw,18px)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr dark" id="hdr">
+  <div class="wrap">
+    <div class="hdr__row">
+      <div class="hdr__brand">
+        <div style="color:currentColor;display:block">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1630.53 292.9" style="height:22px;width:auto;display:block" aria-label="GMSTUDIO" aria-hidden="true"><defs><style>.gm-cls{fill:currentColor}</style></defs><g><g><path class="gm-cls" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/><path class="gm-cls" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/><path class="gm-cls" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/><path class="gm-cls" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/><path class="gm-cls" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69l2.02.39c9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/><path class="gm-cls" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/><path class="gm-cls" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/><path class="gm-cls" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/><path class="gm-cls" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/><path class="gm-cls" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/></g></g></svg>
+        </div>
+      </div>
+      <div class="hdr__cta">
+        <a href="https://gmstudiobr.github.io" target="_blank" class="contact">ACESSAR SITE</a>
+        <button class="hbg" id="hbg" aria-label="Menu" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button onclick="window.open('https://gmstudiobr.github.io','_blank');toggleMenu()">ACESSAR SITE</button>
+</nav>
+
+
+<!-- PAGE VEIL TRANSITION -->
+<div id="pg-veil"></div>
+
+<!-- PROGRESS BAR -->
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section id="hero-screen">
+  <div class="b-hero">
+    <div class="wrap">
+      <div class="b-hero__inner">
+        <p class="eyebrow">Briefing Estratégico de Branding</p>
+        <h1 class="b-hero__h1">Construa uma marca<br>que ninguém<br><em>esquece.</em></h1>
+        <div class="b-hero__grid">
+          <div>
+            <p class="b-hero__sub">Um processo profundo de <b>10 etapas</b> para compreendermos cada nuance da sua marca — posicionamento, personalidade, público e identidade visual.</p>
+          </div>
+          <div class="b-hero__right">
+            <div class="b-hero__stats">
+              <div class="b-hero__stat"><strong>10</strong><span>Etapas</span></div>
+              <div class="b-hero__stat"><strong>57</strong><span>Perguntas</span></div>
+              <div class="b-hero__stat"><strong>~25</strong><span>Minutos</span></div>
+              <div class="b-hero__stat"><strong>100%</strong><span>Confidencial</span></div>
+            </div>
+            <div class="b-hero__ctas">
+              <button class="btn-prim" onclick="startBriefing()">Iniciar Briefing</button>
+              <p class="resume-note" id="resume-note" style="display:none">
+                Briefing em andamento — <a onclick="resumeBriefing()">Continuar</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APP ════════════════════════════════════════════ -->
+<div id="app-screen" class="hidden">
+  <div class="wrap">
+
+    <!-- Step header -->
+    <div class="step-topbar">
+      <div class="step-topbar__inner">
+        <div class="step-meta">
+          <p class="step-counter" id="step-counter">Etapa 1 de 11</p>
+          <h2 class="step-h1" id="step-h1">Sobre o Negócio</h2>
+          <div class="step-nav-pills" id="step-nav-pills"></div>
+        </div>
+        <p class="step-sub" id="step-sub">A base da nossa parceria.</p>
+      </div>
+    </div>
+
+    <!-- Step body: info + form -->
+    <div class="step-body" id="step-body">
+      <div class="step-info" id="step-info">
+        <div class="step-info__num" id="step-info-num">01</div>
+        <h3 class="step-info__title" id="step-info-title">Sobre o Negócio</h3>
+        <p class="step-info__desc" id="step-info-desc">Queremos entender profundamente sua empresa, história e razão de existir.</p>
+        <p class="step-info__req">* Campo obrigatório</p>
+        <p class="step-info__dash">Caso não saiba responder algum campo, preencha com um traço —</p>
+      </div>
+      <div id="step-form">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- Navigation: Voltar (esq) | Salvo (centro) | Continuar (dir) -->
+    <div class="step-nav-bar">
+      <button class="btn-nav-back" id="btn-back" onclick="prevStep()">← Voltar</button>
+      <div class="nav-save-status saved" id="save-status">
+        <div class="nav-save-dot"></div>
+        <span>Salvo automaticamente</span>
+      </div>
+      <button class="btn-nav-next" id="btn-next" onclick="nextStep()">Continuar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUCCESS ════════════════════════════════════════ -->
+<div id="success-screen" class="hidden">
+  <div class="wrap">
+    <p class="succ-eyebrow">Briefing enviado</p>
+    <h1 class="succ-h1">Recebemos<br>seu <em>briefing.</em></h1>
+    <div class="succ-grid">
+      <div>
+        <p class="succ-p">Suas respostas foram enviadas com sucesso para a equipe da GMSTUDIO. Analisaremos cada detalhe com atenção e entraremos em contato em breve.</p>
+        <button class="btn-ghost" onclick="location.reload()">← Voltar ao início</button>
+      </div>
+      <div class="succ-info">
+        <p><strong>Próximos passos</strong><br>Nossa equipe irá analisar profundamente todas as suas respostas e entrar em contato para agendar nossa primeira sessão estratégica.</p>
+        <p><strong>Prazo de retorno:</strong> Até 2 dias úteis.</p>
+        <p><strong>Contato:</strong> gmstudio@outlook.pt</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="b-ftr hidden" id="b-ftr">
+  <div class="wrap">
+    <div class="b-ftr__sig">
+      <svg class="b-ftr__logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1630.53 292.9" aria-label="GMSTUDIO" aria-hidden="true"><defs><style>.gm-ftr{fill:currentColor}</style></defs><g><g><path class="gm-ftr" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/><path class="gm-ftr" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/><path class="gm-ftr" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/><path class="gm-ftr" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/><path class="gm-ftr" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69l2.02.39c9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/><path class="gm-ftr" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/><path class="gm-ftr" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/><path class="gm-ftr" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/><path class="gm-ftr" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/><path class="gm-ftr" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/></g></g></svg>
+    </div>
+    <div class="b-ftr__legal">
+      <p>© 2025 GMSTUDIO®. Todos os direitos reservados.</p>
+      <p>Studio de Branding &amp; Direção Visual</p>
+    </div>
+  </div>
+</footer>
+
+<div id="loading"><div class="loader"></div><p style="font-size:13px;color:rgba(242,240,235,.45);letter-spacing:.06em;font-family:var(--ff)">Enviando briefing...</p></div>
+<div id="toasts"></div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+
+
+// ── STEPS META ────────────────────────────────────────
+const STEPS = [
+  {id:1,title:'Sobre o Negócio',       desc:'Queremos entender profundamente sua empresa, história e razão de existir.',         sub:'A base da nossa parceria.'},
+  {id:2,title:'Objetivos',             desc:'Onde você quer chegar e por que agora é o momento certo.',                         sub:'Para onde você está indo.'},
+  {id:3,title:'Posicionamento',        desc:'O que diferencia sua marca no mercado e como você quer ser percebido.',             sub:'O que torna sua marca única.'},
+  {id:4,title:'Público e Mercado',     desc:'Para quem a marca existe e quem são as pessoas que ela serve.',                    sub:'Para quem você existe.'},
+  {id:5,title:'Personalidade',         desc:'A voz, o caráter e a energia da sua marca.',                                       sub:'Como sua marca se comporta.'},
+  {id:6,title:'Concorrência',          desc:'O contexto competitivo e as referências que inspiram.',                            sub:'O cenário ao redor.'},
+  {id:7,title:'Identidade Visual',     desc:'Cores, formas, tipografia e a direção estética da marca.',                        sub:'A face da sua marca.'},
+  {id:8,title:'Experiência',           desc:'Onde a marca vive e como as pessoas interagem com ela.',                          sub:'Onde a marca vive.'},
+  {id:9,title:'Expectativas',          desc:'Como vamos trabalhar juntos e o que você espera do processo.',                     sub:'Como vamos trabalhar juntos.'},
+  {id:10,title:'Complementos',         desc:'Últimos detalhes, contextos e arquivos para enriquecer o briefing.',              sub:'Últimos detalhes e arquivos.'},
+  {id:11,title:'Revisão e Envio',      desc:'Revise suas respostas antes de enviar. Tudo pode ser editado.',                   sub:'Confirme e envie seu briefing.'},
+];
+
+// ── STATE ─────────────────────────────────────────────
+let cur = 1;
+let data = {};
+let files = [];
+
+// ── HERO ─────────────────────────────────────────────
+function startBriefing(){
+  clearProgress();data={};files=[];
+  showApp(1);
+}
+function resumeBriefing(){
+  const s=loadProgress();
+  if(s){data=s.data||{};cur=s.step||1;}
+  showApp(cur);
+}
+function showApp(step){
+  const hdr=document.getElementById('hdr');
+  veilTransition(()=>{
+    document.getElementById('hero-screen').classList.add('hidden');
+    document.getElementById('app-screen').classList.remove('hidden');
+    hdr.classList.remove('dark');
+    cur=step;renderStep(cur);
+  });
+}
+function veilTransition(fn){
+  const v=document.getElementById('pg-veil');
+  v.classList.add('show');
+  setTimeout(()=>{fn();v.classList.remove('show');},480);
+}
+
+// ── NAVIGATION ────────────────────────────────────────
+function nextStep(){
+  if(cur===STEPS.length){submitBriefing();return;}
+  if(!validateStep(cur))return;
+  collectStep(cur);saveProgress();
+  cur++;
+  if(cur===11){
+    veilTransition(()=>{
+      renderStep(cur);
+      setTimeout(()=>{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;},80);
+    });
+  } else {
+    renderStep(cur);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+function prevStep(){
+  if(cur===1)return;
+  collectStep(cur);cur--;
+  renderStep(cur);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function jumpToStep(n){
+  if(n<=cur){collectStep(cur);cur=n;renderStep(cur);window.scrollTo({top:0,behavior:'smooth'});}
+}
+
+// ── RENDER ────────────────────────────────────────────
+function renderStep(n){
+  cur=n;
+  const s=STEPS[n-1];
+  document.getElementById('step-counter').textContent=`Etapa ${n} de ${STEPS.length}`;
+  document.getElementById('step-h1').textContent=s.title;
+  document.getElementById('step-sub').textContent=s.sub;
+  document.getElementById('step-info-num').textContent=String(n).padStart(2,'0');
+  document.getElementById('step-info-title').textContent=s.title;
+  document.getElementById('step-info-desc').textContent=s.desc;
+  // pills nav
+  const pills=STEPS.map((st,i)=>`<div class="step-pill ${i+1<n?'done':i+1===n?'active':''}" onclick="jumpToStep(${i+1})" title="${st.title}"></div>`).join('');
+  document.getElementById('step-nav-pills').innerHTML=pills;
+  // progress bar
+  const pct=Math.round((n/STEPS.length)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  // nav buttons
+  document.getElementById('btn-back').style.visibility=n===1?'hidden':'visible';
+  const nb=document.getElementById('btn-next');
+  if(n===STEPS.length){
+    nb.textContent='Enviar Briefing';
+    nb.insertAdjacentHTML('beforeend','<span style="width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block;flex-shrink:0"></span>');
+  } else {
+    nb.textContent='Continuar';
+    nb.insertAdjacentHTML('beforeend','<span style="width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block;flex-shrink:0"></span>');
+  }
+  // dark mode on step 11
+  const appScr=document.getElementById('app-screen');
+  document.getElementById('b-ftr').classList.add('hidden');
+  if(n===11){
+    appScr.classList.add('dark-step');
+    document.getElementById('hdr').classList.add('dark');
+  } else {
+    appScr.classList.remove('dark-step');
+    document.getElementById('hdr').classList.remove('dark');
+  }
+  // show/hide step-info for review step
+  document.getElementById('step-info').style.display=n===11?'none':'flex';
+  // form content
+  const formEl=document.getElementById('step-form');
+  if(n===11){
+    document.getElementById('step-body').style.gridTemplateColumns='1fr';
+    formEl.style.maxWidth='100%';
+  } else {
+    document.getElementById('step-body').style.gridTemplateColumns='';
+    formEl.style.maxWidth='';
+  }
+  formEl.innerHTML=getStepHTML(n);
+  populateStep(n);
+  setupInteractives();
+  if(n===10)setupDropzone();
+  if(n===11)buildReview();
+}
+
+// ── STEP HTML ─────────────────────────────────────────
+function fg(id,label,type,opts={}){
+  const req=opts.req?`<span class="req">*</span>`:'';
+  const hint=opts.hint?`<p class="hint">${opts.hint}</p>`:'';
+  if(type==='text'||type==='email'||type==='tel'||type==='url'){
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<input type="${type}" id="${id}" placeholder="${opts.ph||''}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
+  if(type==='textarea'){
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<textarea id="${id}" placeholder="${opts.ph||''}" rows="${opts.rows||4}"></textarea><div class="char-count" id="cc-${id}">0 / ${opts.max||500}</div><p class="ferr">Campo obrigatório.</p></div>`;
+  }
+  if(type==='radio'){
+    const opts2=opts.options||[];
+    const cards=opts2.map(o=>`<div class="radio-opt" data-val="${o.val||o}" onclick="selRadio('${id}',this)"><div class="radio-dot"></div><div><div class="radio-opt-label">${o.label||o}</div>${o.desc?`<div class="radio-opt-desc">${o.desc}</div>`:''}</div></div>`).join('');
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<div class="radio-group" data-field="${id}">${cards}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
+  if(type==='radio-h'){
+    const opts2=opts.options||[];
+    const cards=opts2.map(o=>`<div class="radio-h-opt" data-val="${o.val||o}" onclick="selRadio('${id}',this,'radio-h-group')"><div class="rl">${o.label||o}</div></div>`).join('');
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<div class="radio-h-group" data-field="${id}">${cards}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
+  if(type==='pills'){
+    const max=opts.max||99;
+    const ps=(opts.options||[]).map(o=>`<div class="pill" data-val="${o.val||o}" onclick="togPill(this,'${id}',${max})">${o.label||o}</div>`).join('');
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}${opts.max?`<p class="hint">Selecione até ${opts.max}.</p>`:''}<div class="pill-group" data-field="${id}">${ps}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
+  return '';
+}
+
+function getStepHTML(n){
+  switch(n){
+    case 1: return `<div class="form">
+      <div class="form-row">${fg('q1','Nome da marca ou empresa','text',{req:true,ph:'Ex: Studio Bloom, Arquitetura Viva'})}${fg('q2','Segmento de atuação','text',{req:true,ph:'Ex: Moda, Gastronomia, Saúde, Tecnologia'})}</div>
+      ${fg('q3','A marca já existe ou será lançada?','radio',{req:true,options:[{val:'ativa',label:'Marca já ativa',desc:'Existe e está em operação.'},{val:'desenvolvimento',label:'Marca em desenvolvimento',desc:'Ainda não lançada ao público.'},{val:'rebranding',label:'Rebranding / Reposicionamento',desc:'Reformulação de identidade existente.'}]})}
+      <div class="cond" id="cond-q4">${fg('q4','Por que deseja reformular sua identidade?','textarea',{ph:'O que motivou essa decisão? Se não souber, preencha com —',max:400})}</div>
+      ${fg('q5','Qual é a história da marca?','textarea',{ph:'Como surgiu, motivações, momentos importantes na trajetória... Se não houver, preencha com —',max:600,hint:'Histórias fortes constroem marcas fortes.'})}
+      ${fg('q6','Qual é o propósito da marca?','textarea',{req:true,ph:'Por que ela existe além de vender produtos ou serviços?',max:400})}
+      <div class="form-row">${fg('q7','Qual transformação a marca quer proporcionar?','text',{ph:'Que mudança você quer gerar nas pessoas? Se não souber, preencha com —'})}${fg('q11','Localização e abrangência','text',{ph:'Ex: São Paulo — atuação nacional'})}</div>
+      ${fg('q9','Produtos ou serviços oferecidos','textarea',{ph:'Descreva os principais e seus diferenciais.',max:500})}
+      <hr class="form-divider"><p class="form-section-title">Links da marca</p>
+      <div class="links-grid">
+        <div class="link-row"><span class="link-prefix">Instagram</span><input class="link-input" id="q12_ig" placeholder="@suamarca"></div>
+        <div class="link-row"><span class="link-prefix">Site</span><input class="link-input" id="q12_site" placeholder="www.suamarca.com.br"></div>
+        <div class="link-row"><span class="link-prefix">TikTok</span><input class="link-input" id="q12_tt" placeholder="@suamarca ou —"></div>
+        <div class="link-row"><span class="link-prefix">Pinterest</span><input class="link-input" id="q12_pin" placeholder="@suamarca ou —"></div>
+      </div>
+    </div>`;
+    case 2: return `<div class="form">
+      ${fg('q13','Por que decidiu investir em branding neste momento?','textarea',{req:true,ph:'O que tornou esse momento certo?',max:400})}
+      ${fg('q14','Principal objetivo nos próximos 12 meses','pills',{req:true,options:['Aumentar vendas','Profissionalizar a imagem','Atrair público qualificado','Posicionamento premium','Fortalecer presença digital','Crescer no mercado','Lançar novos produtos','Atrair investidores','Fortalecer autoridade']})}
+      ${fg('q15','Onde você deseja que sua marca esteja em 5 anos?','textarea',{ph:'Visão de longo prazo — mercado, presença, reconhecimento. Se não souber, preencha com —',max:400})}
+      ${fg('q16','Qual é o maior desafio da marca atualmente?','textarea',{ph:'Seja honesto — entender obstáculos é parte do processo.',max:400})}
+      ${fg('q17','O que faria você considerar este projeto um sucesso?','textarea',{ph:'Quais resultados concretos você espera?',max:400})}
+    </div>`;
+    case 3: return `<div class="form">
+      ${fg('q18','Por que um cliente deveria escolher sua marca e não a concorrência?','textarea',{req:true,ph:'Seus diferenciais competitivos...',max:500})}
+      ${fg('q19','O que sua marca faz de forma única?','textarea',{req:true,ph:'Algo que nenhuma outra marca faz exatamente como você...',max:400})}
+      ${fg('q20','Qual percepção deseja construir na mente do público?','pills',{req:true,options:['Sofisticação','Confiança','Inovação','Exclusividade','Acolhimento','Autoridade','Criatividade','Tradição','Modernidade','Luxo','Proximidade']})}
+      ${fg('q21','Qual percepção você NÃO quer transmitir?','pills',{options:['Amadorismo','Elitismo excessivo','Visual barato','Agressividade','Informalidade demais','Visual genérico','Frieza']})}
+      ${fg('q22','Se sua marca pudesse ser resumida em uma frase, qual seria?','text',{ph:'Ex: "Design que transforma negócios." Se não souber, preencha com —'})}
+    </div>`;
+    case 4: return `<div class="form">
+      ${fg('q23','Quem é o público ideal da marca?','textarea',{req:true,ph:'Faixa etária, estilo de vida, profissão, hábitos, classe social, cidade/região...',max:600})}
+      ${fg('q24','Quais dores, desejos ou necessidades sua marca resolve?','textarea',{req:true,ph:'O que seu público precisa que a sua marca entrega? Se não souber, preencha com —',max:400})}
+      ${fg('q25','O que faz esse público confiar em uma marca?','textarea',{ph:'O que valida uma marca para eles? Se não souber, preencha com —',max:400})}
+      ${fg('q26','Como seu público descobre novas marcas?','pills',{options:['Instagram','TikTok','Google','Indicação','Eventos','Influenciadores','Loja física','Pinterest','LinkedIn','YouTube']})}
+      ${fg('q27','O que seu público consome além do seu produto?','textarea',{ph:'Outras marcas, artistas, moda, gastronomia, influenciadores, hobbies... Se não souber, preencha com —',max:400})}
+      ${fg('q28','Existe algum público que a marca NÃO deseja atingir?','textarea',{ph:'Perfil de cliente que não é ideal para a marca. Se não houver, preencha com —',max:300})}
+    </div>`;
+    case 5: return `<div class="form">
+      ${fg('q29','Se sua marca fosse uma pessoa, como ela seria?','textarea',{req:true,ph:'Personalidade, forma de falar, estilo, energia, postura...',max:500})}
+      ${fg('q30','Como a marca deve se comunicar?','pills',{options:['Técnica','Inspiradora','Elegante','Direta','Divertida','Sofisticada','Provocadora','Minimalista','Afetiva','Jovem','Institucional']})}
+      ${fg('q31','Escolha até 3 características que MAIS representam sua marca','pills',{req:true,max:3,options:['Elegante','Moderna','Minimalista','Luxuosa','Criativa','Tecnológica','Humana','Inovadora','Tradicional','Exclusiva','Divertida','Rebelde','Artística','Natural','Urbana','Popular']})}
+      ${fg('q31_why','Por que essas características?','textarea',{ph:'Explique a escolha... Se não souber, preencha com —',max:300})}
+      ${fg('q32','Palavras ou comportamentos que sua marca jamais usaria','textarea',{ph:'Expressões, tons, estilos que não representam a marca. Se não houver, preencha com —',max:300})}
+      <hr class="form-divider"><p class="form-section-title">Associações da marca</p>
+      <p class="hint" style="font-size:13px;color:var(--t3);margin:0 0 4px">Preencha as associações que fizerem sentido para sua marca. Campos sem resposta: preencha com —</p>
+      <div class="analog-grid">
+        <div class="analog-row"><span class="analog-lbl">Artista / Músico</span><input id="q33_artista" placeholder="Ex: Frank Ocean, Caetano Veloso ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Música</span><input id="q33_musica" placeholder="Ex: Cores, de Caetano Veloso ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Filme / Série</span><input id="q33_filme" placeholder="Ex: Succession, Amélie ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Movimento cultural</span><input id="q33_movimento" placeholder="Ex: Bauhaus, Wabi-sabi ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Cidade</span><input id="q33_cidade" placeholder="Ex: Tóquio, Milão, Lisboa ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Peça de roupa</span><input id="q33_roupa" placeholder="Ex: Blazer estruturado ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Arquitetura</span><input id="q33_arquitetura" placeholder="Ex: Minimalismo japonês ou —"></div>
+        <div class="analog-row"><span class="analog-lbl">Textura / Material</span><input id="q33_textura" placeholder="Ex: Linho, concreto aparente ou —"></div>
+      </div>
+    </div>`;
+    case 6: return `<div class="form">
+      ${fg('q34','Quem são seus principais concorrentes?','textarea',{req:true,ph:'Nomes, marcas, players do mercado... Se não houver, preencha com —',max:400})}
+      ${fg('q35','O que você gosta e NÃO gosta na comunicação deles?','textarea',{ph:'O que eles fazem bem? O que você evitaria? Se não souber, preencha com —',max:400})}
+      ${fg('q36','Oportunidade de mercado que ninguém está explorando','textarea',{ph:'Onde você vê um espaço vazio que sua marca pode ocupar? Se não souber, preencha com —',max:400})}
+      ${fg('q37','Quais marcas você admira? (qualquer segmento)','textarea',{req:true,ph:'Marcas, studios, produtos que te inspiram... Se não houver, preencha com —',max:400})}
+      ${fg('q38','O que mais chama sua atenção nessas marcas?','pills',{options:['Logotipo','Comunicação','Embalagem','Redes sociais','Fotografia','Posicionamento','Experiência','Atendimento','Campanhas','Tipografia','Paleta de cores']})}
+      ${fg('q39','Links de referências visuais','textarea',{ph:'Pinterest, Behance, Instagram, sites... Cole os links aqui. Se não houver, preencha com —',max:600})}
+      ${fg('q40','Existe algum estilo visual que você NÃO gosta?','textarea',{ph:'Estilos, tendências, referências que não representam sua marca. Se não houver, preencha com —',max:400})}
+    </div>`;
+    case 7: return `<div class="form">
+      <div class="form-row">${fg('q41','Cor(es) com que você se identifica','text',{req:true,ph:'Ex: Tons terrosos, azul-marinho, off-white ou —'})}${fg('q42','Cor(es) que NÃO deseja utilizar','text',{ph:'Ex: Amarelo neon, vermelho agressivo ou —'})}</div>
+      ${fg('q43','Símbolo, elemento ou conceito que gostaria de incluir','textarea',{ph:'Algo específico com significado para a marca... Se não houver, preencha com —',max:400})}
+      ${fg('q44','O que NÃO gostaria que aparecesse visualmente','textarea',{ph:'Elementos, simbologias, estilos a evitar. Se não houver, preencha com —',max:300})}
+      ${fg('q45','Como você imagina sua marca visualmente?','pills',{req:true,options:['Tipográfica','Simbólica','Editorial','Minimalista','Expressiva','Institucional','Conceitual','Artística','Fashion','Tecnológica']})}
+      ${fg('q46','Como você NÃO quer que sua identidade visual pareça?','textarea',{ph:'Ex: genérica, infantil, fria, corporativa demais, poluída... Se não souber, preencha com —',max:300})}
+      ${fg('q47','Preferência de tipografia','textarea',{ph:'Estilos: serifada, sem serifa, manuscrita... Pode citar referências. Se não souber, preencha com —',max:300})}
+    </div>`;
+    case 8: return `<div class="form">
+      ${fg('q48','Onde a identidade visual será aplicada?','pills',{req:true,options:['Instagram','TikTok','Site','Embalagens','Produtos físicos','Etiquetas','Uniformes','Papelaria','Cartão de visita','Fachada','Eventos','Brindes','Outdoor','Sinalização','Apresentações']})}
+      ${fg('q49','Principal ambiente de contato com o público','pills',{req:true,options:['Digital','Loja física','Eventos','Embalagem','Redes sociais','Atendimento presencial']})}
+      ${fg('q50','Que experiência você quer proporcionar às pessoas?','textarea',{ph:'Como elas devem se sentir ao interagir com sua marca? Se não souber, preencha com —',max:400})}
+      ${fg('q51','Como você gostaria que as pessoas descrevessem sua marca?','textarea',{ph:'Imagine alguém recomendando sua marca para um amigo... Se não souber, preencha com —',max:400})}
+    </div>`;
+    case 9: return `<div class="form">
+      <div class="form-row">${fg('q52','Quem participa da decisão final?','text',{req:true,ph:'Nome e papel no processo decisório. Se não houber, preencha com —'})}${fg('q53','Prazo previsto para lançamento','text',{req:true,ph:'Ex: 3 meses, Outubro/2025, sem prazo definido.'})}</div>
+      ${fg('q54','Já trabalhou com designers ou agências antes?','textarea',{ph:'Como foi a experiência? O que funcionou ou não? Se não houver experiência anterior, preencha com —',max:400})}
+      ${fg('q55','Expectativas específicas para este projeto','textarea',{ph:'Algo inegociável? Resultado muito específico que espera? Se não houver, preencha com —',max:400})}
+    </div>`;
+    case 10: return `<div class="form">
+      ${fg('q56','História, símbolo ou referência emocional importante para a marca','textarea',{req:true,ph:'Um lugar, memória, pessoa, tradição cultural que molda a essência da marca. Se não houver, preencha com —',max:500})}
+      ${fg('q57','Algo importante que não foi perguntado','textarea',{req:true,ph:'Seu espaço livre. Qualquer contexto adicional é bem-vindo. Se não houver, preencha com —',max:600})}
+      <hr class="form-divider"><p class="form-section-title">Envio de materiais</p>
+      <p class="form-grp" style="margin:0"><span style="font-size:13px;color:var(--t2);line-height:1.65">Fotos do negócio, embalagens, materiais atuais, referências, moodboards, arquivos antigos — qualquer conteúdo relevante para a compreensão da marca.</span></p>
+      <div class="dropzone" id="dropzone" onclick="document.getElementById('file-inp').click()" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event)">
+        <input type="file" id="file-inp" multiple accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.ai,.eps,.svg,.mp4,.mov" onchange="addFiles(this.files)" style="position:absolute;opacity:0;inset:0;cursor:pointer">
+        <span class="dropzone-icon">↑</span>
+        <div class="dropzone-title">Arraste arquivos ou clique para selecionar</div>
+        <div class="dropzone-sub">Imagens, PDFs, documentos, referências, vídeos</div>
+        <div class="dropzone-types">PNG · JPG · PDF · AI · EPS · MP4 · DOC · PPT</div>
+      </div>
+      <div class="file-list" id="file-list" style="display:none"></div>
+    </div>`;
+    case 11: return `
+      <div class="rev-grid" id="rev-grid"></div>
+      <div class="send-area">
+        <h2 class="send-h2">Tudo certo para enviar?</h2>
+        <p class="send-sub">Verifique suas respostas acima. Você pode editar qualquer seção antes de enviar.</p>
+        <p class="send-note">Suas respostas serão encaminhadas com segurança para gmstudio@outlook.pt</p>
+      </div>`;
+    default: return '';
+  }
+}
+
+// ── INTERACTIVES ─────────────────────────────────────
+function selRadio(id,el,cls){
+  const cont=el.closest('.radio-group')||el.closest('.radio-h-group');
+  if(!cont)return;
+  cont.querySelectorAll('.radio-opt,.radio-h-opt').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  const hidden=document.getElementById(id);
+  if(hidden)hidden.value=el.dataset.val;
+  if(id==='q3'){
+    const v=el.dataset.val;
+    const c=document.getElementById('cond-q4');
+    if(c)c.classList.toggle('show',v==='ativa'||v==='rebranding');
+  }
+  clearErr(id);
+}
+function togPill(el,id,max){
+  const cont=el.closest('.pill-group');
+  const sel=[...cont.querySelectorAll('.pill.sel')];
+  if(el.classList.contains('sel')){el.classList.remove('sel');}
+  else{
+    if(sel.length>=max){toast('Selecione no máximo '+max+'.','err');return;}
+    el.classList.add('sel');
+  }
+  const hidden=document.getElementById(id);
+  if(hidden)hidden.value=[...cont.querySelectorAll('.pill.sel')].map(p=>p.dataset.val).join(', ');
+  clearErr(id);
+}
+function setupInteractives(){
+  document.querySelectorAll('textarea').forEach(ta=>{
+    const cc=document.getElementById('cc-'+ta.id);
+    if(!cc)return;
+    const max=parseInt(cc.textContent.split('/')[1])||500;
+    ta.addEventListener('input',()=>{cc.textContent=ta.value.length+' / '+max;});
+    cc.textContent=ta.value.length+' / '+max;
+  });
+}
+
+// ── FILE UPLOAD ───────────────────────────────────────
+function setupDropzone(){}
+function dzOver(e){e.preventDefault();document.getElementById('dropzone')?.classList.add('drag')}
+function dzLeave(){document.getElementById('dropzone')?.classList.remove('drag')}
+function dzDrop(e){e.preventDefault();document.getElementById('dropzone')?.classList.remove('drag');addFiles(e.dataTransfer.files)}
+function addFiles(fl){
+  [...fl].forEach(f=>{
+    if(f.size>25*1024*1024){toast('Muito grande: '+f.name+' (máx 25MB)','err');return;}
+    files.push(f);
+  });
+  renderFiles();
+}
+function removeFile(i){files.splice(i,1);renderFiles();}
+function renderFiles(){
+  const list=document.getElementById('file-list');
+  if(!list)return;
+  list.style.display=files.length?'flex':'none';
+  list.innerHTML=files.map((f,i)=>{
+    const icon=f.type.startsWith('image/')?'IMG':f.type.includes('pdf')?'PDF':f.type.includes('video')?'VID':'DOC';
+    const size=f.size>1024*1024?(f.size/1024/1024).toFixed(1)+'MB':(f.size/1024).toFixed(0)+'KB';
+    return `<div class="file-item">
+      <span class="file-icon-el" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);font-weight:700">${icon}</span>
+      <div class="file-info"><div class="file-name">${f.name}</div><div class="file-size-el">${size}</div></div>
+      <button class="file-remove" onclick="removeFile(${i})">Remover</button>
+    </div>`;
+  }).join('');
+}
+
+// ── DATA ─────────────────────────────────────────────
+function collectStep(n){
+  document.querySelectorAll('#step-form input,#step-form textarea').forEach(el=>{
+    if(el.id)data[el.id]=el.value;
+  });
+  document.querySelectorAll('#step-form .pill-group').forEach(cont=>{
+    const fid=cont.dataset.field;
+    if(fid)data[fid]=[...cont.querySelectorAll('.pill.sel')].map(p=>p.dataset.val).join(', ');
+  });
+}
+function populateStep(n){
+  setTimeout(()=>{
+    Object.entries(data).forEach(([k,v])=>{
+      const el=document.getElementById(k);
+      if(!el||!v)return;
+      el.value=v;
+      const pg=document.querySelector(`.pill-group[data-field="${k}"]`);
+      if(pg&&v){v.split(', ').forEach(val=>{const p=pg.querySelector(`[data-val="${val}"]`);if(p)p.classList.add('sel');});}
+      ['.radio-group','.radio-h-group'].forEach(cls=>{
+        const rg=document.querySelector(`${cls}[data-field="${k}"]`);
+        if(rg&&v){const opt=rg.querySelector(`[data-val="${v}"]`);if(opt)opt.classList.add('sel');}
+      });
+    });
+    if(n===1&&data.q3){
+      const v=data.q3;
+      const c=document.getElementById('cond-q4');
+      if(c)c.classList.toggle('show',v==='ativa'||v==='rebranding');
+    }
+    setupInteractives();
+  },30);
+}
+
+// ── VALIDATION ────────────────────────────────────────
+const REQ={1:['q1','q2','q3','q6'],2:['q13','q14'],3:['q18','q19','q20'],4:['q23','q24'],5:['q29','q31'],6:['q34','q37'],7:['q41','q45'],8:['q49','q48'],9:['q52','q53'],10:['q56','q57'],11:[]};
+function validateStep(n){
+  collectStep(n);
+  let ok=true;
+  (REQ[n]||[]).forEach(id=>{
+    const el=document.getElementById(id);
+    const fg=document.getElementById('fg-'+id);
+    if(!el||!el.value.trim()){
+      if(fg)fg.classList.add('has-err');
+      ok=false;
+    } else {if(fg)fg.classList.remove('has-err');}
+  });
+  if(!ok)toast('Preencha os campos obrigatórios.','err');
+  return ok;
+}
+function clearErr(id){const f=document.getElementById('fg-'+id);if(f)f.classList.remove('has-err');}
+
+// ── REVIEW ────────────────────────────────────────────
+function buildReview(){
+  collectStep(10);
+  const secs=[
+    {t:'Sobre o Negócio',step:1,fields:[{k:'q1',l:'Nome da marca'},{k:'q2',l:'Segmento'},{k:'q3',l:'Status'},{k:'q6',l:'Propósito'},{k:'q9',l:'Produtos / Serviços'}]},
+    {t:'Objetivos',step:2,fields:[{k:'q13',l:'Por que agora'},{k:'q14',l:'Objetivo 12 meses',pills:true},{k:'q15',l:'Visão 5 anos'}]},
+    {t:'Posicionamento',step:3,fields:[{k:'q18',l:'Diferencial'},{k:'q19',l:'O que é único'},{k:'q20',l:'Percepção desejada',pills:true},{k:'q22',l:'Frase da marca'}]},
+    {t:'Público',step:4,fields:[{k:'q23',l:'Público ideal'},{k:'q26',l:'Como descobre',pills:true}]},
+    {t:'Personalidade',step:5,fields:[{k:'q29',l:'Personalidade'},{k:'q31',l:'Características',pills:true},{k:'q30',l:'Tom de voz',pills:true}]},
+    {t:'Identidade Visual',step:7,fields:[{k:'q41',l:'Cores'},{k:'q45',l:'Estilo visual',pills:true},{k:'q47',l:'Tipografia'}]},
+    {t:'Aplicações',step:8,fields:[{k:'q48',l:'Onde será aplicada',pills:true},{k:'q49',l:'Ambiente principal'}]},
+  ];
+  document.getElementById('rev-grid').innerHTML=secs.map(sec=>`
+    <div class="rev-section">
+      <div class="rev-section-hd">
+        <span class="rev-section-title">${sec.t}</span>
+        <span class="rev-edit" onclick="jumpToStep(${sec.step})">Editar →</span>
+      </div>
+      <div class="rev-fields">
+        ${sec.fields.map(f=>{
+          const v=data[f.k]||'';
+          const empty=!v.trim();
+          const val=empty?`<div class="rev-field-val empty">—</div>`:
+            f.pills?`<div class="rev-tags">${v.split(', ').filter(Boolean).map(t=>`<span class="rev-tag">${t}</span>`).join('')}</div>`:
+            `<div class="rev-field-val">${v.replace(/\n/g,'<br>')}</div>`;
+          return `<div class="rev-field"><div class="rev-field-label">${f.l}</div>${val}</div>`;
+        }).join('')}
+      </div>
+    </div>`).join('');
+}
+function jumpToStep(n){collectStep(cur);cur=n;renderStep(cur);window.scrollTo({top:0,behavior:'smooth'});}
+
+// ── SUBMIT ────────────────────────────────────────────
+async function submitBriefing(){
+  collectStep(11);
+  document.getElementById('loading').classList.add('show');
+  try{
+    if(FORMSPREE_ID==='YOUR_FORMSPREE_ID'){
+      await new Promise(r=>setTimeout(r,2000));
+      onSuccess();return;
+    }
+    const fd=new FormData();
+    fd.append('_subject','Novo Briefing GMSTUDIO: '+(data.q1||'Cliente'));
+    const labels={q1:'Nome da marca',q2:'Segmento',q3:'Status',q4:'Motivo rebranding',q5:'História',q6:'Propósito',q7:'Transformação',q9:'Produtos/Serviços',q11:'Localização',q12_ig:'Instagram',q12_site:'Site',q12_tt:'TikTok',q12_pin:'Pinterest',q13:'Por que agora',q14:'Objetivo 12m',q15:'Visão 5 anos',q16:'Maior desafio',q17:'Definição de sucesso',q18:'Diferencial',q19:'O que é único',q20:'Percepção desejada',q21:'Percepção a evitar',q22:'Frase da marca',q23:'Público ideal',q24:'Dores e desejos',q25:'Como confiam',q26:'Como descobrem',q27:'O que consomem',q28:'Público a evitar',q29:'Personalidade',q30:'Tom de voz',q31:'Características',q31_why:'Por que essas características',q32:'Jamais usaria',q33_artista:'Artista',q33_musica:'Música',q33_filme:'Filme',q33_movimento:'Movimento cultural',q33_cidade:'Cidade',q33_roupa:'Roupa',q33_arquitetura:'Arquitetura',q33_textura:'Textura',q34:'Concorrentes',q35:'Gosta/não gosta neles',q36:'Oportunidade',q37:'Marcas admiradas',q38:'O que admira',q39:'Links de referência',q40:'Estilos a evitar',q41:'Cores preferidas',q42:'Cores a evitar',q43:'Elementos desejados',q44:'Elementos a evitar',q45:'Estilo visual',q46:'Como não deve parecer',q47:'Tipografia',q48:'Aplicações',q49:'Ambiente principal',q50:'Experiência',q51:'Como descrever',q52:'Decisores',q53:'Prazo',q54:'Experiência anterior',q55:'Expectativas',q56:'Referência emocional',q57:'Informações adicionais'};
+    Object.entries(data).forEach(([k,v])=>{if(v&&v.trim())fd.append(labels[k]||k,v);});
+    files.forEach((f,i)=>fd.append('arquivo_'+(i+1),f,f.name));
+    const r=await fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(!r.ok)throw new Error('Erro ao enviar');
+    onSuccess();
+  }catch(e){
+    document.getElementById('loading').classList.remove('show');
+    toast('Erro ao enviar. Verifique sua conexão e tentenovamente.','err');
+  }
+}
+function onSuccess(){
+  clearProgress();
+  document.getElementById('loading').classList.remove('show');
+  veilTransition(()=>{
+    document.getElementById('app-screen').classList.remove('dark-step');
+    document.getElementById('app-screen').classList.add('hidden');
+    document.getElementById('success-screen').classList.remove('hidden');
+    document.getElementById('hdr').classList.add('dark');
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    setTimeout(()=>{
+      document.getElementById('b-ftr').classList.remove('hidden');
+      window.scrollTo(0,0);
+    },50);
+  });
+}
+
+// ── AUTO-SAVE ─────────────────────────────────────────
+function saveProgress(){
+  collectStep(cur);
+  localStorage.setItem('gm_briefing_v2',JSON.stringify({step:cur,data,ts:Date.now()}));
+  const s=document.getElementById('save-status');
+  if(s)s.className='nav-save-status saved';
+}
+function loadProgress(){try{return JSON.parse(localStorage.getItem('gm_briefing_v2'));}catch{return null;}}
+function clearProgress(){localStorage.removeItem('gm_briefing_v2');}
+setInterval(()=>{if(document.getElementById('app-screen')&&!document.getElementById('app-screen').classList.contains('hidden'))saveProgress();},30000);
+
+// ── TOAST ─────────────────────────────────────────────
+function toast(msg,type='ok'){
+  const el=document.createElement('div');
+  el.className='toast '+type;el.textContent=msg;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(()=>el.remove(),3500);
+}
+
+// ── MENU ──────────────────────────────────────────�
