@@ -1036,4 +1036,20 @@ async function loadBriefingContent(){
       if(BCONTENT.seo.title)document.title=BCONTENT.seo.title;
       let metaDesc=document.querySelector('meta[name="description"]');
       if(!metaDesc){metaDesc=document.createElement('meta');metaDesc.name='description';document.head.appendChild(metaDesc);}
-      if(BCONTENT.seo.description)metaDesc.content=BCONTENT.seo.description
+      if(BCONTENT.seo.description)metaDesc.content=BCONTENT.seo.description;
+    }
+    initHero();
+  }catch(e){
+    const errEl=document.getElementById('bc-error');
+    if(errEl){errEl.style.display='block';errEl.textContent='Erro ao carregar formulário. Recarregue a página.';}
+    console.error('loadBriefingContent error:',e);
+  }finally{
+    if(loadEl)loadEl.style.display='none';
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',loadBriefingContent);
+</script>
+</body>
+</html>
