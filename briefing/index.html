@@ -455,6 +455,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 
 <!-- ══ HERO ══════════════════════════════════════════ -->
+<div id="bc-loading" style="display:none;position:fixed;top:var(--hh);left:0;right:0;z-index:98;height:2px;background:linear-gradient(90deg,var(--magenta),transparent);animation:bcLoad 1.5s ease infinite"></div>
+<div id="bc-error" style="display:none;position:fixed;top:calc(var(--hh) + 10px);left:50%;transform:translateX(-50%);z-index:200;background:#C62828;color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-family:var(--ff)"></div>
+<style>@keyframes bcLoad{0%{opacity:1}50%{opacity:.4}100%{opacity:1}}</style>
+
 <section id="hero-screen">
   <div class="b-hero">
     <div class="wrap">
@@ -564,24 +568,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <script>
 // ── CONFIG ────────────────────────────────────────────
-const FORMSPREE_ID = 'xjgzylew';
+const FORMSPREE_ID = 'xjgzylew'; // may be overridden by BCONTENT
 
 
 
-// ── STEPS META ────────────────────────────────────────
-const STEPS = [
-  {id:1,title:'Sobre o Negócio',       desc:'Queremos entender profundamente sua empresa, história e razão de existir.',         sub:'A base da nossa parceria.'},
-  {id:2,title:'Objetivos',             desc:'Onde você quer chegar e por que agora é o momento certo.',                         sub:'Para onde você está indo.'},
-  {id:3,title:'Posicionamento',        desc:'O que diferencia sua marca no mercado e como você quer ser percebido.',             sub:'O que torna sua marca única.'},
-  {id:4,title:'Público e Mercado',     desc:'Para quem a marca existe e quem são as pessoas que ela serve.',                    sub:'Para quem você existe.'},
-  {id:5,title:'Personalidade',         desc:'A voz, o caráter e a energia da sua marca.',                                       sub:'Como sua marca se comporta.'},
-  {id:6,title:'Concorrência',          desc:'O contexto competitivo e as referências que inspiram.',                            sub:'O cenário ao redor.'},
-  {id:7,title:'Identidade Visual',     desc:'Cores, formas, tipografia e a direção estética da marca.',                        sub:'A face da sua marca.'},
-  {id:8,title:'Experiência',           desc:'Onde a marca vive e como as pessoas interagem com ela.',                          sub:'Onde a marca vive.'},
-  {id:9,title:'Expectativas',          desc:'Como vamos trabalhar juntos e o que você espera do processo.',                     sub:'Como vamos trabalhar juntos.'},
-  {id:10,title:'Complementos',         desc:'Últimos detalhes, contextos e arquivos para enriquecer o briefing.',              sub:'Últimos detalhes e arquivos.'},
-  {id:11,title:'Revisão e Envio',      desc:'Revise suas respostas antes de enviar. Tudo pode ser editado.',                   sub:'Confirme e envie seu briefing.'},
-];
+// ── BRIEFING CONTENT (data-driven) ───────────────────
+// Loaded from briefing-content.json
+let BCONTENT = null;
+let STEPS = [];
 
 // ── STATE ─────────────────────────────────────────────
 let cur = 1;
@@ -693,7 +687,7 @@ function renderStep(n){
   if(n===11)buildReview();
 }
 
-// ── STEP HTML ─────────────────────────────────────────
+// ── STEP HTML (data-driven) ──────────────────────────
 function fg(id,label,type,opts={}){
   const req=opts.req?`<span class="req">*</span>`:'';
   const hint=opts.hint?`<p class="hint">${opts.hint}</p>`:'';
@@ -721,98 +715,26 @@ function fg(id,label,type,opts={}){
   return '';
 }
 
-function getStepHTML(n){
-  switch(n){
-    case 1: return `<div class="form">
-      <div class="form-row">${fg('q1','Nome da marca ou empresa','text',{req:true,ph:'Ex: Studio Bloom, Arquitetura Viva'})}${fg('q2','Segmento de atuação','text',{req:true,ph:'Ex: Moda, Gastronomia, Saúde, Tecnologia'})}</div>
-      ${fg('q3','A marca já existe ou será lançada?','radio',{req:true,options:[{val:'ativa',label:'Marca já ativa',desc:'Existe e está em operação.'},{val:'desenvolvimento',label:'Marca em desenvolvimento',desc:'Ainda não lançada ao público.'},{val:'rebranding',label:'Rebranding / Reposicionamento',desc:'Reformulação de identidade existente.'}]})}
-      <div class="cond" id="cond-q4">${fg('q4','Por que deseja reformular sua identidade?','textarea',{ph:'O que motivou essa decisão? Se não souber, preencha com —',max:400})}</div>
-      ${fg('q5','Qual é a história da marca?','textarea',{ph:'Como surgiu, motivações, momentos importantes na trajetória... Se não houver, preencha com —',max:600,hint:'Histórias fortes constroem marcas fortes.'})}
-      ${fg('q6','Qual é o propósito da marca?','textarea',{req:true,ph:'Por que ela existe além de vender produtos ou serviços?',max:400})}
-      <div class="form-row">${fg('q7','Qual transformação a marca quer proporcionar?','text',{ph:'Que mudança você quer gerar nas pessoas? Se não souber, preencha com —'})}${fg('q11','Localização e abrangência','text',{ph:'Ex: São Paulo — atuação nacional'})}</div>
-      ${fg('q9','Produtos ou serviços oferecidos','textarea',{ph:'Descreva os principais e seus diferenciais.',max:500})}
-      <hr class="form-divider"><p class="form-section-title">Links da marca</p>
-      <div class="links-grid">
-        <div class="link-row"><span class="link-prefix">Instagram</span><input class="link-input" id="q12_ig" placeholder="@suamarca"></div>
-        <div class="link-row"><span class="link-prefix">Site</span><input class="link-input" id="q12_site" placeholder="www.suamarca.com.br"></div>
-        <div class="link-row"><span class="link-prefix">TikTok</span><input class="link-input" id="q12_tt" placeholder="@suamarca ou —"></div>
-        <div class="link-row"><span class="link-prefix">Pinterest</span><input class="link-input" id="q12_pin" placeholder="@suamarca ou —"></div>
-      </div>
-    </div>`;
-    case 2: return `<div class="form">
-      ${fg('q13','Por que decidiu investir em branding neste momento?','textarea',{req:true,ph:'O que tornou esse momento certo?',max:400})}
-      ${fg('q14','Principal objetivo nos próximos 12 meses','pills',{req:true,options:['Aumentar vendas','Profissionalizar a imagem','Atrair público qualificado','Posicionamento premium','Fortalecer presença digital','Crescer no mercado','Lançar novos produtos','Atrair investidores','Fortalecer autoridade']})}
-      ${fg('q15','Onde você deseja que sua marca esteja em 5 anos?','textarea',{ph:'Visão de longo prazo — mercado, presença, reconhecimento. Se não souber, preencha com —',max:400})}
-      ${fg('q16','Qual é o maior desafio da marca atualmente?','textarea',{ph:'Seja honesto — entender obstáculos é parte do processo.',max:400})}
-      ${fg('q17','O que faria você considerar este projeto um sucesso?','textarea',{ph:'Quais resultados concretos você espera?',max:400})}
-    </div>`;
-    case 3: return `<div class="form">
-      ${fg('q18','Por que um cliente deveria escolher sua marca e não a concorrência?','textarea',{req:true,ph:'Seus diferenciais competitivos...',max:500})}
-      ${fg('q19','O que sua marca faz de forma única?','textarea',{req:true,ph:'Algo que nenhuma outra marca faz exatamente como você...',max:400})}
-      ${fg('q20','Qual percepção deseja construir na mente do público?','pills',{req:true,options:['Sofisticação','Confiança','Inovação','Exclusividade','Acolhimento','Autoridade','Criatividade','Tradição','Modernidade','Luxo','Proximidade']})}
-      ${fg('q21','Qual percepção você NÃO quer transmitir?','pills',{options:['Amadorismo','Elitismo excessivo','Visual barato','Agressividade','Informalidade demais','Visual genérico','Frieza']})}
-      ${fg('q22','Se sua marca pudesse ser resumida em uma frase, qual seria?','text',{ph:'Ex: "Design que transforma negócios." Se não souber, preencha com —'})}
-    </div>`;
-    case 4: return `<div class="form">
-      ${fg('q23','Quem é o público ideal da marca?','textarea',{req:true,ph:'Faixa etária, estilo de vida, profissão, hábitos, classe social, cidade/região...',max:600})}
-      ${fg('q24','Quais dores, desejos ou necessidades sua marca resolve?','textarea',{req:true,ph:'O que seu público precisa que a sua marca entrega? Se não souber, preencha com —',max:400})}
-      ${fg('q25','O que faz esse público confiar em uma marca?','textarea',{ph:'O que valida uma marca para eles? Se não souber, preencha com —',max:400})}
-      ${fg('q26','Como seu público descobre novas marcas?','pills',{options:['Instagram','TikTok','Google','Indicação','Eventos','Influenciadores','Loja física','Pinterest','LinkedIn','YouTube']})}
-      ${fg('q27','O que seu público consome além do seu produto?','textarea',{ph:'Outras marcas, artistas, moda, gastronomia, influenciadores, hobbies... Se não souber, preencha com —',max:400})}
-      ${fg('q28','Existe algum público que a marca NÃO deseja atingir?','textarea',{ph:'Perfil de cliente que não é ideal para a marca. Se não houver, preencha com —',max:300})}
-    </div>`;
-    case 5: return `<div class="form">
-      ${fg('q29','Se sua marca fosse uma pessoa, como ela seria?','textarea',{req:true,ph:'Personalidade, forma de falar, estilo, energia, postura...',max:500})}
-      ${fg('q30','Como a marca deve se comunicar?','pills',{options:['Técnica','Inspiradora','Elegante','Direta','Divertida','Sofisticada','Provocadora','Minimalista','Afetiva','Jovem','Institucional']})}
-      ${fg('q31','Escolha até 3 características que MAIS representam sua marca','pills',{req:true,max:3,options:['Elegante','Moderna','Minimalista','Luxuosa','Criativa','Tecnológica','Humana','Inovadora','Tradicional','Exclusiva','Divertida','Rebelde','Artística','Natural','Urbana','Popular']})}
-      ${fg('q31_why','Por que essas características?','textarea',{ph:'Explique a escolha... Se não souber, preencha com —',max:300})}
-      ${fg('q32','Palavras ou comportamentos que sua marca jamais usaria','textarea',{ph:'Expressões, tons, estilos que não representam a marca. Se não houver, preencha com —',max:300})}
-      <hr class="form-divider"><p class="form-section-title">Associações da marca</p>
-      <p class="hint" style="font-size:13px;color:var(--t3);margin:0 0 4px">Preencha as associações que fizerem sentido para sua marca. Campos sem resposta: preencha com —</p>
-      <div class="analog-grid">
-        <div class="analog-row"><span class="analog-lbl">Artista / Músico</span><input id="q33_artista" placeholder="Ex: Frank Ocean, Caetano Veloso ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Música</span><input id="q33_musica" placeholder="Ex: Cores, de Caetano Veloso ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Filme / Série</span><input id="q33_filme" placeholder="Ex: Succession, Amélie ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Movimento cultural</span><input id="q33_movimento" placeholder="Ex: Bauhaus, Wabi-sabi ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Cidade</span><input id="q33_cidade" placeholder="Ex: Tóquio, Milão, Lisboa ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Peça de roupa</span><input id="q33_roupa" placeholder="Ex: Blazer estruturado ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Arquitetura</span><input id="q33_arquitetura" placeholder="Ex: Minimalismo japonês ou —"></div>
-        <div class="analog-row"><span class="analog-lbl">Textura / Material</span><input id="q33_textura" placeholder="Ex: Linho, concreto aparente ou —"></div>
-      </div>
-    </div>`;
-    case 6: return `<div class="form">
-      ${fg('q34','Quem são seus principais concorrentes?','textarea',{req:true,ph:'Nomes, marcas, players do mercado... Se não houver, preencha com —',max:400})}
-      ${fg('q35','O que você gosta e NÃO gosta na comunicação deles?','textarea',{ph:'O que eles fazem bem? O que você evitaria? Se não souber, preencha com —',max:400})}
-      ${fg('q36','Oportunidade de mercado que ninguém está explorando','textarea',{ph:'Onde você vê um espaço vazio que sua marca pode ocupar? Se não souber, preencha com —',max:400})}
-      ${fg('q37','Quais marcas você admira? (qualquer segmento)','textarea',{req:true,ph:'Marcas, studios, produtos que te inspiram... Se não houver, preencha com —',max:400})}
-      ${fg('q38','O que mais chama sua atenção nessas marcas?','pills',{options:['Logotipo','Comunicação','Embalagem','Redes sociais','Fotografia','Posicionamento','Experiência','Atendimento','Campanhas','Tipografia','Paleta de cores']})}
-      ${fg('q39','Links de referências visuais','textarea',{ph:'Pinterest, Behance, Instagram, sites... Cole os links aqui. Se não houver, preencha com —',max:600})}
-      ${fg('q40','Existe algum estilo visual que você NÃO gosta?','textarea',{ph:'Estilos, tendências, referências que não representam sua marca. Se não houver, preencha com —',max:400})}
-    </div>`;
-    case 7: return `<div class="form">
-      <div class="form-row">${fg('q41','Cor(es) com que você se identifica','text',{req:true,ph:'Ex: Tons terrosos, azul-marinho, off-white ou —'})}${fg('q42','Cor(es) que NÃO deseja utilizar','text',{ph:'Ex: Amarelo neon, vermelho agressivo ou —'})}</div>
-      ${fg('q43','Símbolo, elemento ou conceito que gostaria de incluir','textarea',{ph:'Algo específico com significado para a marca... Se não houver, preencha com —',max:400})}
-      ${fg('q44','O que NÃO gostaria que aparecesse visualmente','textarea',{ph:'Elementos, simbologias, estilos a evitar. Se não houver, preencha com —',max:300})}
-      ${fg('q45','Como você imagina sua marca visualmente?','pills',{req:true,options:['Tipográfica','Simbólica','Editorial','Minimalista','Expressiva','Institucional','Conceitual','Artística','Fashion','Tecnológica']})}
-      ${fg('q46','Como você NÃO quer que sua identidade visual pareça?','textarea',{ph:'Ex: genérica, infantil, fria, corporativa demais, poluída... Se não souber, preencha com —',max:300})}
-      ${fg('q47','Preferência de tipografia','textarea',{ph:'Estilos: serifada, sem serifa, manuscrita... Pode citar referências. Se não souber, preencha com —',max:300})}
-    </div>`;
-    case 8: return `<div class="form">
-      ${fg('q48','Onde a identidade visual será aplicada?','pills',{req:true,options:['Instagram','TikTok','Site','Embalagens','Produtos físicos','Etiquetas','Uniformes','Papelaria','Cartão de visita','Fachada','Eventos','Brindes','Outdoor','Sinalização','Apresentações']})}
-      ${fg('q49','Principal ambiente de contato com o público','pills',{req:true,options:['Digital','Loja física','Eventos','Embalagem','Redes sociais','Atendimento presencial']})}
-      ${fg('q50','Que experiência você quer proporcionar às pessoas?','textarea',{ph:'Como elas devem se sentir ao interagir com sua marca? Se não souber, preencha com —',max:400})}
-      ${fg('q51','Como você gostaria que as pessoas descrevessem sua marca?','textarea',{ph:'Imagine alguém recomendando sua marca para um amigo... Se não souber, preencha com —',max:400})}
-    </div>`;
-    case 9: return `<div class="form">
-      <div class="form-row">${fg('q52','Quem participa da decisão final?','text',{req:true,ph:'Nome e papel no processo decisório. Se não houber, preencha com —'})}${fg('q53','Prazo previsto para lançamento','text',{req:true,ph:'Ex: 3 meses, Outubro/2025, sem prazo definido.'})}</div>
-      ${fg('q54','Já trabalhou com designers ou agências antes?','textarea',{ph:'Como foi a experiência? O que funcionou ou não? Se não houver experiência anterior, preencha com —',max:400})}
-      ${fg('q55','Expectativas específicas para este projeto','textarea',{ph:'Algo inegociável? Resultado muito específico que espera? Se não houver, preencha com —',max:400})}
-    </div>`;
-    case 10: return `<div class="form">
-      ${fg('q56','História, símbolo ou referência emocional importante para a marca','textarea',{req:true,ph:'Um lugar, memória, pessoa, tradição cultural que molda a essência da marca. Se não houver, preencha com —',max:500})}
-      ${fg('q57','Algo importante que não foi perguntado','textarea',{req:true,ph:'Seu espaço livre. Qualquer contexto adicional é bem-vindo. Se não houver, preencha com —',max:600})}
-      <hr class="form-divider"><p class="form-section-title">Envio de materiais</p>
-      <p class="form-grp" style="margin:0"><span style="font-size:13px;color:var(--t2);line-height:1.65">Fotos do negócio, embalagens, materiais atuais, referências, moodboards, arquivos antigos — qualquer conteúdo relevante para a compreensão da marca.</span></p>
+function renderContent(items){
+  if(!items||!items.length)return '';
+  return items.map(it=>{
+    if(it._row){
+      return '<div class="form-row">'+it.items.map(q=>renderQuestion(q)).join('')+'</div>';
+    }
+    if(it._section){
+      return '<hr class="form-divider"><p class="form-section-title">'+escHtml(it.title)+'</p>';
+    }
+    if(it._widget==='links-grid'){
+      const rows=it.fields.map(f=>`<div class="link-row"><span class="link-prefix">${escHtml(f.prefix)}</span><input class="link-input" id="${it.id}_${f.suffix}" placeholder="${escHtml(f.ph)}"></div>`).join('');
+      return '<div class="links-grid">'+rows+'</div>';
+    }
+    if(it._widget==='analog-grid'){
+      const hint=it.hint?`<p class="hint" style="font-size:13px;color:var(--t3);margin:0 0 4px">${escHtml(it.hint)}</p>`:'';
+      const rows=it.fields.map(f=>`<div class="analog-row"><span class="analog-lbl">${escHtml(f.label)}</span><input id="${it.id}_${f.suffix}" placeholder="${escHtml(f.ph)}"></div>`).join('');
+      return hint+'<div class="analog-grid">'+rows+'</div>';
+    }
+    if(it._widget==='dropzone'){
+      return `<p class="form-grp" style="margin:0"><span style="font-size:13px;color:var(--t2);line-height:1.65">Fotos do negócio, embalagens, materiais atuais, referências, moodboards, arquivos antigos — qualquer conteúdo relevante para a compreensão da marca.</span></p>
       <div class="dropzone" id="dropzone" onclick="document.getElementById('file-inp').click()" ondragover="dzOver(event)" ondragleave="dzLeave(event)" ondrop="dzDrop(event)">
         <input type="file" id="file-inp" multiple accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.ai,.eps,.svg,.mp4,.mov" onchange="addFiles(this.files)" style="position:absolute;opacity:0;inset:0;cursor:pointer">
         <span class="dropzone-icon">↑</span>
@@ -820,19 +742,46 @@ function getStepHTML(n){
         <div class="dropzone-sub">Imagens, PDFs, documentos, referências, vídeos</div>
         <div class="dropzone-types">PNG · JPG · PDF · AI · EPS · MP4 · DOC · PPT</div>
       </div>
-      <div class="file-list" id="file-list" style="display:none"></div>
-    </div>`;
-    case 11: return `
-      <div class="rev-grid" id="rev-grid"></div>
+      <div class="file-list" id="file-list" style="display:none"></div>`;
+    }
+    // regular question — check for cond
+    const inner = renderQuestion(it);
+    if(it.cond){
+      return `<div class="cond" id="cond-${it.id}">${inner}</div>`;
+    }
+    return inner;
+  }).join('');
+}
+
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderQuestion(q){
+  const opts={};
+  if(q.req)opts.req=true;
+  if(q.ph)opts.ph=q.ph;
+  if(q.hint)opts.hint=q.hint;
+  if(q.max)opts.max=q.max;
+  if(q.maxSel)opts.max=q.maxSel;
+  if(q.options)opts.options=q.options;
+  return fg(q.id,q.label,q.type,opts);
+}
+
+function getStepHTML(n){
+  if(!BCONTENT)return '<div class="form"><p style="color:var(--t3);font-size:14px;padding:20px 0">Carregando...</p></div>';
+  const step=BCONTENT.steps[n-1];
+  if(!step)return '';
+  if(n===11){
+    return `<div class="rev-grid" id="rev-grid"></div>
       <div class="send-area">
         <h2 class="send-h2">Tudo certo para enviar?</h2>
         <p class="send-sub">Verifique suas respostas acima. Você pode editar qualquer seção antes de enviar.</p>
         <p class="send-note">Suas respostas serão encaminhadas com segurança para gmstudio@outlook.pt</p>
       </div>`;
-    default: return '';
   }
+  return '<div class="form">'+renderContent(step.content)+'</div>';
 }
-
 // ── INTERACTIVES ─────────────────────────────────────
 function selRadio(id,el,cls){
   const cont=el.closest('.radio-group')||el.closest('.radio-h-group');
@@ -841,10 +790,16 @@ function selRadio(id,el,cls){
   el.classList.add('sel');
   const hidden=document.getElementById(id);
   if(hidden)hidden.value=el.dataset.val;
-  if(id==='q3'){
-    const v=el.dataset.val;
-    const c=document.getElementById('cond-q4');
-    if(c)c.classList.toggle('show',v==='ativa'||v==='rebranding');
+  // Handle conditional visibility from BCONTENT
+  if(BCONTENT){
+    BCONTENT.steps.forEach(step=>{
+      (step.content||[]).forEach(it=>{
+        if(it.cond&&it.cond.field===id){
+          const condEl=document.getElementById('cond-'+it.id);
+          if(condEl)condEl.classList.toggle('show',it.cond.in.includes(el.dataset.val));
+        }
+      });
+    });
   }
   clearErr(id);
 }
@@ -921,10 +876,21 @@ function populateStep(n){
         if(rg&&v){const opt=rg.querySelector(`[data-val="${v}"]`);if(opt)opt.classList.add('sel');}
       });
     });
-    if(n===1&&data.q3){
-      const v=data.q3;
-      const c=document.getElementById('cond-q4');
-      if(c)c.classList.toggle('show',v==='ativa'||v==='rebranding');
+    // Handle conditional visibility from BCONTENT
+    if(BCONTENT){
+      const step=BCONTENT.steps[n-1];
+      if(step&&step.content){
+        step.content.forEach(it=>{
+          if(it.cond){
+            const condEl=document.getElementById('cond-'+it.id);
+            if(condEl){
+              const fieldVal=data[it.cond.field]||'';
+              const show=it.cond.in.includes(fieldVal);
+              condEl.classList.toggle('show',show);
+            }
+          }
+        });
+      }
     }
     setupInteractives();
   },30);
@@ -1045,13 +1011,36 @@ function toggleMenu(){
   document.getElementById('mnav').classList.toggle('open');
 }
 
-// ── INIT ─────────────────────────────────────────────
-(function(){
+// ── HERO INIT ─────────────────────────────────────────
+function initHero(){
   const s=loadProgress();
   if(s&&s.data&&Object.keys(s.data).length>0){
     document.getElementById('resume-note').style.display='block';
   }
-})();
+}
+
+// ── BRIEFING CONTENT LOADER ────────────────────────────
+async function loadBriefingContent(){
+  const loadEl=document.getElementById('bc-loading');
+  if(loadEl)loadEl.style.display='block';
+  try{
+    const resp=await fetch('../briefing-content.json?v='+Date.now());
+    if(!resp.ok)throw new Error('HTTP '+resp.status);
+    BCONTENT=await resp.json();
+    STEPS=BCONTENT.steps.map(s=>({id:s.id,title:s.title,desc:s.desc,sub:s.sub}));
+    if(BCONTENT.formspree_id)window._FORMSPREE_ID=BCONTENT.formspree_id;
+    initHero();
+  }catch(e){
+    const errEl=document.getElementById('bc-error');
+    if(errEl){errEl.style.display='block';errEl.textContent='Erro ao carregar formulário. Recarregue a página.';}
+    console.error('loadBriefingContent error:',e);
+  }finally{
+    if(loadEl)loadEl.style.display='none';
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',loadBriefingContent);
 </script>
 </body>
 </html>

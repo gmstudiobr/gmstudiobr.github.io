@@ -1,0 +1,178 @@
+{
+  "formspree_id": "xjgzylew",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Sobre o Negócio",
+      "desc": "Queremos entender profundamente sua empresa, história e razão de existir.",
+      "sub": "A base da nossa parceria.",
+      "content": [
+        {"_row":true,"items":[
+          {"id":"q1","type":"text","label":"Nome da marca ou empresa","req":true,"ph":"Ex: Studio Bloom, Arquitetura Viva"},
+          {"id":"q2","type":"text","label":"Segmento de atuação","req":true,"ph":"Ex: Moda, Gastronomia, Saúde, Tecnologia"}
+        ]},
+        {"id":"q3","type":"radio","label":"A marca já existe ou será lançada?","req":true,"options":[
+          {"val":"ativa","label":"Marca já ativa","desc":"Existe e está em operação."},
+          {"val":"desenvolvimento","label":"Marca em desenvolvimento","desc":"Ainda não lançada ao público."},
+          {"val":"rebranding","label":"Rebranding / Reposicionamento","desc":"Reformulação de identidade existente."}
+        ]},
+        {"id":"q4","type":"textarea","label":"Por que deseja reformular sua identidade?","ph":"O que motivou essa decisão? Se não souber, preencha com —","max":400,"cond":{"field":"q3","in":["ativa","rebranding"]}},
+        {"id":"q5","type":"textarea","label":"Qual é a história da marca?","ph":"Como surgiu, motivações, momentos importantes na trajetória... Se não houver, preencha com —","max":600,"hint":"Histórias fortes constroem marcas fortes."},
+        {"id":"q6","type":"textarea","label":"Qual é o propósito da marca?","req":true,"ph":"Por que ela existe além de vender produtos ou serviços?","max":400},
+        {"_row":true,"items":[
+          {"id":"q7","type":"text","label":"Qual transformação a marca quer proporcionar?","ph":"Que mudança você quer gerar nas pessoas? Se não souber, preencha com —"},
+          {"id":"q11","type":"text","label":"Localização e abrangência","ph":"Ex: São Paulo — atuação nacional"}
+        ]},
+        {"id":"q9","type":"textarea","label":"Produtos ou serviços oferecidos","ph":"Descreva os principais e seus diferenciais.","max":500},
+        {"_section":true,"title":"Links da marca"},
+        {"_widget":"links-grid","id":"q12","fields":[
+          {"suffix":"ig","prefix":"Instagram","ph":"@suamarca"},
+          {"suffix":"site","prefix":"Site","ph":"www.suamarca.com.br"},
+          {"suffix":"tt","prefix":"TikTok","ph":"@suamarca ou —"},
+          {"suffix":"pin","prefix":"Pinterest","ph":"@suamarca ou —"}
+        ]}
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Objetivos",
+      "desc": "Onde você quer chegar e por que agora é o momento certo.",
+      "sub": "Para onde você está indo.",
+      "content": [
+        {"id":"q13","type":"textarea","label":"Por que decidiu investir em branding neste momento?","req":true,"ph":"O que tornou esse momento certo?","max":400},
+        {"id":"q14","type":"pills","label":"Principal objetivo nos próximos 12 meses","req":true,"options":["Aumentar vendas","Profissionalizar a imagem","Atrair público qualificado","Posicionamento premium","Fortalecer presença digital","Crescer no mercado","Lançar novos produtos","Atrair investidores","Fortalecer autoridade"]},
+        {"id":"q15","type":"textarea","label":"Onde você deseja que sua marca esteja em 5 anos?","ph":"Visão de longo prazo — mercado, presença, reconhecimento. Se não souber, preencha com —","max":400},
+        {"id":"q16","type":"textarea","label":"Qual é o maior desafio da marca atualmente?","ph":"Seja honesto — entender obstáculos é parte do processo.","max":400},
+        {"id":"q17","type":"textarea","label":"O que faria você considerar este projeto um sucesso?","ph":"Quais resultados concretos você espera?","max":400}
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Posicionamento",
+      "desc": "O que diferencia sua marca no mercado e como você quer ser percebido.",
+      "sub": "O que torna sua marca única.",
+      "content": [
+        {"id":"q18","type":"textarea","label":"Por que um cliente deveria escolher sua marca e não a concorrência?","req":true,"ph":"Seus diferenciais competitivos...","max":500},
+        {"id":"q19","type":"textarea","label":"O que sua marca faz de forma única?","req":true,"ph":"Algo que nenhuma outra marca faz exatamente como você...","max":400},
+        {"id":"q20","type":"pills","label":"Qual percepção deseja construir na mente do público?","req":true,"options":["Sofisticação","Confiança","Inovação","Exclusividade","Acolhimento","Autoridade","Criatividade","Tradição","Modernidade","Luxo","Proximidade"]},
+        {"id":"q21","type":"pills","label":"Qual percepção você NÃO quer transmitir?","options":["Amadorismo","Elitismo excessivo","Visual barato","Agressividade","Informalidade demais","Visual genérico","Frieza"]},
+        {"id":"q22","type":"text","label":"Se sua marca pudesse ser resumida em uma frase, qual seria?","ph":"Ex: \"Design que transforma negócios.\" Se não souber, preencha com —"}
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Público e Mercado",
+      "desc": "Para quem a marca existe e quem são as pessoas que ela serve.",
+      "sub": "Para quem você existe.",
+      "content": [
+        {"id":"q23","type":"textarea","label":"Quem é o público ideal da marca?","req":true,"ph":"Faixa etária, estilo de vida, profissão, hábitos, classe social, cidade/região...","max":600},
+        {"id":"q24","type":"textarea","label":"Quais dores, desejos ou necessidades sua marca resolve?","req":true,"ph":"O que seu público precisa que a sua marca entrega? Se não souber, preencha com —","max":400},
+        {"id":"q25","type":"textarea","label":"O que faz esse público confiar em uma marca?","ph":"O que valida uma marca para eles? Se não souber, preencha com —","max":400},
+        {"id":"q26","type":"pills","label":"Como seu público descobre novas marcas?","options":["Instagram","TikTok","Google","Indicação","Eventos","Influenciadores","Loja física","Pinterest","LinkedIn","YouTube"]},
+        {"id":"q27","type":"textarea","label":"O que seu público consome além do seu produto?","ph":"Outras marcas, artistas, moda, gastronomia, influenciadores, hobbies... Se não souber, preencha com —","max":400},
+        {"id":"q28","type":"textarea","label":"Existe algum público que a marca NÃO deseja atingir?","ph":"Perfil de cliente que não é ideal para a marca. Se não houver, preencha com —","max":300}
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Personalidade",
+      "desc": "A voz, o caráter e a energia da sua marca.",
+      "sub": "Como sua marca se comporta.",
+      "content": [
+        {"id":"q29","type":"textarea","label":"Se sua marca fosse uma pessoa, como ela seria?","req":true,"ph":"Personalidade, forma de falar, estilo, energia, postura...","max":500},
+        {"id":"q30","type":"pills","label":"Como a marca deve se comunicar?","options":["Técnica","Inspiradora","Elegante","Direta","Divertida","Sofisticada","Provocadora","Minimalista","Afetiva","Jovem","Institucional"]},
+        {"id":"q31","type":"pills","label":"Escolha até 3 características que MAIS representam sua marca","req":true,"maxSel":3,"options":["Elegante","Moderna","Minimalista","Luxuosa","Criativa","Tecnológica","Humana","Inovadora","Tradicional","Exclusiva","Divertida","Rebelde","Artística","Natural","Urbana","Popular"]},
+        {"id":"q31_why","type":"textarea","label":"Por que essas características?","ph":"Explique a escolha... Se não souber, preencha com —","max":300},
+        {"id":"q32","type":"textarea","label":"Palavras ou comportamentos que sua marca jamais usaria","ph":"Expressões, tons, estilos que não representam a marca. Se não houver, preencha com —","max":300},
+        {"_section":true,"title":"Associações da marca"},
+        {"_widget":"analog-grid","id":"q33","hint":"Preencha as associações que fizerem sentido para sua marca. Campos sem resposta: preencha com —","fields":[
+          {"label":"Artista / Músico","suffix":"artista","ph":"Ex: Frank Ocean, Caetano Veloso ou —"},
+          {"label":"Música","suffix":"musica","ph":"Ex: Cores, de Caetano Veloso ou —"},
+          {"label":"Filme / Série","suffix":"filme","ph":"Ex: Succession, Amélie ou —"},
+          {"label":"Movimento cultural","suffix":"movimento","ph":"Ex: Bauhaus, Wabi-sabi ou —"},
+          {"label":"Cidade","suffix":"cidade","ph":"Ex: Tóquio, Milão, Lisboa ou —"},
+          {"label":"Peça de roupa","suffix":"roupa","ph":"Ex: Blazer estruturado ou —"},
+          {"label":"Arquitetura","suffix":"arquitetura","ph":"Ex: Minimalismo japonês ou —"},
+          {"label":"Textura / Material","suffix":"textura","ph":"Ex: Linho, concreto aparente ou —"}
+        ]}
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Concorrência",
+      "desc": "O contexto competitivo e as referências que inspiram.",
+      "sub": "O cenário ao redor.",
+      "content": [
+        {"id":"q34","type":"textarea","label":"Quem são seus principais concorrentes?","req":true,"ph":"Nomes, marcas, players do mercado... Se não houver, preencha com —","max":400},
+        {"id":"q35","type":"textarea","label":"O que você gosta e NÃO gosta na comunicação deles?","ph":"O que eles fazem bem? O que você evitaria? Se não souber, preencha com —","max":400},
+        {"id":"q36","type":"textarea","label":"Oportunidade de mercado que ninguém está explorando","ph":"Onde você vê um espaço vazio que sua marca pode ocupar? Se não souber, preencha com —","max":400},
+        {"id":"q37","type":"textarea","label":"Quais marcas você admira? (qualquer segmento)","req":true,"ph":"Marcas, studios, produtos que te inspiram... Se não houver, preencha com —","max":400},
+        {"id":"q38","type":"pills","label":"O que mais chama sua atenção nessas marcas?","options":["Logotipo","Comunicação","Embalagem","Redes sociais","Fotografia","Posicionamento","Experiência","Atendimento","Campanhas","Tipografia","Paleta de cores"]},
+        {"id":"q39","type":"textarea","label":"Links de referências visuais","ph":"Pinterest, Behance, Instagram, sites... Cole os links aqui. Se não houver, preencha com —","max":600},
+        {"id":"q40","type":"textarea","label":"Existe algum estilo visual que você NÃO gosta?","ph":"Estilos, tendências, referências que não representam sua marca. Se não houver, preencha com —","max":400}
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Identidade Visual",
+      "desc": "Cores, formas, tipografia e a direção estética da marca.",
+      "sub": "A face da sua marca.",
+      "content": [
+        {"_row":true,"items":[
+          {"id":"q41","type":"text","label":"Cor(es) com que você se identifica","req":true,"ph":"Ex: Tons terrosos, azul-marinho, off-white ou —"},
+          {"id":"q42","type":"text","label":"Cor(es) que NÃO deseja utilizar","ph":"Ex: Amarelo neon, vermelho agressivo ou —"}
+        ]},
+        {"id":"q43","type":"textarea","label":"Símbolo, elemento ou conceito que gostaria de incluir","ph":"Algo específico com significado para a marca... Se não houver, preencha com —","max":400},
+        {"id":"q44","type":"textarea","label":"O que NÃO gostaria que aparecesse visualmente","ph":"Elementos, simbologias, estilos a evitar. Se não houver, preencha com —","max":300},
+        {"id":"q45","type":"pills","label":"Como você imagina sua marca visualmente?","req":true,"options":["Tipográfica","Simbólica","Editorial","Minimalista","Expressiva","Institucional","Conceitual","Artística","Fashion","Tecnológica"]},
+        {"id":"q46","type":"textarea","label":"Como você NÃO quer que sua identidade visual pareça?","ph":"Ex: genérica, infantil, fria, corporativa demais, poluída... Se não souber, preencha com —","max":300},
+        {"id":"q47","type":"textarea","label":"Preferência de tipografia","ph":"Estilos: serifada, sem serifa, manuscrita... Pode citar referências. Se não souber, preencha com —","max":300}
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Experiência",
+      "desc": "Onde a marca vive e como as pessoas interagem com ela.",
+      "sub": "Onde a marca vive.",
+      "content": [
+        {"id":"q48","type":"pills","label":"Onde a identidade visual será aplicada?","req":true,"options":["Instagram","TikTok","Site","Embalagens","Produtos físicos","Etiquetas","Uniformes","Papelaria","Cartão de visita","Fachada","Eventos","Brindes","Outdoor","Sinalização","Apresentações"]},
+        {"id":"q49","type":"pills","label":"Principal ambiente de contato com o público","req":true,"options":["Digital","Loja física","Eventos","Embalagem","Redes sociais","Atendimento presencial"]},
+        {"id":"q50","type":"textarea","label":"Que experiência você quer proporcionar às pessoas?","ph":"Como elas devem se sentir ao interagir com sua marca? Se não souber, preencha com —","max":400},
+        {"id":"q51","type":"textarea","label":"Como você gostaria que as pessoas descrevessem sua marca?","ph":"Imagine alguém recomendando sua marca para um amigo... Se não souber, preencha com —","max":400}
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Expectativas",
+      "desc": "Como vamos trabalhar juntos e o que você espera do processo.",
+      "sub": "Como vamos trabalhar juntos.",
+      "content": [
+        {"_row":true,"items":[
+          {"id":"q52","type":"text","label":"Quem participa da decisão final?","req":true,"ph":"Nome e papel no processo decisório. Se não houber, preencha com —"},
+          {"id":"q53","type":"text","label":"Prazo previsto para lançamento","req":true,"ph":"Ex: 3 meses, Outubro/2025, sem prazo definido."}
+        ]},
+        {"id":"q54","type":"textarea","label":"Já trabalhou com designers ou agências antes?","ph":"Como foi a experiência? O que funcionou ou não? Se não houver experiência anterior, preencha com —","max":400},
+        {"id":"q55","type":"textarea","label":"Expectativas específicas para este projeto","ph":"Algo inegociável? Resultado muito específico que espera? Se não houver, preencha com —","max":400}
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Complementos",
+      "desc": "Últimos detalhes, contextos e arquivos para enriquecer o briefing.",
+      "sub": "Últimos detalhes e arquivos.",
+      "content": [
+        {"id":"q56","type":"textarea","label":"História, símbolo ou referência emocional importante para a marca","req":true,"ph":"Um lugar, memória, pessoa, tradição cultural que molda a essência da marca. Se não houver, preencha com —","max":500},
+        {"id":"q57","type":"textarea","label":"Algo importante que não foi perguntado","req":true,"ph":"Seu espaço livre. Qualquer contexto adicional é bem-vindo. Se não houver, preencha com —","max":600},
+        {"_section":true,"title":"Envio de materiais"},
+        {"_widget":"dropzone"}
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Revisão e Envio",
+      "desc": "Revise suas respostas antes de enviar. Tudo pode ser editado.",
+      "sub": "Confirme e envie seu briefing.",
+      "content": []
+    }
+  ]
+}
