@@ -564,7 +564,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <script>
 // ── CONFIG ────────────────────────────────────────────
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+const FORMSPREE_ID = 'xjgzylew';
 
 
 
@@ -1039,4 +1039,19 @@ function toast(msg,type='ok'){
   setTimeout(()=>el.remove(),3500);
 }
 
-// ── MENU ──────────────────────────────────────────�
+// ── MENU ─────────────────────────────────────────────
+function toggleMenu(){
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mnav').classList.toggle('open');
+}
+
+// ── INIT ─────────────────────────────────────────────
+(function(){
+  const s=loadProgress();
+  if(s&&s.data&&Object.keys(s.data).length>0){
+    document.getElementById('resume-note').style.display='block';
+  }
+})();
+</script>
+</body>
+</html>
