@@ -1,0 +1,167 @@
+{
+  "seo": {
+    "title": "Branding & Identidade Visual — GMSTUDIO®",
+    "description": "Identidade visual e sistemas de branding para marcas que querem ser icônicas. Pouso Alegre/MG · Desde 2013."
+  },
+  "hero": {
+    "eyebrow": "Pouso Alegre/MG · Branding Estratégico · Desde 2013",
+    "typewriter": ["IDENTIDADE", "COM", "PROPÓSITO"],
+    "h1_lines": ["Marcas", "que", "falam."],
+    "subtitle": "Identidade visual e sistemas de marca que unem estratégia, percepção e presença — para marcas que querem ser lembradas.",
+    "cta_primary": "Ver Pacotes",
+    "cta_primary_href": "#pacotes",
+    "cta_secondary": "Ver Cases",
+    "cta_secondary_href": "#cases"
+  },
+  "marquee": [
+    "Branding",
+    "Identidade Visual",
+    "Naming",
+    "Posicionamento",
+    "Sistema de Marca",
+    "Direção de Arte",
+    "Estratégia Visual",
+    "Brandbook"
+  ],
+  "showreel": [
+    "https://gmstudiobr.github.io/assets/images/cover-bas.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-02.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-05.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-08.jpg",
+    "https://gmstudiobr.github.io/assets/images/cover-citti.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-02.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-05.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-08.jpg",
+    "https://gmstudiobr.github.io/assets/images/cover-tree.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/tree-02.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/tree-05.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/tree-08.jpg",
+    "https://gmstudiobr.github.io/assets/images/cover-bora.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bora-02.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bora-05.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bora-08.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-03.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-03.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/tree-03.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bora-03.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-07.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-07.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/tree-07.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bora-07.jpg"
+  ],
+  "casos": [
+    {
+      "id": "bas",
+      "nome": "Bas Telecom",
+      "num": "01",
+      "categoria": "Identidade Visual · Manual de Marca",
+      "ano": "2024",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-bas.jpg"
+    },
+    {
+      "id": "citti",
+      "nome": "CITTI",
+      "num": "02",
+      "categoria": "Brandbook · Direção Criativa",
+      "ano": "2023",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-citti.jpg"
+    },
+    {
+      "id": "tree",
+      "nome": "Tree Digital",
+      "num": "03",
+      "categoria": "Identidade Visual · Brandbook",
+      "ano": "2023",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-tree.jpg"
+    },
+    {
+      "id": "bora",
+      "nome": "Bora Trip",
+      "num": "04",
+      "categoria": "Identidade Visual · App UI",
+      "ano": "2024",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-bora.jpg"
+    }
+  ],
+  "pacotes": [
+    {
+      "id": "start",
+      "nome": "START",
+      "sub": "Para quem está começando e precisa de uma base sólida",
+      "cor": "#0057E6",
+      "itens": [
+        "Naming (até 3 opções)",
+        "Logotipo profissional",
+        "Paleta de cores",
+        "Tipografia",
+        "Cartão de visita",
+        "Guia básico de marca"
+      ]
+    },
+    {
+      "id": "presenca",
+      "nome": "PRESENÇA",
+      "sub": "Identidade completa + presença digital estruturada",
+      "cor": "#E50046",
+      "itens": [
+        "Tudo do START",
+        "Manual de identidade",
+        "Papelaria corporativa",
+        "Templates para redes sociais",
+        "Brandbook digital",
+        "Consultoria de posicionamento"
+      ]
+    },
+    {
+      "id": "posicionamento",
+      "nome": "POSICIONAMENTO",
+      "sub": "Estratégia profunda + sistema visual de alto nível",
+      "cor": "#6B1A2E",
+      "itens": [
+        "Tudo do PRESENÇA",
+        "Estratégia de marca completa",
+        "Pesquisa de mercado",
+        "Arquitetura de marca",
+        "Brandbook premium",
+        "Suporte por 3 meses"
+      ]
+    },
+    {
+      "id": "experience",
+      "nome": "EXPERIENCE",
+      "sub": "Branding de ponta a ponta com experiência imersiva",
+      "cor": "#71717A",
+      "itens": [
+        "Tudo do POSICIONAMENTO",
+        "Identidade de movimento",
+        "Design de produto",
+        "Experiência sensorial de marca",
+        "Brandbook premium + digital",
+        "Suporte por 6 meses"
+      ]
+    },
+    {
+      "id": "signature",
+      "nome": "SIGNATURE",
+      "sub": "Projeto exclusivo sob medida — para marcas de alto impacto",
+      "cor": "#C9A84C",
+      "itens": [
+        "Escopo personalizado",
+        "Dedicação exclusiva",
+        "Equipe multidisciplinar",
+        "Entregáveis ilimitados",
+        "Acompanhamento estratégico contínuo"
+      ]
+    }
+  ],
+  "clientes": {
+    "usar_gmstudio_fallback": true,
+    "logos": []
+  },
+  "cta_footer": {
+    "eyebrow": "Pronto para criar sua marca?",
+    "headline": "Vamos construir algo\ninesquecível.",
+    "cta_text": "Iniciar projeto",
+    "cta_href": "https://gmstudiobr.github.io/briefing"
+  }
+}
