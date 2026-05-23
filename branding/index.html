@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#09090A">
 <title>Branding & Identidade Visual — GMSTUDIO®</title>
 <meta name="description" content="Identidade visual e sistemas de branding para marcas que querem ser icônicas. Pouso Alegre/MG.">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/svg+xml" href="https://gmstudiobr.github.io/favicon.svg">
 <style>
-@font-face{font-family:'Bahnschrift';src:url('assets/fonts/bahnschrift.woff') format('woff'),url('assets/fonts/bahnschrift.ttf') format('truetype');font-weight:100 900;font-stretch:75% 100%;font-style:normal;font-display:block}
+@font-face{font-family:'Bahnschrift';src:url('https://gmstudiobr.github.io/assets/fonts/bahnschrift.woff') format('woff'),url('https://gmstudiobr.github.io/assets/fonts/bahnschrift.ttf') format('truetype');font-weight:100 900;font-stretch:75% 100%;font-style:normal;font-display:block}
 :root{
   --ink:#09090A;--ink2:#111113;--ink3:#181819;
   --g:#15151A;--g2:#1F1F25;--g3:#2A2A30;
@@ -45,7 +45,7 @@ ul{list-style:none;margin:0;padding:0}
 .hdr__in{width:var(--cw);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
 .hdr__logo{display:flex;align-items:center}
 .hdr__logo svg{height:18px;width:auto;display:block;fill:currentColor;transition:fill .4s}
-.hdr__logo-img{height:20px;width:auto;display:block;transition:filter .4s}
+.hdr__logo-img{height:28px;width:auto;display:block;transition:filter .4s}
 /* Adaptive: invert when header is over light section */
 .header[data-theme="light"] .hdr__logo-img,
 .header[data-theme="ice"] .hdr__logo-img{filter:invert(1)}
@@ -78,30 +78,28 @@ ul{list-style:none;margin:0;padding:0}
 .btn-p:hover{background:var(--mh);transform:translateY(-2px)}
 .btn-g{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 26px;border-radius:999px;color:var(--ice);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid rgba(242,240,235,.2);transition:border-color .3s,background .3s,transform .3s var(--ease)}
 .btn-g:hover{border-color:rgba(242,240,235,.5);background:rgba(242,240,235,.06);transform:translateY(-2px)}
-.hero__logo-wm{margin-top:clamp(28px,4vh,48px);opacity:.12}
-.hero__logo-wm svg{height:22px;width:auto;fill:var(--ice)}
-.hero__logo-img{height:22px;width:auto;display:block}
+
 
 /* ─── TICKER ── */
 .ticker{height:48px;display:flex;align-items:center;overflow:hidden;background:var(--mg)}
-.ticker__track{display:flex;gap:0;white-space:nowrap;animation:tickR 26s linear infinite}
+.ticker__track{display:flex;gap:0;white-space:nowrap;animation:tickR 26s linear infinite;will-change:transform;backface-visibility:hidden}
 .ticker__item{padding:0 28px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:28px}
 .ticker__item::after{content:"✦";font-size:8px;opacity:.65}
 
 /* ─── STUDIO TYPEWRITER ── */
 .studio{position:relative;padding:clamp(80px,13vh,150px) 0;background:var(--ice);color:var(--ink);overflow:hidden}
 .studio__in{width:var(--cw);margin:0 auto;position:relative;z-index:1}
-.studio__logo{margin-bottom:clamp(24px,4vh,44px);opacity:.85}
-.studio__logo svg{height:16px;width:auto;fill:var(--ink)}
-.studio__logo-img{height:18px;width:auto;display:block;filter:invert(1)}
+
 .studio__tw-wrap{min-height:clamp(200px,35vh,420px);display:flex;align-items:center}
 .studio__tw{margin:0;font-size:clamp(54px,9.5vw,152px);line-height:.86;font-weight:900;font-stretch:88%;text-transform:uppercase;letter-spacing:-.02em;color:var(--ink);max-width:100%}
 .tw-char{opacity:0;display:inline;transition:opacity .06s}
+.tw-l2{color:var(--mg)}
 .tw-char.on{opacity:1}
 .tw-cursor{display:inline;color:var(--mg);animation:blink .75s step-end infinite;font-weight:300}
 /* typewriter 2-line */
-.studio__tw .tw-l1,.studio__tw .tw-l2{display:inline-block;opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.studio__tw .tw-l1a,.studio__tw .tw-l1b,.studio__tw .tw-l2{display:inline-block}
 .studio__tw .tw-l2{color:var(--mg)}
+.studio__tw .tw-l1b{margin-left:.18em}
 .studio__tw.tw-done .tw-l1{opacity:1;transform:none;transition-delay:0s}
 .studio__tw.tw-done .tw-l2{opacity:1;transform:none;transition-delay:.55s}
 
@@ -214,6 +212,11 @@ ul{list-style:none;margin:0;padding:0}
 .pkg--bk .pkg__list li::before{background:#B8960C}
 .pkg__ideal{font-size:11px;color:var(--mu);line-height:1.4;padding-top:10px;border-top:1px solid var(--ln);margin-bottom:14px}
 .pkg__btn-sm{display:block;width:100%;height:38px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-align:center;line-height:38px;border:1.5px solid var(--ln);color:var(--ice);margin-bottom:8px;transition:background .3s,border-color .3s,color .3s;cursor:pointer}
+.pkg--b .pkg__btn-sm{border-color:var(--el);color:var(--el)}
+.pkg--m .pkg__btn-sm{border-color:var(--mg);color:var(--mg)}
+.pkg--w .pkg__btn-sm{border-color:#8B1A3A;color:#8B1A3A}
+.pkg--gr .pkg__btn-sm{border-color:#71717A;color:#71717A}
+.pkg--bk .pkg__btn-sm{border-color:#B8960C;color:#B8960C}
 .pkg--b .pkg__btn-sm:hover{background:rgba(0,87,230,.25);border-color:var(--el)}
 .pkg--m .pkg__btn-sm:hover{background:rgba(229,0,70,.25);border-color:var(--mg)}
 .pkg--w .pkg__btn-sm:hover{background:rgba(139,26,58,.25);border-color:#8B1A3A}
@@ -236,9 +239,9 @@ ul{list-style:none;margin:0;padding:0}
 /* ─── COMPARISON TABLE ── */
 .cmp{overflow-x:auto;margin-bottom:0;border-radius:var(--r);border:1px solid var(--ln)}
 .cmp table{width:100%;border-collapse:collapse;min-width:700px}
-.cmp th,.cmp td{padding:12px 14px;text-align:center;border-bottom:1px solid var(--ln);font-size:12px}
-.cmp th:first-child,.cmp td:first-child{text-align:left;font-size:12px;color:var(--mu);font-weight:600;padding-left:20px;width:32%}
-.cmp thead th{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-bottom:2px solid var(--ln);padding-top:16px;padding-bottom:16px}
+.cmp th,.cmp td{padding:12px 14px;text-align:center;border-bottom:1px solid var(--ln);font-size:14px}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-size:14px;color:var(--mu);font-weight:600;padding-left:20px;width:32%}
+.cmp thead th{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-bottom:2px solid var(--ln);padding-top:16px;padding-bottom:16px}
 .cmp thead th:nth-child(2){color:var(--el)}
 .cmp thead th:nth-child(3){color:var(--mg)}
 .cmp thead th:nth-child(4){color:#C44B6E}
@@ -255,11 +258,11 @@ ul{list-style:none;margin:0;padding:0}
 .logos-sec{background:var(--mg);padding:clamp(40px,6vh,64px) 0;overflow:hidden}
 .logos-lbl{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:clamp(20px,3vh,32px)}
 .logos-track-wrap{overflow:hidden;position:relative}
-.logos-track{display:flex;gap:0;white-space:nowrap;animation:tickR 28s linear infinite;align-items:center}
+.logos-track{display:flex;gap:0;white-space:nowrap;animation:tickR 28s linear infinite;align-items:center;will-change:transform;backface-visibility:hidden}
 .logos-track.rev{animation-direction:reverse}
 .logo-item{display:inline-flex;align-items:center;padding:0 clamp(28px,3.5vw,52px);flex-shrink:0;opacity:.7;transition:opacity .3s}
 .logo-item:hover{opacity:1}
-.logo-item svg{height:clamp(18px,2vw,28px);width:auto;fill:rgba(255,255,255,.9)}
+.logo-item svg{height:clamp(18px,2vw,28px);width:auto;fill:rgba(255,255,255,.9);display:block;flex-shrink:0}
 .logo-item img{height:clamp(18px,2vw,28px);width:auto;display:block;filter:brightness(0) invert(1);opacity:.85}
 
 /* ─── DEPOIMENTOS iPhone CAROUSEL ── */
@@ -271,9 +274,9 @@ ul{list-style:none;margin:0;padding:0}
 .dep__arrows{display:flex;gap:10px}
 .dep-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(10,10,11,.15);background:transparent;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ink);cursor:pointer;transition:background .3s,border-color .3s,transform .3s}
 .dep-arrow:hover{background:var(--mg);border-color:var(--mg);color:#fff;transform:scale(1.05)}
-.dep__carousel{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin:0 calc((100vw - var(--cw)) / -2);padding-left:calc((100vw - var(--cw)) / 2);padding-right:calc((100vw - var(--cw)) / 2)}
+.dep__carousel{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:clamp(32px,5vh,56px) max(24px,calc((100vw - var(--cw)) / 2));cursor:grab}
 .dep__carousel::-webkit-scrollbar{display:none}
-.iphone-wrap{scroll-snap-align:center;flex-shrink:0}
+.iphone-wrap{scroll-snap-align:center;flex-shrink:0;cursor:pointer}
 .iphone{width:230px;background:#1C1C1E;border-radius:46px;padding:12px;box-shadow:0 32px 80px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.08);position:relative}
 .iphone::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:78px;height:24px;background:#1C1C1E;border-radius:0 0 14px 14px;z-index:5}
 .iphone__screen{background:#F2F2F7;border-radius:36px;overflow:hidden;height:468px;display:flex;flex-direction:column}
@@ -325,14 +328,14 @@ ul{list-style:none;margin:0;padding:0}
 /* ─── FOOTER ── */
 .footer{background:var(--mg);padding:clamp(48px,7vh,80px) 0 clamp(24px,3.5vh,40px);overflow:hidden}
 .footer__in{width:var(--cw);margin:0 auto}
-.footer__wm{overflow:hidden;margin:0 calc((100vw - var(--cw)) / -2);margin-top:clamp(24px,4vh,40px);margin-bottom:0}
-.footer__wm svg{width:110%;display:block;height:auto;margin-left:-5%}
+.footer__wm{overflow:hidden;width:100%;padding:clamp(32px,4vw,56px) 0 clamp(16px,2vw,28px)}
+.footer__wm svg{display:block;width:100%;height:auto;color:var(--ink);opacity:1}
 .footer__map{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,40px);padding:clamp(24px,3vh,36px) 0;border-top:1.5px solid rgba(10,10,11,.16);border-bottom:1.5px solid rgba(10,10,11,.16);margin-bottom:0}
 .footer__col-title{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(10,10,11,.5);margin-bottom:14px}
 .footer__col ul{display:flex;flex-direction:column;gap:8px}
 .footer__col li a{font-size:13px;color:rgba(10,10,11,.75);transition:color .3s;font-weight:500}
 .footer__col li a:hover{color:var(--ink)}
-.footer__bottom{display:flex;justify-content:space-between;align-items:center}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(0,0,0,.20);padding-top:20px}
 .footer__copy{font-size:11px;color:rgba(10,10,11,.5);letter-spacing:.08em}
 .footer__socials{display:flex;gap:14px}
 .soc-btn{display:inline-flex;align-items:center;justify-content:center;transition:opacity .2s,transform .3s}
@@ -340,10 +343,10 @@ ul{list-style:none;margin:0;padding:0}
 .soc-btn svg{width:20px;height:20px;fill:var(--ink)}
 
 /* ─── MODAIS ── */
-.modal-ov{position:fixed;inset:0;z-index:500;background:rgba(9,9,10,.87);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
-.modal-ov.open{opacity:1;pointer-events:all}
-.modal{background:var(--ink2);border:1px solid var(--ln);border-radius:24px;width:min(860px,100%);max-height:90vh;overflow-y:auto;padding:clamp(28px,3.5vw,52px);position:relative;transform:scale(.96) translateY(14px);transition:transform .4s var(--ease)}
-.modal-ov.open .modal{transform:scale(1) translateY(0)}
+.modal{position:fixed;inset:0;z-index:500;background:rgba(9,9,10,.87);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.modal.open{opacity:1;pointer-events:all}
+.modal__bd{background:var(--ink2);border:1px solid var(--ln);border-radius:24px;width:min(860px,100%);max-height:90vh;overflow-y:auto;padding:clamp(28px,3.5vw,52px);position:relative;transform:scale(.96) translateY(14px);transition:transform .4s var(--ease);scrollbar-width:thin;scrollbar-color:var(--g3) transparent}
+.modal.open .modal__bd{transform:scale(1) translateY(0)}
 .modal__x{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:var(--g2);color:var(--ice);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .3s;flex-shrink:0}
 .modal__x:hover{background:var(--g3)}
 .modal__ey{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:10px}
@@ -367,6 +370,18 @@ ul{list-style:none;margin:0;padding:0}
 /* ─── REVEAL ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.on{opacity:1;transform:none}
+
+/* ── HEADLINE LINE-REVEAL (lovable.dev style) ───────────────── */
+/* Each line clips inside .hl-wrap; .hl-inner slides up on .on */
+.hl-wrap{display:block;overflow:hidden;padding-top:.18em;margin-top:-.18em;padding-bottom:.06em}
+.hl-inner{display:block;transform:translateY(105%);transition:transform .9s cubic-bezier(0.22,1,0.36,1)}
+.hl-wrap.on .hl-inner{transform:translateY(0)}
+/* Stagger each line via nth-child on the hl-wrap */
+[data-hl] .hl-wrap:nth-child(1) .hl-inner{transition-delay:.00s}
+[data-hl] .hl-wrap:nth-child(2) .hl-inner{transition-delay:.10s}
+[data-hl] .hl-wrap:nth-child(3) .hl-inner{transition-delay:.20s}
+/* Override .rv on headline elements */
+h1.rv,h2.rv{opacity:1;transform:none;transition:none}
 .rv-l{opacity:0;transform:translateX(-28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv-l.on{opacity:1;transform:none}
 .rv-r{opacity:0;transform:translateX(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
@@ -399,6 +414,10 @@ ul{list-style:none;margin:0;padding:0}
   .studio__foot{flex-direction:column;gap:12px}
 }
 @media(max-width:600px){
+.cases-grid{grid-template-columns:1fr}
+.case-card{aspect-ratio:unset;height:100svh}
+.cm-stats{grid-template-columns:1fr 1fr}
+
   .pkg-grid{grid-template-columns:1fr}
   .showreel{inset:-5vh -8vw -5vh 48vw}
   .hero__h1{font-size:clamp(44px,15vw,80px)}
@@ -412,6 +431,58 @@ ul{list-style:none;margin:0;padding:0}
   .footer__map{grid-template-columns:1fr 1fr}
   .footer__bottom{flex-direction:column;gap:16px;text-align:center}
 }
+/* ── CASES GRID ─────────────────────────────────────────────── */
+.cases-grid{display:grid;grid-template-columns:1fr;gap:2px;background:rgba(255,255,255,.06)}
+.case-card{position:relative;aspect-ratio:unset;height:100vh;overflow:hidden;cursor:pointer;background:var(--ink2)}
+.case-card__bg{position:absolute;inset:0}
+.case-card__bg img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.case-card:hover .case-card__bg img{transform:scale(1.05)}
+.case-card__ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,9,10,.95) 0%,rgba(9,9,10,.45) 55%,rgba(9,9,10,.1) 100%)}
+.case-card__content{position:absolute;bottom:0;left:0;right:0;padding:clamp(24px,3vw,48px)}
+.case-card__num{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:10px}
+.case-card__name{margin:0 0 8px;font-size:clamp(22px,2.8vw,44px);font-weight:900;font-stretch:90%;text-transform:uppercase;color:var(--ice);line-height:.9}
+.case-card__year{font-size:11px;color:rgba(242,240,235,.4);letter-spacing:.12em;margin-bottom:18px}
+.case-card__cta{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 18px;border-radius:999px;background:rgba(242,240,235,.08);border:1px solid rgba(242,240,235,.16);color:var(--ice);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .3s,border-color .3s}
+.case-card:hover .case-card__cta{background:rgba(229,0,70,.2);border-color:var(--mg)}
+.cases-more{text-align:center;padding:clamp(40px,6vh,72px) 0}
+.cases-more__btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 36px;border-radius:999px;color:var(--ice);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid rgba(242,240,235,.2);transition:border-color .3s,background .3s,transform .3s var(--ease)}
+.cases-more__btn:hover{border-color:var(--mg);background:rgba(229,0,70,.1);transform:translateY(-2px)}
+/* ── CASE MODAL GALLERY ──────────────────────────────────────── */
+.cm-hero{position:relative;height:55vh;min-height:300px;overflow:hidden;background:var(--ink)}
+.cm-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.cm-hero__fade{position:absolute;inset:0;background:linear-gradient(0deg,var(--g) 0%,transparent 65%)}
+.cm-hero__info{position:absolute;bottom:0;left:0;right:0;padding:clamp(28px,4vw,56px)}
+.cm-hero__num{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mg);margin-bottom:10px}
+.cm-hero__name{margin:0 0 6px;font-size:clamp(2rem,6vw,4rem);font-weight:900;font-stretch:88%;text-transform:uppercase;color:var(--ice);line-height:.88}
+.cm-hero__cat{font-size:12px;color:rgba(242,240,235,.55);letter-spacing:.12em}
+.cm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.cm-stat{padding:20px 24px;background:var(--g);text-align:center}
+.cm-stat__v{font-size:clamp(24px,3vw,40px);font-weight:900;color:var(--ice);line-height:1}
+.cm-stat__l{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-top:4px}
+.cm-body{padding:clamp(32px,4vw,56px) clamp(24px,4vw,56px)}
+.cm-body__ey{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:16px}
+.cm-body__p{font-size:clamp(13px,1vw,15px);color:rgba(242,240,235,.72);line-height:1.72;margin-bottom:12px}
+.cm-gallery{display:flex;flex-direction:column;gap:3px;background:var(--ink)}
+.cm-gallery__img{width:100%;height:auto;display:block}
+.cm-video{padding:clamp(24px,4vw,48px);background:var(--g)}
+.cm-video__wrap{position:relative;padding-top:56.25%;background:var(--g2);border-radius:12px;overflow:hidden}
+.cm-video__wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.cm-video__label{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:16px}
+
+
+/* ─── CASE MODAL PROCESS SECTIONS ─── */
+.cm-process{padding:clamp(32px,4vw,52px) clamp(24px,4vw,56px) clamp(32px,4vw,56px)}
+.cm-section{margin-bottom:clamp(28px,3.5vw,44px)}
+.cm-section:last-child{margin-bottom:0}
+.cm-section__tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:10px;border:1px solid rgba(229,0,70,.35);padding:3px 10px;border-radius:999px}
+.cm-section__title{margin:0 0 10px;font-size:clamp(16px,2vw,22px);font-weight:900;font-stretch:88%;text-transform:uppercase;color:var(--ice);line-height:1}
+.cm-section__text{font-size:clamp(13px,1vw,15px);color:rgba(242,240,235,.72);line-height:1.75;margin:0}
+.cm-gallery{display:flex;flex-direction:column;gap:3px;background:var(--ink);margin-top:4px}
+.cm-gallery__label{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);padding:clamp(24px,3vw,40px) clamp(24px,4vw,56px) 16px;margin:0}
+.cm-video{padding:clamp(24px,3vw,40px) clamp(24px,4vw,56px)}
+.cm-video__label{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin:0 0 14px}
+.cm-video__wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--rs);background:var(--g2)}
+.cm-video__wrap iframe,.cm-video__wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:var(--rs)}
 </style>
 </head>
 <body>
@@ -420,7 +491,7 @@ ul{list-style:none;margin:0;padding:0}
 <!-- HEADER -->
 <header class="hdr" id="hdr" data-theme="dark">
   <div class="hdr__in">
-    <a href="#hero" class="hdr__logo" aria-label="GMSTUDIO"><img src="assets/images/gm-logo.svg" class="hdr__logo-img" alt="GMSTUDIO"></a>
+    <a href="#hero" class="hdr__logo" aria-label="GMSTUDIO"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" class="hdr__logo-img" alt="GMSTUDIO"></a>
     <a class="hdr__cta" href="https://wa.me/5535997183251?text=Olá%2C%20quero%20iniciar%20um%20projeto%20de%20branding" target="_blank">Iniciar Projeto</a>
   </div>
 </header>
@@ -432,49 +503,52 @@ ul{list-style:none;margin:0;padding:0}
   <div class="hero__fade" aria-hidden="true"></div>
 
   <!-- SHOWREEL -->
-  <div class="showreel" aria-hidden="true">
+    <div class="showreel" aria-hidden="true">
     <div class="showreel__lane">
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/images/cover-bas.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bas-02.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bas-05.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bas-08.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/images/cover-citti.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/citti-02.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/citti-05.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/citti-08.jpg" alt="" loading="lazy"></div>
     </div>
     <div class="showreel__lane">
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/images/cover-tree.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/tree-02.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/tree-05.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/tree-08.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/images/cover-bora.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bora-02.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bora-05.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bora-08.jpg" alt="" loading="lazy"></div>
     </div>
     <div class="showreel__lane">
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
-      <div class="reel-card"><img src="assets/images/cover-citti.jpg" alt="" loading="lazy"><span class="reel-tag">Citti Construção</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bas.jpg" alt="" loading="lazy"><span class="reel-tag">BAS Acessórios</span></div>
-      <div class="reel-card"><img src="assets/images/cover-bora.jpg" alt="" loading="lazy"><span class="reel-tag">Bora!</span></div>
-      <div class="reel-card"><img src="assets/images/cover-tree.jpg" alt="" loading="lazy"><span class="reel-tag">Árvore de Gente</span></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bas-03.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/citti-03.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/tree-03.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bora-03.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bas-07.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/citti-07.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/tree-07.jpg" alt="" loading="lazy"></div>
+      <div class="reel-card"><img src="https://gmstudiobr.github.io/assets/modal-pages/bora-07.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 
   <div class="hero__in">
     <p class="hero__ey rv">Pouso Alegre/MG · Branding Estratégico · Desde 2013</p>
-    <h1 class="hero__h1 rv" data-d="1">Marcas que<br>causam<br><span class="mg">impacto.</span></h1>
+    <h1 class="hero__h1" data-hl="1">
+  <span class="hl-wrap"><span class="hl-inner">Marcas</span></span>
+  <span class="hl-wrap"><span class="hl-inner">que causam</span></span>
+  <span class="hl-wrap"><span class="hl-inner"><span class="mg">impacto</span></span></span>
+</h1>
     <p class="hero__sub rv" data-d="2">Identidade visual e sistemas de marca que unem estratégia, percepção e presença — para marcas que querem ser lembradas.</p>
     <div class="hero__act rv" data-d="3">
       <a class="btn-p" href="#pacotes">Ver Pacotes</a>
       <a class="btn-g" href="#cases">Ver Cases</a>
     </div>
-    <div class="hero__logo-wm rv" data-d="4" aria-hidden="true"><img src="assets/images/gm-logo.svg" class="hero__logo-img" alt=""></div>
-  </div>
+</div>
 </section>
 
 <!-- TICKER -->
@@ -488,9 +562,8 @@ ul{list-style:none;margin:0;padding:0}
 <!-- STUDIO — TYPEWRITER -->
 <section class="studio" id="studio" data-theme="light">
   <div class="studio__in">
-    <div class="studio__logo rv" aria-label="GMSTUDIO"><img src="assets/images/gm-logo.svg" class="studio__logo-img" alt="GMSTUDIO"></div>
-    <div class="studio__tw-wrap">
-      <h2 class="studio__tw" id="tw-text" aria-label="Identidade com propósito"><span class="tw-l1">IDENTIDADE COM</span><br><span class="tw-l2">PROPÓSITO</span></h2>
+  <div class="studio__tw-wrap">
+      <h2 class="studio__tw" id="tw-text" aria-label="Identidade com propósito" data-l1a="IDENTIDADE" data-l1b="COM" data-l2="PROPÓSITO"><span class="tw-l1a"></span><span class="tw-l1b" style="display:inline"></span><br><span class="tw-l2"></span></h2>
     </div>
     <div class="studio__foot">
       <p class="studio__body rv">O GMSTUDIO é um estúdio criativo de branding baseado em Pouso Alegre/MG. Trabalhamos com marcas que querem mais do que uma identidade bonita — querem um sistema visual que comunica com precisão, gera desejo e sustenta crescimento.</p>
@@ -499,113 +572,99 @@ ul{list-style:none;margin:0;padding:0}
   </div>
 </section>
 
-<!-- CASES STICKY STACK -->
+<!-- CASES -->
 <section class="cases" id="cases" data-theme="dark">
   <div class="cases__intro">
     <div class="cases__intro-left">
       <p class="sec-ey rv">Cases</p>
-      <h2 class="cases__h2 rv" data-d="1">Marcas<br>que criamos.</h2>
+      <h2 class="cases__h2" data-hl="1">
+  <span class="hl-wrap"><span class="hl-inner">Marcas</span></span>
+  <span class="hl-wrap"><span class="hl-inner">que criamos.</span></span>
+</h2>
     </div>
     <p class="cases__intro-right rv" data-d="2">Projetos reais de branding que transformaram a percepção de negócios no mercado brasileiro.</p>
   </div>
 
-  <div class="cases-scroller" style="height:400vh">
-    <div class="cases-sticky">
-
-      <!-- Slide 1: BAS -->
-      <div class="case-slide" id="cs0" style="z-index:1;background:#0C0A05">
-        <div class="case-slide__bg">
-          <img src="assets/images/cover-bas.jpg" alt="BAS Acessórios" loading="lazy">
-        </div>
-        <div class="case-slide__ov"></div>
-        <div class="case-slide__dots" aria-hidden="true">
-          <span class="case-dot active" data-ci="0"></span>
-          <span class="case-dot" data-ci="1"></span>
-          <span class="case-dot" data-ci="2"></span>
-          <span class="case-dot" data-ci="3"></span>
-        </div>
-        <div class="case-slide__content">
-          <p class="case-slide__num">01 — Branding Completo</p>
-          <h3 class="case-slide__name">BAS<br>Acessórios</h3>
-          <p class="case-slide__cat">Varejo · Identidade Visual · Naming</p>
-          <button class="case-slide__cta" onclick="openModal('bas')">Ver case completo →</button>
-        </div>
+  <div class="cases-grid">
+    <!-- BAS Telecom -->
+    <div class="case-card rv" onclick="openModal('bas')" role="button" tabindex="0">
+      <div class="case-card__bg">
+        <img src="https://gmstudiobr.github.io/assets/images/cover-bas.jpg" alt="Bas Telecom" loading="lazy">
       </div>
-
-      <!-- Slide 2: CITTI -->
-      <div class="case-slide" id="cs1" style="z-index:2;transform:translateY(100%)">
-        <div class="case-slide__bg">
-          <img src="assets/images/cover-citti.jpg" alt="Citti Construção" loading="lazy">
-        </div>
-        <div class="case-slide__ov" style="background:linear-gradient(0deg,rgba(9,3,0,.95) 0%,rgba(120,50,0,.35) 55%,rgba(9,3,0,.15) 100%)"></div>
-        <div class="case-slide__dots" aria-hidden="true">
-          <span class="case-dot" data-ci="0"></span>
-          <span class="case-dot active" data-ci="1"></span>
-          <span class="case-dot" data-ci="2"></span>
-          <span class="case-dot" data-ci="3"></span>
-        </div>
-        <div class="case-slide__content">
-          <p class="case-slide__num">02 — Posicionamento</p>
-          <h3 class="case-slide__name">Citti<br>Construção</h3>
-          <p class="case-slide__cat">Construção Civil · Branding · Brandbook</p>
-          <button class="case-slide__cta" onclick="openModal('citti')">Ver case completo →</button>
-        </div>
+      <div class="case-card__ov"></div>
+      <div class="case-card__content">
+        <p class="case-card__num">01 — Identidade Visual · Manual de Marca</p>
+        <h3 class="case-card__name">Bas Telecom</h3>
+        <p class="case-card__year">2024</p>
+        <span class="case-card__cta">Ver case →</span>
       </div>
+    </div>
 
-      <!-- Slide 3: ÁRVORE -->
-      <div class="case-slide" id="cs2" style="z-index:3;transform:translateY(100%)">
-        <div class="case-slide__bg">
-          <img src="assets/images/cover-tree.jpg" alt="Árvore de Gente" loading="lazy">
-        </div>
-        <div class="case-slide__ov" style="background:linear-gradient(0deg,rgba(0,9,3,.95) 0%,rgba(10,60,25,.35) 55%,rgba(0,9,3,.15) 100%)"></div>
-        <div class="case-slide__dots" aria-hidden="true">
-          <span class="case-dot" data-ci="0"></span>
-          <span class="case-dot" data-ci="1"></span>
-          <span class="case-dot active" data-ci="2"></span>
-          <span class="case-dot" data-ci="3"></span>
-        </div>
-        <div class="case-slide__content">
-          <p class="case-slide__num">03 — Identidade Visual</p>
-          <h3 class="case-slide__name">Árvore<br>de Gente</h3>
-          <p class="case-slide__cat">Educação · Branding · Sistema Visual</p>
-          <button class="case-slide__cta" onclick="openModal('tree')">Ver case completo →</button>
-        </div>
+    <!-- CITTI -->
+    <div class="case-card rv" onclick="openModal('citti')" role="button" tabindex="0">
+      <div class="case-card__bg">
+        <img src="https://gmstudiobr.github.io/assets/images/cover-citti.jpg" alt="CITTI" loading="lazy">
       </div>
-
-      <!-- Slide 4: BORA -->
-      <div class="case-slide" id="cs3" style="z-index:4;transform:translateY(100%)">
-        <div class="case-slide__bg">
-          <img src="assets/images/cover-bora.jpg" alt="Bora!" loading="lazy">
-        </div>
-        <div class="case-slide__ov" style="background:linear-gradient(0deg,rgba(9,0,3,.95) 0%,rgba(150,0,40,.35) 55%,rgba(9,0,3,.15) 100%)"></div>
-        <div class="case-slide__dots" aria-hidden="true">
-          <span class="case-dot" data-ci="0"></span>
-          <span class="case-dot" data-ci="1"></span>
-          <span class="case-dot" data-ci="2"></span>
-          <span class="case-dot active" data-ci="3"></span>
-        </div>
-        <div class="case-slide__content">
-          <p class="case-slide__num">04 — Branding + Digital</p>
-          <h3 class="case-slide__name">Bora!</h3>
-          <p class="case-slide__cat">Lifestyle · Branding · Social Media</p>
-          <button class="case-slide__cta" onclick="openModal('bora')">Ver case completo →</button>
-        </div>
+      <div class="case-card__ov"></div>
+      <div class="case-card__content">
+        <p class="case-card__num">02 — Brandbook · Direção Criativa</p>
+        <h3 class="case-card__name">CITTI</h3>
+        <p class="case-card__year">2023</p>
+        <span class="case-card__cta">Ver case →</span>
       </div>
+    </div>
 
-    </div><!-- /cases-sticky -->
-  </div><!-- /cases-scroller -->
+    <!-- Tree Digital -->
+    <div class="case-card rv" onclick="openModal('tree')" role="button" tabindex="0">
+      <div class="case-card__bg">
+        <img src="https://gmstudiobr.github.io/assets/images/cover-tree.jpg" alt="Tree Digital" loading="lazy">
+      </div>
+      <div class="case-card__ov"></div>
+      <div class="case-card__content">
+        <p class="case-card__num">03 — Identidade Visual · Manual de Marca</p>
+        <h3 class="case-card__name">Tree Digital</h3>
+        <p class="case-card__year">2024</p>
+        <span class="case-card__cta">Ver case →</span>
+      </div>
+    </div>
+
+    <!-- Bora Trip -->
+    <div class="case-card rv" onclick="openModal('bora')" role="button" tabindex="0">
+      <div class="case-card__bg">
+        <img src="https://gmstudiobr.github.io/assets/images/cover-bora.jpg" alt="Bora Trip" loading="lazy">
+      </div>
+      <div class="case-card__ov"></div>
+      <div class="case-card__content">
+        <p class="case-card__num">04 — Identidade Visual · Logotipo</p>
+        <h3 class="case-card__name">Bora Trip</h3>
+        <p class="case-card__year">2023</p>
+        <span class="case-card__cta">Ver case →</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cases-more rv">
+    <a href="https://www.behance.net/gmstudio-br" target="_blank" rel="noopener noreferrer" class="cases-more__btn">
+      Ver Mais Projetos →
+    </a>
+  </div>
 </section>
+
 
 <!-- STATEMENT -->
 <section class="statement" data-theme="magenta">
   <div class="statement__noise" aria-hidden="true"></div>
   <div class="statement__in">
     <p class="statement__kicker rv">O que acreditamos</p>
-    <h2 class="statement__h2 rv" data-d="1">Marcas fortes<br><span class="outline">não nascem</span><br>de acaso.</h2>
+    <h2 class="statement__h2" data-hl="1">
+  <span class="hl-wrap"><span class="hl-inner">Marcas fortes</span></span>
+  <span class="hl-wrap"><span class="hl-inner"><span class="outline">não nascem</span></span></span>
+  <span class="hl-wrap"><span class="hl-inner">de acaso.</span></span>
+</h2>
     <div class="statement__row">
       <p class="statement__q rv" data-d="2">Uma identidade poderosa é construída com método, percepção e direção de arte. É o que separa marcas que são reconhecidas daquelas que simplesmente existem.</p>
       <div class="statement__sig rv-r" data-d="3">
-        <strong>GMSTUDIO®</strong>
+        <img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO" style="height:26px;width:auto;display:block;filter:invert(1);opacity:.85;margin-bottom:6px">
         <span>Pouso Alegre/MG · Branding</span>
       </div>
     </div>
@@ -835,16 +894,17 @@ ul{list-style:none;margin:0;padding:0}
   <p class="logos-lbl">Marcas que desenvolvemos</p>
   <div class="logos-track-wrap">
     <div class="logos-track">
-      <span class="logo-item"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item" style="opacity:.45"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item" style="opacity:.45"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item" style="opacity:.45"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item" style="opacity:.45"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
       <!-- repeat for infinite scroll -->
-      <span class="logo-item"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item" style="opacity:.45"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
-      <span class="logo-item" style="opacity:.45"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/><path d="M37 0h8l8 16L61 0h8v28h-8V13L53 26h-2L43 13v15h-6z"/><path d="M77 20.3c0 2.7 1.4 3.7 3.9 3.7 2.4 0 3.9-1.2 3.9-3.3 0-1.9-.9-2.8-4.3-3.9-4.8-1.6-7.4-3.9-7.4-8 0-4.4 3.7-8.8 10-8.8 6.1 0 9.4 3.4 9.4 8.6h-7c0-2.2-.9-3.3-3-3.3-1.9 0-3 .9-3 2.6 0 1.7 1.1 2.5 4.5 3.7 4.7 1.7 7.2 4.2 7.2 8.2C91.2 25 87.4 28 81.3 28 75 28 70.7 24.6 70.7 20.3H77z"/><path d="M93 0h22v5.8h-7.4V28h-7V5.8H93z"/><path d="M119 0h7v28h-7z"/><path d="M130 14C130 6.27 136.27 0 144 0h3c7.73 0 14 6.27 14 14s-6.27 14-14 14h-3c-7.73 0-14-6.27-14-14zm7 0c0 4.29 3.14 7.6 7 7.6h3c3.86 0 7-3.31 7-7.6s-3.14-7.6-7-7.6h-3c-3.86 0-7 3.31-7 7.6z"/><path d="M166 0h7v21.5h11.7V28H166z"/><path d="M190 0h11c7.73 0 14 6.27 14 14s-6.27 14-14 14h-11V0zm7 5.8V22.2h4c3.86 0 7-3.31 7-8.2s-3.14-8.2-7-8.2h-4z"/></svg></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item" style="opacity:.45"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item" style="opacity:.45"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
+      <span class="logo-item"><img src="https://gmstudiobr.github.io/assets/images/gm-logo.svg" alt="GMSTUDIO"></span>
     </div>
   </div>
 </section>
@@ -870,7 +930,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="iphone__screen">
           <div class="iphone__topbar">
             <div class="iphone__topbar-inner">
-              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
+              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
               <div class="iphone__sender-info"><p class="iphone__sender-name">GMSTUDIO®</p><p class="iphone__sender-status">Pouso Alegre/MG</p></div>
             </div>
           </div>
@@ -889,7 +949,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="iphone__screen">
           <div class="iphone__topbar">
             <div class="iphone__topbar-inner">
-              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
+              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
               <div class="iphone__sender-info"><p class="iphone__sender-name">GMSTUDIO®</p><p class="iphone__sender-status">Pouso Alegre/MG</p></div>
             </div>
           </div>
@@ -908,7 +968,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="iphone__screen">
           <div class="iphone__topbar">
             <div class="iphone__topbar-inner">
-              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
+              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
               <div class="iphone__sender-info"><p class="iphone__sender-name">GMSTUDIO®</p><p class="iphone__sender-status">Pouso Alegre/MG</p></div>
             </div>
           </div>
@@ -927,7 +987,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="iphone__screen">
           <div class="iphone__topbar">
             <div class="iphone__topbar-inner">
-              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
+              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
               <div class="iphone__sender-info"><p class="iphone__sender-name">GMSTUDIO®</p><p class="iphone__sender-status">Pouso Alegre/MG</p></div>
             </div>
           </div>
@@ -946,7 +1006,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="iphone__screen">
           <div class="iphone__topbar">
             <div class="iphone__topbar-inner">
-              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
+              <div class="iphone__avatar"><svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg></div>
               <div class="iphone__sender-info"><p class="iphone__sender-name">GMSTUDIO®</p><p class="iphone__sender-status">Pouso Alegre/MG</p></div>
             </div>
           </div>
@@ -1027,26 +1087,6 @@ ul{list-style:none;margin:0;padding:0}
           <li><a href="#cases">Cases</a></li>
         </ul>
       </div>
-
-    <!-- GIANT WORDMARK -->
-    <div class="footer__wm" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1630.53 292.9" style="width:100%;height:auto;display:block;opacity:.18" aria-hidden="true">
-        <defs><style>.fwm{fill:var(--ink)}</style></defs>
-        <g><g>
-          <path class="fwm" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/>
-          <path class="fwm" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/>
-          <path class="fwm" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/>
-          <path class="fwm" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/>
-          <path class="fwm" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36-.21-.07-.45-.11-.71-.11s-.49-.04-.71-.11l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69.29.07.56.13.82.16.25.04.52.1.82.17.36.07.76.15,1.2.22.44.07.84.15,1.2.22,9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/>
-          <path class="fwm" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/>
-          <path class="fwm" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/>
-          <path class="fwm" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/>
-          <path class="fwm" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/>
-          <path class="fwm" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/>
-        </g></g>
-      </svg>
-    </div>
-
       <div class="footer__col">
         <p class="footer__col-title">SERVIÇOS</p>
         <ul>
@@ -1056,6 +1096,7 @@ ul{list-style:none;margin:0;padding:0}
           <li><a href="#pacotes">Sistema Digital</a></li>
         </ul>
       </div>
+
       <div class="footer__col">
         <p class="footer__col-title">PACOTES</p>
         <ul>
@@ -1075,6 +1116,25 @@ ul{list-style:none;margin:0;padding:0}
           <li><a href="#contato">Formulário</a></li>
         </ul>
       </div>
+    </div>
+
+    <!-- GIANT WORDMARK — fora do grid, largura total -->
+    <div class="footer__wm" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1630.53 292.9" style="width:100%;height:auto;display:block" aria-hidden="true">
+        <defs><style>.fwm{fill:currentColor}</style></defs>
+        <g><g>
+          <path class="fwm" d="M1630.53,81.61c0,14.12-10.13,24.45-23.67,24.45s-23.93-9.94-23.93-24.45,10.33-24.13,23.93-24.13,23.67,10.2,23.67,24.13ZM1586.73,81.87c0,11.97,8.7,20.6,20.07,20.6s19.94-7.98,19.94-20.86c0-12.03-8.37-20.53-19.94-20.53s-20.07,7.52-20.07,20.79ZM1618.5,86.64c-1.24,5.36-4.97,8.76-11.44,8.76-7.32,0-12.55-5.3-12.55-13.73s5.23-13.93,12.68-13.93,10.79,4.97,11.38,9.02h-4.32c-.85-2.48-2.48-5.43-7.19-5.43s-8.17,3.66-8.17,10.2,3.59,10.2,8.3,10.2c3.66,0,5.82-1.57,7.06-5.1h4.25Z"/>
+          <path class="fwm" d="M0,0v292.9h262V0H0ZM73.63,53.82h115.52v23.15h-115.52v-23.15ZM73.37,215.6h-23.17V76.98h23.17v138.62ZM211.79,215.9h-22.65v23.15h-115.74v-23.15h115.23v-92.62h-23.15v69.46h-23.15v-69.46h-23.15v69.46h-23.15v-92.62h115.77v115.77Z"/>
+          <path class="fwm" d="M436.86,234.63c-19.92-.03-36.39-1.37-49.43-4-13.02-2.64-23.17-7-30.42-13.08-7.26-6.08-12.38-14.21-15.35-24.4-2.99-10.19-4.46-22.85-4.44-37.98v-7.19c.03-15.13,1.54-27.78,4.56-37.96,3.01-10.18,8.15-18.3,15.43-24.35,7.27-6.06,17.39-10.38,30.35-12.99,12.96-2.6,29.4-3.89,49.32-3.86,19.92.03,36.32.95,49.2,2.76,12.88,1.82,22.83,4.83,29.87,9.03,7.03,4.21,11.97,9.98,14.8,17.32,2.83,7.35,4.16,16.49,4,27.42l-35.95.62-.22-.67c0-4.49-.7-8.24-2.12-11.24-1.42-3-4.22-5.43-8.41-7.32-4.19-1.88-10.26-3.19-18.19-3.96-7.94-.76-18.57-1.15-31.91-1.17-13.63-.02-24.6.75-32.91,2.31-8.32,1.56-14.65,4.13-19,7.72-4.35,3.59-7.31,8.57-8.9,14.93-1.58,6.36-2.38,14.41-2.39,24.15v1.8c-.02,10.04.76,18.35,2.32,24.95,1.56,6.59,4.51,11.73,8.85,15.4,4.34,3.68,10.67,6.23,18.97,7.67,8.31,1.44,19.21,2.16,32.69,2.18,11.08.02,20.29-.23,27.64-.75,7.34-.51,13.33-1.33,17.98-2.45,4.64-1.12,8.13-2.79,10.46-5.04,2.32-2.24,3.86-5.05,4.62-8.42.75-3.37,1.13-7.45,1.14-12.24l.02-9.44,14.81,9.23-97.51-.14.04-29.43,118.4.17c0,2.55-.04,5.43-.12,8.65-.08,3.22-.13,6.33-.13,9.32,0,3-.01,5.62-.01,7.86-.02,10.49-.89,19.43-2.62,26.85-1.74,7.41-4.7,13.59-8.9,18.52-4.21,4.94-9.98,8.83-17.32,11.66-7.34,2.84-16.71,4.8-28.09,5.91-11.39,1.11-25.09,1.65-41.12,1.63Z"/>
+          <path class="fwm" d="M563.14,231.67c.15-5.09.24-10.3.24-15.61,0-5.32.02-11.87.03-19.66l.14-95.71c0-5.84.02-10.86.02-15.05,0-4.19-.07-8.68-.2-13.48l72.34.1,29.32,72.16c2.83,7.35,5.67,14.8,8.51,22.37,2.83,7.57,5.56,14.91,8.17,22.03,2.61,7.12,5.03,13.79,7.27,20.01,2.24,6.22,4.03,11.73,5.37,16.52l-15.47-24.74,16.85.02-17.11,24.69c1.65-4.79,3.53-10.25,5.64-16.39,2.11-6.14,4.47-12.76,7.1-19.88,2.63-7.11,5.34-14.41,8.12-21.89,2.79-7.48,5.76-14.97,8.91-22.45l30.21-72.3,69.65.1c-.16,4.94-.24,9.47-.24,13.59,0,4.12-.01,9.02-.02,14.72l-.14,95.49c-.01,7.79-.02,14.34-.03,19.66,0,5.32.06,10.67.2,16.07l-37.07-.05c.16-5.99.24-12.17.25-18.54,0-6.36.02-12.77.02-19.21.01-6.44.02-12.65.03-18.65,0-2.99.01-6.78.02-11.35,0-4.57.01-9.62.02-15.16.01-5.54.05-11.31.14-17.3.08-5.99.16-11.8.24-17.41.08-5.62.17-10.86.25-15.73.08-4.86.13-9.02.13-12.47l8.51,18.89-26.96-.04,15.31-18.85c-1.81,4.79-4.03,10.26-6.66,16.39-2.63,6.14-5.41,12.65-8.34,19.54-2.93,6.89-5.94,14-9.02,21.33-3.08,7.34-6.2,14.75-9.36,22.23l-28.41,66.24-43.59-.06-28.43-67c-2.99-7.19-6.01-14.42-9.07-21.69-3.06-7.27-6.04-14.31-8.95-21.13-2.91-6.82-5.6-13.22-8.06-19.22-2.46-5.99-4.74-11.24-6.84-15.74l16.38,17.77-25.83-.04,5.64-17.74c0,3,.02,6.59.1,10.78.07,4.2.14,8.88.21,14.04.07,5.17.13,10.53.2,16.07.07,5.54.1,11.16.09,16.85,0,5.69-.01,11.23-.02,16.62,0,5.39-.01,10.49-.02,15.28-.01,5.24-.02,10.97-.03,17.19,0,6.22.02,12.58.08,19.1.07,6.52.1,12.77.09,18.76l-35.94-.05Z"/>
+          <path class="fwm" d="M871.64,231.57c-6.87-1.47-13.29-3.67-19.24-6.61-5.96-2.93-11.53-6.6-16.71-11l13.96-17.09c6.06,5.27,12.75,9.23,20.06,11.88,7.31,2.65,15.24,3.97,23.8,3.98,11.55.02,20.51-2.11,26.88-6.38,6.37-4.27,9.56-10.32,9.57-18.14v-.11c.01-5.56-1.43-9.96-4.31-13.22-2.89-3.26-6.61-5.68-11.18-7.26-4.57-1.58-10.47-3.03-17.72-4.36-.21-.07-.45-.11-.71-.11s-.49-.04-.71-.11l-1.65-.33c-10.67-1.85-19.36-3.92-26.04-6.24-6.69-2.31-12.41-6.53-17.15-12.64-4.75-6.11-7.11-14.8-7.09-26.07v-.11c.01-9.87,2.23-18.3,6.67-25.28,4.43-6.98,10.9-12.29,19.39-15.93,8.49-3.64,18.69-5.46,30.61-5.44,5.71,0,11.32.64,16.84,1.89,5.52,1.25,10.97,3.11,16.34,5.57,5.37,2.46,10.65,5.56,15.84,9.29l-12.75,17.75c-6.07-4.47-12.11-7.82-18.15-10.06-6.02-2.24-12.08-3.36-18.15-3.37-10.89-.01-19.36,2.15-25.4,6.49-6.04,4.35-9.07,10.5-9.08,18.47v.11c-.01,5.48,1.54,9.8,4.64,12.95,3.1,3.15,6.98,5.48,11.62,6.98,4.64,1.51,11.09,3.07,19.36,4.69.29.07.56.13.82.16.25.04.52.1.82.17.36.07.76.15,1.2.22.44.07.84.15,1.2.22,9.65,1.99,17.71,4.34,24.18,7.06,6.47,2.72,11.87,7.09,16.22,13.13,4.34,6.04,6.5,14.29,6.49,24.75v.22c-.02,9.73-2.33,18.04-6.95,24.95-4.62,6.9-11.3,12.16-20.04,15.77-8.75,3.61-19.3,5.4-31.66,5.39-7.68-.01-14.96-.75-21.83-2.23Z"/>
+          <path class="fwm" d="M962.16,72.73l112.56.16-.03,21.29-112.56-.16.04-21.29ZM1007.23,85.85l22.37.03-.21,146.46-22.38-.03.21-146.46Z"/>
+          <path class="fwm" d="M1115.58,227.15c-8.37-4.66-14.74-11.43-19.12-20.33-4.37-8.89-6.55-19.59-6.53-32.1l.15-101.81,22.38.03-.15,102.58c-.02,11.63,2.89,20.63,8.74,27,5.84,6.37,14.1,9.56,24.78,9.58,10.75.02,19.07-3.15,24.98-9.51,5.89-6.35,8.85-15.34,8.87-26.97l.15-102.58,22.37.03-.15,101.81c-.02,12.51-2.22,23.2-6.63,32.08-4.4,8.88-10.81,15.64-19.22,20.27-8.42,4.63-18.55,6.94-30.4,6.92-11.77-.01-21.84-2.35-30.21-7.01Z"/>
+          <path class="fwm" d="M1237.3,73.13l22.38.03-.23,159.51-22.38-.03.23-159.51ZM1252.23,211.38l36.09.05c11.77.01,20.91-3.02,27.39-9.12,6.48-6.1,9.73-14.7,9.74-25.82l.07-46.95c.02-11.12-3.21-19.73-9.67-25.85-6.47-6.11-15.59-9.18-27.36-9.2l-36.09-.05.03-21.28,35.44.05c12.8.02,23.73,2.27,32.79,6.74,9.06,4.47,15.97,10.99,20.71,19.56,4.74,8.57,7.1,18.88,7.09,30.95l-.07,45.2c-.02,12.07-2.41,22.38-7.18,30.93-4.77,8.55-11.71,15.05-20.82,19.5-9.11,4.45-20.07,6.66-32.86,6.64l-35.33-.05.03-21.28Z"/>
+          <path class="fwm" d="M1404.7,232.89l-22.38-.03.23-159.51,22.38.03-.23,159.51Z"/>
+          <path class="fwm" d="M1467.57,227.33c-8.48-4.87-15.03-11.76-19.66-20.65-4.63-8.89-6.94-19.19-6.92-30.9l.07-45.2c.01-11.7,2.35-21.99,7.01-30.87,4.65-8.88,11.23-15.74,19.72-20.6,8.49-4.85,18.29-7.27,29.41-7.25,11.12.01,20.91,2.46,29.4,7.34,8.48,4.88,15.03,11.76,19.66,20.65,4.63,8.89,6.94,19.19,6.93,30.89l-.07,45.2c-.02,11.7-2.36,21.99-7.01,30.87-4.66,8.88-11.23,15.74-19.72,20.6-8.49,4.85-18.3,7.27-29.41,7.25-11.12-.01-20.91-2.46-29.39-7.34ZM1514.38,208.2c5.02-2.96,8.9-7.15,11.65-12.6,2.75-5.45,4.13-11.75,4.14-18.92l.07-46.73c.01-7.17-1.35-13.48-4.09-18.93-2.73-5.45-6.6-9.67-11.61-12.63-5-2.97-10.8-4.46-17.38-4.47-6.58-.01-12.38,1.46-17.39,4.42-5.01,2.96-8.89,7.15-11.64,12.6-2.75,5.45-4.13,11.75-4.15,18.92l-.07,46.74c-.01,7.17,1.35,13.48,4.09,18.93,2.74,5.45,6.6,9.67,11.61,12.63,5,2.97,10.8,4.46,17.38,4.47,6.59,0,12.38-1.46,17.39-4.42Z"/>
+        </g></g>
+      </svg>
     </div>
 
     <div class="footer__bottom">
@@ -1097,248 +1157,398 @@ ul{list-style:none;margin:0;padding:0}
      MODAIS DE CASES
 ═══════════════════════════════════════════════════════════════ -->
 
-<!-- Modal: BAS -->
+<!-- Modal: BAS Telecom -->
 <div class="modal case-modal" id="modal-bas" role="dialog" aria-modal="true" aria-labelledby="mttl-bas">
-  <div class="modal__bd">
-    <button class="modal__cls" onclick="closeModal('modal-bas')" aria-label="Fechar">&#x2715;</button>
-
-    <!-- Cover -->
-    <div class="case-modal__cover" style="background:linear-gradient(160deg,#1A1200 0%,#3A2800 50%,#0A0800 100%);height:52vh;position:relative;overflow:hidden">
-      <img src="assets/images/cover-bas.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;mix-blend-mode:luminosity">
-      <div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--g) 0%,transparent 60%)"></div>
-      <div style="position:absolute;bottom:2.5rem;left:2.5rem">
-        <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,210,80,.7);margin-bottom:.5rem">01 — Advocacia</p>
-        <h2 id="mttl-bas" style="font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;letter-spacing:-.03em;color:var(--ice);line-height:.92;margin:0">BAS<br>Advogados</h2>
-        <p style="margin-top:1rem;font-size:.85rem;color:rgba(242,240,235,.55)">Naming · Logotipo · Identidade Visual · Papelaria · Brandbook</p>
+  <div class="cm-hdr">
+    <span class="cm-hdr__name">BAS TELECOM</span>
+    <button class="cm-hdr__close" onclick="closeModal('modal-bas')" aria-label="Fechar">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      FECHAR
+    </button>
+    <div class="cm-progress" id="prog-bas"></div>
+  </div>
+  <div class="modal__bd" id="bd-bas">
+    <!-- Hero -->
+    <div class="cm-hero">
+      <img src="https://gmstudiobr.github.io/assets/images/cover-bas.jpg" alt="">
+      <div class="cm-hero__fade"></div>
+      <div class="cm-hero__info">
+        <p class="cm-hero__num">01 — 2024</p>
+        <h2 id="mttl-bas" class="cm-hero__name">Bas Telecom</h2>
+        <p class="cm-hero__cat">Identidade Visual · Manual de Marca</p>
       </div>
     </div>
-
+    <!-- Stats -->
+    <div class="cm-stats">
+      <div class="cm-stat"><div class="cm-stat__v">20</div><div class="cm-stat__l">Semanas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">8+</div><div class="cm-stat__l">Aplicações</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">100%</div><div class="cm-stat__l">Autoral</div></div>
+    </div>
     <!-- Body -->
-    <div style="padding:2.5rem 2.5rem 4rem">
-
-      <!-- Desafio -->
-      <div class="case-modal__block">
-        <p class="case-modal__ey">O Desafio</p>
-        <p class="case-modal__p">O escritório BAS Advogados precisava de uma identidade que comunicasse autoridade jurídica sem cair no clichê do conservadorismo visual dos anos 90. O cliente queria uma marca que competisse com escritórios de São Paulo e Belo Horizonte, mas que tivesse personalidade própria — algo que não fosse apenas "mais um brasão com balança".</p>
-        <p class="case-modal__p">O projeto envolveu, ainda, a necessidade de funcionar igualmente bem em contextos analógicos (papel-timbrado, cartão de visita, totem de escritório) e digitais (assinatura de e-mail, perfil no LinkedIn, site institucional).</p>
+    <div class="cm-process">
+      <div class="cm-section">
+        <span class="cm-section__tag">O Desafio</span>
+        <h3 class="cm-section__title">Energia contemporânea com solidez institucional</h3>
+        <p class="cm-section__text">Uma operadora de telecomunicações em crescimento acelerado precisava de uma marca que comunicasse modernidade e confiança ao mesmo tempo — dois atributos que raramente coexistem sem tensão. O briefing exigia presença no mercado corporativo sem abrir mão de uma energia jovem e dinâmica.</p>
       </div>
-
-      <!-- Processo -->
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Processo Criativo</p>
-        <div class="case-modal__steps">
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">01</span>
-            <div>
-              <strong>Diagnóstico Estratégico</strong>
-              <p>Entrevista aprofundada com os sócios para mapear valores, diferenciais competitivos, público-alvo e ambições de posicionamento. Análise de 12 escritórios concorrentes na região.</p>
-            </div>
-          </div>
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">02</span>
-            <div>
-              <strong>Pesquisa Visual + Moodboard</strong>
-              <p>Exploração de referências na interseção entre direito, arquitetura e tipografia suíça. O moodboard final apontou para sobriedade, geometria e uso cirúrgico do dourado como elemento de diferenciação.</p>
-            </div>
-          </div>
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">03</span>
-            <div>
-              <strong>Naming e Conceito</strong>
-              <p>O nome BAS (sigla dos sócios-fundadores) foi validado e reposicionado como uma marca de letra — concisa, forte e memorável. Desenvolvemos o conceito "Precisão que protege" como eixo criativo central.</p>
-            </div>
-          </div>
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">04</span>
-            <div>
-              <strong>Desenvolvimento do Logotipo</strong>
-              <p>14 direções de logo exploradas em 3 semanas. A versão final combina tipografia serifada customizada com um símbolo abstrato que referencia tanto a letra B quanto uma estrutura de proteção arquitetônica. Redução funciona a partir de 10px.</p>
-            </div>
-          </div>
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">05</span>
-            <div>
-              <strong>Sistema de Identidade Visual</strong>
-              <p>Paleta bicolor: azul-noite profundo (#0D1B2A) como primária e dourado metálico (#C9A84C) como acento. Tipografias institucionais selecionadas: Cormorant Garamond (títulos) + Inter (corpo). Sistema de grafismos geométricos derivados do símbolo principal.</p>
-            </div>
-          </div>
-          <div class="case-modal__step">
-            <span class="case-modal__step-n">06</span>
-            <div>
-              <strong>Aplicações e Brandbook</strong>
-              <p>Papelaria completa (papel-timbrado A4 e carta, envelope C5, cartão duplo-face, pasta L), assinatura de e-mail responsiva, template para petições e documentos oficiais. Brandbook de 64 páginas com todas as diretrizes de uso.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Processo Criativo</span>
+        <h3 class="cm-section__title">Sistema visual construído em camadas</h3>
+        <p class="cm-section__text">Logotipo com forma orgânica e dinâmica em azul elétrico com gradiente verde-ciano, tipografia tecnológica proprietária e sistema de ícones desenhado do zero. O processo incluiu sprints semanais de apresentação, refinamento iterativo do símbolo e construção completa do sistema de aplicações antes de qualquer entrega parcial.</p>
       </div>
-
-      <!-- Sistema Visual -->
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Sistema Visual</p>
-        <div class="case-modal__grid2">
-          <div class="case-modal__info-card">
-            <p class="case-modal__info-label">Paleta Principal</p>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <div style="width:40px;height:40px;border-radius:8px;background:#0D1B2A"></div>
-              <div style="width:40px;height:40px;border-radius:8px;background:#C9A84C"></div>
-              <div style="width:40px;height:40px;border-radius:8px;background:#F5F2ED"></div>
-              <div style="width:40px;height:40px;border-radius:8px;background:#1A2D40"></div>
-            </div>
-          </div>
-          <div class="case-modal__info-card">
-            <p class="case-modal__info-label">Tipografia</p>
-            <p style="font-size:1.2rem;font-weight:700;color:var(--ice);margin-top:4px">Cormorant</p>
-            <p style="font-size:.8rem;color:rgba(242,240,235,.4)">Títulos + Inter para corpo</p>
-          </div>
-          <div class="case-modal__info-card">
-            <p class="case-modal__info-label">Entregáveis</p>
-            <p style="font-size:.85rem;color:rgba(242,240,235,.65);line-height:1.6;margin-top:4px">Naming · Logo SVG/EPS/PNG · Paleta · Papelaria completa · Template documentos · Brandbook 64p</p>
-          </div>
-          <div class="case-modal__info-card">
-            <p class="case-modal__info-label">Prazo</p>
-            <p style="font-size:1.4rem;font-weight:800;color:var(--ice);margin-top:4px">28 dias</p>
-            <p style="font-size:.8rem;color:rgba(242,240,235,.4)">3 reuniões · 2 rodadas</p>
-          </div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Resultado</span>
+        <h3 class="cm-section__title">Manual de marca com 80+ páginas</h3>
+        <p class="cm-section__text">Uma identidade pronta para escalar. Manual completo cobrindo aplicações digitais, físicas e institucionais — papelaria, uniformes, frota, assinatura de e-mail, social media e comunicação externa. 8+ aplicações documentadas, 100% autoral, entregue em 20 semanas.</p>
       </div>
-
-      <a class="pkg__btn-main" style="display:block;text-align:center;margin-top:2.5rem" href="https://wa.me/5535997183251?text=Olá!%20Vi%20o%20case%20BAS%20e%20quero%20saber%20mais%20sobre%20o%20GMSTUDIO.">Quero um projeto assim</a>
+    </div>
+    <p class="cm-gallery__label">Projeto</p>
+  <div class="cm-gallery">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-01.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-02.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-03.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-04.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-05.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-06.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-07.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-08.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-09.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bas-10.jpg" alt="" loading="lazy">
+  </div>
+    <!-- VIDEO: Descomente e insira o ID do YouTube em src para ativar
+    <div class="cm-video">
+      <p class="cm-video__label">Vídeo do Projeto</p>
+      <div class="cm-video__wrap">
+        <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    -->
+    <!-- Créditos -->
+    <div class="cm-credits">
+      <span class="cm-credits__label">Créditos</span>
+      <div class="cm-credits__grid">
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Criação</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Direção Artística</span>
+        <span class="cm-credits__name">Gustavo Mota</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Design Gráfico</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Estratégia de Marca</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Cliente</span>
+        <span class="cm-credits__name">BAS Telecom</span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Modal: CITTI -->
 <div class="modal case-modal" id="modal-citti" role="dialog" aria-modal="true" aria-labelledby="mttl-citti">
-  <div class="modal__bd">
-    <button class="modal__cls" onclick="closeModal('modal-citti')" aria-label="Fechar">&#x2715;</button>
-    <div class="case-modal__cover" style="background:linear-gradient(160deg,#1A0800 0%,#3A1800 50%,#0A0500 100%);height:52vh;position:relative;overflow:hidden">
-      <img src="assets/images/cover-citti.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;mix-blend-mode:luminosity">
-      <div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--g) 0%,transparent 60%)"></div>
-      <div style="position:absolute;bottom:2.5rem;left:2.5rem">
-        <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,130,60,.7);margin-bottom:.5rem">02 — Construção Civil</p>
-        <h2 id="mttl-citti" style="font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;letter-spacing:-.03em;color:var(--ice);line-height:.92;margin:0">Citti<br>Construção</h2>
-        <p style="margin-top:1rem;font-size:.85rem;color:rgba(242,240,235,.55)">Logotipo · Identidade Visual · Papelaria · Social Media · Sinalização</p>
+  <div class="cm-hdr">
+    <span class="cm-hdr__name">CITTI</span>
+    <button class="cm-hdr__close" onclick="closeModal('modal-citti')" aria-label="Fechar">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      FECHAR
+    </button>
+    <div class="cm-progress" id="prog-citti"></div>
+  </div>
+  <div class="modal__bd" id="bd-citti">
+    <div class="cm-hero">
+      <img src="https://gmstudiobr.github.io/assets/images/cover-citti.jpg" alt="">
+      <div class="cm-hero__fade"></div>
+      <div class="cm-hero__info">
+        <p class="cm-hero__num">02 — 2023</p>
+        <h2 id="mttl-citti" class="cm-hero__name">CITTI</h2>
+        <p class="cm-hero__cat">Brandbook · Direção Criativa</p>
       </div>
     </div>
-    <div style="padding:2.5rem 2.5rem 4rem">
-      <div class="case-modal__block">
-        <p class="case-modal__ey">O Desafio</p>
-        <p class="case-modal__p">A Citti Construção precisava reposicionar sua marca no mercado regional de Pouso Alegre/MG. Com mais de uma década de atuação, a empresa carregava um histórico sólido mas uma identidade visual datada, inconsistente e sem sistema — o que dificultava a captação de clientes nos segmentos de médio e alto padrão.</p>
-        <p class="case-modal__p">O projeto precisava criar uma marca que gerasse confiança em potenciais compradores, funcionasse bem em canteiro de obras e em apresentações de lançamento de empreendimentos.</p>
+    <div class="cm-stats">
+      <div class="cm-stat"><div class="cm-stat__v">14</div><div class="cm-stat__l">Semanas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">60+</div><div class="cm-stat__l">Páginas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">3</div><div class="cm-stat__l">Variações</div></div>
+    </div>
+    <div class="cm-process">
+      <div class="cm-section">
+        <span class="cm-section__tag">O Desafio</span>
+        <h3 class="cm-section__title">Exclusividade que transforma</h3>
+        <p class="cm-section__text">Posicionar uma marca no segmento de empreendedorismo digital de luxo exigiu uma abordagem sem meio-termo: ou a identidade entrava no nível de sofisticação que o público-alvo reconhece como premium, ou não funcionaria. O briefing era claro — transmitir exclusividade, autoridade e transformação pessoal.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Processo Criativo</p>
-        <div class="case-modal__steps">
-          <div class="case-modal__step"><span class="case-modal__step-n">01</span><div><strong>Auditoria da Marca Existente</strong><p>Levantamento de todos os materiais existentes e análise crítica das inconsistências. Mapeamento da percepção atual entre clientes e parceiros. Identificação dos pontos fortes a preservar.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">02</span><div><strong>Pesquisa de Mercado</strong><p>Análise das principais construtoras e incorporadoras do sul de Minas Gerais. Estudo de referências nacionais de branding no setor imobiliário. Identificação dos "códigos visuais" do segmento e onde romper com eles.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">03</span><div><strong>Conceito e Posicionamento</strong><p>Desenvolvimento do posicionamento "Construído com raiz" — ênfase na trajetória regional, na qualidade da mão de obra local e no compromisso com entrega pontual. Essa essência guiou cada decisão visual do projeto.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">04</span><div><strong>Identidade Visual</strong><p>O logotipo final combina uma forma geométrica inspirada em plantas baixas arquitetônicas com tipografia bold condensada. A paleta em terracota, off-white e grafite remete a materiais construtivos sem literalidade. Sistema de grafismos baseado em módulos da construção civil.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">05</span><div><strong>Sistema de Aplicações</strong><p>Desenvolvimento de uniformes, faixa de obra, placa de canteiro, capacetes, materiais de escritório, kit de lançamento para empreendimentos, templates para redes sociais e apresentação de projetos.</p></div></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Processo Criativo</span>
+        <h3 class="cm-section__title">A tensão entre o escuro e o dourado</h3>
+        <p class="cm-section__text">Sistema visual construído sobre o contraste dramático entre fundos profundos e elementos dourados. Foram desenvolvidas 3 variações completas de marca antes de chegar à direção final — cada uma com lógica própria de aplicação. Cada elemento do brandbook reflete a filosofia da marca: elevar vidas e transformar destinos.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Sistema Visual</p>
-        <div class="case-modal__grid2">
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Paleta</p><div style="display:flex;gap:8px;margin-top:8px"><div style="width:40px;height:40px;border-radius:8px;background:#C45A00"></div><div style="width:40px;height:40px;border-radius:8px;background:#2D2926"></div><div style="width:40px;height:40px;border-radius:8px;background:#F0EBE3"></div></div></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Entregáveis</p><p style="font-size:.85rem;color:rgba(242,240,235,.65);line-height:1.6;margin-top:4px">Logo · Identidade Visual · Faixa de obra · Papelaria · Social Media Kit · Sinalização de canteiro</p></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Prazo</p><p style="font-size:1.4rem;font-weight:800;color:var(--ice);margin-top:4px">35 dias</p><p style="font-size:.8rem;color:rgba(242,240,235,.4)">4 reuniões · 3 rodadas</p></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Resultado</span>
+        <h3 class="cm-section__title">Brandbook editorial com 60+ páginas</h3>
+        <p class="cm-section__text">Brandbook editorial completo desenvolvido em 14 semanas, com sistema de aplicações digitais e diretrizes de tom de voz. Uma identidade visual que posiciona a marca exatamente onde precisa estar — no topo do segmento.</p>
       </div>
-      <a class="pkg__btn-main" style="display:block;text-align:center;margin-top:2.5rem" href="https://wa.me/5535997183251?text=Olá!%20Vi%20o%20case%20Citti%20e%20quero%20saber%20mais.">Quero um projeto assim</a>
+    </div>
+    <p class="cm-gallery__label">Projeto</p>
+  <div class="cm-gallery">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-01.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-02.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-03.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-04.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-05.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-06.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-07.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-08.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-09.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-10.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-11.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-12.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-13.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-14.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/citti-15.jpg" alt="" loading="lazy">
+  </div>
+    <!-- VIDEO: Descomente para ativar | insira ID do YouTube no src do iframe
+    <div class="cm-video">
+      <p class="cm-video__label">Vídeo do Projeto</p>
+      <div class="cm-video__wrap">
+        <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    -->
+    <!-- Créditos -->
+    <div class="cm-credits">
+      <span class="cm-credits__label">Créditos</span>
+      <div class="cm-credits__grid">
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Criação</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Direção Artística</span>
+        <span class="cm-credits__name">Gustavo Mota</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Design Gráfico</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Estratégia de Marca</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Cliente</span>
+        <span class="cm-credits__name">CITTI</span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Modal: ÁRVORE -->
+<!-- Modal: Tree Digital -->
 <div class="modal case-modal" id="modal-tree" role="dialog" aria-modal="true" aria-labelledby="mttl-tree">
-  <div class="modal__bd">
-    <button class="modal__cls" onclick="closeModal('modal-tree')" aria-label="Fechar">&#x2715;</button>
-    <div class="case-modal__cover" style="background:linear-gradient(160deg,#001A08 0%,#003A18 50%,#000A03 100%);height:52vh;position:relative;overflow:hidden">
-      <img src="assets/images/cover-tree.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;mix-blend-mode:luminosity">
-      <div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--g) 0%,transparent 60%)"></div>
-      <div style="position:absolute;bottom:2.5rem;left:2.5rem">
-        <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(100,200,120,.7);margin-bottom:.5rem">03 — Educação</p>
-        <h2 id="mttl-tree" style="font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;letter-spacing:-.03em;color:var(--ice);line-height:.92;margin:0">Árvore<br>de Gente</h2>
-        <p style="margin-top:1rem;font-size:.85rem;color:rgba(242,240,235,.55)">Logotipo · Identidade Visual · Sistema Visual · Brandbook</p>
+  <div class="cm-hdr">
+    <span class="cm-hdr__name">TREE</span>
+    <button class="cm-hdr__close" onclick="closeModal('modal-tree')" aria-label="Fechar">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      FECHAR
+    </button>
+    <div class="cm-progress" id="prog-tree"></div>
+  </div>
+  <div class="modal__bd" id="bd-tree">
+    <div class="cm-hero">
+      <img src="https://gmstudiobr.github.io/assets/images/cover-tree.jpg" alt="">
+      <div class="cm-hero__fade"></div>
+      <div class="cm-hero__info">
+        <p class="cm-hero__num">03 — 2024</p>
+        <h2 id="mttl-tree" class="cm-hero__name">Tree Digital</h2>
+        <p class="cm-hero__cat">Identidade Visual · Manual de Marca</p>
       </div>
     </div>
-    <div style="padding:2.5rem 2.5rem 4rem">
-      <div class="case-modal__block">
-        <p class="case-modal__ey">O Desafio</p>
-        <p class="case-modal__p">A Árvore de Gente é uma escola de educação infantil com filosofia pedagógica fundamentada na conexão com a natureza, na autonomia da criança e no brincar como instrumento de aprendizagem. O desafio era criar uma identidade visual que fosse simultaneamente acolhedora para as crianças, confiável para os pais e contemporânea no mercado de ensino infantil.</p>
-        <p class="case-modal__p">A escola precisava de uma marca que funcionasse em uniformes, material didático, sinalização interna, redes sociais e fachada — em contextos físicos com alta exposição ao sol, água e uso intenso.</p>
+    <div class="cm-stats">
+      <div class="cm-stat"><div class="cm-stat__v">16</div><div class="cm-stat__l">Semanas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">70+</div><div class="cm-stat__l">Páginas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">3</div><div class="cm-stat__l">Valores</div></div>
+    </div>
+    <div class="cm-process">
+      <div class="cm-section">
+        <span class="cm-section__tag">O Desafio</span>
+        <h3 class="cm-section__title">Humana e tecnológica ao mesmo tempo</h3>
+        <p class="cm-section__text">Uma agência digital construída sobre três valores — Confiança, Crescimento e Compromisso — precisava de uma identidade que não soasse como mais uma empresa de tecnologia fria e distante. O desafio era equilibrar presença digital forte com calor humano genuíno.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Processo Criativo</p>
-        <div class="case-modal__steps">
-          <div class="case-modal__step"><span class="case-modal__step-n">01</span><div><strong>Imersão e Escuta</strong><p>Visita à escola, observação das crianças em atividade, entrevistas com a equipe pedagógica e com pais de alunos. Identificação do que torna a Árvore de Gente única no cenário educacional da cidade.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">02</span><div><strong>Conceito Central</strong><p>O conceito "Raízes que crescem" norteou toda a identidade. Raízes como fundação emocional segura; crescimento como desenvolvimento natural e respeitado. A árvore deixou de ser apenas ilustração e tornou-se metáfora estrutural de todo o sistema.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">03</span><div><strong>Desenvolvimento da Marca</strong><p>O símbolo é uma árvore estilizada com formas que remetem a crianças de mãos dadas — duas leituras em uma. A tipografia é humanista, redonda e acessível, com customizações sutis que a tornam exclusiva. Paleta com verde-musgo, terracota e off-white como base.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">04</span><div><strong>Sistema de Identidade</strong><p>Criação de um alfabeto ilustrado exclusivo, personagens-mascote, padrão têxtil para uniformes, kit de papelaria pedagógica, sinalização ambiental, identidade digital e brandbook completo para uso pela equipe da escola.</p></div></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Processo Criativo</span>
+        <h3 class="cm-section__title">Símbolo em verde elétrico: movimento e direção</h3>
+        <p class="cm-section__text">Símbolo tridimensional em verde elétrico — uma seta/cursor que sugere movimento, direção e presença digital. A construção do sistema foi orientada pelos 3 valores da marca, com cada elemento tipográfico e cromático justificado dentro dessa lógica. Tipografia técnica sobre fundo absoluto criando máximo contraste.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Sistema Visual</p>
-        <div class="case-modal__grid2">
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Paleta</p><div style="display:flex;gap:8px;margin-top:8px"><div style="width:40px;height:40px;border-radius:8px;background:#2D6A4F"></div><div style="width:40px;height:40px;border-radius:8px;background:#B5634A"></div><div style="width:40px;height:40px;border-radius:8px;background:#F4ECD6"></div></div></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Entregáveis</p><p style="font-size:.85rem;color:rgba(242,240,235,.65);line-height:1.6;margin-top:4px">Logo · Sistema visual · Mascote · Sinalização · Kit pedagógico · Padrão têxtil · Brandbook</p></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Prazo</p><p style="font-size:1.4rem;font-weight:800;color:var(--ice);margin-top:4px">42 dias</p><p style="font-size:.8rem;color:rgba(242,240,235,.4)">5 reuniões · 3 rodadas</p></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Resultado</span>
+        <h3 class="cm-section__title">Manual com 70+ páginas de especificações</h3>
+        <p class="cm-section__text">Identidade desenvolvida em 16 semanas com manual completo de 70+ páginas. Uma marca que funciona tão bem em um app quanto em uma apresentação executiva — do favicon ao outdoor, do pitch deck ao uniforme.</p>
       </div>
-      <a class="pkg__btn-main" style="display:block;text-align:center;margin-top:2.5rem" href="https://wa.me/5535997183251?text=Olá!%20Vi%20o%20case%20Árvore%20de%20Gente%20e%20quero%20saber%20mais.">Quero um projeto assim</a>
+    </div>
+    <p class="cm-gallery__label">Projeto</p>
+  <div class="cm-gallery">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-01.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-02.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-03.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-04.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-05.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-06.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-07.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-08.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-09.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-10.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-11.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-12.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-13.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-14.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-15.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-16.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-17.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-18.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-19.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/tree-20.jpg" alt="" loading="lazy">
+  </div>
+    <!-- VIDEO: Descomente para ativar | insira ID do YouTube no src do iframe
+    <div class="cm-video">
+      <p class="cm-video__label">Vídeo do Projeto</p>
+      <div class="cm-video__wrap">
+        <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    -->
+    <!-- Créditos -->
+    <div class="cm-credits">
+      <span class="cm-credits__label">Créditos</span>
+      <div class="cm-credits__grid">
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Criação</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Direção Artística</span>
+        <span class="cm-credits__name">Gustavo Mota</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Design Gráfico</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Estratégia de Marca</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Cliente</span>
+        <span class="cm-credits__name">Tree Digital</span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Modal: BORA -->
+<!-- Modal: Bora Trip -->
 <div class="modal case-modal" id="modal-bora" role="dialog" aria-modal="true" aria-labelledby="mttl-bora">
-  <div class="modal__bd">
-    <button class="modal__cls" onclick="closeModal('modal-bora')" aria-label="Fechar">&#x2715;</button>
-    <div class="case-modal__cover" style="background:linear-gradient(160deg,#1A000A 0%,#3A0018 50%,#0A0005 100%);height:52vh;position:relative;overflow:hidden">
-      <img src="assets/images/cover-bora.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;mix-blend-mode:luminosity">
-      <div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--g) 0%,transparent 60%)"></div>
-      <div style="position:absolute;bottom:2.5rem;left:2.5rem">
-        <p style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(229,0,70,.8);margin-bottom:.5rem">04 — Lifestyle</p>
-        <h2 id="mttl-bora" style="font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;letter-spacing:-.03em;color:var(--ice);line-height:.92;margin:0">Bora!</h2>
-        <p style="margin-top:1rem;font-size:.85rem;color:rgba(242,240,235,.55)">Naming · Logotipo · Identidade Visual · Social Media · Guideline</p>
+  <div class="cm-hdr">
+    <span class="cm-hdr__name">BORA</span>
+    <button class="cm-hdr__close" onclick="closeModal('modal-bora')" aria-label="Fechar">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      FECHAR
+    </button>
+    <div class="cm-progress" id="prog-bora"></div>
+  </div>
+  <div class="modal__bd" id="bd-bora">
+    <div class="cm-hero">
+      <img src="https://gmstudiobr.github.io/assets/images/cover-bora.jpg" alt="">
+      <div class="cm-hero__fade"></div>
+      <div class="cm-hero__info">
+        <p class="cm-hero__num">04 — 2023</p>
+        <h2 id="mttl-bora" class="cm-hero__name">Bora Trip</h2>
+        <p class="cm-hero__cat">Identidade Visual · Logotipo</p>
       </div>
     </div>
-    <div style="padding:2.5rem 2.5rem 4rem">
-      <div class="case-modal__block">
-        <p class="case-modal__ey">O Desafio</p>
-        <p class="case-modal__p">BORA! nasceu como um projeto de lifestyle urbano voltado para a Geração Z — um público que rejeita marcas genéricas, tem alto senso crítico visual e exige autenticidade antes de qualquer outra coisa. A fundadora queria uma marca que parecesse ter vindo das ruas, mas com nível de execução de agências internacionais.</p>
-        <p class="case-modal__p">O grande desafio: criar algo que fosse visceralmente jovem hoje, mas que não envelhecesse em 2 anos. Irreverência com longevidade — uma tensão criativa que norteou cada decisão do projeto.</p>
+    <div class="cm-stats">
+      <div class="cm-stat"><div class="cm-stat__v">10</div><div class="cm-stat__l">Semanas</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">5+</div><div class="cm-stat__l">Versões</div></div>
+      <div class="cm-stat"><div class="cm-stat__v">100%</div><div class="cm-stat__l">Vetorial</div></div>
+    </div>
+    <div class="cm-process">
+      <div class="cm-section">
+        <span class="cm-section__tag">O Desafio</span>
+        <h3 class="cm-section__title">Turismo com propósito e identidade própria</h3>
+        <p class="cm-section__text">Criar uma marca de turismo que vai além do funcional — que conecta pessoas a experiências que mudam a forma como enxergam o mundo. A identidade precisava transmitir energia, aventura e calor humano sem cair nos clichês visuais do setor de viagens.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Processo Criativo</p>
-        <div class="case-modal__steps">
-          <div class="case-modal__step"><span class="case-modal__step-n">01</span><div><strong>Pesquisa Cultural</strong><p>Mapeamento do comportamento de consumo da Geração Z no Sul de Minas e principais referências de marcas de lifestyle que o público admira: Supreme, Slam Jam, Pleasures. Identificação dos códigos visuais que comunicam autenticidade para esse público específico.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">02</span><div><strong>Naming e Conceito</strong><p>"BORA!" funciona como convocação, como atitude, como grito de partida. É uma palavra do português brasileiro com carga emocional forte — energia, impulsividade positiva, pertencimento. O nome foi escolhido entre 38 alternativas geradas no processo de naming.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">03</span><div><strong>Desenvolvimento Visual</strong><p>Logotipo em lettering expressivo com deformações intencionais que remetem à energia do movimento. Paleta de alto contraste: preto, off-white e magenta vibrante como acento. Sistema tipográfico baseado em fontes condensadas e bold que funcionam em impressão offset e em tela.</p></div></div>
-          <div class="case-modal__step"><span class="case-modal__step-n">04</span><div><strong>Sistema e Digital</strong><p>Criação de um sistema modular de grafismos que o time da marca pode combinar livremente — garantindo variação sem perda de coesão. Templates para Reels, Stories, feed, drops de produto, eventos presenciais e e-commerce. Guideline completo com exemplos de uso correto e incorreto.</p></div></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Processo Criativo</span>
+        <h3 class="cm-section__title">Símbolo solar com energia e acessibilidade</h3>
+        <p class="cm-section__text">Logotipo com símbolo solar que remete a destinos, aventura e calor humano. Paleta vermelha vibrante combinada com tipografia rounded para equilibrar energia e acessibilidade. Foram desenvolvidas 5+ versões do logotipo antes da escolha final, com sistema de ícones desenhado exclusivamente para aplicações digitais e materiais de viagem.</p>
       </div>
-      <div class="case-modal__block">
-        <p class="case-modal__ey">Sistema Visual</p>
-        <div class="case-modal__grid2">
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Paleta</p><div style="display:flex;gap:8px;margin-top:8px"><div style="width:40px;height:40px;border-radius:8px;background:#0A0A0A"></div><div style="width:40px;height:40px;border-radius:8px;background:#E50046"></div><div style="width:40px;height:40px;border-radius:8px;background:#F2F0EB"></div></div></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Entregáveis</p><p style="font-size:.85rem;color:rgba(242,240,235,.65);line-height:1.6;margin-top:4px">Naming · Logo · Sistema visual · 40 templates social · Kit de grafismos · Guideline completo</p></div>
-          <div class="case-modal__info-card"><p class="case-modal__info-label">Prazo</p><p style="font-size:1.4rem;font-weight:800;color:var(--ice);margin-top:4px">30 dias</p><p style="font-size:.8rem;color:rgba(242,240,235,.4)">4 reuniões · 3 rodadas</p></div>
-        </div>
+      <div class="cm-section">
+        <span class="cm-section__tag">Resultado</span>
+        <h3 class="cm-section__title">Sistema vetorial completo em 10 semanas</h3>
+        <p class="cm-section__text">Entrega com todas as variações de logotipo, manual de aplicações e sistema de cores adaptado para ambientes digitais e físicos. Uma identidade 100% vetorial que escala perfeitamente do ícone de app ao banner de aeroporto.</p>
       </div>
-      <a class="pkg__btn-main" style="display:block;text-align:center;margin-top:2.5rem" href="https://wa.me/5535997183251?text=Olá!%20Vi%20o%20case%20BORA%20e%20quero%20saber%20mais.">Quero um projeto assim</a>
+    </div>
+    <p class="cm-gallery__label">Projeto</p>
+  <div class="cm-gallery">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-01.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-02.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-03.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-04.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-05.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-06.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-07.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-08.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-09.jpg" alt="" loading="lazy">
+    <img class="cm-gallery__img" src="https://gmstudiobr.github.io/assets/modal-pages/bora-10.jpg" alt="" loading="lazy">
+  </div>
+    <!-- VIDEO: Descomente para ativar | insira ID do YouTube no src do iframe
+    <div class="cm-video">
+      <p class="cm-video__label">Vídeo do Projeto</p>
+      <div class="cm-video__wrap">
+        <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    -->
+    <!-- Créditos -->
+    <div class="cm-credits">
+      <span class="cm-credits__label">Créditos</span>
+      <div class="cm-credits__grid">
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Criação</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Direção Artística</span>
+        <span class="cm-credits__name">Gustavo Mota</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Design Gráfico</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Estratégia de Marca</span>
+        <span class="cm-credits__name">GMSTUDIO®</span>
+      </div>
+      <div class="cm-credits__item">
+        <span class="cm-credits__role">Cliente</span>
+        <span class="cm-credits__name">Bora Trip</span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     MODAIS DE PACOTES
-═══════════════════════════════════════════════════════════════ -->
+<!-- MODAIS DE PACOTES -->
 
 <!-- Modal: START -->
 <div class="modal pkg-modal" id="pkgmodal-start" role="dialog" aria-modal="true" aria-labelledby="pmttl-start">
-  <div class="modal__bd modal__bd--pkg">
-    <button class="modal__cls" onclick="closeModal('pkgmodal-start')" aria-label="Fechar">&#x2715;</button>
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-start">
+    <div class="pkg-progress" id="pkgprog-start" style="background:var(--el)"></div>
     <div class="modal__pkg-header" style="--pkgc:var(--el)">
       <span class="modal__pkg-tag">Pacote</span>
       <h2 id="pmttl-start" class="modal__pkg-name">START</h2>
@@ -1364,8 +1574,8 @@ ul{list-style:none;margin:0;padding:0}
 
 <!-- Modal: PRESENÇA -->
 <div class="modal pkg-modal" id="pkgmodal-presenca" role="dialog" aria-modal="true" aria-labelledby="pmttl-presenca">
-  <div class="modal__bd modal__bd--pkg">
-    <button class="modal__cls" onclick="closeModal('pkgmodal-presenca')" aria-label="Fechar">&#x2715;</button>
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-presenca">
+    <div class="pkg-progress" id="pkgprog-presenca" style="background:var(--mg)"></div>
     <div class="modal__pkg-header" style="--pkgc:var(--mg)">
       <span class="modal__pkg-tag">Pacote</span>
       <h2 id="pmttl-presenca" class="modal__pkg-name">PRESENÇA</h2>
@@ -1374,13 +1584,13 @@ ul{list-style:none;margin:0;padding:0}
     <div class="modal__body">
       <h3 style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.35);margin-bottom:1.25rem">O que está incluído</h3>
       <div>
-        <div class="pkg-item"><p class="pkg-item__name">Tudo do pacote START</p><p class="pkg-item__desc">Diagnóstico estratégico, naming, logotipo completo com todas as versões, paleta de cores, tipografia institucional, papelaria básica e guia de marca. Base completa já incluída neste pacote.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Identidade Visual Ampliada</p><p class="pkg-item__desc">Criação de padrões gráficos, texturas e elementos visuais secundários derivados do logotipo. Ícones customizados para uso digital. Grafismos que dão corpo e consistência ao sistema em qualquer aplicação.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Papelaria Completa</p><p class="pkg-item__desc">Envelope C5, pasta corporativa, crachá (frente e verso), assinatura de e-mail responsiva para desktop e mobile. Todos os arquivos prontos para impressão e uso digital imediato.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Kit Social Media</p><p class="pkg-item__desc">30 templates editáveis distribuídos entre Feed (quadrado e retrato), Stories e Reels. Entregues em Canva Pro ou Figma conforme preferência do cliente. Cobrem os formatos de conteúdo mais usados no Instagram e LinkedIn.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Apresentação Institucional</p><p class="pkg-item__desc">Template de apresentação com até 20 slides incluindo capa, sobre a empresa, serviços, portfólio, depoimentos e contato. Disponível para Google Slides e PowerPoint, editável e adaptável.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Brandbook Completo</p><p class="pkg-item__desc">Manual de identidade em PDF de 32–48 páginas com todas as regras de uso, exemplos de aplicação, erros a evitar, tom de voz da marca e orientações para fornecedores de impressão e agências parceiras.</p></div>
-        <div class="pkg-item"><p class="pkg-item__name">Arquivos Finais Completos</p><p class="pkg-item__desc">Pacote completo com todos os arquivos-fonte editáveis (AI, Figma) + exportações em todos os formatos necessários para impressão e digital. Entrega organizada por categorias em pasta compartilhada.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Tudo do pacote START</p><p class="pkg-item__desc">Diagnóstico estratégico, naming, logotipo completo com todas as versões, paleta de cores, tipografia institucional, papelaria básica e guia de marca. Base completa já incluída neste pacote.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Identidade Visual Ampliada</p><p class="pkg-item__desc">Criação de padrões gráficos, texturas e elementos visuais secundários derivados do logotipo. Ícones customizados para uso digital. Grafismos que dão corpo e consistência ao sistema em qualquer aplicação.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Papelaria Completa</p><p class="pkg-item__desc">Envelope C5, pasta corporativa, crachá (frente e verso), assinatura de e-mail responsiva para desktop e mobile. Todos os arquivos prontos para impressão e uso digital imediato.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Kit Social Media</p><p class="pkg-item__desc">30 templates editáveis distribuídos entre Feed (quadrado e retrato), Stories e Reels. Entregues em Canva Pro ou Figma conforme preferência do cliente. Cobrem os formatos de conteúdo mais usados no Instagram e LinkedIn.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Apresentação Institucional</p><p class="pkg-item__desc">Template de apresentação com até 20 slides incluindo capa, sobre a empresa, serviços, portfólio, depoimentos e contato. Disponível para Google Slides e PowerPoint, editável e adaptável.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Brandbook Completo</p><p class="pkg-item__desc">Manual de identidade em PDF de 32–48 páginas com todas as regras de uso, exemplos de aplicação, erros a evitar, tom de voz da marca e orientações para fornecedores de impressão e agências parceiras.</p></div>
+        <div class="pkg-item" style="--pkgc:var(--mg)"><p class="pkg-item__name">Arquivos Finais Completos</p><p class="pkg-item__desc">Pacote completo com todos os arquivos-fonte editáveis (AI, Figma) + exportações em todos os formatos necessários para impressão e digital. Entrega organizada por categorias em pasta compartilhada.</p></div>
       </div>
       <div class="modal__timeline"><span>&#9679; Prazo: <strong>25 dias úteis</strong></span><span>&#9679; Reuniões: <strong>3</strong></span><span>&#9679; Revisões: <strong>3 rodadas</strong></span></div>
       <a class="modal__cta-main" style="--pkgc:var(--mg)" href="https://wa.me/5535997183251?text=Olá!%20Tenho%20interesse%20no%20pacote%20PRESENÇA.%20Pode%20me%20contar%20mais%3F">Fale com a Gente Agora →</a>
@@ -1390,9 +1600,9 @@ ul{list-style:none;margin:0;padding:0}
 
 <!-- Modal: POSICIONAMENTO -->
 <div class="modal pkg-modal" id="pkgmodal-posic" role="dialog" aria-modal="true" aria-labelledby="pmttl-posic">
-  <div class="modal__bd modal__bd--pkg">
-    <button class="modal__cls" onclick="closeModal('pkgmodal-posic')" aria-label="Fechar">&#x2715;</button>
-    <div class="modal__pkg-header" style="--pkgc:#7B3FE4">
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-posic">
+    <div class="pkg-progress" id="pkgprog-posic" style="background:#6B1A2E"></div>
+    <div class="modal__pkg-header" style="--pkgc:#6B1A2E">
       <span class="modal__pkg-tag">Pacote</span>
       <h2 id="pmttl-posic" class="modal__pkg-name">POSICIONAMENTO</h2>
       <p class="modal__pkg-sub">Estratégia profunda + sistema visual de alto nível</p>
@@ -1400,25 +1610,25 @@ ul{list-style:none;margin:0;padding:0}
     <div class="modal__body">
       <h3 style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.35);margin-bottom:1.25rem">O que está incluído</h3>
       <div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Tudo do pacote PRESENÇA</p><p class="pkg-item__desc">Inclui todo o escopo de identidade visual completa, brandbook, kit de social media, papelaria completa e apresentação institucional do pacote anterior.</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Estratégia de Marca</p><p class="pkg-item__desc">Workshop estratégico para definir propósito, visão de futuro, missão, valores e personalidade da marca. Incluímos o mapeamento dos arquétipos de marca (Jung) como ferramenta de alinhamento criativo e comunicacional.</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Posicionamento Competitivo</p><p class="pkg-item__desc">Análise aprofundada de mercado com mapeamento de 8–12 concorrentes. Identificação do espaço único da marca no mercado, construção da proposta de valor e definição do posicionamento de preço e percepção.</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Tom de Voz da Marca</p><p class="pkg-item__desc">Desenvolvimento do vocabulário exclusivo da marca, estilo de escrita e padrões de comunicação para diferentes contextos (redes sociais, e-mail, apresentações, publicidade). Entrega de guia de tom de voz com exemplos práticos e comparativos de como comunicar e o que evitar.</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Landing Page Institucional</p><p class="pkg-item__desc">Design e desenvolvimento de página web com até 6 seções, responsiva para mobile, tablet e desktop. Inclui domínio de conteúdo, copywriting das seções principais e entrega em HTML/CSS ou na plataforma de preferência do cliente (Webflow, WordPress, etc.).</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Motion Guidelines</p><p class="pkg-item__desc">Definição do comportamento animado da marca: tempo de transições, curvas de easing, estilo de animações para redes sociais e comunicações digitais. Entrega de 5 componentes animados prontos para uso (logo reveal, intro, transições).</p></div>
-        <div class="pkg-item" style="--pkgc:#7B3FE4"><p class="pkg-item__name">Brandbook Premium</p><p class="pkg-item__desc">Manual de identidade executivo de 56–80 páginas com todos os ativos, diretrizes estratégicas, tom de voz, motion guidelines e exemplos de campanhas. Formatado em PDF de alta qualidade e também disponível em versão digital interativa.</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Tudo do pacote PRESENÇA</p><p class="pkg-item__desc">Inclui todo o escopo de identidade visual completa, brandbook, kit de social media, papelaria completa e apresentação institucional do pacote anterior.</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Estratégia de Marca</p><p class="pkg-item__desc">Workshop estratégico para definir propósito, visão de futuro, missão, valores e personalidade da marca. Incluímos o mapeamento dos arquétipos de marca (Jung) como ferramenta de alinhamento criativo e comunicacional.</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Posicionamento Competitivo</p><p class="pkg-item__desc">Análise aprofundada de mercado com mapeamento de 8–12 concorrentes. Identificação do espaço único da marca no mercado, construção da proposta de valor e definição do posicionamento de preço e percepção.</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Tom de Voz da Marca</p><p class="pkg-item__desc">Desenvolvimento do vocabulário exclusivo da marca, estilo de escrita e padrões de comunicação para diferentes contextos (redes sociais, e-mail, apresentações, publicidade). Entrega de guia de tom de voz com exemplos práticos e comparativos de como comunicar e o que evitar.</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Landing Page Institucional</p><p class="pkg-item__desc">Design e desenvolvimento de página web com até 6 seções, responsiva para mobile, tablet e desktop. Inclui domínio de conteúdo, copywriting das seções principais e entrega em HTML/CSS ou na plataforma de preferência do cliente (Webflow, WordPress, etc.).</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Motion Guidelines</p><p class="pkg-item__desc">Definição do comportamento animado da marca: tempo de transições, curvas de easing, estilo de animações para redes sociais e comunicações digitais. Entrega de 5 componentes animados prontos para uso (logo reveal, intro, transições).</p></div>
+        <div class="pkg-item" style="--pkgc:#6B1A2E"><p class="pkg-item__name">Brandbook Premium</p><p class="pkg-item__desc">Manual de identidade executivo de 56–80 páginas com todos os ativos, diretrizes estratégicas, tom de voz, motion guidelines e exemplos de campanhas. Formatado em PDF de alta qualidade e também disponível em versão digital interativa.</p></div>
       </div>
       <div class="modal__timeline"><span>&#9679; Prazo: <strong>35 dias úteis</strong></span><span>&#9679; Reuniões: <strong>4</strong></span><span>&#9679; Revisões: <strong>3 rodadas</strong></span></div>
-      <a class="modal__cta-main" style="--pkgc:#7B3FE4" href="https://wa.me/5535997183251?text=Olá!%20Tenho%20interesse%20no%20pacote%20POSICIONAMENTO.%20Pode%20me%20contar%20mais%3F">Fale com a Gente Agora →</a>
+      <a class="modal__cta-main" style="--pkgc:#6B1A2E" href="https://wa.me/5535997183251?text=Olá!%20Tenho%20interesse%20no%20pacote%20POSICIONAMENTO.%20Pode%20me%20contar%20mais%3F">Fale com a Gente Agora →</a>
     </div>
   </div>
 </div>
 
 <!-- Modal: EXPERIENCE -->
 <div class="modal pkg-modal" id="pkgmodal-exp" role="dialog" aria-modal="true" aria-labelledby="pmttl-exp">
-  <div class="modal__bd modal__bd--pkg">
-    <button class="modal__cls" onclick="closeModal('pkgmodal-exp')" aria-label="Fechar">&#x2715;</button>
-    <div class="modal__pkg-header" style="--pkgc:#0057E6">
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-exp">
+    <div class="pkg-progress" id="pkgprog-exp" style="background:#71717A"></div>
+    <div class="modal__pkg-header" style="--pkgc:#71717A">
       <span class="modal__pkg-tag">Pacote</span>
       <h2 id="pmttl-exp" class="modal__pkg-name">EXPERIENCE</h2>
       <p class="modal__pkg-sub">Branding de ponta a ponta com experiência imersiva</p>
@@ -1426,24 +1636,24 @@ ul{list-style:none;margin:0;padding:0}
     <div class="modal__body">
       <h3 style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.35);margin-bottom:1.25rem">O que está incluído</h3>
       <div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Tudo do pacote POSICIONAMENTO</p><p class="pkg-item__desc">Inclui estratégia de marca, posicionamento competitivo, tom de voz, sistema visual completo, landing page, motion guidelines e brandbook premium.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Sistema de Design (Design System)</p><p class="pkg-item__desc">Construção de uma biblioteca de componentes UI no Figma com tokens de design (cores, tipografia, espaçamento, sombras). Inclui documentação de uso e handoff técnico para desenvolvimento front-end. Garante consistência visual em todos os canais digitais da marca.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Site Completo</p><p class="pkg-item__desc">Design responsivo e desenvolvimento de site com até 10 páginas ou seções, otimizado para SEO técnico básico, velocidade de carregamento e experiência mobile. Inclui integração com formulários, analytics e plataforma de hospedagem da escolha do cliente.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Identidade em Movimento</p><p class="pkg-item__desc">Vídeo de apresentação da marca (30–60s), logo reveal animado, intro/outro para vídeos de redes sociais e motion kit completo com 10+ elementos animados prontos para uso em produções da marca.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Direção Criativa de Fotografia</p><p class="pkg-item__desc">Criação de moodboard fotográfico, guia de direção de arte para sessão, lista técnica de enquadramentos e referências. Coordenação com fotógrafo local ou indicação de profissional. O resultado define o estilo visual fotográfico permanente da marca.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Campanha de Lançamento</p><p class="pkg-item__desc">Conceito criativo central, peças para os primeiros 30 dias de comunicação (pelo menos 20 artes), calendário editorial estruturado, briefings de conteúdo para equipe interna ou agência parceira. A marca chega ao mercado com tudo pronto para impactar.</p></div>
-        <div class="pkg-item" style="--pkgc:#0057E6"><p class="pkg-item__name">Suporte Pós-Entrega</p><p class="pkg-item__desc">60 dias de canal direto para dúvidas, ajustes menores e orientações de uso após a entrega do projeto. Inclui até 2 revisões pontuais de materiais produzidos internamente pela equipe do cliente no período.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Tudo do pacote POSICIONAMENTO</p><p class="pkg-item__desc">Inclui estratégia de marca, posicionamento competitivo, tom de voz, sistema visual completo, landing page, motion guidelines e brandbook premium.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Sistema de Design (Design System)</p><p class="pkg-item__desc">Construção de uma biblioteca de componentes UI no Figma com tokens de design (cores, tipografia, espaçamento, sombras). Inclui documentação de uso e handoff técnico para desenvolvimento front-end. Garante consistência visual em todos os canais digitais da marca.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Site Completo</p><p class="pkg-item__desc">Design responsivo e desenvolvimento de site com até 10 páginas ou seções, otimizado para SEO técnico básico, velocidade de carregamento e experiência mobile. Inclui integração com formulários, analytics e plataforma de hospedagem da escolha do cliente.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Identidade em Movimento</p><p class="pkg-item__desc">Vídeo de apresentação da marca (30–60s), logo reveal animado, intro/outro para vídeos de redes sociais e motion kit completo com 10+ elementos animados prontos para uso em produções da marca.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Direção Criativa de Fotografia</p><p class="pkg-item__desc">Criação de moodboard fotográfico, guia de direção de arte para sessão, lista técnica de enquadramentos e referências. Coordenação com fotógrafo local ou indicação de profissional. O resultado define o estilo visual fotográfico permanente da marca.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Campanha de Lançamento</p><p class="pkg-item__desc">Conceito criativo central, peças para os primeiros 30 dias de comunicação (pelo menos 20 artes), calendário editorial estruturado, briefings de conteúdo para equipe interna ou agência parceira. A marca chega ao mercado com tudo pronto para impactar.</p></div>
+        <div class="pkg-item" style="--pkgc:#71717A"><p class="pkg-item__name">Suporte Pós-Entrega</p><p class="pkg-item__desc">60 dias de canal direto para dúvidas, ajustes menores e orientações de uso após a entrega do projeto. Inclui até 2 revisões pontuais de materiais produzidos internamente pela equipe do cliente no período.</p></div>
       </div>
       <div class="modal__timeline"><span>&#9679; Prazo: <strong>50 dias úteis</strong></span><span>&#9679; Reuniões: <strong>Semanais</strong></span><span>&#9679; Revisões: <strong>Ilimitadas</strong></span></div>
-      <a class="modal__cta-main" style="--pkgc:#0057E6" href="https://wa.me/5535997183251?text=Olá!%20Tenho%20interesse%20no%20pacote%20EXPERIENCE.%20Pode%20me%20contar%20mais%3F">Fale com a Gente Agora →</a>
+      <a class="modal__cta-main" style="--pkgc:#71717A" href="https://wa.me/5535997183251?text=Olá!%20Tenho%20interesse%20no%20pacote%20EXPERIENCE.%20Pode%20me%20contar%20mais%3F">Fale com a Gente Agora →</a>
     </div>
   </div>
 </div>
 
 <!-- Modal: SIGNATURE -->
 <div class="modal pkg-modal" id="pkgmodal-sig" role="dialog" aria-modal="true" aria-labelledby="pmttl-sig">
-  <div class="modal__bd modal__bd--pkg">
-    <button class="modal__cls" onclick="closeModal('pkgmodal-sig')" aria-label="Fechar">&#x2715;</button>
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-sig">
+    <div class="pkg-progress" id="pkgprog-sig" style="background:#C9A84C"></div>
     <div class="modal__pkg-header" style="--pkgc:#C9A84C;background:linear-gradient(135deg,rgba(201,168,76,.12),transparent)">
       <span class="modal__pkg-tag" style="color:#C9A84C">Pacote Exclusivo</span>
       <h2 id="pmttl-sig" class="modal__pkg-name" style="background:linear-gradient(135deg,#F0D080,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">SIGNATURE</h2>
@@ -1517,84 +1727,34 @@ ul{list-style:none;margin:0;padding:0}
   background:rgba(9,9,10,.75);backdrop-filter:blur(8px);
   pointer-events:all;opacity:1;
 }
-/* Case modals — full height side panel */
-.modal.case-modal .modal__bd{
-  position:relative;height:100vh;overflow-y:auto;
-  width:min(860px,100vw);
-  background:var(--g);
-  transform:translateX(60px);
-  transition:transform .45s var(--ease);
-  scrollbar-width:thin;scrollbar-color:var(--ln) transparent;
-  border-radius:0;border-left:1px solid var(--ln);
-}
-.modal.case-modal.open .modal__bd{transform:none}
-/* Package modals — centered dialog */
-.modal.pkg-modal{align-items:center;justify-content:center}
-.modal.pkg-modal .modal__bd{
-  position:relative;
-  width:min(720px,94vw);max-height:90vh;overflow-y:auto;
-  background:var(--g2);border-radius:var(--r);
-  border:1px solid var(--ln);
-  transform:translateY(24px) scale(.97);
-  transition:transform .4s var(--ease);
-  scrollbar-width:thin;scrollbar-color:var(--ln) transparent;
-}
+/* Case modals — full screen right panel */
+
+/* ── CASE MODAL — CREDITS FOOTER ─────────────────────────────── */
+.cm-credits{border-top:1px solid rgba(255,255,255,.07);padding:clamp(32px,4vw,52px) clamp(24px,4vw,48px) clamp(40px,5vw,64px)}
+.cm-credits__label{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,.28);margin-bottom:28px}
+.cm-credits__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px 32px}
+.cm-credits__item{display:flex;flex-direction:column;gap:4px}
+.cm-credits__role{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,235,.3)}
+.cm-credits__name{font-size:.92rem;font-weight:500;color:rgba(242,240,235,.75);line-height:1.35}
+.modal.case-modal{display:flex;flex-direction:column;background:var(--g);backdrop-filter:none;padding:0;overflow-x:hidden;overflow-y:hidden;opacity:0;transform:translateY(16px);transition:opacity .38s var(--ease),transform .38s var(--ease);pointer-events:none}
+.modal.case-modal .modal__bd::-webkit-scrollbar{display:none}
+.modal.case-modal.open{opacity:1;transform:translateY(0);pointer-events:all}
+.cm-hdr{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 clamp(20px,4vw,52px);height:64px;width:100%;background:var(--g);border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0;box-sizing:border-box}
+.cm-hdr__name{font-size:.8rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:rgba(242,240,235,.45);flex:1}
+.cm-hdr__close{display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;color:rgba(242,240,235,.5);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 0;transition:color .18s;flex-shrink:0}
+.cm-hdr__close:hover{color:var(--ice)}
+.cm-hdr__close svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.cm-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--mg);width:0%;transition:width .08s linear}
+.modal.case-modal .modal__bd{background:transparent;border:none;border-radius:0;width:100%;max-width:100%;box-sizing:border-box;flex:1;overflow-y:auto;overflow-x:hidden;padding:0;transform:none;transition:none;box-shadow:none;max-height:none;scrollbar-width:none}
+
+/* ── PKG MODAL HEADER + PROGRESS BAR ────────────────────────── */
+
+.pkg-progress{position:sticky;top:0;left:0;height:3px;width:0%;z-index:20;transition:width .08s linear;flex-shrink:0}
+.modal.pkg-modal{align-items:flex-start;justify-content:center;padding:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+.modal.pkg-modal::-webkit-scrollbar{display:none}
+.modal.pkg-modal .modal__bd{width:100%;max-width:720px;min-height:100vh;max-height:none;border-radius:0;padding:0;background:var(--g2);border-left:1px solid var(--ln);border-right:1px solid var(--ln);overflow-x:hidden;transform:translateY(60px) scale(.97);transition:transform .42s var(--ease)}
 .modal.pkg-modal.open .modal__bd{transform:none}
-.modal__cls{
-  position:sticky;top:0;float:right;
-  width:40px;height:40px;margin:.75rem .75rem 0 0;
-  background:var(--g3);border:1px solid var(--ln);border-radius:50%;
-  color:var(--ice);font-size:1rem;cursor:pointer;z-index:10;
-  display:grid;place-items:center;
-  transition:background .2s;
-}
-.modal__cls:hover{background:var(--mg)}
-.modal__hero{
-  width:100%;height:300px;overflow:hidden;border-radius:var(--r) var(--r) 0 0;
-  position:relative;display:flex;align-items:center;justify-content:center;
-}
-.modal__hero img{width:100%;height:100%;object-fit:cover}
-.modal__tag{
-  position:absolute;bottom:1.25rem;left:1.5rem;
-  background:rgba(9,9,10,.7);backdrop-filter:blur(8px);
-  border:1px solid var(--ln);border-radius:40px;
-  padding:.35rem 1rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ice);
-}
-.modal__body{padding:2rem 2.25rem 2.5rem}
-.modal__cat{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,235,.4);margin-bottom:.5rem}
-.modal__ttl{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:800;letter-spacing:-.02em;color:var(--ice);margin-bottom:1rem}
-.modal__desc{font-size:.975rem;line-height:1.75;color:rgba(242,240,235,.75);margin-bottom:1.5rem}
-.modal__pills{display:flex;flex-wrap:wrap;gap:.5rem}
-.modal__pills span{
-  padding:.3rem .85rem;border-radius:40px;
-  background:var(--g3);border:1px solid var(--ln);
-  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,240,235,.6);
-}
-/* Package modal header */
-.modal__bd--pkg .modal__pkg-header{
-  padding:2.5rem 2.25rem 1.75rem;
-  border-bottom:1px solid var(--ln);
-  background:linear-gradient(135deg, color-mix(in srgb, var(--pkgc) 18%, transparent), transparent);
-}
-.modal__pkg-tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pkgc);opacity:.8;display:block;margin-bottom:.5rem}
-.modal__pkg-name{font-size:clamp(1.75rem,5vw,2.75rem);font-weight:900;letter-spacing:-.03em;color:var(--ice)}
-.modal__pkg-sub{font-size:.95rem;color:rgba(242,240,235,.55);margin-top:.5rem}
-.modal__deliverables h3{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,235,.4);margin-bottom:1rem}
-.modal__deliverables ul{list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:.85rem}
-.modal__deliverables li{
-  padding-left:1.25rem;position:relative;
-  font-size:.95rem;line-height:1.65;color:rgba(242,240,235,.75);
-}
-.modal__deliverables li::before{content:'→';position:absolute;left:0;color:var(--pkgc,var(--el));opacity:.8}
-.modal__deliverables strong{color:var(--ice)}
-.modal__timeline{
-  display:flex;flex-wrap:wrap;gap:1rem;
-  padding:1.25rem 1.5rem;
-  background:var(--g3);border-radius:var(--rs);
-  border:1px solid var(--ln);
-  font-size:.85rem;color:rgba(242,240,235,.6);
-}
-.modal__timeline strong{color:var(--ice)}
+
 
 
 /* ── CURSOR NEGATIVO (DESKTOP ONLY) ─────────────────────── */
@@ -1612,6 +1772,46 @@ ul{list-style:none;margin:0;padding:0}
   #gm-cursor.big{width:56px;height:56px}
 }
 
+
+/* ── MODAL: CLOSE BUTTON ──────────────────────────────── */
+.modal__cls{position:absolute;top:16px;right:16px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(242,240,235,.08);border:1px solid rgba(242,240,235,.12);color:var(--ice);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0}
+.modal__cls:hover{background:rgba(242,240,235,.18)}
+
+/* ── CASE MODAL CONTENT ───────────────────────────────── */
+.case-modal__cover{position:relative;height:52vh;overflow:hidden;flex-shrink:0}
+.case-modal__cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;mix-blend-mode:luminosity}
+.case-modal__block{padding:clamp(24px,3vw,40px) clamp(24px,4vw,48px);border-bottom:1px solid var(--ln)}
+.case-modal__block:last-child{border-bottom:none}
+.case-modal__ey{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mg);margin-bottom:10px;display:block}
+.case-modal__p{font-size:clamp(13px,1vw,15px);color:rgba(242,240,235,.7);line-height:1.65;margin:0 0 10px}
+.case-modal__p:last-child{margin-bottom:0}
+.case-modal__grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.case-modal__info-card{background:var(--g2);border:1px solid var(--ln);border-radius:12px;padding:16px}
+.case-modal__info-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:6px;display:block}
+.case-modal__info-card p{font-size:clamp(12px,.9vw,14px);color:var(--ice);margin:0;line-height:1.5}
+.case-modal__steps{display:flex;flex-direction:column;gap:0;margin-top:12px}
+.case-modal__step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--ln)}
+.case-modal__step:last-child{border-bottom:none}
+.case-modal__step-n{font-size:.7rem;font-weight:700;color:var(--mg);letter-spacing:.1em;flex-shrink:0;padding-top:2px;min-width:28px}
+.case-modal__step p{font-size:clamp(12px,.9vw,14px);color:rgba(242,240,235,.7);margin:0;line-height:1.55}
+.case-modal__step strong{color:var(--ice)}
+
+/* ── PKG MODAL CONTENT ────────────────────────────────── */
+.modal__pkg-header{padding:clamp(40px,5vw,64px) clamp(24px,4vw,48px) clamp(28px,3.5vw,40px);background:linear-gradient(135deg,var(--pkgc,var(--mg)) 0%,rgba(9,3,0,.0) 120%);border-bottom:1px solid var(--ln);position:relative}
+.modal__pkg-tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,.5);margin-bottom:10px}
+.modal__pkg-name{font-size:clamp(32px,5vw,60px);font-weight:900;text-transform:uppercase;color:var(--ice);margin:0 0 8px;line-height:.9;letter-spacing:-.02em}
+.modal__pkg-sub{font-size:clamp(13px,1vw,15px);color:rgba(242,240,235,.55);margin:0}
+.modal__body{padding:clamp(24px,3vw,40px) clamp(24px,4vw,48px)}
+.pkg-item{padding:14px 0;border-bottom:1px solid var(--ln);display:flex;flex-direction:column;gap:4px}
+.pkg-item:last-child{border-bottom:none}
+.pkg-item__name{font-size:clamp(13px,1vw,14px);font-weight:700;color:var(--ice);margin:0}
+.pkg-item__desc{font-size:clamp(12px,.85vw,13px);color:rgba(242,240,235,.55);margin:0;line-height:1.6}
+.modal__timeline{display:flex;flex-wrap:wrap;gap:16px;margin:28px 0;padding:16px;background:var(--g2);border-radius:10px;border:1px solid var(--ln)}
+.modal__timeline span{font-size:clamp(11px,.85vw,13px);color:rgba(242,240,235,.6)}
+.modal__timeline strong{color:var(--ice)}
+.modal__cta-main{display:block;text-align:center;padding:16px 24px;border-radius:10px;background:var(--pkgc,var(--mg));color:#fff;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;margin-top:24px;transition:opacity .2s}
+.modal__cta-main:hover{opacity:.85}
+@media(max-width:540px){.case-modal__grid2{grid-template-columns:1fr}}
 </style>
 
 
@@ -1693,196 +1893,244 @@ ul{list-style:none;margin:0;padding:0}
   els.forEach(el => io.observe(el));
 })();
 
-/* ── 4. TICKER / MARQUEE PAUSE ON HOVER ─────────────────────── */
-document.querySelectorAll('.ticker__track,.logos__track').forEach(track => {
-  const parent = track.closest('.ticker,.logos-marquee');
-  if (!parent) return;
-  parent.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
-  parent.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
-});
+/* ── 4. MARQUEE — infinite, no pause ─────────────────────── */
 
-/* ── 5. CASOS — STICKY STACK ────────────────────────────────── */
-(function initCasesStack() {
-  const scroller = document.querySelector('.cases-scroller');
-  const slides = document.querySelectorAll('.case-slide');
-  if (!scroller || !slides.length) return;
-  const N = slides.length;
 
-  function updateCases() {
-    const rect = scroller.getBoundingClientRect();
-    // progress: how many "screens" have scrolled past the top of the scroller
-    const progress = Math.max(0, -rect.top) / window.innerHeight;
-
-    slides.forEach((slide, i) => {
-      const enterP = i === 0 ? 1 : Math.max(0, Math.min(1, progress - (i - 1)));
-      const coverP = i < N - 1 ? Math.max(0, Math.min(1, progress - i)) : 0;
-      const scale = 1 - coverP * 0.04;
-      const brightness = 1 - coverP * 0.25;
-
-      if (i === 0) {
-        // first slide is always visible; only scale+dim as next covers it
-        slide.style.transform = `scale(${1 - coverP * 0.04})`;
-        slide.style.filter = `brightness(${brightness})`;
-      } else {
-        slide.style.transform = `translateY(${(1 - enterP) * 100}%) scale(${scale})`;
-        slide.style.filter = `brightness(${brightness})`;
-      }
-      slide.style.zIndex = i + 1;
-    });
-  }
-
-  window.addEventListener('scroll', updateCases, { passive: true });
-  updateCases();
-
-  // Open case modal on click (not on scroll)
-  let scrollStartY = 0;
-  slides.forEach((slide, i) => {
-    const ids = ['bas', 'citti', 'tree', 'bora'];
-    slide.addEventListener('mousedown', () => { scrollStartY = window.scrollY; });
-    slide.addEventListener('click', () => {
-      if (Math.abs(window.scrollY - scrollStartY) < 8) openModal(ids[i]);
-    });
-  });
-})();
-
-/* ── 6. TYPEWRITER ANIMATION ────────────────────────────────── */
+/* ── 6. TYPEWRITER
+/* ── 6. TYPEWRITER ANIMATION + FONT-FIT ─────────────────────── */
 (function initTypewriter() {
   const el = document.getElementById('tw-text');
   if (!el) return;
-  const text = el.dataset.text || el.textContent.trim();
-  el.textContent = '';
+  const l1a = el.dataset.l1a || 'IDENTIDADE';
+  const l1b = el.dataset.l1b || 'COM';
+  const l2  = el.dataset.l2  || 'PROPÓSITO';
+  const spa = el.querySelector('.tw-l1a');
+  const spb = el.querySelector('.tw-l1b');
+  const sp2 = el.querySelector('.tw-l2');
+  if (!spa || !spb || !sp2) return;
+  spa.textContent = ''; spb.textContent = ''; sp2.textContent = '';
 
-  // Build spans
-  const chars = text.split('').map(ch => {
-    const span = document.createElement('span');
-    span.className = 'tw-char';
-    span.textContent = ch === ' ' ? ' ' : ch;
-    span.style.opacity = '0';
-    span.style.transform = 'translateY(20px)';
-    span.style.display = 'inline-block';
-    span.style.transition = 'opacity .25s var(--ease), transform .35s var(--ease)';
-    return span;
-  });
-  chars.forEach(s => el.appendChild(s));
-
-  // Blinking cursor
-  const cursor = document.createElement('span');
-  cursor.className = 'tw-cursor';
-  cursor.textContent = '|';
-  cursor.style.cssText = 'display:inline-block;margin-left:4px;animation:twBlink 1s steps(1) infinite;color:var(--mg)';
-  el.appendChild(cursor);
-
-  // Add blink keyframe if not present
-  if (!document.getElementById('tw-style')) {
-    const s = document.createElement('style');
-    s.id = 'tw-style';
-    s.textContent = '@keyframes twBlink{0%,49%{opacity:1}50%,100%{opacity:0}}';
-    document.head.appendChild(s);
-  }
-
-  let started = false;
-  function startTyping() {
-    if (started) return;
-    started = true;
-    chars.forEach((span, i) => {
-      setTimeout(() => {
-        span.style.opacity = '1';
-        span.style.transform = 'none';
-        // Remove cursor when done
-        if (i === chars.length - 1) {
-          setTimeout(() => { cursor.style.display = 'none'; }, 1800);
-        }
-      }, 80 + i * 52);
+  function makeChars(txt, container) {
+    return txt.split('').map(ch => {
+      const s = document.createElement('span');
+      s.className = 'tw-char';
+      s.textContent = ch;
+      s.style.cssText = 'opacity:0;display:' + (ch === ' ' ? 'inline' : 'inline-block') + ';transform:translateY(14px);transition:opacity .18s var(--ease),transform .28s var(--ease)';
+      container.appendChild(s);
+      return s;
     });
   }
+  const ca = makeChars(l1a, spa);
+  const cb = makeChars(l1b, spb);
+  const c2 = makeChars(l2, sp2);
 
-  const io = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { startTyping(); io.disconnect(); }
-  }, { threshold: 0.4 });
+  const cur = document.createElement('span');
+  cur.textContent = '|';
+  cur.style.cssText = 'color:var(--mg);animation:twBlink 1s steps(1) infinite;margin-left:2px';
+  sp2.appendChild(cur);
+  if (!document.getElementById('tw-ks')) {
+    const ks = document.createElement('style');
+    ks.id = 'tw-ks';
+    ks.textContent = '@keyframes twBlink{0%,49%{opacity:1}50%,100%{opacity:0}}';
+    document.head.appendChild(ks);
+  }
+
+  // ── Font-fit: use getComputedStyle so CSS vars resolve correctly ──
+  function doFit() {
+    const wrap = el.closest('.studio__tw-wrap');
+    if (!wrap) return;
+    const cs = getComputedStyle(el);
+    const probe = document.createElement('span');
+    probe.style.cssText = [
+      'position:fixed','top:-9999px','left:-9999px',
+      'visibility:hidden','pointer-events:none','white-space:nowrap',
+      'font-family:' + cs.fontFamily,
+      'font-weight:' + cs.fontWeight,
+      'font-stretch:' + cs.fontStretch,
+      'letter-spacing:' + cs.letterSpacing,
+      'text-transform:uppercase'
+    ].join(';');
+
+    // Determine whether l1a+' '+l1b fits in one line or needs 2 lines
+    const fullText = l1a + ' ' + l1b;
+    probe.textContent = fullText;
+    document.body.appendChild(probe);
+
+    const maxW = wrap.offsetWidth;
+    const MARGIN = 4; // safety margin px
+
+    // Binary search for fitting font-size for the FULL "IDENTIDADE COM"
+    let lo = 54, hi = 340, bestFull = 80;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      probe.style.fontSize = mid + 'px';
+      if (probe.scrollWidth <= maxW - MARGIN) { bestFull = mid; lo = mid + 1; }
+      else { hi = mid - 1; }
+    }
+
+    // Binary search for fitting font-size for just "IDENTIDADE" (wider word)
+    probe.textContent = l1a;
+    lo = 54; hi = 340; let bestA = 100;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      probe.style.fontSize = mid + 'px';
+      if (probe.scrollWidth <= maxW - MARGIN) { bestA = mid; lo = mid + 1; }
+      else { hi = mid - 1; }
+    }
+
+    document.body.removeChild(probe);
+
+    // If full text fits at >= 54px, use 2-line layout (l1a + l1b on same line)
+    if (bestFull >= 54) {
+      el.style.fontSize = bestFull + 'px';
+      el.style.lineHeight = '.86';
+      // Ensure l1b is on the same line as l1a (inline-block with space)
+      spa.style.display = 'inline-block';
+      spb.style.display = 'inline-block';
+      spb.style.marginLeft = '.18em';
+    } else {
+      // 3-line mode: l1a on line 1, l1b on line 2, l2 on line 3
+      // Use bestA as font-size (fits "IDENTIDADE")
+      el.style.fontSize = bestA + 'px';
+      el.style.lineHeight = '.86';
+      spa.style.display = 'block';
+      spb.style.display = 'block';
+      spb.style.marginLeft = '0';
+      // Insert <br> between l1a and l1b if not present
+      const br = spa.nextSibling;
+      if (!br || br.nodeName !== 'BR') {
+        spa.insertAdjacentHTML('afterend', '<br>');
+      }
+    }
+  }
+
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(doFit);
+  let rzTimer;
+  window.addEventListener('resize', () => { clearTimeout(rzTimer); rzTimer = setTimeout(doFit, 100); });
+
+  // ── Animate characters ──
+  let started = false;
+  function start() {
+    if (started) return; started = true;
+    const d1 = 58, d2 = 68;
+    const allL1 = [...ca, ...cb];
+    allL1.forEach((s,i) => setTimeout(() => { s.style.opacity='1'; s.style.transform='none'; }, 100 + i*d1));
+    const gap = 100 + allL1.length*d1 + 200;
+    c2.forEach((s,i) => setTimeout(() => { s.style.opacity='1'; s.style.transform='none'; }, gap + i*d2));
+    setTimeout(() => cur.remove(), gap + c2.length*d2 + 900);
+  }
+
+  const io = new IntersectionObserver(e => {
+    if (e[0].isIntersecting) { start(); io.disconnect(); }
+  }, { threshold: 0.3 });
   io.observe(el);
 })();
 
-/* ── 7. DEPOIMENTOS — CAROUSEL + AUTO-ROTATE ────────────────── */
-(function initCarousel() {
-  const track = document.querySelector('.dep__track');
-  const items = document.querySelectorAll('.dep__item');
-  const prevBtn = document.querySelector('.dep__prev');
-  const nextBtn = document.querySelector('.dep__next');
-  const dots = document.querySelectorAll('.dep__dot');
-  if (!track || !items.length) return;
 
-  const N = items.length;
-  let current = 0;
+
+/* ── 7. DEPOIMENTOS — CAROUSEL INFINITO ────────────────────── */
+(function initCarousel() {
+  const track = document.querySelector('.dep__carousel');
+  if (!track) return;
+  const origItems = Array.from(track.querySelectorAll('.iphone-wrap'));
+  const N = origItems.length;
+  if (!N) return;
+
+  const prevBtn = document.getElementById('dep-prev');
+  const nextBtn = document.getElementById('dep-next');
+
+  // Remove scroll-snap so we control positioning via scrollLeft
+  track.style.scrollSnapType = 'none';
+
+  // Clone before + after for infinite illusion
+  origItems.forEach(el => {
+    const before = el.cloneNode(true);
+    const after  = el.cloneNode(true);
+    [before, after].forEach(c => c.setAttribute('aria-hidden','true'));
+    track.insertBefore(before, origItems[0]);
+    track.appendChild(after);
+  });
+
+  const all = Array.from(track.querySelectorAll('.iphone-wrap'));
+  // Real items are indices N … 2N-1
+  let cur = N;           // index into `all` pointing at first real item
+  let jumping = false;
   let timer = null;
 
-  function goTo(i, fromUser) {
-    // wrap around
-    current = ((i % N) + N) % N;
-    const target = items[current];
-    // Use scrollLeft for reliable scroll
-    track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
-    if (fromUser) resetAuto();
+  function itemLeft(idx) {
+    const el = all[idx];
+    return el.offsetLeft - (track.offsetWidth - el.offsetWidth) / 2;
   }
 
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
-
-  function startAuto() {
-    timer = setInterval(next, 4200);
+  function jumpTo(idx) {
+    jumping = true;
+    track.scrollLeft = itemLeft(idx);
+    requestAnimationFrame(() => { jumping = false; });
   }
-  function stopAuto() { clearInterval(timer); }
+
+  function scrollTo(idx) {
+    track.scrollTo({ left: itemLeft(idx), behavior: 'smooth' });
+  }
+
+  // Initialise position instantly on load
+  setTimeout(() => jumpTo(cur), 60);
+
+  function next() {
+    cur++;
+    scrollTo(cur);
+    // If we've entered the after-clones zone, silently jump back
+    if (cur >= N * 2) setTimeout(() => { cur -= N; jumpTo(cur); }, 500);
+  }
+  function prev() {
+    cur--;
+    scrollTo(cur);
+    // If we've entered the before-clones zone, silently jump forward
+    if (cur < N) setTimeout(() => { cur += N; jumpTo(cur); }, 500);
+  }
+
+  function startAuto() { if (!timer) timer = setInterval(next, 4500); }
+  function stopAuto()  { clearInterval(timer); timer = null; }
   function resetAuto() { stopAuto(); startAuto(); }
 
   if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
   if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetAuto(); });
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i, true)));
 
-  // Pause on hover/touch
-  track.addEventListener('mouseenter', stopAuto);
-  track.addEventListener('mouseleave', startAuto);
-  track.addEventListener('touchstart', stopAuto, { passive: true });
-  track.addEventListener('touchend', () => setTimeout(startAuto, 2000), { passive: true });
-
-  // Sync dots on native scroll
-  let scrollTimer;
-  track.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const tw = track.offsetWidth;
-      let closest = 0, minD = Infinity;
-      items.forEach((item, i) => {
-        const d = Math.abs(item.offsetLeft - track.scrollLeft);
-        if (d < minD) { minD = d; closest = i; }
-      });
-      if (closest !== current) {
-        current = closest;
-        dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
-      }
-    }, 80);
+  // Touch swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopAuto(); }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+    resetAuto();
   }, { passive: true });
 
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    const sec = document.querySelector('.depoimentos');
-    if (!sec) return;
-    const r = sec.getBoundingClientRect();
-    if (r.top > window.innerHeight || r.bottom < 0) return;
-    if (e.key === 'ArrowRight') { next(); resetAuto(); }
-    if (e.key === 'ArrowLeft')  { prev(); resetAuto(); }
-  });
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
 
-  // Start auto-rotate after 1s
-  setTimeout(startAuto, 1000);
+  setTimeout(startAuto, 1200);
 })();
 
 /* ── 8. MODAIS ──────────────────────────────────────────────── */
 function openModal(id) {
   const modal = document.getElementById('modal-' + id);
   if (!modal) return;
+  const bd = document.getElementById('bd-' + id);
+  const prog = document.getElementById('prog-' + id);
+  if (bd) { bd.scrollTop = 0; }
+  if (prog) { prog.style.width = '0%'; }
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   modal.focus();
+  // Attach scroll listener for progress bar
+  if (bd && prog) {
+    bd._progListener = function() {
+      const pct = bd.scrollHeight <= bd.clientHeight ? 100
+        : (bd.scrollTop / (bd.scrollHeight - bd.clientHeight)) * 100;
+      prog.style.width = pct + '%';
+    };
+    bd.removeEventListener('scroll', bd._progListener);
+    bd.addEventListener('scroll', bd._progListener, { passive: true });
+  }
 }
 function closeModal(id) {
   const modal = document.getElementById(id) || document.getElementById('modal-' + id);
@@ -1893,9 +2141,21 @@ function closeModal(id) {
 function openPkgModal(id) {
   const modal = document.getElementById('pkgmodal-' + id);
   if (!modal) return;
+  const prog = document.getElementById('pkgprog-' + id);
+  modal.scrollTop = 0;
+  if (prog) prog.style.width = '0%';
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   modal.focus();
+  if (prog) {
+    modal._pkgProg = function() {
+      const pct = modal.scrollHeight <= modal.clientHeight ? 100
+        : (modal.scrollTop / (modal.scrollHeight - modal.clientHeight)) * 100;
+      prog.style.width = pct + '%';
+    };
+    modal.removeEventListener('scroll', modal._pkgProg);
+    modal.addEventListener('scroll', modal._pkgProg, { passive: true });
+  }
 }
 
 // Close on backdrop click
@@ -2039,13 +2299,32 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
   nav.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
-      nav.classList.remove('open');
+            nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     });
   });
 })();
 
+
+/* ── 9. HEADLINE LINE-REVEAL (lovable.dev style) ────────────── */
+(function initHeadlineReveal() {
+  const headings = document.querySelectorAll('[data-hl]');
+  if (!headings.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      // Reveal each .hl-wrap in order — CSS transition-delay handles stagger
+      entry.target.querySelectorAll('.hl-wrap').forEach(wrap => {
+        wrap.classList.add('on');
+      });
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+
+  headings.forEach(h => io.observe(h));
+})();
 </script>
 </body>
 </html>
