@@ -14,13 +14,13 @@ del /f /q .git\index.lock 2>nul
 del /f /q .git\HEAD.lock 2>nul
 
 echo [2/4] Adicionando arquivos...
-git add branding/index.html painel/index.html branding-content.json crm-tracker.js
+git add branding/index.html painel/index.html branding-content.json crm-tracker.js DEPLOY.bat SUPABASE_LEADS.sql
 
 echo [3/4] Commitando...
-git commit -m "crm: leads capture, leads panel admin, export CSV, Visao panel, nav reorder"
+git commit -m "crm: leads capture, leads panel admin, export CSV, Visao panel, nav reorder" --allow-empty
 
-echo [4/4] Fazendo push...
-git push origin main
+echo [4/4] Fazendo push com token...
+git -c credential.helper= push https://REMOVED@github.com/gmstudiobr/gmstudiobr.github.io.git main
 
 echo.
 echo  ================================
