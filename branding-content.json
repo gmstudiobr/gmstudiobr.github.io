@@ -792,7 +792,7 @@
   },
   "cta_footer": {
     "eyebrow": "Pronto para criar sua marca?",
-    "headline": "Marca forte\n<br><em>não é sorte</em><br>\né método.",
+    "headline": "Marca forte\n<em>não é sorte</em>,\né método.",
     "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
     "cta_text": "Fale com a gente agora!",
     "cta_href": "https://api.whatsapp.com/send/?phone=5535997183251"
