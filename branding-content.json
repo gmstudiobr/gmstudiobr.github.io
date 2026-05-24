@@ -780,12 +780,7 @@
     "eyebrow": "Vamos conversar",
     "h2": "Pronto para construir uma marca forte?",
     "desc": "Preencha o formulário e entraremos em contato em até 24 horas para entender seu projeto e encontrar o pacote ideal.",
-    "promessas": [
-      "Resposta em até 24 horas úteis",
-      "Diagnóstico gratuito do momento da sua marca",
-      "Sem compromisso — conversa estratégica inicial",
-      "Atendimento direto com o STUDIO"
-    ],
+    "promises": [],
     "formspree_id": "xjgzylew",
     "submit_text": "Enviar mensagem →"
   },
@@ -798,9 +793,9 @@
   "cta_footer": {
     "eyebrow": "Pronto para criar sua marca?",
     "headline": "Vamos construir\numa marca forte.",
+    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
     "cta_text": "Iniciar projeto",
-    "cta_href": "https://gmstudiobr.github.io/briefing",
-    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica."
+    "cta_href": "https://api.whatsapp.com/send/?phone=5535997183251"
   },
   "clientes": {
     "usar_gmstudio_fallback": true,
