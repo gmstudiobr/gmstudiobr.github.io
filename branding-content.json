@@ -15,6 +15,11 @@
       "Marcas",
       "que causam",
       "impacto"
+    ],
+    "h1_styles": [
+      "normal",
+      "normal",
+      "color"
     ]
   },
   "studio": {
@@ -780,7 +785,12 @@
     "eyebrow": "Vamos conversar",
     "h2": "Pronto para construir uma marca forte?",
     "desc": "Preencha o formulário e entraremos em contato em até 24 horas para entender seu projeto e encontrar o pacote ideal.",
-    "promises": [],
+    "promessas": [
+      "Resposta em até 24 horas úteis",
+      "Diagnóstico gratuito do momento da sua marca",
+      "Sem compromisso — conversa estratégica inicial",
+      "Atendimento direto com o STUDIO"
+    ],
     "formspree_id": "xjgzylew",
     "submit_text": "Enviar mensagem →"
   },
@@ -792,10 +802,10 @@
   },
   "cta_footer": {
     "eyebrow": "Pronto para criar sua marca?",
-    "headline": "MARCA FORTE\nNÃO É SORTE,\nÉ MÉTODO.",
-    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
-    "cta_text": "Fale com a gente agora!",
-    "cta_href": "https://api.whatsapp.com/send/?phone=5535997183251"
+    "headline": "Vamos construir\numa marca forte.",
+    "cta_text": "Iniciar projeto",
+    "cta_href": "https://gmstudiobr.github.io/briefing",
+    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica."
   },
   "clientes": {
     "usar_gmstudio_fallback": true,
@@ -809,6 +819,11 @@
     "body": "Uma identidade poderosa é construída com método, percepção e direção de arte. É o que separa marcas que são reconhecidas daquelas que simplesmente existem.",
     "logo_src": "https://gmstudiobr.github.io/assets/images/gm-logo.svg",
     "logo_alt": "GMSTUDIO",
-    "sig": "Pouso Alegre/MG · Branding"
+    "sig": "Pouso Alegre/MG · Branding",
+    "h2_styles": [
+      "normal",
+      "outline",
+      "normal"
+    ]
   }
 }
