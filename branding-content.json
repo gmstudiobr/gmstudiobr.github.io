@@ -1,27 +1,38 @@
 {
   "seo": {
-    "title": "Branding & Identidade Visual — GMSTUDIO®",
-    "description": "Identidade visual e sistemas de branding para marcas que querem ser icônicas. Pouso Alegre/MG · Desde 2013."
+    "title": "GMSTUDIO® — Branding & Identidade Visual Estratégica",
+    "description": "Estúdio criativo especializado em branding estratégico, identidade visual e sistemas de marca. Pouso Alegre/MG, desde 2013."
   },
   "hero": {
     "eyebrow": "Pouso Alegre/MG · Branding Estratégico · Desde 2013",
-    "typewriter": ["IDENTIDADE", "COM", "PROPÓSITO"],
-    "h1_lines": ["Marcas", "que", "falam."],
+    "h1_main": "Marcas que causam impacto",
     "subtitle": "Identidade visual e sistemas de marca que unem estratégia, percepção e presença — para marcas que querem ser lembradas.",
     "cta_primary": "Ver Pacotes",
     "cta_primary_href": "#pacotes",
     "cta_secondary": "Ver Cases",
-    "cta_secondary_href": "#cases"
+    "cta_secondary_href": "#cases",
+    "h1_lines": [
+      "Marcas",
+      "que causam",
+      "impacto"
+    ]
+  },
+  "studio": {
+    "typewriter_l1a": "IDENTIDADE",
+    "typewriter_l1b": "COM",
+    "typewriter_l2": "PROPÓSITO",
+    "body": "O GMSTUDIO é um estúdio criativo de branding baseado em Pouso Alegre/MG. Trabalhamos com marcas que querem mais do que uma identidade bonita — querem um sistema visual que comunica com precisão, gera desejo e sustenta crescimento.",
+    "tag": "Desde 2013 · Pouso Alegre/MG"
   },
   "marquee": [
     "Branding",
     "Identidade Visual",
     "Naming",
-    "Posicionamento",
+    "Brandbook",
     "Sistema de Marca",
-    "Direção de Arte",
-    "Estratégia Visual",
-    "Brandbook"
+    "Estratégia",
+    "Tipografia",
+    "Iconografia"
   ],
   "showreel": [
     "https://gmstudiobr.github.io/assets/images/cover-bas.jpg",
@@ -40,128 +51,759 @@
     "https://gmstudiobr.github.io/assets/modal-pages/bora-02.jpg",
     "https://gmstudiobr.github.io/assets/modal-pages/bora-05.jpg",
     "https://gmstudiobr.github.io/assets/modal-pages/bora-08.jpg",
+    "https://gmstudiobr.github.io/assets/images/cover-bas.jpg",
     "https://gmstudiobr.github.io/assets/modal-pages/bas-03.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-06.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/bas-09.jpg",
+    "https://gmstudiobr.github.io/assets/images/cover-citti.jpg",
     "https://gmstudiobr.github.io/assets/modal-pages/citti-03.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/tree-03.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/bora-03.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/bas-07.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/citti-07.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/tree-07.jpg",
-    "https://gmstudiobr.github.io/assets/modal-pages/bora-07.jpg"
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-06.jpg",
+    "https://gmstudiobr.github.io/assets/modal-pages/citti-09.jpg"
   ],
+  "casos_header": {
+    "h2": "Marcas | que criamos.",
+    "sub": "Projetos reais de branding que transformaram a percepção de negócios no mercado brasileiro."
+  },
+  "casos_ver_mais_href": "https://gmstudiobr.github.io/#portfolio",
   "casos": [
     {
       "id": "bas",
-      "nome": "Bas Telecom",
       "num": "01",
+      "nome": "Bas Telecom",
       "categoria": "Identidade Visual · Manual de Marca",
       "ano": "2024",
-      "cover": "https://gmstudiobr.github.io/assets/images/cover-bas.jpg"
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-bas.jpg",
+      "modal_images": [
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-01.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-02.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-03.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-04.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-05.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-06.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-07.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-08.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-09.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bas-10.jpg"
+      ],
+      "stats": [
+        {
+          "valor": "20",
+          "legenda": "Semanas"
+        },
+        {
+          "valor": "8+",
+          "legenda": "Aplicações"
+        },
+        {
+          "valor": "100%",
+          "legenda": "Autoral"
+        }
+      ],
+      "secoes_modal": [
+        {
+          "tag": "O Desafio",
+          "titulo": "Energia contemporânea com solidez institucional",
+          "texto": "Uma operadora de telecomunicações em crescimento acelerado precisava de uma marca que comunicasse modernidade e confiança ao mesmo tempo — dois atributos que raramente coexistem sem tensão. O briefing exigia presença no mercado corporativo sem abrir mão de uma energia jovem e dinâmica."
+        },
+        {
+          "tag": "Processo Criativo",
+          "titulo": "Sistema visual construído em camadas",
+          "texto": "Logotipo com forma orgânica e dinâmica em azul elétrico com gradiente verde-ciano, tipografia tecnológica proprietária e sistema de ícones desenhado do zero. O processo incluiu sprints semanais de apresentação, refinamento iterativo do símbolo e construção completa do sistema de aplicações antes de qualquer entrega parcial."
+        },
+        {
+          "tag": "Resultado",
+          "titulo": "Manual de marca com 80+ páginas",
+          "texto": "Uma identidade pronta para escalar. Manual completo cobrindo aplicações digitais, físicas e institucionais — papelaria, uniformes, frota, assinatura de e-mail, social media e comunicação externa. 8+ aplicações documentadas, 100% autoral, entregue em 20 semanas."
+        }
+      ],
+      "creditos": {
+        "criacao": "GMSTUDIO®",
+        "direcao_artistica": "Gustavo Mota",
+        "design_grafico": "GMSTUDIO®",
+        "estrategia_marca": "GMSTUDIO®",
+        "cliente": "BAS Telecom"
+      }
     },
     {
       "id": "citti",
-      "nome": "CITTI",
       "num": "02",
+      "nome": "CITTI",
       "categoria": "Brandbook · Direção Criativa",
       "ano": "2023",
-      "cover": "https://gmstudiobr.github.io/assets/images/cover-citti.jpg"
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-citti.jpg",
+      "modal_images": [
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-01.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-02.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-03.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-04.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-05.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-06.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-07.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-08.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-09.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/citti-10.jpg"
+      ],
+      "stats": [
+        {
+          "valor": "16",
+          "legenda": "Semanas"
+        },
+        {
+          "valor": "60+",
+          "legenda": "Páginas"
+        },
+        {
+          "valor": "5",
+          "legenda": "Versões"
+        }
+      ],
+      "secoes_modal": [
+        {
+          "tag": "O Desafio",
+          "titulo": "Marca sofisticada para o mercado premium",
+          "texto": "Uma empresa do setor premium precisava de um sistema de marca que transmitisse sofisticação e autoridade, capturando a essência da excelência em seus serviços e diferenciando-a completamente dos concorrentes no mercado."
+        },
+        {
+          "tag": "Processo Criativo",
+          "titulo": "Direção criativa com foco em premium",
+          "texto": "Desenvolvemos um brandbook completo com direção criativa voltada ao segmento premium. O processo envolveu pesquisa aprofundada do setor, definição de arquetipos e criação de um sistema visual coeso que vai do logotipo às aplicações mais complexas."
+        },
+        {
+          "tag": "Resultado",
+          "titulo": "Sistema de marca com 60+ páginas",
+          "texto": "Um brandbook robusto com mais de 60 páginas documentando todo o sistema de marca — desde o conceito estratégico até as aplicações práticas. A marca agora comunica com precisão seu posicionamento premium em todos os pontos de contato."
+        }
+      ],
+      "creditos": {
+        "criacao": "GMSTUDIO®",
+        "direcao_artistica": "Gustavo Mota",
+        "design_grafico": "GMSTUDIO®",
+        "estrategia_marca": "GMSTUDIO®",
+        "cliente": "CITTI"
+      }
     },
     {
       "id": "tree",
-      "nome": "Tree Digital",
       "num": "03",
-      "categoria": "Identidade Visual · Brandbook",
-      "ano": "2023",
-      "cover": "https://gmstudiobr.github.io/assets/images/cover-tree.jpg"
+      "nome": "Tree Digital",
+      "categoria": "Identidade Visual · Manual de Marca",
+      "ano": "2024",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-tree.jpg",
+      "modal_images": [
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-01.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-02.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-03.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-04.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-05.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-06.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-07.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-08.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-09.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/tree-10.jpg"
+      ],
+      "stats": [
+        {
+          "valor": "12",
+          "legenda": "Semanas"
+        },
+        {
+          "valor": "6+",
+          "legenda": "Aplicações"
+        },
+        {
+          "valor": "100%",
+          "legenda": "Autoral"
+        }
+      ],
+      "secoes_modal": [
+        {
+          "tag": "O Desafio",
+          "titulo": "Identidade para o mercado digital",
+          "texto": "Uma empresa do setor digital precisava de uma identidade que comunicasse inovação, crescimento e solidez — valores essenciais para conquistar clientes corporativos em um mercado altamente competitivo."
+        },
+        {
+          "tag": "Processo Criativo",
+          "titulo": "Sistema visual orgânico e contemporâneo",
+          "texto": "Criamos um sistema visual inspirado no crescimento orgânico, com elementos que remetem à natureza em expansão mas com linguagem totalmente contemporânea e digital. Tipografia clean, paleta verde-escuro com detalhes em verde-limão."
+        },
+        {
+          "tag": "Resultado",
+          "titulo": "Marca pronta para o digital",
+          "texto": "Uma identidade completa e consistente, com manual de marca documentando todas as aplicações digitais e físicas. A Tree Digital agora tem uma presença visual forte e reconhecível no mercado."
+        }
+      ],
+      "creditos": {
+        "criacao": "GMSTUDIO®",
+        "direcao_artistica": "Gustavo Mota",
+        "design_grafico": "GMSTUDIO®",
+        "estrategia_marca": "GMSTUDIO®",
+        "cliente": "Tree Digital"
+      }
     },
     {
       "id": "bora",
-      "nome": "Bora Trip",
       "num": "04",
-      "categoria": "Identidade Visual · App UI",
-      "ano": "2024",
-      "cover": "https://gmstudiobr.github.io/assets/images/cover-bora.jpg"
+      "nome": "Bora Trip",
+      "categoria": "Identidade Visual · Logotipo",
+      "ano": "2023",
+      "cover": "https://gmstudiobr.github.io/assets/images/cover-bora.jpg",
+      "modal_images": [
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-01.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-02.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-03.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-04.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-05.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-06.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-07.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-08.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-09.jpg",
+        "https://gmstudiobr.github.io/assets/modal-pages/bora-10.jpg"
+      ],
+      "stats": [
+        {
+          "valor": "10",
+          "legenda": "Semanas"
+        },
+        {
+          "valor": "5+",
+          "legenda": "Aplicações"
+        },
+        {
+          "valor": "100%",
+          "legenda": "Autoral"
+        }
+      ],
+      "secoes_modal": [
+        {
+          "tag": "O Desafio",
+          "titulo": "Marca jovem para o mercado de viagens",
+          "texto": "Uma startup de turismo precisava de uma marca com energia jovem, espírito aventureiro e credibilidade suficiente para conquistar viajantes exigentes. O nome \"Bora\" já sinalizava o tom — precisávamos criar uma identidade à altura."
+        },
+        {
+          "tag": "Processo Criativo",
+          "titulo": "Identidade que convida à aventura",
+          "texto": "Desenvolvemos um logotipo dinâmico com elementos que remetem ao movimento e à descoberta. A paleta combina azul profundo com detalhes em coral vibrante, criando contraste que chama atenção e transmite energia positiva."
+        },
+        {
+          "tag": "Resultado",
+          "titulo": "Marca pronta para o mercado",
+          "texto": "Uma identidade completa, com versões para todos os formatos digitais e físicos. A Bora Trip tem agora uma presença visual consistente que reflete perfeitamente a essência da marca — aventura com planejamento."
+        }
+      ],
+      "creditos": {
+        "criacao": "GMSTUDIO®",
+        "direcao_artistica": "Gustavo Mota",
+        "design_grafico": "GMSTUDIO®",
+        "estrategia_marca": "GMSTUDIO®",
+        "cliente": "Bora Trip"
+      }
     }
   ],
+  "servicos": {
+    "eyebrow": "O que fazemos",
+    "h2": "Branding\nde ponta\na ponta.",
+    "desc": "Do naming ao brandbook, do posicionamento ao sistema digital — entregamos tudo que sua marca precisa para ser reconhecida, desejada e consistente em todos os canais.",
+    "itens": [
+      {
+        "num": "01",
+        "nome": "Naming &\nPosicionamento",
+        "desc": "Nome estratégico, essência e posicionamento competitivo."
+      },
+      {
+        "num": "02",
+        "nome": "Identidade\nVisual",
+        "desc": "Logo, paleta, tipografia, grafismos e sistema visual completo."
+      },
+      {
+        "num": "03",
+        "nome": "Sistema\nde Marca",
+        "desc": "Brandbook, diretrizes de uso e biblioteca de ativos."
+      },
+      {
+        "num": "04",
+        "nome": "Presença\nDigital",
+        "desc": "Templates para redes sociais, direção visual para web."
+      }
+    ]
+  },
+  "processo": {
+    "eyebrow": "Como trabalhamos",
+    "h2": "Nosso\nprocesso.",
+    "desc": "Cada projeto começa com uma escuta profunda. Entendemos o negócio, o mercado e o público antes de criar qualquer forma, cor ou palavra. O resultado é uma marca que não precisa se explicar — ela simplesmente funciona e conecta.",
+    "etapas": [
+      {
+        "num": "01",
+        "titulo": "Descoberta",
+        "desc": "Imersão no negócio, mercado, concorrência e público-alvo."
+      },
+      {
+        "num": "02",
+        "titulo": "Estratégia",
+        "desc": "Posicionamento, arquitetura da marca e conceito criativo."
+      },
+      {
+        "num": "03",
+        "titulo": "Criação",
+        "desc": "Identidade visual, tipografia, paleta e sistema completo."
+      },
+      {
+        "num": "04",
+        "titulo": "Refinamento",
+        "desc": "Apresentação, feedback e ajustes até a aprovação final."
+      },
+      {
+        "num": "05",
+        "titulo": "Entrega",
+        "desc": "Brandbook, arquivos organizados e biblioteca digital."
+      }
+    ]
+  },
+  "pacotes_header": {
+    "eyebrow": "Investimento",
+    "h2": "Escolha seu pacote.",
+    "sub": "Do primeiro logo ao sistema de marca completo — cada pacote foi criado para um momento específico do seu negócio."
+  },
   "pacotes": [
     {
       "id": "start",
+      "label": "Início",
       "nome": "START",
-      "sub": "Para quem está começando e precisa de uma base sólida",
-      "cor": "#0057E6",
+      "cor": "#E50046",
+      "preco": "R$1.497",
+      "periodo": "projeto completo",
       "itens": [
-        "Naming (até 3 opções)",
-        "Logotipo profissional",
-        "Paleta de cores",
-        "Tipografia",
-        "Cartão de visita",
-        "Guia básico de marca"
+        "Logomark + Logotipo vetorial",
+        "Paleta cromática completa",
+        "Tipografia primária",
+        "Versões positivo, negativo e P&B",
+        "Mini-manual de uso"
+      ],
+      "ideal": "Para negócios que estão começando e precisam de uma marca profissional.",
+      "wa_msg": "Olá%2C%20tenho%20interesse%20no%20pacote%20START",
+      "modal_sub": "Para quem está começando e precisa de uma base sólida",
+      "modal_itens": [
+        {
+          "nome": "Diagnóstico de Marca",
+          "desc": "Sessão de entrevista estratégica com os fundadores para mapear propósito, valores, público e posicionamento desejado. Inclui análise de 5 concorrentes diretos e levantamento dos pontos de diferenciação da marca."
+        },
+        {
+          "nome": "Naming",
+          "desc": "Geração de ao menos 15 opções de nome com análise semântica, fonética e de disponibilidade de domínio. Apresentação das 3 mais estratégicas com justificativas criativas e técnicas."
+        },
+        {
+          "nome": "Logotipo",
+          "desc": "Desenvolvimento completo do símbolo + logotipo com no mínimo 3 direções criativas apresentadas. Entrega em SVG, PDF, PNG e EPS com todas as variações (positivo, negativo, P&B, monocromático)."
+        },
+        {
+          "nome": "Paleta de Cores",
+          "desc": "Sistema cromático com cor primária, secundária e neutras. Inclui especificações técnicas em HEX, RGB, CMYK e Pantone para uso em diferentes mídias e materiais."
+        },
+        {
+          "nome": "Mini-manual de uso",
+          "desc": "Guia essencial com regras de uso do logotipo, paleta, tipografia e orientações básicas de aplicação. Formato digital PDF, até 20 páginas."
+        }
       ]
     },
     {
       "id": "presenca",
+      "label": "Essencial",
       "nome": "PRESENÇA",
-      "sub": "Identidade completa + presença digital estruturada",
       "cor": "#E50046",
+      "preco": "R$2.997",
+      "periodo": "projeto completo",
       "itens": [
         "Tudo do START",
-        "Manual de identidade",
-        "Papelaria corporativa",
-        "Templates para redes sociais",
-        "Brandbook digital",
-        "Consultoria de posicionamento"
+        "Identidade para redes sociais",
+        "Papelaria básica",
+        "Assinatura de e-mail",
+        "Manual de identidade visual"
+      ],
+      "ideal": "Para negócios que querem presença digital consistente.",
+      "wa_msg": "Olá%2C%20tenho%20interesse%20no%20pacote%20PRESENÇA",
+      "modal_sub": "Identidade completa + presença digital estruturada",
+      "modal_itens": [
+        {
+          "nome": "Tudo do pacote START",
+          "desc": "Diagnóstico estratégico, naming, logotipo completo com todas as versões, paleta de cores, tipografia institucional, papelaria básica e guia de marca. Base completa já incluída neste pacote."
+        },
+        {
+          "nome": "Identidade Visual Ampliada",
+          "desc": "Criação de padrões gráficos, texturas e elementos visuais secundários derivados do logotipo. Ícones customizados para uso digital. Grafismos que dão corpo e consistência ao sistema em qualquer aplicação."
+        },
+        {
+          "nome": "Papelaria Completa",
+          "desc": "Cartão de visita, papel timbrado, envelope, pasta institucional e assinatura de e-mail profissional. Arquivos em alta resolução prontos para impressão."
+        },
+        {
+          "nome": "Kit Social Media",
+          "desc": "Templates editáveis para Instagram: feed quadrado, stories, reels cover e destaques. Guia de uso com regras de aplicação da identidade nas redes sociais."
+        },
+        {
+          "nome": "Manual de Identidade Visual",
+          "desc": "Brandbook completo com até 40 páginas: conceito da marca, grid, uso do logotipo, paleta, tipografia, padrões gráficos e aplicações. Entregue em PDF interativo."
+        }
       ]
     },
     {
-      "id": "posicionamento",
+      "id": "posic",
+      "label": "Estratégico",
       "nome": "POSICIONAMENTO",
-      "sub": "Estratégia profunda + sistema visual de alto nível",
       "cor": "#6B1A2E",
+      "preco": "R$4.997",
+      "periodo": "projeto completo",
       "itens": [
         "Tudo do PRESENÇA",
-        "Estratégia de marca completa",
-        "Pesquisa de mercado",
-        "Arquitetura de marca",
-        "Brandbook premium",
-        "Suporte por 3 meses"
+        "Naming estratégico",
+        "Tom de voz e vocabulário",
+        "Kit institucional completo",
+        "Brandbook estratégico"
+      ],
+      "ideal": "Para empresas em crescimento que precisam de diferenciação real.",
+      "wa_msg": "Olá%2C%20tenho%20interesse%20no%20pacote%20POSICIONAMENTO",
+      "modal_sub": "Estratégia profunda + sistema visual de alto nível",
+      "modal_itens": [
+        {
+          "nome": "Tudo do pacote PRESENÇA",
+          "desc": "Inclui todo o escopo de identidade visual completa, brandbook, kit de social media, papelaria completa e apresentação institucional do pacote anterior."
+        },
+        {
+          "nome": "Estratégia de Marca",
+          "desc": "Workshop estratégico para definir propósito, visão de futuro, missão, valores e personalidade da marca. Incluímos o mapeamento dos arquétipos de marca (Jung) como ferramenta de alinhamento criativo e comunicacional."
+        },
+        {
+          "nome": "Posicionamento Competitivo",
+          "desc": "Análise aprofundada do mercado, mapeamento de concorrentes e identificação de oportunidades de posicionamento. Definição do território único da marca no mercado."
+        },
+        {
+          "nome": "Tom de Voz e Vocabulário",
+          "desc": "Definição do tom de voz da marca com exemplos práticos de comunicação. Criação de um vocabulário exclusivo, palavras-chave e expressões que fortalecem a identidade verbal da marca."
+        },
+        {
+          "nome": "Brandbook Estratégico",
+          "desc": "Documento completo com 60+ páginas integrando toda a estratégia de marca e o sistema visual. Serve como bíblia da marca para equipes internas e parceiros externos."
+        }
       ]
     },
     {
-      "id": "experience",
+      "id": "exp",
+      "label": "Premium",
       "nome": "EXPERIENCE",
-      "sub": "Branding de ponta a ponta com experiência imersiva",
       "cor": "#71717A",
+      "preco": "R$7.497",
+      "periodo": "projeto completo",
       "itens": [
         "Tudo do POSICIONAMENTO",
-        "Identidade de movimento",
-        "Design de produto",
-        "Experiência sensorial de marca",
-        "Brandbook premium + digital",
-        "Suporte por 6 meses"
+        "Templates para Instagram e Stories",
+        "Direção visual para homepage",
+        "Aplicações físicas",
+        "Kit digital completo"
+      ],
+      "ideal": "Para marcas estruturadas que querem elevar presença digital.",
+      "wa_msg": "Olá%2C%20tenho%20interesse%20no%20pacote%20EXPERIENCE",
+      "modal_sub": "Branding de ponta a ponta com experiência imersiva",
+      "modal_itens": [
+        {
+          "nome": "Tudo do pacote POSICIONAMENTO",
+          "desc": "Inclui estratégia de marca, posicionamento competitivo, tom de voz, sistema visual completo, landing page, motion guidelines e brandbook premium."
+        },
+        {
+          "nome": "Sistema de Design (Design System)",
+          "desc": "Construção de uma biblioteca de componentes UI no Figma com tokens de design (cores, tipografia, espaçamento, sombras). Inclui documentação de uso e handoff técnico para desenvolvimento front-end."
+        },
+        {
+          "nome": "Site Completo",
+          "desc": "Desenvolvimento de site institucional responsivo com até 5 páginas. Design exclusivo baseado na identidade visual criada, otimizado para SEO e conversão."
+        },
+        {
+          "nome": "Motion Guidelines",
+          "desc": "Definição de princípios de animação da marca: curvas de easing, durações, estilo de transições e micro-animações. Entrega de 3 animações de logotipo em formato .mp4 e .lottie."
+        },
+        {
+          "nome": "Kit Digital Completo",
+          "desc": "Pacote com todos os assets digitais: ícones, ilustrações, padrões, mockups e templates para todas as plataformas digitais. Biblioteca organizada no Figma ou Google Drive."
+        }
       ]
     },
     {
-      "id": "signature",
+      "id": "sig",
+      "label": "Signature",
       "nome": "SIGNATURE",
-      "sub": "Projeto exclusivo sob medida — para marcas de alto impacto",
       "cor": "#C9A84C",
+      "preco": "R$9.997",
+      "periodo": "projeto completo",
       "itens": [
-        "Escopo personalizado",
-        "Dedicação exclusiva",
-        "Equipe multidisciplinar",
-        "Entregáveis ilimitados",
-        "Acompanhamento estratégico contínuo"
+        "Tudo do EXPERIENCE",
+        "Narrativa institucional aprofundada",
+        "Direção visual para campanhas",
+        "Aplicações multiplataforma",
+        "Entrega premium com mockups"
+      ],
+      "ideal": "Para marcas premium, franquias e negócios de alto valor.",
+      "wa_msg": "Olá%2C%20tenho%20interesse%20no%20pacote%20SIGNATURE",
+      "modal_sub": "O melhor que o GMSTUDIO pode entregar. Sem concessões.",
+      "modal_itens": [
+        {
+          "nome": "Tudo do pacote EXPERIENCE",
+          "desc": "O escopo completo do EXPERIENCE: sistema de design, site completo, identidade em movimento, direção fotográfica, campanha de lançamento e suporte pós-entrega. Base premium já incluída."
+        },
+        {
+          "nome": "Imersão Estratégica Presencial",
+          "desc": "Workshop de 2 dias presenciais com fundadores e liderança da empresa. Aplicação de ferramentas de estratégia, definição de visão de longo prazo e alinhamento cultural da marca."
+        },
+        {
+          "nome": "Identidade Verbal Completa",
+          "desc": "Desenvolvimento do manifesto de marca, tagline, pitch de elevador, narrativa de origem e vocabulário institucional completo. Tom de voz detalhado com exemplos para cada canal de comunicação."
+        },
+        {
+          "nome": "Campanha de Lançamento",
+          "desc": "Planejamento e criação dos materiais para o lançamento da nova marca: posts, stories, vídeo de apresentação, press kit e email para stakeholders."
+        },
+        {
+          "nome": "Suporte Pós-entrega (90 dias)",
+          "desc": "Acompanhamento exclusivo por 90 dias após a entrega final. Ajustes, adaptações para novas aplicações e consultoria estratégica para implementação consistente em todos os pontos de contato."
+        }
       ]
     }
   ],
-  "clientes": {
-    "usar_gmstudio_fallback": true,
-    "logos": []
+  "pagamento": [
+    {
+      "label": "Cartão de Crédito",
+      "valor": "Até 3x sem juros em projetos até R$4.997\nAté 6x sem juros acima de R$4.997"
+    },
+    {
+      "label": "PIX ou Transferência",
+      "valor": "5% de desconto no pagamento à vista"
+    },
+    {
+      "label": "Parcelamento do Projeto",
+      "valor": "50% na aprovação · 50% na entrega"
+    },
+    {
+      "label": "Dúvidas?",
+      "valor": "Fale com a gente →",
+      "href": "https://wa.me/5535997183251"
+    }
+  ],
+  "comparativo": {
+    "pacotes": [
+      "START",
+      "PRESENÇA",
+      "POSIC.",
+      "EXPERIENCE",
+      "SIGNATURE"
+    ],
+    "linhas": [
+      {
+        "feature": "Logomark + Logotipo",
+        "valores": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Paleta cromática",
+        "valores": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Versões da marca",
+        "valores": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Identidade para redes sociais",
+        "valores": [
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Papelaria básica",
+        "valores": [
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Manual de identidade visual",
+        "valores": [
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Naming estratégico",
+        "valores": [
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Tom de voz e vocabulário",
+        "valores": [
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Brandbook estratégico",
+        "valores": [
+          false,
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Templates sociais (10 peças)",
+        "valores": [
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Direção visual digital / web",
+        "valores": [
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Kit digital completo",
+        "valores": [
+          false,
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "feature": "Narrativa institucional",
+        "valores": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "feature": "Direção para campanhas",
+        "valores": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "feature": "Mockups avançados",
+        "valores": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      }
+    ]
+  },
+  "depoimentos": {
+    "eyebrow": "Depoimentos",
+    "h2": "O que dizem\nnossos clientes.",
+    "itens": [
+      {
+        "quote": "Antes do projeto, nossa marca parecia improvisada. Depois, temos uma identidade que transmite seriedade imediatamente.",
+        "nome": "Mariana Lopes",
+        "empresa": "Clínica Estética"
+      },
+      {
+        "quote": "O processo foi extremamente estratégico. A definição de tom de voz transformou como apresentamos nossos serviços.",
+        "nome": "Rafael Mendes",
+        "empresa": "Arquitetura & Interiores"
+      },
+      {
+        "quote": "Não foi apenas um logo — foi uma construção de identidade que representa nossos valores e atrai o público certo.",
+        "nome": "Vanessa Custódio",
+        "empresa": "Projeto Cultural"
+      },
+      {
+        "quote": "Agora temos uma marca coerente do cardápio às redes sociais, do ambiente ao uniforme da equipe.",
+        "nome": "Eduardo Martins",
+        "empresa": "Restaurante & Gastronomia"
+      },
+      {
+        "quote": "O brandbook, a biblioteca completa — a entrega foi impecável. Implementamos tudo de forma autônoma e consistente.",
+        "nome": "Juliana Ferraz",
+        "empresa": "Empresa de Tecnologia"
+      }
+    ]
+  },
+  "contato": {
+    "eyebrow": "Vamos conversar",
+    "h2": "Pronto para construir uma marca forte?",
+    "desc": "Preencha o formulário e entraremos em contato em até 24 horas para entender seu projeto e encontrar o pacote ideal.",
+    "promessas": [
+      "Resposta em até 24 horas úteis",
+      "Diagnóstico gratuito do momento da sua marca",
+      "Sem compromisso — conversa estratégica inicial",
+      "Atendimento direto com o STUDIO"
+    ],
+    "formspree_id": "xjgzylew",
+    "submit_text": "Enviar mensagem →"
+  },
+  "footer": {
+    "copyright": "© 2024 GMSTUDIO®. Todos os direitos reservados. Pouso Alegre/MG, Brasil.",
+    "instagram_url": "https://www.instagram.com/gmstudio.br/",
+    "whatsapp": "5535997183251",
+    "email": "gmstudio@outlook.pt"
   },
   "cta_footer": {
     "eyebrow": "Pronto para criar sua marca?",
-    "headline": "Vamos construir algo\ninesquecível.",
+    "headline": "Vamos construir\numa marca forte.",
     "cta_text": "Iniciar projeto",
-    "cta_href": "https://gmstudiobr.github.io/briefing"
+    "cta_href": "https://gmstudiobr.github.io/briefing",
+    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica."
+  },
+  "clientes": {
+    "usar_gmstudio_fallback": true,
+    "logos": []
   }
 }

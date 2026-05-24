@@ -2325,6 +2325,417 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
   headings.forEach(h => io.observe(h));
 })();
+
+/* ── 16. DYNAMIC CONTENT FROM branding-content.json ────────── */
+(function() {
+
+  /* ── helpers ── */
+  function esc(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function buildCaseModal(c) {
+    const imgs = (c.modal_images||[]).map(src =>
+      `<img class="cm-gallery__img" src="${esc(src)}" alt="" loading="lazy">`
+    ).join('');
+    const stats = (c.stats||[]).map(s =>
+      `<div class="cm-stat"><div class="cm-stat__v">${esc(s.valor)}</div><p class="cm-stat__l">${esc(s.legenda)}</p></div>`
+    ).join('');
+    const secs = (c.secoes_modal||[]).map(s => `
+      <div class="cm-section">
+        <span class="cm-section__tag">${esc(s.tag)}</span>
+        <h3 class="cm-section__title">${esc(s.titulo)}</h3>
+        <p class="cm-section__text">${esc(s.texto)}</p>
+      </div>`).join('');
+    return `
+<div class="modal case-modal" id="modal-${esc(c.id)}" role="dialog" aria-modal="true" aria-labelledby="mttl-${esc(c.id)}">
+  <div class="cm-hdr">
+    <span class="cm-hdr__name">${esc(c.nome).toUpperCase()}</span>
+    <button class="cm-hdr__close" onclick="closeModal('modal-${esc(c.id)}')" aria-label="Fechar">
+      <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+    </button>
+  </div>
+  <div class="modal__bd" id="cmbd-${esc(c.id)}">
+    <div class="cm-hero">
+      <img src="${esc(c.cover)}" alt="${esc(c.nome)}">
+      <div class="cm-hero__fade"></div>
+      <div class="cm-hero__info">
+        <p class="cm-hero__num">${esc(c.num)}</p>
+        <h2 id="mttl-${esc(c.id)}" class="cm-hero__name">${esc(c.nome)}</h2>
+        <p class="cm-hero__cat">${esc(c.categoria)} · ${esc(c.ano)}</p>
+      </div>
+    </div>
+    <div class="cm-stats">${stats}</div>
+    <div class="cm-process">${secs}</div>
+    <p class="cm-gallery__label">Galeria</p>
+    <div class="cm-gallery">${imgs}</div>
+  </div>
+</div>`;
+  }
+
+  const PKG_CLASSES = ['pkg--b','pkg--m','pkg--w','pkg--gr','pkg--bk'];
+
+  function buildPkgCard(p, i) {
+    const cls = PKG_CLASSES[i] || 'pkg--b';
+    const items = (p.itens||[]).map(it => `<li>${esc(it)}</li>`).join('');
+    return `
+<div class="pkg ${cls}">
+  <div class="pkg__bar"></div>
+  <div class="pkg__head">
+    <p class="pkg__lbl">${esc(p.label)}</p>
+    <h3 class="pkg__name">${esc(p.nome)}</h3>
+    <div class="pkg__price-box">
+      <div class="pkg__price">${esc(p.preco)}</div>
+      <p class="pkg__period">${esc(p.periodo)}</p>
+    </div>
+  </div>
+  <div class="pkg__body">
+    <ul class="pkg__list">${items}</ul>
+    <p class="pkg__ideal">${esc(p.ideal)}</p>
+    <button class="pkg__btn-sm" onclick="openPkgModal('${esc(p.id)}')">Saiba Mais</button>
+    <a class="pkg__btn-main" href="https://wa.me/5535997183251?text=${esc(p.wa_msg)}" target="_blank">Iniciar Projeto</a>
+  </div>
+</div>`;
+  }
+
+  function buildPkgModal(p) {
+    const cor = esc(p.cor || '#E50046');
+    const items = (p.modal_itens||[]).map(it => `
+      <div class="pkg-item" style="--pkgc:${cor}">
+        <p class="pkg-item__name">${esc(it.nome)}</p>
+        <p class="pkg-item__desc">${esc(it.desc)}</p>
+      </div>`).join('');
+    const isSig = p.id === 'sig' || p.nome === 'SIGNATURE';
+    const nameStyle = isSig ? `style="background:linear-gradient(135deg,#F0D080,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"` : '';
+    return `
+<div class="modal pkg-modal" id="pkgmodal-${esc(p.id)}" role="dialog" aria-modal="true" aria-labelledby="pmttl-${esc(p.id)}">
+  <div class="modal__bd modal__bd--pkg" id="pkgbd-${esc(p.id)}">
+    <div class="pkg-progress" id="pkgprog-${esc(p.id)}" style="background:${cor}"></div>
+    <div class="modal__pkg-header" style="--pkgc:${cor}">
+      <span class="modal__pkg-tag">Pacote</span>
+      <h2 id="pmttl-${esc(p.id)}" class="modal__pkg-name" ${nameStyle}>${esc(p.nome)}</h2>
+      <p class="modal__pkg-sub">${esc(p.modal_sub)}</p>
+    </div>
+    <div class="modal__body">
+      <h3 style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.35);margin-bottom:1.25rem">O que está incluído</h3>
+      <div>${items}</div>
+      <a class="modal__cta-main" style="--pkgc:${cor}${isSig?';background:linear-gradient(135deg,#C9A84C,#F0D080);color:#0A0800':''}" href="https://wa.me/5535997183251?text=${esc(p.wa_msg)}">Fale com a Gente Agora →</a>
+    </div>
+  </div>
+</div>`;
+  }
+
+  const IPHONE_SVG = '<svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg>';
+
+  function buildIphoneCard(t) {
+    return `
+<div class="iphone-wrap">
+  <div class="iphone">
+    <div class="iphone__screen">
+      <div class="iphone__topbar">
+        <div class="iphone__topbar-inner">
+          <div class="iphone__avatar">${IPHONE_SVG}</div>
+          <div class="iphone__sender-info">
+            <p class="iphone__sender-name">GMSTUDIO®</p>
+            <p class="iphone__sender-status">Pouso Alegre/MG</p>
+          </div>
+        </div>
+      </div>
+      <div class="iphone__msgs">
+        <div class="iphone__bubble in">${esc(t.quote)}</div>
+        <div class="iphone__stars">★★★★★</div>
+        <div class="iphone__name">${esc(t.nome)}</div>
+        <div class="iphone__role">${esc(t.empresa)}</div>
+      </div>
+    </div>
+  </div>
+</div>`;
+  }
+
+  /* ── main init ── */
+  async function initBrandingContent() {
+    let d;
+    try {
+      const r = await fetch('https://raw.githubusercontent.com/gmstudiobr/gmstudiobr.github.io/main/branding-content.json?v=' + Date.now());
+      if (!r.ok) return;
+      d = await r.json();
+    } catch(e) { return; }
+
+    /* SEO */
+    if (d.seo) {
+      if (d.seo.title) document.title = d.seo.title;
+      const m = document.querySelector('meta[name="description"]');
+      if (m && d.seo.description) m.content = d.seo.description;
+    }
+
+    /* HERO */
+    if (d.hero) {
+      const h = d.hero;
+      const ey = document.querySelector('.hero__ey');
+      if (ey) { const last = ey.lastChild; if (last && last.nodeType === 3) last.textContent = h.eyebrow || ''; else ey.textContent = h.eyebrow || ''; }
+      /* h1 lines */
+      const lines = h.h1_lines || [];
+      const inners = document.querySelectorAll('.hero__h1 .hl-inner');
+      if (inners.length >= 3 && lines.length >= 3) {
+        inners[0].textContent = lines[0];
+        inners[1].textContent = lines[1];
+        inners[2].innerHTML = '<span class="mg">' + esc(lines[2]) + '</span>';
+      }
+      const sub = document.querySelector('.hero__sub');
+      if (sub) sub.textContent = h.subtitle || '';
+      const btnP = document.querySelector('.hero__act .btn-p');
+      if (btnP) { btnP.textContent = h.cta_primary || ''; btnP.href = h.cta_primary_href || '#'; }
+      const btnG = document.querySelector('.hero__act .btn-g');
+      if (btnG) { btnG.textContent = h.cta_secondary || ''; btnG.href = h.cta_secondary_href || '#'; }
+    }
+
+    /* SHOWREEL lanes */
+    if (d.showreel && d.showreel.length) {
+      const lanes = document.querySelectorAll('.showreel__lane');
+      const imgs = d.showreel;
+      const per = Math.ceil(imgs.length / lanes.length);
+      lanes.forEach((lane, li) => {
+        const slice = imgs.slice(li * per, (li + 1) * per);
+        lane.innerHTML = slice.map(s => `<div class="reel-card"><img src="${esc(s)}" alt="" loading="lazy"></div>`).join('');
+      });
+    }
+
+    /* TICKER marquee */
+    if (d.marquee && d.marquee.length) {
+      const track = document.querySelector('.ticker__track');
+      if (track) {
+        const items = [...d.marquee, ...d.marquee].map(t => `<span class="ticker__item">${esc(t)}</span>`).join('');
+        track.innerHTML = items;
+      }
+    }
+
+    /* STUDIO typewriter */
+    if (d.studio) {
+      const tw = document.getElementById('tw-text');
+      if (tw) {
+        tw.dataset.l1a = d.studio.typewriter_l1a || '';
+        tw.dataset.l1b = d.studio.typewriter_l1b || '';
+        tw.dataset.l2  = d.studio.typewriter_l2  || '';
+        tw.setAttribute('aria-label', [d.studio.typewriter_l1a, d.studio.typewriter_l1b, d.studio.typewriter_l2].join(' '));
+      }
+      const sb = document.querySelector('.studio__body');
+      if (sb) sb.textContent = d.studio.body || '';
+      const stag = document.querySelector('.studio__tag');
+      if (stag) stag.textContent = d.studio.tag || '';
+    }
+
+    /* CASES header */
+    if (d.casos_header) {
+      const h2Inners = document.querySelectorAll('.cases__h2 .hl-inner');
+      const lines = (d.casos_header.h2 || '').split(' | ');
+      h2Inners.forEach((el, i) => { if (lines[i] !== undefined) el.textContent = lines[i]; });
+      const sub = document.querySelector('.cases__intro-right');
+      if (sub) sub.textContent = d.casos_header.sub || '';
+    }
+
+    /* CASES grid + modals */
+    if (d.casos && d.casos.length) {
+      const grid = document.querySelector('.cases-grid');
+      if (grid) {
+        grid.innerHTML = d.casos.map(c => `
+          <div class="case-card" onclick="openModal('${esc(c.id)}')" role="button" tabindex="0">
+            <div class="case-card__bg"><img src="${esc(c.cover)}" alt="${esc(c.nome)}" loading="lazy"></div>
+            <div class="case-card__ov"></div>
+            <div class="case-card__content">
+              <p class="case-card__num">${esc(c.num)} — ${esc(c.categoria)}</p>
+              <h3 class="case-card__name">${esc(c.nome)}</h3>
+              <p class="case-card__year">${esc(c.ano)}</p>
+              <span class="case-card__cta">Ver case →</span>
+            </div>
+          </div>`).join('');
+      }
+      const moreBtn = document.querySelector('.cases-more__btn');
+      if (moreBtn && d.casos_ver_mais_href) moreBtn.href = d.casos_ver_mais_href;
+      /* rebuild modals */
+      document.querySelectorAll('.modal.case-modal').forEach(m => m.remove());
+      d.casos.forEach(c => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = buildCaseModal(c);
+        document.body.appendChild(tmp.firstElementChild);
+      });
+    }
+
+    /* SERVIÇOS */
+    if (d.servicos) {
+      const s = d.servicos;
+      const ey = document.querySelector('.svc-ey');
+      if (ey) ey.textContent = s.eyebrow || '';
+      const h2 = document.querySelector('.svc-h2');
+      if (h2) h2.innerHTML = (s.h2 || '').replace(/\n/g, '<br>');
+      const desc = document.querySelector('.svc-desc');
+      if (desc) desc.textContent = s.desc || '';
+      const grid = document.querySelector('.svc-grid');
+      if (grid && s.itens) {
+        grid.innerHTML = s.itens.map(it => `
+          <div class="svc-item">
+            <p class="svc-num">${esc(it.num)}</p>
+            <h3 class="svc-name">${(it.nome||'').replace(/\n/g,'<br>')}</h3>
+            <p class="svc-dd">${esc(it.desc)}</p>
+          </div>`).join('');
+      }
+    }
+
+    /* PROCESSO */
+    if (d.processo) {
+      const p = d.processo;
+      const ey = document.querySelector('.proc-ey');
+      if (ey) ey.textContent = p.eyebrow || '';
+      const h2 = document.querySelector('.proc-h2');
+      if (h2) h2.innerHTML = (p.h2 || '').replace(/\n/g, '<br>');
+      const desc = document.querySelector('.proc-desc');
+      if (desc) desc.textContent = p.desc || '';
+      const steps = document.querySelector('.proc-steps');
+      if (steps && p.etapas) {
+        steps.innerHTML = p.etapas.map(e => `
+          <div class="proc-step">
+            <p class="proc-n">${esc(e.num)}</p>
+            <h3 class="proc-t">${esc(e.titulo)}</h3>
+            <p class="proc-d">${esc(e.desc)}</p>
+          </div>`).join('');
+      }
+    }
+
+    /* PACOTES header */
+    if (d.pacotes_header) {
+      const ey = document.querySelector('.pacotes__ey');
+      if (ey) ey.textContent = d.pacotes_header.eyebrow || '';
+      const h2 = document.querySelector('.pacotes__h2');
+      if (h2) h2.textContent = d.pacotes_header.h2 || '';
+      const sub = document.querySelector('.pacotes__sub');
+      if (sub) sub.textContent = d.pacotes_header.sub || '';
+    }
+
+    /* PACOTES grid + modals */
+    if (d.pacotes && d.pacotes.length) {
+      const pgrid = document.querySelector('.pkg-grid');
+      if (pgrid) pgrid.innerHTML = d.pacotes.map((p, i) => buildPkgCard(p, i)).join('');
+      document.querySelectorAll('.modal.pkg-modal').forEach(m => m.remove());
+      d.pacotes.forEach(p => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = buildPkgModal(p);
+        document.body.appendChild(tmp.firstElementChild);
+      });
+    }
+
+    /* PAGAMENTO */
+    if (d.pagamento) {
+      const pay = document.querySelector('.pkg-pay');
+      if (pay) {
+        pay.innerHTML = d.pagamento.map(p => `
+          <div>
+            <p class="pay-lbl">${esc(p.label)}</p>
+            <p class="pay-val">${p.href
+              ? `<a href="${esc(p.href)}" target="_blank">${esc(p.valor)}</a>`
+              : (p.valor||'').replace(/\n/g,'<br>')
+            }</p>
+          </div>`).join('');
+      }
+    }
+
+    /* TABELA COMPARATIVA */
+    if (d.comparativo && d.comparativo.linhas) {
+      const tbl = document.querySelector('.cmp table');
+      if (tbl) {
+        const pkgs = d.comparativo.pacotes || [];
+        const linhas = d.comparativo.linhas || [];
+        const prices = (d.pacotes||[]).map(p => p.preco);
+        tbl.innerHTML = `
+          <thead><tr><th></th>${pkgs.map(p=>`<th>${esc(p)}</th>`).join('')}</tr></thead>
+          <tbody>
+            ${linhas.map(l=>`<tr><td>${esc(l.feature)}</td>${l.valores.map(v=>`<td class="${v?'y':'n'}">${v?'✓':'—'}</td>`).join('')}</tr>`).join('')}
+            <tr class="price-row"><td>Investimento</td>${prices.map(p=>`<td>${esc(p)}</td>`).join('')}</tr>
+          </tbody>`;
+      }
+    }
+
+    /* LOGOS marquee */
+    if (d.clientes && d.clientes.logos && d.clientes.logos.length > 0) {
+      const track = document.querySelector('.logos-track');
+      if (track) {
+        const all = [...d.clientes.logos, ...d.clientes.logos];
+        track.innerHTML = all.map((l,i) =>
+          `<span class="logo-item"${i%2===1?' style="opacity:.45"':''}><img src="${esc(l.url)}" alt="${esc(l.nome||'')}"></span>`
+        ).join('');
+      }
+    }
+
+    /* DEPOIMENTOS */
+    if (d.depoimentos) {
+      const dep = d.depoimentos;
+      const ey = document.querySelector('.dep__ey');
+      if (ey) ey.textContent = dep.eyebrow || '';
+      const h2 = document.querySelector('.dep__h2');
+      if (h2) h2.innerHTML = (dep.h2||'').replace(/\n/g,'<br>');
+      if (dep.itens && dep.itens.length) {
+        const carousel = document.getElementById('dep-carousel');
+        if (carousel) carousel.innerHTML = dep.itens.map(t => buildIphoneCard(t)).join('');
+      }
+    }
+
+    /* CONTATO */
+    if (d.contato) {
+      const c = d.contato;
+      const ey = document.querySelector('.form-ey');
+      if (ey) ey.textContent = c.eyebrow || '';
+      const h2 = document.querySelector('.form-h2');
+      if (h2) h2.textContent = c.h2 || '';
+      const desc = document.querySelector('.form-desc');
+      if (desc) desc.textContent = c.desc || '';
+      const promises = document.querySelector('.form-promises');
+      if (promises && c.promises) promises.innerHTML = c.promises.map(p=>`<div class="form-pr">${esc(p)}</div>`).join('');
+      const form = document.getElementById('lead-form');
+      if (form && c.formspree_id) form.action = 'https://formspree.io/f/' + c.formspree_id;
+      const sub = document.querySelector('.form-sub');
+      if (sub && c.submit_text) sub.textContent = c.submit_text;
+    }
+
+    /* CTA FINAL */
+    if (d.cta_footer) {
+      const cf = d.cta_footer;
+      const ey = document.querySelector('.cta-fin__ey');
+      if (ey) ey.textContent = cf.eyebrow || '';
+      const h2 = document.querySelector('.cta-fin__h2');
+      if (h2) h2.innerHTML = (cf.headline||'').replace(/\n/g,'<br>');
+      const sub = document.querySelector('.cta-fin__sub');
+      if (sub) sub.textContent = cf.sub || cf.subtitle || '';
+      const btn = document.querySelector('.cta-fin__btn');
+      if (btn) { btn.textContent = cf.cta_text || ''; if (cf.cta_href) btn.href = cf.cta_href; }
+    }
+
+    /* FOOTER */
+    if (d.footer) {
+      const copy = document.querySelector('.footer__copy');
+      if (copy) copy.textContent = d.footer.copyright || '';
+      const ig = document.querySelector('.footer__socials .soc-btn[aria-label="Instagram"]');
+      if (ig && d.footer.instagram_url) ig.href = d.footer.instagram_url;
+      const wa = document.querySelector('.footer__socials .soc-btn[aria-label="WhatsApp"]');
+      if (wa && d.footer.whatsapp) wa.href = 'https://wa.me/' + d.footer.whatsapp.replace(/\D/g,'');
+      /* update footer CONTATO column links */
+      document.querySelectorAll('.footer__col a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        if (href.includes('wa.me') && d.footer.whatsapp)
+          a.href = 'https://wa.me/' + d.footer.whatsapp.replace(/\D/g,'');
+        if (href.includes('instagram') && d.footer.instagram_url)
+          a.href = d.footer.instagram_url;
+        if (href.includes('mailto') && d.footer.email) {
+          a.href = 'mailto:' + d.footer.email;
+          a.textContent = d.footer.email;
+        }
+      });
+      /* header CTA WhatsApp */
+      const hdrCta = document.querySelector('.hdr__cta');
+      if (hdrCta && d.footer.whatsapp)
+        hdrCta.href = 'https://wa.me/' + d.footer.whatsapp.replace(/\D/g,'') + '?text=Ol%C3%A1%2C%20quero%20iniciar%20um%20projeto%20de%20branding';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initBrandingContent);
+})();
 </script>
 </body>
 </html>
