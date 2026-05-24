@@ -2766,6 +2766,50 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   document.addEventListener('DOMContentLoaded', initBrandingContent);
 })();
 </script>
+<script>
+(function(){
+  var SB_URL = 'https://noyvpypcxhxluckmrirf.supabase.co';
+  var SB_KEY = 'sb_publishable_LdVTcdb-YRvAwMzAilQ3Ww_wzkbA9Bi';
+
+  var form = document.getElementById('lead-form');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    // Capture fields
+    var nome    = (document.getElementById('f-nome')  ||{}).value || '';
+    var email   = (document.getElementById('f-email') ||{}).value || '';
+    var empresa = (document.getElementById('f-emp')   ||{}).value || '';
+    var wpp     = (document.getElementById('f-wpp')   ||{}).value || '';
+    var pacote  = (document.getElementById('f-pkg')   ||{}).value || '';
+    var msg     = (form.querySelector('textarea')     ||{}).value || '';
+
+    // Save to Supabase (fire-and-forget, don't block form submit)
+    try {
+      fetch(SB_URL + '/rest/v1/leads', {
+        method: 'POST',
+        headers: {
+          'apikey': SB_KEY,
+          'Authorization': 'Bearer ' + SB_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          nome:    nome,
+          email:   email,
+          empresa: empresa,
+          whatsapp: wpp,
+          pacote:  pacote,
+          mensagem: msg,
+          page:    location.pathname,
+          referrer: document.referrer,
+          source:  (new URLSearchParams(location.search)).get('utm_source') || document.referrer || 'direto'
+        })
+      });
+    } catch(err) {}
+    // Formspree handles the rest naturally
+  });
+})();
+</script>
 <script src="../crm-tracker.js" defer></script>
 </body>
 </html>
