@@ -638,6 +638,57 @@
               "desc": "Ampla, imponente, destaque"
             }
           ]
+        },
+        {
+          "id": "q47b",
+          "type": "radio",
+          "label": "Você tem interesse em ter um símbolo (ícone) para a marca?",
+          "hint": "Além da tipografia, uma marca pode ter um elemento visual próprio.",
+          "options": [
+            {
+              "val": "sim",
+              "label": "Sim",
+              "desc": "Quero um símbolo exclusivo"
+            },
+            {
+              "val": "talvez",
+              "label": "Talvez",
+              "desc": "Aberto à ideia"
+            },
+            {
+              "val": "nao",
+              "label": "Não preciso",
+              "desc": "Apenas tipografia já resolve"
+            }
+          ]
+        },
+        {
+          "id": "q47c",
+          "type": "logo-mosaic",
+          "label": "Qual tipo de marca você prefere?",
+          "hint": "Selecione o(s) que mais se aproximam da sua visão. Pode escolher mais de um.",
+          "options": [
+            {
+              "val": "logotipo",
+              "label": "Logotipo",
+              "desc": "Marca formada apenas por letras ou texto"
+            },
+            {
+              "val": "isotipo",
+              "label": "Isotipo",
+              "desc": "Marca composta somente por um símbolo"
+            },
+            {
+              "val": "imagotipo",
+              "label": "Imagotipo",
+              "desc": "Símbolo e texto combinados, mas independentes"
+            },
+            {
+              "val": "isologo",
+              "label": "Isologo",
+              "desc": "Símbolo e texto fundidos em um único elemento"
+            }
+          ]
         }
       ]
     },
