@@ -15,6 +15,11 @@
       "Marcas",
       "que causam",
       "impacto"
+    ],
+    "h1_styles": [
+      "normal",
+      "normal",
+      "color"
     ]
   },
   "studio": {
@@ -62,7 +67,17 @@
   ],
   "casos_header": {
     "h2": "Marcas | que criamos.",
-    "sub": "Projetos reais de branding que transformaram a percepção de negócios no mercado brasileiro."
+    "sub": "Projetos reais de branding que transformaram a percepção de negócios no mercado brasileiro.",
+    "h2_lines": [
+      "Marcas",
+      "que criamos.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
+    ]
   },
   "casos_ver_mais_href": "https://gmstudiobr.github.io/#portfolio",
   "casos": [
@@ -324,6 +339,16 @@
         "nome": "Presença\nDigital",
         "desc": "Templates para redes sociais, direção visual para web."
       }
+    ],
+    "h2_lines": [
+      "Branding",
+      "de ponta",
+      "a ponta."
+    ],
+    "h2_styles": [
+      "normal",
+      "normal",
+      "color"
     ]
   },
   "processo": {
@@ -356,12 +381,32 @@
         "titulo": "Entrega",
         "desc": "Brandbook, arquivos organizados e biblioteca digital."
       }
+    ],
+    "h2_lines": [
+      "Nosso",
+      "processo.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
     ]
   },
   "pacotes_header": {
     "eyebrow": "Investimento",
     "h2": "Escolha seu pacote.",
-    "sub": "Do primeiro logo ao sistema de marca completo — cada pacote foi criado para um momento específico do seu negócio."
+    "sub": "Do primeiro logo ao sistema de marca completo — cada pacote foi criado para um momento específico do seu negócio.",
+    "h2_lines": [
+      "Escolha",
+      "seu pacote.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
+    ]
   },
   "pacotes": [
     {
@@ -774,6 +819,16 @@
         "nome": "Juliana Ferraz",
         "empresa": "Empresa de Tecnologia"
       }
+    ],
+    "h2_lines": [
+      "O que dizem",
+      "nossos clientes.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
     ]
   },
   "contato": {
@@ -787,7 +842,17 @@
       "Atendimento direto com o STUDIO"
     ],
     "formspree_id": "xjgzylew",
-    "submit_text": "Enviar mensagem →"
+    "submit_text": "Enviar mensagem →",
+    "h2_lines": [
+      "Vamos",
+      "conversar.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
+    ]
   },
   "footer": {
     "copyright": "© 2024 GMSTUDIO®. Todos os direitos reservados. Pouso Alegre/MG, Brasil.",
@@ -800,7 +865,17 @@
     "headline": "Vamos construir\numa marca forte.",
     "cta_text": "Iniciar projeto",
     "cta_href": "https://gmstudiobr.github.io/briefing",
-    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica."
+    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
+    "h2_lines": [
+      "Vamos construir",
+      "uma marca forte.",
+      ""
+    ],
+    "h2_styles": [
+      "normal",
+      "color",
+      "normal"
+    ]
   },
   "clientes": {
     "usar_gmstudio_fallback": true,
@@ -814,6 +889,11 @@
     "body": "Uma identidade poderosa é construída com método, percepção e direção de arte. É o que separa marcas que são reconhecidas daquelas que simplesmente existem.",
     "logo_src": "https://gmstudiobr.github.io/assets/images/gm-logo.svg",
     "logo_alt": "GMSTUDIO",
-    "sig": "Pouso Alegre/MG · Branding"
+    "sig": "Pouso Alegre/MG · Branding",
+    "h2_styles": [
+      "normal",
+      "outline",
+      "normal"
+    ]
   }
 }
