@@ -2694,6 +2694,35 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       if (sub && c.submit_text) sub.textContent = c.submit_text;
     }
 
+    /* VISÃO / STATEMENT */
+    if (d.visao) {
+      const v = d.visao;
+      const kicker = document.querySelector('.statement__kicker');
+      if (kicker && v.kicker) kicker.textContent = v.kicker;
+      const h2 = document.querySelector('.statement__h2');
+      if (h2) {
+        const lines = h2.querySelectorAll('.hl-inner');
+        if (lines[0] && v.h2_l1) lines[0].textContent = v.h2_l1;
+        if (lines[1] && v.h2_l2) {
+          // line 2 uses outline span
+          lines[1].innerHTML = `<span class="outline">${esc(v.h2_l2)}</span>`;
+        }
+        if (lines[2] && v.h2_l3) lines[2].textContent = v.h2_l3;
+      }
+      const body = document.querySelector('.statement__q');
+      if (body && v.body) body.textContent = v.body;
+      const sig = document.querySelector('.statement__sig');
+      if (sig) {
+        const logo = sig.querySelector('img');
+        if (logo) {
+          if (v.logo_src) logo.src = v.logo_src;
+          if (v.logo_alt) logo.alt = v.logo_alt;
+        }
+        const sigTxt = sig.querySelector('span');
+        if (sigTxt && v.sig) sigTxt.textContent = v.sig;
+      }
+    }
+
     /* CTA FINAL */
     if (d.cta_footer) {
       const cf = d.cta_footer;

@@ -805,5 +805,15 @@
   "clientes": {
     "usar_gmstudio_fallback": true,
     "logos": []
+  },
+  "visao": {
+    "kicker": "O que acreditamos",
+    "h2_l1": "Marcas fortes",
+    "h2_l2": "não nascem",
+    "h2_l3": "de acaso.",
+    "body": "Uma identidade poderosa é construída com método, percepção e direção de arte. É o que separa marcas que são reconhecidas daquelas que simplesmente existem.",
+    "logo_src": "https://gmstudiobr.github.io/assets/images/gm-logo.svg",
+    "logo_alt": "GMSTUDIO",
+    "sig": "Pouso Alegre/MG · Branding"
   }
 }
