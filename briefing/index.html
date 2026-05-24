@@ -436,6 +436,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .typo-sample{display:block;height:52px;line-height:52px;font-size:36px;color:var(--ink);margin-bottom:6px;overflow:hidden;white-space:nowrap}
 .typo-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:3px}
 .typo-desc{font-size:10px;color:var(--t3);line-height:1.4}
+
+/* ── LOGO MOSAIC ──────────────────────────────────── */
+.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+@media(max-width:600px){.logo-grid{grid-template-columns:repeat(2,1fr)}}
+.logo-card{border:1.5px solid var(--bd);border-radius:12px;padding:16px 12px 14px;cursor:pointer;transition:border-color .18s,background .18s,transform .12s;text-align:center;background:var(--bg);user-select:none;-webkit-tap-highlight-color:transparent}
+.logo-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.logo-card.sel{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.logo-card.sel svg{color:var(--bg)}
+.logo-card.sel .logo-name{color:rgba(255,255,255,.55)}
+.logo-card.sel .logo-desc{color:rgba(255,255,255,.4)}
+.logo-svg{width:80px;height:56px;display:block;margin:0 auto 8px;color:var(--ink)}
+.logo-card.sel .logo-svg{color:var(--bg)}
+.logo-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:3px}
+.logo-desc{font-size:10px;color:var(--t3);line-height:1.4}
 </style>
 </head>
 <body>
@@ -593,6 +607,7 @@ const FORMSPREE_ID = 'xjgzylew'; // may be overridden by BCONTENT
 // ── BRIEFING CONTENT (data-driven) ───────────────────
 // Loaded from briefing-content.json
 let BCONTENT = null;
+const LOGO_SVGS={"logotipo": "<svg class="logo-svg" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="40" y="38" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="30" fill="currentColor">Aa</text></svg>", "isotipo": "<svg class="logo-svg" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="40,6 68,50 12,50" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="35" r="5" fill="currentColor"/></svg>", "imagotipo": "<svg class="logo-svg" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="4" width="14" height="14" rx="2" fill="currentColor"/><text x="40" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="10" fill="currentColor" letter-spacing="3">MARCA</text></svg>", "isologo": "<svg class="logo-svg" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="28" r="13" stroke="currentColor" stroke-width="2.5"/><text x="18" y="33" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="13" fill="currentColor">M</text><text x="52" y="33" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="12" fill="currentColor" letter-spacing="1">ARCA</text></svg>"};
 let STEPS = [];
 
 // ── STATE ─────────────────────────────────────────────
@@ -730,6 +745,17 @@ function fg(id,label,type,opts={}){
     const ps=(opts.options||[]).map(o=>`<div class="pill" data-val="${o.val||o}" onclick="togPill(this,'${id}',${max})">${o.label||o}</div>`).join('');
     return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}${opts.max?`<p class="hint">Selecione até ${opts.max}.</p>`:''}<div class="pill-group" data-field="${id}">${ps}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
   }
+  if(type==='logo-mosaic'){
+    const cards=(opts.options||[]).map(o=>{
+      const svg=LOGO_SVGS[o.val]||'';
+      return `<div class="logo-card" data-val="${o.val}" onclick="togLogo(this,'${id}')">
+        ${svg}
+        <div class="logo-name">${o.label}</div>
+        <div class="logo-desc">${o.desc||''}</div>
+      </div>`;
+    }).join('');
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<div class="logo-grid" data-field="${id}">${cards}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
   if(type==='typo-mosaic'){
     const cards=(opts.options||[]).map(o=>{
       const style=o.style||'';
@@ -851,6 +877,13 @@ function togTypo(el,id){
   const hidden=document.getElementById(id);
   if(hidden&&grid)hidden.value=[...grid.querySelectorAll('.typo-card.sel')].map(c=>c.dataset.val).join(', ');
 }
+
+function togLogo(el,id){
+  el.classList.toggle('sel');
+  const grid=el.closest('.logo-grid');
+  const hidden=document.getElementById(id);
+  if(hidden&&grid)hidden.value=[...grid.querySelectorAll('.logo-card.sel')].map(c=>c.dataset.val).join(', ');
+}
 function setupInteractives(){
   document.querySelectorAll('textarea').forEach(ta=>{
     const cc=document.getElementById('cc-'+ta.id);
@@ -902,6 +935,10 @@ function collectStep(n){
     const fid=cont.dataset.field;
     if(fid)data[fid]=[...cont.querySelectorAll('.typo-card.sel')].map(c=>c.dataset.val).join(', ');
   });
+  document.querySelectorAll('#step-form .logo-grid').forEach(cont=>{
+    const fid=cont.dataset.field;
+    if(fid)data[fid]=[...cont.querySelectorAll('.logo-card.sel')].map(c=>c.dataset.val).join(', ');
+  });
 }
 function populateStep(n){
   setTimeout(()=>{
@@ -913,6 +950,8 @@ function populateStep(n){
       if(pg&&v){v.split(', ').forEach(val=>{const p=pg.querySelector(`[data-val="${val}"]`);if(p)p.classList.add('sel');});}
       const tg=document.querySelector(`.typo-grid[data-field="${k}"]`);
       if(tg&&v){v.split(', ').forEach(val=>{const c=tg.querySelector(`[data-val="${val}"]`);if(c)c.classList.add('sel');});}
+      const lg=document.querySelector(`.logo-grid[data-field="${k}"]`);
+      if(lg&&v){v.split(', ').forEach(val=>{const c=lg.querySelector(`[data-val="${val}"]`);if(c)c.classList.add('sel');});}
       ['.radio-group','.radio-h-group'].forEach(cls=>{
         const rg=document.querySelector(`${cls}[data-field="${k}"]`);
         if(rg&&v){const opt=rg.querySelector(`[data-val="${v}"]`);if(opt)opt.classList.add('sel');}
