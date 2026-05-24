@@ -577,10 +577,67 @@
         },
         {
           "id": "q47",
-          "type": "textarea",
+          "type": "typo-mosaic",
           "label": "Preferência de tipografia",
-          "ph": "Estilos: serifada, sem serifa, manuscrita... Pode citar referências. Se não souber, preencha com —",
-          "max": 300
+          "hint": "Selecione todos os estilos que representam a personalidade da sua marca. Pode escolher mais de um.",
+          "options": [
+            {
+              "val": "serifada",
+              "label": "Serifada",
+              "sample": "Elegante",
+              "style": "font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:28px",
+              "desc": "Clássica, refinada, autoridade"
+            },
+            {
+              "val": "sem-serifa",
+              "label": "Sem Serifa",
+              "sample": "Moderno",
+              "style": "font-family:Inter,Arial,sans-serif;font-weight:700;font-size:28px",
+              "desc": "Limpa, moderna, funcional"
+            },
+            {
+              "val": "slab",
+              "label": "Slab",
+              "sample": "Sólido",
+              "style": "font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:28px",
+              "desc": "Forte, robusta, direta"
+            },
+            {
+              "val": "display",
+              "label": "Display",
+              "sample": "IMPACTO",
+              "style": "font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:36px;letter-spacing:.03em",
+              "desc": "Marcante, editorial, expressiva"
+            },
+            {
+              "val": "blackletter",
+              "label": "Blackletter",
+              "sample": "Poder",
+              "style": "font-family:'UnifrakturMaguntia',serif;font-weight:400;font-size:32px",
+              "desc": "Histórica, intensa, premium"
+            },
+            {
+              "val": "script",
+              "label": "Script",
+              "sample": "Sutileza",
+              "style": "font-family:'Dancing Script',cursive;font-weight:700;font-size:30px",
+              "desc": "Humana, afetiva, artesanal"
+            },
+            {
+              "val": "condensed",
+              "label": "Condensed",
+              "sample": "Agilidade",
+              "style": "font-family:'Barlow Condensed',Arial Narrow,sans-serif;font-weight:700;font-size:28px;letter-spacing:.01em",
+              "desc": "Compacta, dinâmica, ágil"
+            },
+            {
+              "val": "expanded",
+              "label": "Expanded",
+              "sample": "AMPLO",
+              "style": "font-family:Inter,Arial,sans-serif;font-weight:700;font-size:22px;letter-spacing:.18em;transform:scaleX(1.15);display:inline-block",
+              "desc": "Ampla, imponente, destaque"
+            }
+          ]
         }
       ]
     },
