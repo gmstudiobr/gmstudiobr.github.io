@@ -8,6 +8,9 @@
 <meta name="description" content="Preencha o briefing estratégico do GMSTUDIO e dê o primeiro passo para transformar sua marca em algo que comunica com quem importa.">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto+Slab:wght@700&family=Bebas+Neue&family=UnifrakturMaguntia&family=Dancing+Script:wght@700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
 <style>
 @font-face{
   font-family:'Bahnschrift';
@@ -420,6 +423,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .analog-lbl{font-size:12px}
 .form-section-title{font-size:13px}
 .step-sub{font-size:clamp(16px,1.4vw,18px)}
+
+/* ── TYPO MOSAIC ──────────────────────────────────── */
+.typo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+@media(max-width:700px){.typo-grid{grid-template-columns:repeat(2,1fr)}}
+.typo-card{border:1.5px solid var(--bd);border-radius:12px;padding:18px 12px 14px;cursor:pointer;transition:border-color .18s,background .18s,transform .12s;text-align:center;background:var(--bg);user-select:none;-webkit-tap-highlight-color:transparent}
+.typo-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.typo-card.sel{border-color:var(--ink);background:var(--ink)}
+.typo-card.sel .typo-sample{color:var(--bg) !important}
+.typo-card.sel .typo-name{color:rgba(255,255,255,.55)}
+.typo-card.sel .typo-desc{color:rgba(255,255,255,.4)}
+.typo-sample{display:block;height:52px;line-height:52px;font-size:36px;color:var(--ink);margin-bottom:6px;overflow:hidden;white-space:nowrap}
+.typo-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:3px}
+.typo-desc{font-size:10px;color:var(--t3);line-height:1.4}
 </style>
 </head>
 <body>
@@ -714,6 +730,17 @@ function fg(id,label,type,opts={}){
     const ps=(opts.options||[]).map(o=>`<div class="pill" data-val="${o.val||o}" onclick="togPill(this,'${id}',${max})">${o.label||o}</div>`).join('');
     return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}${opts.max?`<p class="hint">Selecione até ${opts.max}.</p>`:''}<div class="pill-group" data-field="${id}">${ps}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
   }
+  if(type==='typo-mosaic'){
+    const cards=(opts.options||[]).map(o=>{
+      const style=o.style||'';
+      return `<div class="typo-card" data-val="${o.val}" onclick="togTypo(this,'${id}')">
+        <span class="typo-sample" style="${style}">${o.sample}</span>
+        <div class="typo-name">${o.label}</div>
+        <div class="typo-desc">${o.desc||''}</div>
+      </div>`;
+    }).join('');
+    return `<div class="form-grp" id="fg-${id}"><label>${label}${req}</label>${hint}<div class="typo-grid" data-field="${id}">${cards}</div><input type="hidden" id="${id}"><p class="ferr">Campo obrigatório.</p></div>`;
+  }
   return '';
 }
 
@@ -817,6 +844,13 @@ function togPill(el,id,max){
   if(hidden)hidden.value=[...cont.querySelectorAll('.pill.sel')].map(p=>p.dataset.val).join(', ');
   clearErr(id);
 }
+
+function togTypo(el,id){
+  el.classList.toggle('sel');
+  const grid=el.closest('.typo-grid');
+  const hidden=document.getElementById(id);
+  if(hidden&&grid)hidden.value=[...grid.querySelectorAll('.typo-card.sel')].map(c=>c.dataset.val).join(', ');
+}
 function setupInteractives(){
   document.querySelectorAll('textarea').forEach(ta=>{
     const cc=document.getElementById('cc-'+ta.id);
@@ -864,6 +898,10 @@ function collectStep(n){
     const fid=cont.dataset.field;
     if(fid)data[fid]=[...cont.querySelectorAll('.pill.sel')].map(p=>p.dataset.val).join(', ');
   });
+  document.querySelectorAll('#step-form .typo-grid').forEach(cont=>{
+    const fid=cont.dataset.field;
+    if(fid)data[fid]=[...cont.querySelectorAll('.typo-card.sel')].map(c=>c.dataset.val).join(', ');
+  });
 }
 function populateStep(n){
   setTimeout(()=>{
@@ -873,6 +911,8 @@ function populateStep(n){
       el.value=v;
       const pg=document.querySelector(`.pill-group[data-field="${k}"]`);
       if(pg&&v){v.split(', ').forEach(val=>{const p=pg.querySelector(`[data-val="${val}"]`);if(p)p.classList.add('sel');});}
+      const tg=document.querySelector(`.typo-grid[data-field="${k}"]`);
+      if(tg&&v){v.split(', ').forEach(val=>{const c=tg.querySelector(`[data-val="${val}"]`);if(c)c.classList.add('sel');});}
       ['.radio-group','.radio-h-group'].forEach(cls=>{
         const rg=document.querySelector(`${cls}[data-field="${k}"]`);
         if(rg&&v){const opt=rg.querySelector(`[data-val="${v}"]`);if(opt)opt.classList.add('sel');}
