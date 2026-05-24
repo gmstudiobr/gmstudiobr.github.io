@@ -3,8 +3,8 @@
  * Este arquivo é referenciado por todas as páginas do site.
  */
 (function () {
-  var SB_URL = 'https://SEU-PROJETO.supabase.co';   // ← substitua pelo seu Project URL
-  var SB_KEY = 'SUA-ANON-KEY';                       // ← substitua pelo seu anon/public key
+  var SB_URL = 'https://noyvpypcxhxluckmrirf.supabase.co';   // ← substitua pelo seu Project URL
+  var SB_KEY = 'sb_publishable_LdVTcdb-YRvAwMzAilQ3Ww_wzkbA9Bi';                       // ← substitua pelo seu anon/public key
 
   if (!SB_URL || SB_URL.indexOf('SEU-PROJETO') !== -1) return; // não rastreia com placeholder
 
