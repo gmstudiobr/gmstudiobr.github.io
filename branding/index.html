@@ -2431,7 +2431,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
   const IPHONE_SVG = '<svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" width="220" height="28"><path d="M0 14C0 6.27 6.27 0 14 0h8v6h-8C9.58 6 6 9.58 6 14s3.58 8 8 8h8v-5H17V11h11v17H14C6.27 28 0 21.73 0 14z"/></svg>';
 
-  function buildIphoneCard(t) {
+  
+// ── H2 LINES HELPER ─────────────────────────────────────
+function applyH2Lines(el, lines, styles){
+  if(!el||!lines) return;
+  el.innerHTML = lines.filter(l=>l).map((txt,i)=>{
+    const st = (styles&&styles[i])||'normal';
+    const cls = 'hl-inner'+(st!=='normal'?' hl-'+st:'');
+    return `<span class="hl-wrap"><span class="${cls}">${txt}</span></span>`;
+  }).join('');
+}
+function buildIphoneCard(t) {
     return `
 <div class="iphone-wrap">
   <div class="iphone">
@@ -2533,8 +2543,10 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     /* CASES header */
     if (d.casos_header) {
       const h2Inners = document.querySelectorAll('.cases__h2 .hl-inner');
-      const lines = (d.casos_header.h2 || '').split(' | ');
-      h2Inners.forEach((el, i) => { if (lines[i] !== undefined) el.textContent = lines[i]; });
+      const ch = d.casos_header;
+      if(ch.h2_lines){ const casH2 = document.querySelector('.casos__h2,.statement__h2[data-cases]'); if(casH2) applyH2Lines(casH2, ch.h2_lines, ch.h2_styles); else { const h2Inners2=document.querySelectorAll('.casos__heading .hl-inner'); ch.h2_lines.filter(l=>l).forEach((t,i)=>{ if(h2Inners2[i]) h2Inners2[i].textContent=t; }); } }
+      else { const lines = (ch.h2 || '').split(' | ');
+      h2Inners.forEach((el, i) => { if (lines[i] !== undefined) el.textContent = lines[i]; }); }
       const sub = document.querySelector('.cases__intro-right');
       if (sub) sub.textContent = d.casos_header.sub || '';
     }
@@ -2572,7 +2584,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const ey = document.querySelector('.svc-ey');
       if (ey) ey.textContent = s.eyebrow || '';
       const h2 = document.querySelector('.svc-h2');
-      if (h2) h2.innerHTML = (s.h2 || '').replace(/\n/g, '<br>');
+      if (h2) { if(s.h2_lines) applyH2Lines(h2,s.h2_lines,s.h2_styles); else h2.innerHTML=(s.h2||'').replace(/\n/g,'<br>'); }
       const desc = document.querySelector('.svc-desc');
       if (desc) desc.textContent = s.desc || '';
       const grid = document.querySelector('.svc-grid');
@@ -2592,7 +2604,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const ey = document.querySelector('.proc-ey');
       if (ey) ey.textContent = p.eyebrow || '';
       const h2 = document.querySelector('.proc-h2');
-      if (h2) h2.innerHTML = (p.h2 || '').replace(/\n/g, '<br>');
+      if (h2) { if(p.h2_lines) applyH2Lines(h2,p.h2_lines,p.h2_styles); else h2.innerHTML=(p.h2||'').replace(/\n/g,'<br>'); }
       const desc = document.querySelector('.proc-desc');
       if (desc) desc.textContent = p.desc || '';
       const steps = document.querySelector('.proc-steps');
@@ -2611,7 +2623,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const ey = document.querySelector('.pacotes__ey');
       if (ey) ey.textContent = d.pacotes_header.eyebrow || '';
       const h2 = document.querySelector('.pacotes__h2');
-      if (h2) h2.textContent = d.pacotes_header.h2 || '';
+      if (h2) { const ph=d.pacotes_header; if(ph.h2_lines) applyH2Lines(h2,ph.h2_lines,ph.h2_styles); else h2.textContent=ph.h2||''; }
       const sub = document.querySelector('.pacotes__sub');
       if (sub) sub.textContent = d.pacotes_header.sub || '';
     }
@@ -2676,7 +2688,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const ey = document.querySelector('.dep__ey');
       if (ey) ey.textContent = dep.eyebrow || '';
       const h2 = document.querySelector('.dep__h2');
-      if (h2) h2.innerHTML = (dep.h2||'').replace(/\n/g,'<br>');
+      if (h2) { if(dep.h2_lines) applyH2Lines(h2,dep.h2_lines,dep.h2_styles); else h2.innerHTML=(dep.h2||'').replace(/\n/g,'<br>'); }
       if (dep.itens && dep.itens.length) {
         const carousel = document.getElementById('dep-carousel');
         if (carousel) carousel.innerHTML = dep.itens.map(t => buildIphoneCard(t)).join('');
@@ -2689,7 +2701,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       const ey = document.querySelector('.form-ey');
       if (ey) ey.textContent = c.eyebrow || '';
       const h2 = document.querySelector('.form-h2');
-      if (h2) h2.textContent = c.h2 || '';
+      if (h2) { if(c.h2_lines) applyH2Lines(h2,c.h2_lines,c.h2_styles); else h2.textContent=c.h2||''; }
       const desc = document.querySelector('.form-desc');
       if (desc) desc.textContent = c.desc || '';
       const promises = document.querySelector('.form-promises');
