@@ -866,12 +866,12 @@
     "cta_text": "Iniciar projeto",
     "cta_href": "https://gmstudiobr.github.io/briefing",
     "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
-    "h2_lines": [
+    "headline_lines": [
       "Vamos construir",
       "uma marca forte.",
       ""
     ],
-    "h2_styles": [
+    "headline_styles": [
       "normal",
       "color",
       "normal"
