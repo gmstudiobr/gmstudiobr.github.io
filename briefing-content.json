@@ -830,5 +830,41 @@
       "sub": "Confirme e envie seu briefing.",
       "content": []
     }
-  ]
+  ],
+  "bf_hero": {
+    "eyebrow": "Briefing Estratégico de Branding",
+    "h1_lines": [
+      "Construa uma marca",
+      "que ninguém",
+      "esquece."
+    ],
+    "h1_styles": [
+      "normal",
+      "normal",
+      "color"
+    ],
+    "subtitle": "Um processo profundo de <b>10 etapas</b> para compreendermos cada nuance da sua marca — posicionamento, personalidade, público e identidade visual.",
+    "stats": [
+      {
+        "value": "10",
+        "label": "Etapas"
+      },
+      {
+        "value": "57",
+        "label": "Perguntas"
+      },
+      {
+        "value": "~25",
+        "label": "Minutos"
+      },
+      {
+        "value": "100%",
+        "label": "Confidencial"
+      }
+    ]
+  },
+  "bf_footer": {
+    "copyright": "© 2025 GMSTUDIO®. Todos os direitos reservados.",
+    "tagline": "Studio de Branding & Direção Visual"
+  }
 }
