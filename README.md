@@ -1,4 +1,4 @@
-# GMSTUDIO® — Site Oficial
+# GMSTUDIO© — Site Oficial
 
 > Estúdio de Branding & Direção Visual · Pouso Alegre/MG · Desde 2013
 
