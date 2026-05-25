@@ -24,7 +24,7 @@ del /f /q .git\CHERRY_PICK_HEAD 2>nul
 echo [2/4] Adicionando arquivos...
 git add index.html branding/index.html briefing/index.html painel/index.html
 git add site-content.json branding-content.json briefing-content.json portfolio.json
-git add crm-tracker.js DEPLOY.bat SUPABASE_LEADS.sql README.md
+git add crm-tracker.js DEPLOY.bat SUPABASE_LEADS.sql README.md .gitattributes
 
 echo [3/4] Commitando...
 git commit -m "fix: toolbar rich-text em campos HTML do painel + audit completo" --allow-empty

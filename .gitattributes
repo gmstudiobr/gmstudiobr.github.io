@@ -1,0 +1,5 @@
+# Exclui o painel encriptado da contagem de linguagens (arquivo gerado por build)
+painel/index.html linguist-generated=true
+
+# Marca arquivos de assets como vendored (não contam para linguagem)
+assets/** linguist-vendored=true

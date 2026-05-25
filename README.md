@@ -66,11 +66,7 @@ Todo o sistema de gestão de conteúdo roda inteiramente no browser. O painel l�
 H1 e H2 de todas as páginas são compostos por linhas independentes, cada uma com estilo próprio: **Normal**, **Cor** (magenta), **Outline** (texto vazado) ou **Destaque** (fundo colorido). O painel expõe cada linha em um campo separado com seletor de estilo — o HTML é gerado automaticamente no save.
 
 ### Encriptação do Painel
-```
-senha → PBKDF2(SHA-256, 200.000 iter, salt aleatório) → chave AES-256
-HTML do painel → AES-GCM(iv aleatório) → base64 → gateway.html
-```
-O gateway é um HTML minimalista com o bloco encriptado embutido. A decriptografia acontece inteiramente no browser, sem nenhum round-trip de servidor.
+O painel administrativo é protegido por encriptação de chave simétrica derivada de senha. A decriptografia acontece inteiramente no browser, sem nenhum round-trip de servidor — nenhum dado sensível transita pela rede.
 
 ### Rastreamento de Leads
 `crm-tracker.js` captura submissões de formulário e envia para uma tabela `leads` no Supabase (PostgreSQL). Opera em fire-and-forget — não bloqueia o submit nem expõe erros ao usuário. Row Level Security ativo na tabela.
@@ -126,5 +122,9 @@ O repositório é hospedado no GitHub Pages. Para publicar alterações, execute
 - **Copyright:** proteções de direito autoral embutidas contra scraping e reprodução
 
 ---
+
+---
+
+**[gmstudiobr.github.io](https://gmstudiobr.github.io)** · [Instagram](https://instagram.com/gmstudiobr) · [Behance](https://behance.net/gmstudiobr) · [LinkedIn](https://linkedin.com/company/gmstudiobr) · [gmstudio@outlook.pt](mailto:gmstudio@outlook.pt)
 
 *© 2026 GMSTUDIO®. Todos os direitos reservados.*
