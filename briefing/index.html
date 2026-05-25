@@ -577,17 +577,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <!-- ══ SUCCESS ════════════════════════════════════════ -->
 <div id="success-screen" class="hidden">
   <div class="wrap">
-    <p class="succ-eyebrow">Briefing enviado</p>
-    <h1 class="succ-h1">Recebemos<br>seu <em>briefing.</em></h1>
+    <p class="succ-eyebrow" id="succ-eyebrow">Briefing enviado</p>
+    <h1 class="succ-h1" id="succ-h1"><span id="succ-h1-l1">Recebemos</span><br><span id="succ-h1-l2">seu <em>briefing.</em></span></h1>
     <div class="succ-grid">
       <div>
-        <p class="succ-p">Suas respostas foram enviadas com sucesso para a equipe da GMSTUDIO. Analisaremos cada detalhe com atenção e entraremos em contato em breve.</p>
-        <button class="btn-ghost" onclick="location.reload()">← Voltar ao início</button>
+        <p class="succ-p" id="succ-body">Suas respostas foram enviadas com sucesso para a equipe da GMSTUDIO. Analisaremos cada detalhe com atenção e entraremos em contato em breve.</p>
+        <button class="btn-ghost" id="succ-btn" onclick="location.reload()">← Voltar ao início</button>
       </div>
       <div class="succ-info">
-        <p><strong>Próximos passos</strong><br>Nossa equipe irá analisar profundamente todas as suas respostas e entrar em contato para agendar nossa primeira sessão estratégica.</p>
-        <p><strong>Prazo de retorno:</strong> Até 2 dias úteis.</p>
-        <p><strong>Contato:</strong> gmstudio@outlook.pt</p>
+        <p><strong id="succ-info-title">Próximos passos</strong><br><span id="succ-info-desc">Nossa equipe irá analisar profundamente todas as suas respostas e entrar em contato para agendar nossa primeira sessão estratégica.</span></p>
+        <p><strong>Prazo de retorno:</strong> <span id="succ-info-prazo">Até 2 dias úteis.</span></p>
+        <p><strong>Contato:</strong> <span id="succ-info-email">gmstudio@outlook.pt</span></p>
       </div>
     </div>
   </div>
@@ -1073,6 +1073,7 @@ function onSuccess(){
     document.getElementById('app-screen').classList.remove('dark-step');
     document.getElementById('app-screen').classList.add('hidden');
     document.getElementById('success-screen').classList.remove('hidden');
+    initSuccess();
     document.getElementById('hdr').classList.add('dark');
     window.scrollTo(0,0);
     document.documentElement.scrollTop=0;
@@ -1151,6 +1152,22 @@ function initHero(){
   }
 }
 
+
+function initSuccess(){
+  if(!BCONTENT||!BCONTENT.bf_final) return;
+  const f = BCONTENT.bf_final;
+  const set = (id,v)=>{const e=document.getElementById(id);if(e&&v)e.innerHTML=v;};
+  set('succ-eyebrow',   f.eyebrow);
+  set('succ-h1-l1',     f.h1_l1);
+  set('succ-h1-l2',     f.h1_l2);
+  set('succ-body',      f.body);
+  set('succ-info-title',f.info_title);
+  set('succ-info-desc', f.info_desc);
+  set('succ-info-prazo',f.info_prazo);
+  set('succ-info-email',f.info_email);
+  const btn=document.getElementById('succ-btn');
+  if(btn&&f.btn_text)btn.textContent=f.btn_text;
+}
 // ── BRIEFING CONTENT LOADER ────────────────────────────
 async function loadBriefingContent(){
   const loadEl=document.getElementById('bc-loading');

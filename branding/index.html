@@ -2438,8 +2438,10 @@ function applyH2Lines(el, lines, styles){
   el.innerHTML = lines.filter(l=>l).map((txt,i)=>{
     const st = (styles&&styles[i])||'normal';
     const cls = 'hl-inner'+(st!=='normal'?' hl-'+st:'');
-    return `<span class="hl-wrap"><span class="${cls}">${txt}</span></span>`;
+    return `<span class="hl-wrap on"><span class="${cls}">${txt}</span></span>`;
   }).join('');
+  // Force-mark element as revealed so the IntersectionObserver re-triggers
+  el.classList.add('on');
 }
 function buildIphoneCard(t) {
     return `
@@ -2544,7 +2546,7 @@ function buildIphoneCard(t) {
     if (d.casos_header) {
       const h2Inners = document.querySelectorAll('.cases__h2 .hl-inner');
       const ch = d.casos_header;
-      if(ch.h2_lines){ const casH2 = document.querySelector('.casos__h2,.statement__h2[data-cases]'); if(casH2) applyH2Lines(casH2, ch.h2_lines, ch.h2_styles); else { const h2Inners2=document.querySelectorAll('.casos__heading .hl-inner'); ch.h2_lines.filter(l=>l).forEach((t,i)=>{ if(h2Inners2[i]) h2Inners2[i].textContent=t; }); } }
+      if(ch.h2_lines){ const casH2 = document.querySelector('.casos__h2,.statement__h2[data-cases]'); if(casH2) applyH2Lines(casH2, ch.h2_lines, ch.h2_styles); else { const h2Inners2=document.querySelectorAll('.casos__heading .hl-inner'); ch.h2_lines.filter(l=>l).forEach((t,i)=>{ if(h2Inners2[i]) h2Inners2[i].textContent=t; }); document.querySelectorAll('.casos__heading .hl-wrap').forEach(w=>w.classList.add('on'));; } }
       else { const lines = (ch.h2 || '').split(' | ');
       h2Inners.forEach((el, i) => { if (lines[i] !== undefined) el.textContent = lines[i]; }); }
       const sub = document.querySelector('.cases__intro-right');
@@ -2719,6 +2721,7 @@ function buildIphoneCard(t) {
       if (kicker && v.kicker) kicker.textContent = v.kicker;
       const h2 = document.querySelector('.statement__h2');
       if (h2) {
+        h2.querySelectorAll('.hl-wrap').forEach(w=>w.classList.add('on'));
         const lines = h2.querySelectorAll('.hl-inner');
         const vStyles = v.h2_styles || ['normal','outline','normal'];
         [v.h2_l1, v.h2_l2, v.h2_l3].forEach((txt,i)=>{
@@ -2748,7 +2751,10 @@ function buildIphoneCard(t) {
       const ey = document.querySelector('.cta-fin__ey');
       if (ey) ey.textContent = cf.eyebrow || '';
       const h2 = document.querySelector('.cta-fin__h2');
-      if (h2) h2.innerHTML = (cf.headline||'').replace(/\n/g,'<br>');
+      if (h2) {
+        if(cf.headline_lines) applyH2Lines(h2, cf.headline_lines, cf.headline_styles);
+        else h2.innerHTML = (cf.headline||'').replace(/\n/g,'<br>');
+      }
       const sub = document.querySelector('.cta-fin__sub');
       if (sub) sub.textContent = cf.sub || cf.subtitle || '';
       const btn = document.querySelector('.cta-fin__btn');

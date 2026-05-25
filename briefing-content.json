@@ -866,5 +866,16 @@
   "bf_footer": {
     "copyright": "© 2025 GMSTUDIO®. Todos os direitos reservados.",
     "tagline": "Studio de Branding & Direção Visual"
+  },
+  "bf_final": {
+    "eyebrow": "Briefing enviado",
+    "h1_l1": "Recebemos",
+    "h1_l2": "seu <em>briefing.</em>",
+    "body": "Suas respostas foram enviadas com sucesso para a equipe da GMSTUDIO. Analisaremos cada detalhe com atenção e entraremos em contato em breve.",
+    "info_title": "Próximos passos",
+    "info_desc": "Nossa equipe irá analisar profundamente todas as suas respostas e entrar em contato para agendar nossa primeira sessão estratégica.",
+    "info_prazo": "Até 2 dias úteis.",
+    "info_email": "gmstudio@outlook.pt",
+    "btn_text": "← Voltar ao início"
   }
 }
