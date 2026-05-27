@@ -833,16 +833,7 @@
   },
   "contato": {
     "eyebrow": "Vamos conversar",
-    "h2": "Pronto para construir uma marca forte?",
-    "desc": "Preencha o formulário e entraremos em contato em até 24 horas para entender seu projeto e encontrar o pacote ideal.",
-    "promessas": [
-      "Resposta em até 24 horas úteis",
-      "Diagnóstico gratuito do momento da sua marca",
-      "Sem compromisso — conversa estratégica inicial",
-      "Atendimento direto com o STUDIO"
-    ],
-    "formspree_id": "xjgzylew",
-    "submit_text": "Enviar mensagem →",
+    "h2": "Vamos\nconversar.",
     "h2_lines": [
       "Vamos",
       "conversar.",
@@ -852,7 +843,11 @@
       "normal",
       "color",
       "normal"
-    ]
+    ],
+    "desc": "Preencha o formulário e entraremos em contato em até 24 horas para entender seu projeto e encontrar o pacote ideal.",
+    "promises": [],
+    "formspree_id": "xjgzylew",
+    "submit_text": "Enviar mensagem →"
   },
   "footer": {
     "copyright": "© 2024 GMSTUDIO®. Todos os direitos reservados. Pouso Alegre/MG, Brasil.",
@@ -863,9 +858,6 @@
   "cta_footer": {
     "eyebrow": "Pronto para criar sua marca?",
     "headline": "Vamos construir\numa marca forte.",
-    "cta_text": "Iniciar projeto",
-    "cta_href": "https://gmstudiobr.github.io/briefing",
-    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
     "headline_lines": [
       "Vamos construir",
       "uma marca forte.",
@@ -873,9 +865,12 @@
     ],
     "headline_styles": [
       "normal",
-      "color",
+      "highlight",
       "normal"
-    ]
+    ],
+    "sub": "Uma conversa de 30 minutos pode ser o ponto de partida de uma marca icônica.",
+    "cta_text": "Iniciar projeto",
+    "cta_href": "https://gmstudiobr.github.io/briefing"
   },
   "clientes": {
     "usar_gmstudio_fallback": true,
