@@ -105,6 +105,6 @@ O repositório é hospedado no GitHub Pages. Execute `DEPLOY.bat` na raiz do pro
 
 ---
 
-**[gmstudiobr.github.io](https://gmstudiobr.github.io)** · [Instagram](https://instagram.com/gmstudiobr) · [Behance](https://behance.net/gmstudiobr) · [LinkedIn](https://linkedin.com/company/gmstudiobr) · [gmstudio@outlook.pt](mailto:gmstudio@outlook.pt)
+**[gmstudiobr.github.io](https://gmstudiobr.github.io)** · [Instagram](https://instagram.com/gmstudio.br) · [Behance](https://behance.net/gmstudio-br) · [LinkedIn]([https://linkedin.com/company/gmstudiobr](https://www.linkedin.com/in/gustavomachado-dg/)) · [gmstudio@outlook.pt](mailto:gmstudio@outlook.pt)
 
 *© 2026 GMSTUDIO©. Todos os direitos reservados.*
